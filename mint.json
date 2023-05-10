@@ -43,7 +43,7 @@
       "pages": [
         {
           "group": "Kubernetes",
-          "pages": ["pages/agent-installation/kubernetes/auto-instrumentation-in-kubernetes","pages/agent-installation/kubernetes/kubernetes-overview"]
+          "pages": ["pages/agent-installation/kubernetes/auto-instrumentation-in-kubernetes","pages/agent-installation/kubernetes/kubernetes-overview","pages/agent-installation/kubernetes/installing-on-kubernetes"]
         }
       ]
     },
