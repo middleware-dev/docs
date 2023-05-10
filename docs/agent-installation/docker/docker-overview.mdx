@@ -1,0 +1,20 @@
+---
+title: "Docker overview"
+description: ""
+---
+
+
+<h2>Supported Machines</h2>
+<p>We have created docker distributions using https://github.com/marketplace/actions/build-and-push-docker-images</p>
+<p>All the OS that supports docker should also support our docker based agent.</p>
+<p>This is applicable on both x86 & ARM based machines, as we are using multi-platform builds.</p>
+
+<h2>Current Technical Approach</h2>
+<p>In order to collect host level details, our docker agent works on host network mode.</p>
+<p>For log reading, the docker agent uses volume binding.</p>
+
+<h2>Roadmap</h2>
+<ol>
+    <li>Current docker installation bash script works well with Linux + Mac machines. We will be making this script adaptable for Windows machines as well.</li>
+</ol>
+

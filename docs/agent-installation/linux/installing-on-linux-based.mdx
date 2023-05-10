@@ -1,0 +1,65 @@
+---
+title: "Installing on Linux-based"
+description: ""
+---
+
+
+<h2>Prerequisites</h2>
+
+
+<ol>
+    <li>Create a <a href="https://app.middleware.io/auth/register/" rel="nofollow noopener noreferrer" target="_blank" translate="no">Middleware account</a></li>
+    <li>Keep logging into your account  </li>
+</ol>
+<h2>Use our one-step easy installation </h2>
+
+<p>To install a Middleware agent on a host, copy the Installation command and paste it into the command prompt. Your command will look like the following example, and it will include your API key.</p>
+
+
+    <img src="/images/agent-installation/linux-installation.png" />
+
+<p>For DEB (Debian Packages : Compatible for Debian and derivative operating systems)</p>
+
+```javascript Shell
+MW_API_KEY=xxxxxxxxxxxxxxx TARGET=https://uid.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/linux-install.sh)"
+```
+
+<p>For RPM (Package supported by RedHat Package Manager, Compatible for systems like RedHat/CentOS etc.)</p>
+
+```javascript Shell
+MW_API_KEY=xxxxxxxxxxxxxxxxx TARGET=https:/uid.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/rpm-install.sh)"
+```
+<p style={{fontSize:"14px",marginBottom:"10px"}}>* Replace the MW_API_KEY value with your API key or directly copy the full command with the API key from the <a href="https://app.middleware.io/auth/login" rel="nofollow noopener noreferrer" target="_blank" translate="no">installation menu.</a></p>
+<p style={{fontSize:"14px",marginBottom:"10px"}}>* Replace "uid" with the text in the URL (ex URL is "s05zpimz.middleware.io" , here s05zpimz is uid.)</p>
+
+
+<h2>Verify the status of agent  </h2>
+<p>Run the agent’s status command to verify the installation.</p>
+
+
+```javascript Shell
+sudo systemctl status mwservice
+```
+
+<p>A successful installation returns an Agent Status report that begins with Agent information like following </p>
+
+<img src="/images/agent-installation/succsess-linux.png" />
+
+
+
+
+<h2>Uninstall the Middleware agent</h2>
+<p>To uninstall the middleware agent, please use the following command.</p>
+
+```javascript Shell
+bash -c "$(curl -L https://install.middleware.io/scripts/apt-uninstall.sh)"
+```
+
+
+
+
+
+
+
+
+
