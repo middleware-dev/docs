@@ -1,0 +1,51 @@
+---
+title: "Auto-Instrumentation in Kubernetes"
+description: "Detect programming languages for all the pods running inside your cluster"
+---
+
+Our Kubernetes auto-instrumentation script ...
+<ul>
+    <li>Monitors your Kubernetes cluster as an Infrastructure</li>
+    <li>Collects distributed traces for all the applications running inside your cluster</li>
+</ul>
+<h2>How Auto-Instrumentation Works</h2>
+<p>Once user hits the Kubernetes Auto-Instrumentation script, the script will install a helm chart in the cluster, which will ...</p>
+<ol>
+    <li>Detect programming languages for all the pods running inside your cluster. (Refer Language Support section at bottom)</li>
+    <li>Install Opentelemetry auto-instrumentation libraries in all the pods that user wants to monitor.</li>
+    <li>Install a Daemonset to monitor the performance of all the K8s components. Ex. Nodes, Pods, Containers, etc.</li>
+    <li>Send all infrastructure + application data to Middleware backend !</li>
+</ol>
+<h2>Language Support</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Language</th>
+        <th>Version Support</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Node.js</td>
+        <td>Details coming soon</td>
+    </tr>
+    <tr>
+        <td>Python</td>
+        <td>Details coming soon</td>
+    </tr>
+    <tr>
+        <td>Java</td>
+        <td>Details coming soon</td>
+    </tr>
+    <tr>
+        <td>C#</td>
+        <td>Details coming soon</td>
+    </tr>
+    <tr>
+        <td>Golang</td>
+        <td>Details coming soon</td>
+    </tr>
+    </tbody>
+</table>
+<p><strong>Note: Golang distributed tracing support is made possible by eBPF</strong></p>
+

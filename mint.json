@@ -2,46 +2,50 @@
   "$schema": "https://mintlify.com/schema.json",
   "name": "Documentation Starter Kit",
   "logo": {
-    "dark": "/logo/dark.png",
-    "light": "/logo/light.png"
+    "dark": "/logo/logo-mw.svg",
+    "light": "/logo/logo-mw.svg"
   },
   "favicon": "/favicon.png",
   "colors": {
-    "primary": "#0069ED",
-    "light": "#4D9CFF",
-    "dark": "#0050B4"
+    "primary": "#e95e5f",
+    "light": "#fef4f4",
+    "dark": "#e95e5f"
   },
   "topbarLinks": [
     {
-      "name": "Documentation",
-      "url": "https://mintlify.com/docs"
+      "name": "Features",
+      "url": "https://middleware.io/platform/unified-experience/"
+    },
+    {
+      "name": "Pricing",
+      "url": "https://middleware.io/pricing/"
+    },
+    {
+      "name": "Book a demo",
+      "url": "https://calendly.com/middleware_io/30min?month=2023-05"
     }
   ],
   "topbarCtaButton": {
     "name": "Get Started",
-    "url": "https://github.com/mintlify/starter"
+    "url": "https://app.middleware.io/auth/register/"
   },
   "anchors": [
     {
       "name": "API Reference",
       "icon": "rectangle-terminal",
       "url": "api-reference"
-    },
-    {
-      "name": "Changelog",
-      "icon": "list",
-      "url": "https://mintlify.com"
-    },
-    {
-      "name": "Community",
-      "icon": "discord",
-      "url": "https://mintlify.com/community"
     }
+
   ],
   "navigation": [
     {
-      "group": "Home",
-      "pages": ["introduction", "features"]
+      "group": "Agent Installation",
+      "pages": [
+        {
+          "group": "Kubernetes",
+          "pages": ["pages/agent-installation/kubernetes/auto-instrumentation-in-kubernetes","pages/agent-installation/kubernetes/kubernetes-overview"]
+        }
+      ]
     },
     {
       "group": "API Documentation",
@@ -58,8 +62,8 @@
     }
   ],
   "footerSocials": {
-    "twitter": "https://twitter.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
+    "facebook": "https://www.facebook.com/middlewarelabs",
+    "twitter": "https://twitter.com/Middleware_Labs",
+    "linkedin": "https://www.linkedin.com/company/middleware-labs/"
   }
 }

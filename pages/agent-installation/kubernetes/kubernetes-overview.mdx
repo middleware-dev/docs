@@ -1,0 +1,19 @@
+---
+title: "Kubernetes overview"
+description: "We mainly run a Daemonset to run our Middleware agent containers inside your k8s cluster."
+---
+
+
+<h2>Supported Machines</h2>
+<p>All the k8s clusters running on v1.21 or above should support Middleware K8s agent.</p>
+<h2>Current Technical Approach</h2>
+
+<ul>
+    <li>We mainly run a Daemonset to run our Middleware agent containers inside your k8s cluster.)</li>
+    <li>We add components like ClusterRole, ClusterRoleBinding, ServiceAccount, Role, Rolebinding for setting up the permissions for our Daemonset pods.</li>
+    <li>We also create a k8s service, in case any components need to connect with the Middleware agent with a permanent URL. (Ex. Our language based APMs)</li>
+    <li>We add a Cronjob to rollout our Daemonset on daily basis, so that it can pull docker images with latest updates, if any.</li>
+</ul>
+<h2>Roadmap</h2>
+<p>Currently, we have mainly used our Middleware agent with EKS. Based on the MW agent prerequisites it should also work well on Azure Kubernetes Services, GKE, and other popular platforms as well. But, we will be adding a tested list with version support details.</p>
+
