@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Documentation Starter Kit",
+  "name": "Middleware Docs",
   "logo": {
     "dark": "/logo/logo-mw.svg",
     "light": "/logo/logo-mw.svg"
