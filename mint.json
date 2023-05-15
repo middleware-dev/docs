@@ -58,7 +58,7 @@
      "pages": [
         {
           "group": "Node.js",
-          "pages": ["docs/apm-configuration/node-js/Node.js-apm-setup","docs/agent-installation/kubernetes/kubernetes-overview","docs/agent-installation/kubernetes/installing-on-kubernetes"]
+          "pages": ["docs/apm-configuration/node-js/Node.js-overview","docs/apm-configuration/node-js/Node.js-apm-setup"]
         },
         {
           "group": "go",
