@@ -51,13 +51,7 @@
         }
       ]
       
-      "group": "APM Configuration",
-       "pages": [
-        {
-          "group": "Node.js",
-          "pages": ["docs/agent-installation/kubernetes/auto-instrumentation-in-kubernetes","docs/agent-installation/kubernetes/kubernetes-overview","docs/agent-installation/kubernetes/installing-on-kubernetes"]
-        },
-      ]
+     
     
     }
   ],
