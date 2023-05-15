@@ -48,19 +48,7 @@
         {
           "group": "Any OS via Docker",
           "pages": ["docs/agent-installation/docker/docker-overview","docs/agent-installation/docker/installing-on-any-os-via-docker"]
-        },
-        
-        "group": "APM config",
-        "pages":[
-         {
-          "group": "node",
-          "pages": ["docs/agent-installation/kubernetes/auto-instrumentation-in-kubernetes","docs/agent-installation/kubernetes/kubernetes-overview","docs/agent-installation/kubernetes/installing-on-kubernetes"]
-        },
-        {
-          "group": "Go",
-          "pages": ["docs/agent-installation/linux/linux-based-agent-overview","docs/agent-installation/linux/installing-on-linux-based"]
-        },
-          ]
+        }
       
       ]    
     }
