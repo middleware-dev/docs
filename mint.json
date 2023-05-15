@@ -51,7 +51,19 @@
         }
       
       ]    
-    }
+    },
+    
+    "group": "APM",
+     "pages": [
+        {
+          "group": "node",
+          "pages": ["docs/agent-installation/kubernetes/auto-instrumentation-in-kubernetes","docs/agent-installation/kubernetes/kubernetes-overview","docs/agent-installation/kubernetes/installing-on-kubernetes"]
+        },
+        {
+          "group": "go",
+          "pages": ["docs/agent-installation/linux/linux-based-agent-overview","docs/agent-installation/linux/installing-on-linux-based"]
+        },
+    ]
    
   ],
   "footerSocials": {
