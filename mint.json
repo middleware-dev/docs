@@ -53,6 +53,7 @@
       ]    
     },
     
+    {
     "group": "APM",
      "pages": [
         {
@@ -64,6 +65,7 @@
           "pages": ["docs/agent-installation/linux/linux-based-agent-overview","docs/agent-installation/linux/installing-on-linux-based"]
         },
     ]
+    }
    
   ],
   "footerSocials": {
