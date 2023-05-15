@@ -61,8 +61,8 @@
           "pages": ["docs/apm-configuration/node-js/Node.js-overview","docs/apm-configuration/node-js/Node.js-apm-setup"]
         },
         {
-          "group": "go",
-          "pages": ["docs/agent-installation/linux/linux-based-agent-overview","docs/agent-installation/linux/installing-on-linux-based"]
+          "group": "Go",
+          "pages": ["docs/apm-configuration/go/Golang-overview","docs/apm-configuration/go/Golang-apm-setup"]
         }
     ]
     }
