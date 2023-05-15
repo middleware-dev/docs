@@ -63,7 +63,7 @@
         {
           "group": "go",
           "pages": ["docs/agent-installation/linux/linux-based-agent-overview","docs/agent-installation/linux/installing-on-linux-based"]
-        },
+        }
     ]
     }
    
