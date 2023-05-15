@@ -48,14 +48,10 @@
         {
           "group": "Any OS via Docker",
           "pages": ["docs/agent-installation/docker/docker-overview","docs/agent-installation/docker/installing-on-any-os-via-docker"]
-        }
-      ]
-      
-     
-    
+        },      
+      ]    
     }
    
-
   ],
   "footerSocials": {
     "facebook": "https://www.facebook.com/middlewarelabs",
