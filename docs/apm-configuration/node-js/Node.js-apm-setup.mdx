@@ -12,20 +12,21 @@
 Run this in your terminal
 
 ```javascript Shell
-MW_API_KEY=xxxxxxxxxxxxxxxxx TARGET=https://uid.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/docker-install.sh)"
+npm install @middleware.io/node-apm --save
 ```
 
 ## Step 2 : Prepend APM script
 
 Add these lines given below at the very start of your project.
 
-```
+```javascript Shell
 const tracker = require('@middleware.io/node-apm');
 tracker.track({
     projectName: "your-project-name",
     serviceName: "your-service-name",
 });
 ```
+
 ---------------------
 
 ## Collect Node.js specific metrics
@@ -40,16 +41,17 @@ All your APIs are auto-instrumented as soon as you complete `Step 2`
 
 ## Add custom logs
 
-```
+```javascript Shell
 tracker.info('Info sample');
 tracker.warn('Warning sample');
 tracker.debug('Debugging Sample');
 tracker.error('Error Sample');
 ```
 
+
 If you want to add stack trace along with the error log, you can follow the snippet as given below
 
-```
+```javascript Shell
 tracker.error(new Error('Error sample with stack trace'));
 ```
 
@@ -57,15 +59,16 @@ tracker.error(new Error('Error sample with stack trace'));
 
 If you are using APM in a Kubernetes cluster, Make sure to pass this ENV variable:
 
-```
+```javascript Shell
 MW_AGENT_SERVICE=mw-service.mw-agent-ns-{FIRST-5-LETTERS-OF-API-KEY}.svc.cluster.local
 ```
+
 
 ## Error Handling :
 
 If you want to record exception in traces then you can use track.errorRecord(error) method.
 
-```
+```javascript Shell
  app.get('/error', function (req, res) {
     try{
         throw new Error('oh error!');
@@ -73,6 +76,7 @@ If you want to record exception in traces then you can use track.errorRecord(err
        track.errorRecord(e)
     }
     res.status(500).send("wrong");
-});
- 
+}); 
 ```
+
+
