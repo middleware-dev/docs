@@ -79,7 +79,7 @@ MW_AGENT_SERVICE=mw-service.mw-agent-ns-{FIRST-5-LETTERS-OF-API-KEY}.svc.cluster
 
 If you want to record exception in traces then you can use track.RecordError(ctx,error) method.
 
-```golang Shell
+```golang
 app.get('/hello', (req, res) => {
     ctx := req.Context()
     try {
