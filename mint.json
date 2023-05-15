@@ -50,10 +50,20 @@
           "pages": ["docs/agent-installation/docker/docker-overview","docs/agent-installation/docker/installing-on-any-os-via-docker"]
         }
       ]
-      
-     
+         
     
     }
+    
+    {
+    "group": "APM Configuration",
+      "pages": [
+        {
+          "group": "Node.js",
+          "pages": ["docs/agent-installation/kubernetes/auto-instrumentation-in-kubernetes","docs/agent-installation/kubernetes/kubernetes-overview","docs/agent-installation/kubernetes/installing-on-kubernetes"]
+        },
+      ]
+    }
+
   ],
   "footerSocials": {
     "facebook": "https://www.facebook.com/middlewarelabs",
