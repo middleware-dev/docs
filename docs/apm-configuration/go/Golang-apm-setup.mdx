@@ -18,17 +18,17 @@ go get github.com/middleware-labs/golang-apm
 
 Add these line at the very start of your project
 
-````go
+```go
 import (
     track "github.com/middleware-labs/golang-apm/tracker"
 )
 ```
----------------------
 
 ## Collect Golang specific metrics
 
 Call track method in your main function
-````go
+
+```go
 go track.Track(
     track.WithConfigTag("service", {APM-SERVICE-NAME}),
     track.WithConfigTag("projectName", {APM-PROJECT-NAME}),
@@ -40,7 +40,7 @@ This will start collecting the application Metrics
 
 ## Add custom logs
 
-````go
+```go
 "github.com/middleware-labs/golang-apm/logger"
 
 ....
