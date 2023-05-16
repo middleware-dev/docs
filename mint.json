@@ -129,6 +129,11 @@
     {
      "group": "Integration",
      "pages": ["docs/integrations/Slack-integration","docs/integrations/MicrosoftTeam-integration","docs/integrations/Jira-integration"] 
+    },
+    
+    {
+     "group": "Settings",
+     "pages": ["docs/settings/Profile","docs/settings/Role-&-permission","docs/settings/Billing-&-usages"] 
     }
     
     
