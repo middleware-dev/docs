@@ -12,7 +12,7 @@
 
 Run this in your terminal
 
-```javascript Shell
+```python
 pip install middleware-apm
 ```
 
@@ -21,7 +21,7 @@ pip install middleware-apm
 
 Add these line at the very start of your project
 
-```javascript Shell
+```python
 from apmpythonpackage import apmpythonclass
 tracker=apmpythonclass()
 tracker.mw_tracer({APM-PROJECT-NAME}, {APM-SERVICE-NAME})
@@ -33,20 +33,20 @@ tracker.mw_tracer({APM-PROJECT-NAME}, {APM-SERVICE-NAME})
 
 The middleware-bootstrap -a install command reads through the list of packages installed in your active site-packages folder, and installs the corresponding instrumentation libraries for these packages, if applicable.
 
-```javascript Shell
+```python
 middleware-bootstrap -a install
 ```
 
 Run the below command for Distributed Tracing:
 
-```javascript Shell
+```python
 middleware-instrument --resource_attributes=project.name={APM-PROJECT-NAME} --metrics_exporter none --exporter_otlp_endpoint http://localhost:9319  --traces_exporter otlp --service_name {APM-SERVICE-NAME} python3 <your-file-name>.py
 ```
 
 
 Note : If you are using APM in a Kubernetes cluster, Make sure to pass this ENV variable:
 
-```javascript Shell
+```python
 MW_AGENT_SERVICE=mw-service.mw-agent-ns-{FIRST-5-LETTERS-OF-API-KEY}.svc.cluster.local
 
 middleware-instrument --resource_attributes=project.name={APM-PROJECT-NAME} --metrics_exporter none --exporter_otlp_endpoint mw-service.mw-agent-ns-{FIRST-5-LETTERS-OF-API-KEY}.svc.cluster.local:9319 --traces_exporter otlp --service_name {APM-SERVICE-NAME} python3 <your-file-name>.py
@@ -71,7 +71,7 @@ export PATH=$PATH:/home/.../.local/bin
 
 ## Add custom logs
 
-```javascript Shell
+```python
 tracker.error('python error log sample')
 tracker.debug('ipython debug log sample')
 tracker.warn('python warning log sample')
@@ -83,7 +83,7 @@ tracker.info('python info log sample')
 
 If you want to record exception in traces then you can use tracker.record_error(e) method.
 
-```
+```python
 randomList = ['a', 0, 2]
 
 for entry in randomList:
