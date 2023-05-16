@@ -25,18 +25,18 @@ description: "Use our one-step easy installation "
 MW_API_KEY=xxxxxxxxxxxxxxxxxxxxxxxxx TARGET=https://uid.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/mw-vision.sh)"
 ```
 <p>This script will install our all-in-one helm chart into your k8s cluster.</p>
-<p style={{fontSize:"14px",backgroundColor:"rgb(248, 248, 248)",marginBottom:"10px"}}>Once the script is executed, you will be given instructions to open our 'Middleware Vision UI'.</p>
-<p style={{fontSize:"14px",backgroundColor:"rgb(248, 248, 248)",marginBottom:"10px"}}>When you open the Vision UI (using port-forward), you will see all the applications running in your cluster along with their detected programming language</p>
-<p style={{fontSize:"14px",backgroundColor:"rgb(248, 248, 248)",marginBottom:"10px"}}>Select all the applications that you want to monitor and press 'Save Changes', and you will see their distributed traces in the Middleware dashboard.</p>
+<p>Once the script is executed, you will be given instructions to open our 'Middleware Vision UI'.</p>
+<p>When you open the Vision UI (using port-forward), you will see all the applications running in your cluster along with their detected programming language</p>
+<p>Select all the applications that you want to monitor and press 'Save Changes', and you will see their distributed traces in the Middleware dashboard.</p>
 
-OR use following command to install agent on Kubernetes
+**OR use following command to install agent on Kubernetes**
 ```javascript Shell
 MW_API_KEY=xxxxxxxxxxxxxxxxxx TARGET=https://uid.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/yaml-install.sh)"
 ```
-<p style={{fontSize:"14px",backgroundColor:"rgb(248, 248, 248)",marginBottom:"10px"}}>This script will install a Kubernetes daemonset into your k8s cluster.</p>
-<p style={{fontSize:"14px",backgroundColor:"rgb(248, 248, 248)",marginBottom:"10px"}}>This agent is mainly created to monitor the data of your Kubernetes infrastucture.</p>
-<p style={{fontSize:"14px",marginBottom:"10px"}}>* Replace the MW_API_KEY value with your API key or directly copy the full command with the API key from the <a href="https://app.middleware.io/auth/login" rel="nofollow noopener noreferrer" target="_blank" translate="no">installation menu.</a></p>
-<p style={{fontSize:"14px",marginBottom:"10px"}}>* Replace "uid" with the text in the URL (ex URL is "s05zpimz.middleware.io" , here s05zpimz is uid.)</p>
+<p>This script will install a Kubernetes daemonset into your k8s cluster.</p>
+<p>This agent is mainly created to monitor the data of your Kubernetes infrastucture.</p>
+<p>* Replace the MW_API_KEY value with your API key or directly copy the full command with the API key from the <a href="https://app.middleware.io/auth/login" rel="nofollow noopener noreferrer" target="_blank" translate="no">installation menu.</a></p>
+<p>* Replace "uid" with the text in the URL (ex URL is "s05zpimz.middleware.io" , here s05zpimz is uid.)</p>
 
 <Note>Note: You must not run more than one MW Agent per cluster. Running multiple Agents may result in unexpected behavior.</Note>
 
