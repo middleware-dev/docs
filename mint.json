@@ -66,7 +66,7 @@
         },
         {
           "group": "Python",
-          "pages": ["docs/apm-configuration/python/Python-overview","docs/apm-configuration/go/Golang-apm-setup"]
+          "pages": ["docs/apm-configuration/python/Python-overview","docs/apm-configuration/python/Python-apm-setup"]
         }
     ]
     }
