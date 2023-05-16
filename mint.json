@@ -124,6 +124,11 @@
     {
       "group": "Alerts",
        "pages": ["docs/alerting/Setup-alert"]
+    },
+    
+    {
+     "group": "Integration",
+     "pages": ["docs/integrations/Slack-integration","docs/integrations/MicrosoftTeam-integration","docs/integrations/Jira-integration"] 
     }
     
     
