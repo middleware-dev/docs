@@ -119,6 +119,11 @@
     {
       "group": "Custom Dashboard Builder",
        "pages": ["docs/custom-dashboard/Build-custom-dashboard"]
+    },
+    
+    {
+      "group": "Alerts",
+       "pages": ["docs/alerting/Setup-alert"]
     }
     
     
