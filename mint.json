@@ -93,7 +93,7 @@
     
     {
       "group": "Unified Dashboard",
-       "pages": ["docs/unified-dashboard/Unified-view"]
+       "pages": ["docs/unified-dashboard/Unified-view","docs/unified-dashboard/Metrics-in-unified-dashboard"]
     }
     
     
