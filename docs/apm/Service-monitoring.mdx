@@ -1,0 +1,49 @@
+Overview
+--------
+Middleware's Application Performance Management (APM) system provides functionality to list all the services that are available. This functionality allows you to view the different services that are running, their associated hosts, the number of requests that each service is receiving, and various latency metrics such as p50, p75, p90, and p99, along with the maximum latency and error rates. 
+
+Service List
+------------
+Once [APM is installed](https://docs.middleware.io/docs/apm-configuration), all the services running inside the application will be listed here.
+
+<img src="/images/apm/s1.png" />
+
+Service Name\
+The Service Name column displays the name of the service that is being listed. It provides an easy way to identify the different services that are running on your system.
+
+Host:\
+The Host column displays the host on which the service is running. This information is essential for identifying the location of the service and for troubleshooting any issues related to the service.
+
+Requests\
+The Requests column displays the number of requests that each service is receiving. This metric is an essential indicator of the service's usage and helps you identify the services that are experiencing high traffic.
+
+Latency Metrics\
+The Latency Metrics columns provide important information about the response times of each service. The p50, p75, p90, and p99 latency metrics represent the response time of the service in different percentiles. The p50 latency is the median response time, p75 latency represents the response time for the 75th percentile of requests, p90 latency represents the response time for the 90th percentile of requests, and p99 latency represents the response time for the 99th percentile of requests. The maximum latency column displays the longest response time observed for the service.
+
+Errors and Error Rate\
+The Errors column displays the number of errors that have occurred for each service. This metric is critical for identifying any issues or errors that the service may be experiencing. The Error Rate column displays the percentage of requests that have resulted in an error. This metric helps you identify any issues that may be affecting the overall performance of the service.
+
+Service Details
+---------------
+When you click on any service from this listing it will open a new page where you will find the dashboard related to this service. It includes reports, latency, an error chart, and a Dependency graph with a list of resources and traces.
+
+<img src="/images/apm/s2.png" />
+The service dependency graph provides a visual representation of the dependencies between various services in your application. Each service is represented by a node, and the edges between the nodes represent the dependencies between the services. The thickness of the edges represents the strength of the dependency. By analyzing this graph, you can quickly identify the services that are critical to the overall performance of your application and take appropriate action to optimize their performance.
+
+### Resources
+<img src="/images/apm/s3.png" />
+
+There is a listing of [Traces](https://docs.middleware.io/docs/traces) and resources. The APM trace resources table is a module that provides a detailed view of the performance of various resources in your application. This table provides information about the project, host, date, operation, requests, errors, latency, and trace status for each resource. By analyzing this information, you can identify any performance bottlenecks and take appropriate action to optimize the performance of your application.
+
+### Resource Detail
+Clicking on any resource in the trace resources table displays a panel containing detailed information about that resource. This information includes a graph of the success vs error hits over time, a graph of the trace hits over time, and a graph of the latency over time. The panel also displays an operational flow diagram for the resource, which provides a visual representation of the sequence of operations performed by the resource.\
+By clicking on the plus sign row you will be able to see the error trace of that particular request it there is any record,
+
+<img src="/images/apm/s4.png" />
+
+<img src="/images/apm/s5.png" />
+
+### Operational flow
+The trace operational flow diagram in APM provides a visual representation of the path of a request through various services and dependencies. It shows the different spans of a trace and the time taken by each span to complete. It also includes details of any errors encountered along the way. By following the trace operational flow diagram, users can easily identify bottlenecks in the system and take corrective actions. The diagram can also help in optimizing performance by providing insights into the order in which services are called, and the time taken by each service. Overall, the trace operational flow diagram is a powerful tool that provides a comprehensive view of the system's performance and helps in identifying and resolving issues.
+
+<img src="/images/apm/s6.png" />
