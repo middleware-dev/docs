@@ -99,6 +99,11 @@
     {
       "group": "Infrastructure Monitoring",
        "pages": ["docs/infrastructure-monitoring/Host","docs/infrastructure-monitoring/Container-monitoring","docs/infrastructure-monitoring/Kubernetes-monitoring","docs/infrastructure-monitoring/Processes"]
+    },
+    
+    {
+      "group": "APM",
+       "pages": ["docs/apm/APM-Dashboard","docs/apm/Service-monitoring","docs/apm/Traces","docs/apm/Error-traces"]
     }
     
     
