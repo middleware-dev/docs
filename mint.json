@@ -104,6 +104,11 @@
     {
       "group": "APM",
        "pages": ["docs/apm/APM-dashboard","docs/apm/Service-monitoring","docs/apm/Traces","docs/apm/Error-traces"]
+    },
+    
+    {
+      "group": "Log Monitoring",
+       "pages": ["docs/log-monitoring/Logs"]
     }
     
     
