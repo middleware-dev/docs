@@ -75,6 +75,10 @@
         {
           "group": "PHP",
           "pages": ["docs/apm-configuration/php/PHP-overview","docs/apm-configuration/php/PHP-apm-setup"]
+        },
+       {
+          "group": "Cloudflare",
+          "pages": ["docs/apm-configuration/cloudflare/Cloudflare-overview","docs/apm-configuration/cloudflare/apm-agent-for-cloudflare-worker"]
         }
     ]
     }
