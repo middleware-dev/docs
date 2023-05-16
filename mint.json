@@ -67,6 +67,10 @@
         {
           "group": "Python",
           "pages": ["docs/apm-configuration/python/Python-overview","docs/apm-configuration/python/Python-apm-setup"]
+        },
+       {
+          "group": "Java",
+          "pages": ["docs/apm-configuration/java/Java-overview","docs/apm-configuration/java/Java-apm-setup"]
         }
     ]
     }
