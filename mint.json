@@ -89,7 +89,23 @@
           "pages": ["docs/apm-configuration/next-js/Next.js-apm-setup","docs/apm-configuration/next-js/Vercel-integration"]
         }
     ]
+    },
+    
+    {
+      "group": "Unified Dashboard",
+       "pages": [
+        {
+          "group": "Unified View",
+          "pages": ["docs/unified-dashboard/Unified-view"]
+        },
+        {
+          "group": "Metrics in Unified Dashboard",
+          "pages": ["docs/apm-configuration/go/Golang-overview"]
+        }
+      ]
     }
+    
+    
    
   ],
   "footerSocials": {
