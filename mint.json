@@ -93,16 +93,7 @@
     
     {
       "group": "Unified Dashboard",
-       "pages": [
-        {
-          "group": "Unified View",
-          "pages": ["docs/unified-dashboard/Unified-view"]
-        },
-        {
-          "group": "Metrics in Unified Dashboard",
-          "pages": ["docs/apm-configuration/go/Golang-overview"]
-        }
-      ]
+       "pages": ["docs/unified-dashboard/Unified-view"]
     }
     
     
