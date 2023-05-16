@@ -98,7 +98,7 @@
     
     {
       "group": "Infrastructure Monitoring",
-       "pages": ["docs/infrastructure-monitoring/Host"]
+       "pages": ["docs/infrastructure-monitoring/Host","docs/infrastructure-monitoring/Container-monitoring","docs/infrastructure-monitoring/Kubernetes-monitoring","docs/infrastructure-monitoring/Processes"]
     }
     
     
