@@ -11,7 +11,7 @@
 
 Run this in your terminal
 
-```javascript Shell
+```go
 go get github.com/middleware-labs/golang-apm
 ```
 
@@ -20,7 +20,7 @@ go get github.com/middleware-labs/golang-apm
 
 Add these line at the very start of your project
 
-```javascript Shell
+```go
 import (
     track "github.com/middleware-labs/golang-apm/tracker"
 )
@@ -32,7 +32,7 @@ import (
 
 Call track method in your main function
 
-```javascript Shell
+```go
 go track.Track(
     track.WithConfigTag("service", "your-service-name"),
     track.WithConfigTag("projectName", "your-project-name"),
@@ -44,7 +44,7 @@ This will start collecting the application Metrics
 
 ## Add custom logs
 
-```javascript Shell
+```go
 github.com/middleware-labs/golang-apm/logger
 
 logger.Error("Error")
@@ -70,7 +70,7 @@ You may need to add a framework specific middleware, to watch traces.
 
 If you are using APM in a Kubernetes cluster, Make sure to pass this ENV variable:
 
-```javascript Shell
+```go
 MW_AGENT_SERVICE=mw-service.mw-agent-ns-{FIRST-5-LETTERS-OF-API-KEY}.svc.cluster.local
 ```
 
@@ -79,7 +79,7 @@ MW_AGENT_SERVICE=mw-service.mw-agent-ns-{FIRST-5-LETTERS-OF-API-KEY}.svc.cluster
 
 If you want to record exception in traces then you can use track.RecordError(ctx,error) method.
 
-```golang
+```go
 app.get('/hello', (req, res) => {
     ctx := req.Context()
     try {
