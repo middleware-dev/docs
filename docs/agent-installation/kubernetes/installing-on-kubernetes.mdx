@@ -4,7 +4,7 @@ description: "Use our one-step easy installation "
 ---
 
 
-<h2>Prerequisites</h2>
+## Prerequisites
 
 
 <ol>
@@ -12,7 +12,7 @@ description: "Use our one-step easy installation "
     <li>Keep logging into your account  </li>
     <li>Access to Kubernetes cluster and Kubernetes client (ie. : <a href="https://kubernetes.io/docs/reference/kubectl/kubectl/" rel="nofollow noopener noreferrer" target="_blank" translate="no">kubectl</a>) </li>
 </ol>
-<h2>Use our one-step easy installation </h2>
+## Use our one-step easy installation
 
 <p>To install a Middleware agent on a host, copy the Installation command and paste it into the command prompt. Your command will look like the following example, and it will include your API key.</p>
 
@@ -24,23 +24,23 @@ description: "Use our one-step easy installation "
 ```javascript Shell
 MW_API_KEY=xxxxxxxxxxxxxxxxxxxxxxxxx TARGET=https://uid.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/mw-vision.sh)"
 ```
-<p style={{fontSize:"14px",backgroundColor:"rgb(248, 248, 248)",marginBottom:"10px"}}>This script will install our all-in-one helm chart into your k8s cluster.</p>
-<p style={{fontSize:"14px",backgroundColor:"rgb(248, 248, 248)",marginBottom:"10px"}}>Once the script is executed, you will be given instructions to open our 'Middleware Vision UI'.</p>
-<p style={{fontSize:"14px",backgroundColor:"rgb(248, 248, 248)",marginBottom:"10px"}}>When you open the Vision UI (using port-forward), you will see all the applications running in your cluster along with their detected programming language</p>
-<p style={{fontSize:"14px",backgroundColor:"rgb(248, 248, 248)",marginBottom:"10px"}}>Select all the applications that you want to monitor and press 'Save Changes', and you will see their distributed traces in the Middleware dashboard.</p>
+<p>This script will install our all-in-one helm chart into your k8s cluster.</p>
+<p>Once the script is executed, you will be given instructions to open our 'Middleware Vision UI'.</p>
+<p>When you open the Vision UI (using port-forward), you will see all the applications running in your cluster along with their detected programming language</p>
+<p>Select all the applications that you want to monitor and press 'Save Changes', and you will see their distributed traces in the Middleware dashboard.</p>
 
-OR use following command to install agent on Kubernetes
+**OR use following command to install agent on Kubernetes**
 ```javascript Shell
 MW_API_KEY=xxxxxxxxxxxxxxxxxx TARGET=https://uid.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/yaml-install.sh)"
 ```
-<p style={{fontSize:"14px",backgroundColor:"rgb(248, 248, 248)",marginBottom:"10px"}}>This script will install a Kubernetes daemonset into your k8s cluster.</p>
-<p style={{fontSize:"14px",backgroundColor:"rgb(248, 248, 248)",marginBottom:"10px"}}>This agent is mainly created to monitor the data of your Kubernetes infrastucture.</p>
-<p style={{fontSize:"14px",marginBottom:"10px"}}>* Replace the MW_API_KEY value with your API key or directly copy the full command with the API key from the <a href="https://app.middleware.io/auth/login" rel="nofollow noopener noreferrer" target="_blank" translate="no">installation menu.</a></p>
-<p style={{fontSize:"14px",marginBottom:"10px"}}>* Replace "uid" with the text in the URL (ex URL is "s05zpimz.middleware.io" , here s05zpimz is uid.)</p>
+<p>This script will install a Kubernetes daemonset into your k8s cluster.</p>
+<p>This agent is mainly created to monitor the data of your Kubernetes infrastucture.</p>
+<p>* Replace the MW_API_KEY value with your API key or directly copy the full command with the API key from the <a href="https://app.middleware.io/auth/login" rel="nofollow noopener noreferrer" target="_blank" translate="no">installation menu.</a></p>
+<p>* Replace "uid" with the text in the URL (ex URL is "s05zpimz.middleware.io" , here s05zpimz is uid.)</p>
 
 <Note>Note: You must not run more than one MW Agent per cluster. Running multiple Agents may result in unexpected behavior.</Note>
 
-<h2>Verify the status for K8s Auto-instrument Agent </h2>
+## Verify the status for K8s Auto-instrument Agent 
 <p>Run this command to check the status of main daemonset component, which will be collecting data from your cluster</p>
 
 
@@ -56,7 +56,7 @@ kubectl get daemonset/vision-data-collection -n mw-vision
 
 <p>If you have "N" number of k8s nodes, You should see "N" ready pods.</p>
 
-<h2>Verify Status for K8s Infrastructure Agent</h2>
+## Verify Status for K8s Infrastructure Agent
 <p>Run this command to check the status of main daemonset component, which will be collecting data from your cluster</p>
 
 ```javascript Shell
