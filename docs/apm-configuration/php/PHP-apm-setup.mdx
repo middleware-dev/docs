@@ -1,8 +1,6 @@
-
-
 ## Prerequisites
 
-* To monitor APM data on dashboard, [Middleware Host-agent](https://docs.middleware.io/docs/installation) needs to be installed, You can refer [this demo project](https://github.com/middleware-labs/demo-apm/tree/master/php) to refer use cases of APM.
+* To monitor APM data on dashboard, [Middleware Host-agent](https://docs.middleware.io/docs/getting-started) needs to be installed, You can refer [this demo project](https://github.com/middleware-labs/demo-apm/tree/master/php) to refer use cases of APM.
 * PHP requires at least PHP 8+ and a PHP-Extension to run this agent.
 
 --------------------
@@ -19,20 +17,20 @@ Before installing this agent, you need to install PHP-Extension(named otel_instr
 #### Troubleshoot:-
 While installing PHP-Extension:
 * If you are facing `pecl:command not found`, then you need to run follow cmd:
-  ```
+  ```php
   sudo apt-get update
   apt-get install php-pear php8.1-dev
   ```
 * If you are facing any kind of broken dependencies issues like: `libpcre2-dev : Depends: libpcre2-8-0 / libpcre2-16-0 / libpcre2-32-0`, then you need to run follow cmd:
-  ```
+  ```php
   sudo apt --fix-broken install
   ```
 * If you are facing `ERROR: 'phpize' failed`, then you need to run follow cmd:
-  ```
+  ```php
   sudo apt-get update
   sudo apt-get install php8.1-dev
   ```
-  ```
+  ```php
   sudo apt-get update
   sudo pecl channel-update pecl.php.net
   ```
@@ -50,7 +48,7 @@ Add these lines given below at the very start of your project.
 
 ```php
 require 'vendor/autoload.php';
-use Middleware\AgentApmPhp\MwApmCollector;
+use Middleware\AgentApmPhp\MwTracker;
 ```
 
 ### Step 3: Use APM Collector & Start the Tracing-scope
@@ -60,14 +58,14 @@ By using the APM Collector, you will start tracing-scope before your code, Also 
 In each hook, you need to define your Classes & Functions name, so whenever they run, agent will track them auto.
 
 ```php
-$mwCollector = new MwApmCollector('<PROJECT-NAME>', '<SERVICE-NAME>');
-$mwCollector->preTracing();
+$tracker = new MwTracker('<PROJECT-NAME>', '<SERVICE-NAME>');
+$tracker->preTrack();
 
-$mwCollector->registerHook('<CLASS-NAME-1>', '<FUNCTION-NAME-1>', [
+$tracker->registerHook('<CLASS-NAME-1>', '<FUNCTION-NAME-1>', [
     'custom.attr1' => 'value1',
     'custom.attr2' => 'value2',
 ]);
-$mwCollector->registerHook('<CLASS-NAME-2>', '<FUNCTION-NAME-2>');
+$tracker->registerHook('<CLASS-NAME-2>', '<FUNCTION-NAME-2>');
 
 ```
 
@@ -76,50 +74,68 @@ $mwCollector->registerHook('<CLASS-NAME-2>', '<FUNCTION-NAME-2>');
 After your code-flow, you need to end the tracing scope, so that agent can send the data to Middleware's APM dashboard.
 
 ```php
-$mwCollector->postTracing();
+$tracker->postTrack();
 ```
+
+### Step 5 : To enable Logging feature
+
+If you want to enable Logging feature along with tracing in your project, then you can use below code snippet.
+
+  ```php
+   $tracker->warn("this is warning log.");
+   $tracker->error("this is error log.");
+   $tracker->info("this is info log.");
+   $tracker->debug("this is debug log.");
+   ```
 
 ### Final code snippet will be:
 
 ```php
 <?php
 require 'vendor/autoload.php';
+use Middleware\AgentApmPhp\MwTracker;
 
-use Middleware\AgentApmPhp\MwApmCollector;
-
-$mwCollector = new MwApmCollector('<PROJECT-NAME>', '<SERVICE-NAME>');
-$mwCollector->preTracing();
-$mwCollector->registerHook('<CLASS-NAME-1>', '<FUNCTION-NAME-1>', [
+$tracker = new MwTracker('<PROJECT-NAME>', '<SERVICE-NAME>');
+$tracker->preTrack();
+$tracker->registerHook('<CLASS-NAME-1>', '<FUNCTION-NAME-1>', [
     'custom.attr1' => 'value1',
     'custom.attr2' => 'value2',
 ]);
-$mwCollector->registerHook('<CLASS-NAME-2>', '<FUNCTION-NAME-2>');
+$tracker->registerHook('<CLASS-NAME-2>', '<FUNCTION-NAME-2>');
 
-// Your code goes here
+$tracker->info("this is info log.");
 
-$mwCollector->postTracing();
+// ----
+// Your code goes here.
+// ----
+
+$tracker->postTrack();
 ```
 
 ### Sample Code:
 ```php
 <?php
 require 'vendor/autoload.php';
+use Middleware\AgentApmPhp\MwTracker;
 
-use Middleware\AgentApmPhp\MwApmCollector;
-
-$mwCollector = new MwApmCollector('DemoProject', 'PrintService');
-$mwCollector->preTracing();
-$mwCollector->registerHook('DemoClass', 'runCode', [
+$tracker = new MwTracker('DemoProject', 'PrintService');
+$tracker->preTrack();
+$tracker->registerHook('DemoClass', 'runCode', [
     'code.column' => '12',
     'net.host.name' => 'localhost',
     'db.name' => 'users',
     'custom.attr1' => 'value1',
 ]);
-$mwCollector->registerHook('DoThings', 'printString');
+$tracker->registerHook('DoThings', 'printString');
+
+$tracker->info("this is info log.");
 
 class DoThings {
     public static function printString($str): void {
         // sleep(1);
+        global $tracker;
+        $tracker->warn("this is warning log, but from inner function.");
+        
         echo $str . PHP_EOL;
     }
 }
@@ -132,15 +148,22 @@ class DemoClass {
 
 DemoClass::runCode();
 
-$mwCollector->postTracing();
+$tracker->postTrack();
 ```
 
 ---------------------
 
-## Note:
+## Note for APM inside Kubernetes
 
-If you are using APM in a Kubernetes cluster, Make sure to pass this ENV variable:
+If you are using APM in a Kubernetes cluster make sure to follow these 2 steps:
 
+### Step 1 : Find your Middleware Service namespace
+For older setup, your "mw-service" can be inside "mw-agent-ns-{FIRST-5-LETTERS-OF-API-KEY}" namespace
+
+For newer setup, we simplified the namespace name to "mw-agent-ns"
+
+### Step 2 : Set this ENV variable in your application deployment YAML
 ```php
-MW_AGENT_SERVICE=mw-service.mw-agent-ns-{FIRST-5-LETTERS-OF-API-KEY}.svc.cluster.local
+MW_AGENT_SERVICE=mw-service.NAMESPACE.svc.cluster.local
 ```
+Please replace "NAMESPACE" with the correct value that you found from Step 1.
