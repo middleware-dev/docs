@@ -94,6 +94,11 @@
     {
       "group": "Unified Dashboard",
        "pages": ["docs/unified-dashboard/Unified-view","docs/unified-dashboard/Metrics-in-unified-dashboard","docs/unified-dashboard/Logs-in-unified-dashboard","docs/unified-dashboard/Traces-in-unified-dashboard"]
+    },
+    
+    {
+      "group": "Infrastructure Monitoring",
+       "pages": ["docs/infrastructure-monitoring/Host"]
     }
     
     
