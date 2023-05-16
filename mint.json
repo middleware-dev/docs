@@ -109,6 +109,11 @@
     {
       "group": "Log Monitoring",
        "pages": ["docs/log-monitoring/Logs"]
+    },
+    
+     {
+      "group": "Synthetic Monitoring",
+       "pages": ["docs/synthetic-monitoring/Synthetic-monitoring","docs/synthetic-monitoring/IP-address"]
     }
     
     
