@@ -71,6 +71,10 @@
        {
           "group": "Java",
           "pages": ["docs/apm-configuration/java/Java-overview","docs/apm-configuration/java/Java-apm-setup"]
+        },
+        {
+          "group": "PHP",
+          "pages": ["docs/apm-configuration/php/PHP-overview","docs/apm-configuration/php/PHP-apm-setup"]
         }
     ]
     }
