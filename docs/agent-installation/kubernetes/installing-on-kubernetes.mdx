@@ -4,7 +4,7 @@ description: "Use our one-step easy installation "
 ---
 
 
-<h2>Prerequisites</h2>
+## Prerequisites
 
 
 <ol>
@@ -12,7 +12,7 @@ description: "Use our one-step easy installation "
     <li>Keep logging into your account  </li>
     <li>Access to Kubernetes cluster and Kubernetes client (ie. : <a href="https://kubernetes.io/docs/reference/kubectl/kubectl/" rel="nofollow noopener noreferrer" target="_blank" translate="no">kubectl</a>) </li>
 </ol>
-<h2>Use our one-step easy installation </h2>
+## Use our one-step easy installation
 
 <p>To install a Middleware agent on a host, copy the Installation command and paste it into the command prompt. Your command will look like the following example, and it will include your API key.</p>
 
@@ -40,7 +40,7 @@ MW_API_KEY=xxxxxxxxxxxxxxxxxx TARGET=https://uid.middleware.io:443 bash -c "$(cu
 
 <Note>Note: You must not run more than one MW Agent per cluster. Running multiple Agents may result in unexpected behavior.</Note>
 
-<h2>Verify the status for K8s Auto-instrument Agent </h2>
+## Verify the status for K8s Auto-instrument Agent 
 <p>Run this command to check the status of main daemonset component, which will be collecting data from your cluster</p>
 
 
@@ -56,7 +56,7 @@ kubectl get daemonset/vision-data-collection -n mw-vision
 
 <p>If you have "N" number of k8s nodes, You should see "N" ready pods.</p>
 
-<h2>Verify Status for K8s Infrastructure Agent</h2>
+## Verify Status for K8s Infrastructure Agent
 <p>Run this command to check the status of main daemonset component, which will be collecting data from your cluster</p>
 
 ```javascript Shell
