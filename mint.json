@@ -55,87 +55,9 @@
         }
       
       ]    
-    },
-    
-    {
-    "group": "APM Configuration",
-     "pages": [
-        {
-          "group": "Node.js",
-          "pages": ["docs/apm-configuration/node-js/Node.js-overview","docs/apm-configuration/node-js/Node.js-apm-setup"]
-        },
-        {
-          "group": "Go",
-          "pages": ["docs/apm-configuration/go/Golang-overview","docs/apm-configuration/go/Golang-apm-setup"]
-        },
-        {
-          "group": "Python",
-          "pages": ["docs/apm-configuration/python/Python-overview","docs/apm-configuration/python/Python-apm-setup"]
-        },
-       {
-          "group": "Java",
-          "pages": ["docs/apm-configuration/java/Java-overview","docs/apm-configuration/java/Java-apm-setup"]
-        },
-        {
-          "group": "PHP",
-          "pages": ["docs/apm-configuration/php/PHP-overview","docs/apm-configuration/php/PHP-apm-setup"]
-        },
-       {
-          "group": "Cloudflare",
-          "pages": ["docs/apm-configuration/cloudflare/Cloudflare-overview","docs/apm-configuration/cloudflare/apm-agent-for-cloudflare-workers"]
-       },
-        {
-          "group": "Next.js",
-          "pages": ["docs/apm-configuration/next-js/Next.js-apm-setup","docs/apm-configuration/next-js/Vercel-integration"]
-        }
-    ]
-    },
-    
-    {
-      "group": "Unified Dashboard",
-       "pages": ["docs/unified-dashboard/Unified-view","docs/unified-dashboard/Metrics-in-unified-dashboard","docs/unified-dashboard/Logs-in-unified-dashboard","docs/unified-dashboard/Traces-in-unified-dashboard"]
-    },
-    
-    {
-      "group": "Infrastructure Monitoring",
-       "pages": ["docs/infrastructure-monitoring/Host","docs/infrastructure-monitoring/Container-monitoring","docs/infrastructure-monitoring/Kubernetes-monitoring","docs/infrastructure-monitoring/Processes"]
-    },
-    
-    {
-      "group": "APM",
-       "pages": ["docs/apm/APM-dashboard","docs/apm/Service-monitoring","docs/apm/Traces","docs/apm/Error-traces"]
-    },
-    
-    {
-      "group": "Log Monitoring",
-       "pages": ["docs/log-monitoring/Logs"]
-    },
-    
-    {
-      "group": "Synthetic Monitoring",
-       "pages": ["docs/synthetic-monitoring/Synthetic-monitoring","docs/synthetic-monitoring/IP-address"]
-    },
-    
-    {
-      "group": "Custom Dashboard Builder",
-       "pages": ["docs/custom-dashboard/Build-custom-dashboard"]
-    },
-    
-    {
-      "group": "Alerts",
-       "pages": ["docs/alerting/Setup-alert"]
-    },
-    
-    {
-     "group": "Integration",
-     "pages": ["docs/integrations/Slack-integration","docs/integrations/MicrosoftTeam-integration","docs/integrations/Jira-integration"] 
-    },
-    
-    {
-     "group": "Settings",
-     "pages": ["docs/settings/Profile","docs/settings/Role-&-permission","docs/settings/Billing-&-usages"] 
     }
     
+   
     
    
   ],
