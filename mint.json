@@ -48,49 +48,24 @@
         {
           "group": "Any OS via Docker",
           "pages": ["docs/agent-installation/docker/docker-overview","docs/agent-installation/docker/installing-on-any-os-via-docker"]
+        },
+         {
+          "group": "Troubleshooting",
+          "pages": ["docs/agent-installation/Troubleshooting"]
         }
       
       ]    
-    },
-    
-    {
-    "group": "APM Configuration",
-     "pages": [
-        {
-          "group": "Node.js",
-          "pages": ["docs/apm-configuration/node-js/Node.js-overview","docs/apm-configuration/node-js/Node.js-apm-setup"]
-        },
-        {
-          "group": "Go",
-          "pages": ["docs/apm-configuration/go/Golang-overview","docs/apm-configuration/go/Golang-apm-setup"]
-        },
-        {
-          "group": "Python",
-          "pages": ["docs/apm-configuration/python/Python-overview","docs/apm-configuration/python/Python-apm-setup"]
-        },
-       {
-          "group": "Java",
-          "pages": ["docs/apm-configuration/java/Java-overview","docs/apm-configuration/java/Java-apm-setup"]
-        },
-        {
-          "group": "PHP",
-          "pages": ["docs/apm-configuration/php/PHP-overview","docs/apm-configuration/php/PHP-apm-setup"]
-        },
-       {
-          "group": "Cloudflare",
-          "pages": ["docs/apm-configuration/cloudflare/Cloudflare-overview","docs/apm-configuration/cloudflare/apm-agent-for-cloudflare-workers"]
-       },
-        {
-          "group": "Next.js",
-          "pages": ["docs/apm-configuration/next-js/Next.js-apm-setup","docs/apm-configuration/next-js/Vercel-integration"]
-        }
-    ]
     }
+    
+   
+    
    
   ],
   "footerSocials": {
+    "website": "https://www.middleware.io",
+     "linkedin": "https://www.linkedin.com/company/middleware-labs/",
     "facebook": "https://www.facebook.com/middlewarelabs",
-    "twitter": "https://twitter.com/Middleware_Labs",
-    "linkedin": "https://www.linkedin.com/company/middleware-labs/"
+    "twitter": "https://twitter.com/Middleware_Labs"
+   
   }
 }

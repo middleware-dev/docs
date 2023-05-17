@@ -1,0 +1,65 @@
+Overview
+--------
+Container Monitoring provides real-time visibility into health and performance of containerized environments. 
+
+Container List
+--------------
+The container list enables visibility into all containers across your environment excluding Kubernetes. It provides a detailed overview of your containers' health, resource consumption, and deployment. The collection of containers is container id, container name, host, status, cpu usage, ram usage, etc.\
+<img src="/images/infra-monitoring/c1.png" />
+
+### Container ID
+This shows the id of the container and IDs are randomly generated and are typically 12 characters long.
+
+### Container Name
+This shows the name of the container and the name is a user-friendly identifier that is assigned to a container.  
+
+### Host
+The host can be a physical or virtual machine running any operating system, such as Linux, Windows, or macOS.  
+
+### Status
+The container status refers to the current state of a container. The container status states include:
+
+-   Running: The container is currently running and its main process is active.
+-   Restarting: The container is in the process of restarting after being stopped or restarted.
+-   Exited: The container has stopped running and its main process has exited.
+-   Dead: The container has stopped running due to an error or crash, and its main process is no longer active.
+
+### CPU Usage
+This shows the percentage of CPU used. The CPU usage of a container refers to the percentage of the host system's CPU resources that are currently being used by the container's processes.
+
+### RAM Usage
+This shows the percentage of RAM used. The container RAM usage in percentage refers to the proportion of allocated memory resources that a container is currently using on the host system.
+
+### Started Ago
+This indicates when the container was started. when a container is started, and records the time it was started and saves this information as metadata associated with the container.
+
+Filters
+-------
+We have many options for data filters. Like selecting any date and searching container by a container name, container id, container image, etc. Also in the sidebar section, we also have multiple check options available to filter the containers list data.
+
+<img src="/images/infra-monitoring/c2.png" />
+
+Container Details
+-----------------
+Click on any container to view more details, the tab view provides basic container information such as metrics in a graphical view, hostname, and container image. the info will always display the latest data. You can view resources metrics and logs related to that container in this detail view.
+
+<img src="/images/infra-monitoring/c3.png" />
+
+### CPU Utilization (%)
+The container CPU percent refers to the percentage of CPU resources that a container is currently using on the host system. The container runs as a separate process on the host system and is allocated a certain amount of CPU resources based on its configuration and resources that are currently being used by the container's processes.
+
+### RAM Utilization (%)
+The container memory percent refers to the percentage of memory resources that a container is currently using on the host system, relative to the total memory resources available on the host system.
+
+### Network IO Utilization
+The container network I/O usage refers to the amount of data that is transmitted and received by a container over the network interface. this is typically measured in terms of the number of packets that are transmitted and received by the container, as well as the number of packets that are dropped.
+
+-   RX (receive) packets: The number of packets that are received by the container over the network interface.
+-   TX (transmit) packets: The number of packets that are transmitted by the container over the network interface.
+-   RX dropped: The number of packets that are dropped or discarded by the container due to errors or other issues during transmission.
+-   TX dropped: The number of packets that are dropped or discarded by the container due to errors or other issues during transmission.\
+    <img src="/images/infra-monitoring/c4.png" />
+
+### Block IO service recursive
+The container block I/O usage refers to the amount of data that is read from or written to a block device, such as a disk or storage volume, by a container. this is typically measured in terms of the number of input/output (I/O) operations and the amount of data that is transferred during those operations. The container.blockio.io_service_bytes_recursive metric key provides information about the amount of data that is read from or written to the block device in bytes, broken down by individual operations.\
+<img src="/images/infra-monitoring/c5.png" />

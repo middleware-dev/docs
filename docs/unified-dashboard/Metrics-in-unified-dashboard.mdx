@@ -1,0 +1,67 @@
+Metrics
+-------
+
+In the Metrics section, you can see the data of your infrastructure machines and monitor its health.\
+At the top part you can see the summary of your machines and at the bottom part, you can get details like its status, usages and etc.
+
+Details of data in metrics
+--------------------------
+
+As per the selected timeframe in the chart, data of metrics will display.\
+The top section is to deliver complete counts of  
+
+-   Total machines (including down machines)
+-   Total container that each machines has
+-   Total services
+-   Total processes that are running on those machines.
+
+<img src="/images/unified-dashboard/dashboard-4.png" />
+
+The down one contains a few cards like graphical boxes that give you a quick comparison between hosts' stats. These cards contain following data for a recent 1 Hour or selected interval
+
+-   Machines, that show available hosts in the form of a honeycomb pattern. 
+-   Current overview of CPU & RAM stats.
+-   CPU Usage, in form of a graphical chart.
+-   RAM Usage, in form of a graphical chart.
+-   Network Usage, combined chart for Receive & Transmit bandwidth.
+-   Disk Usage, combined chart for Read & Write Speed.
+-   Filesystem Usage, which denotes Used, Reserved & Free space
+
+<img src="/images/unified-dashboard/dashboard-5.png" />
+
+### Machines
+It shows the number of machines in the cluster in a honeycomb-like pattern. The machines are grouped by their status as running or down. You can get more details about each machine by hovering over any honeycomb. You want to filter out all 3 sections of the dashboard based on any particular machine only by clicking on any machine, and that will apply a filter on the dashboard, so the rest of the cards & sections will display data accordingly.
+
+Note: It will only show you up to 100 hexagons of recently installed machines, If you have 100+ machines installed, you can go to Infrastructure > Host-list screen to view the list of all machines.
+
+<img src="/images/unified-dashboard/dashboard-6.png" />
+
+### Overview
+This card will show the current CPU & RAM stats of the recently installed 25 machines in the cluster. If you want to quickly compare existing machines, such as which one consumes how much CPU and RAM, this will be useful.
+
+<img src="/images/unified-dashboard/dashboard-7.png" />
+
+### CPU usages
+This is the extended version of the previous card, here you have checkpoints of every minute for the recent 1 hour or selected intervals, so by seeing ups & downs, you can measure things in wave format. This will show wave lines of recently installed 25 machines.
+
+<img src="/images/unified-dashboard/dashboard-8.png" />
+
+### RAM Usages
+Like the CPU Usage card, this also helps us to get an idea about RAM usage in a graphical form. This will also show only recently installed 25 machines.
+
+<img src="/images/unified-dashboard/dashboard-9.png" />
+
+### Network Usages
+It contains dual graph representations for Network usage based on bandwidth type, one is for Receiving bandwidth, and the other for Transmitting bandwidth. Each graph shows the bandwidth of the recently installed 25 machines. From this graph, we can compare which machines consume higher bandwidth to Receive & Transmit data packets.
+
+<img src="/images/unified-dashboard/dashboard-10.png" />
+
+### Disk Usage
+Like the Network Usage card, This also has a dual graphical view. In this card, we can check the Read & Write speed of any machine in the cluster.\
+<img src="/images/unified-dashboard/dashboard-11.png" />
+
+### Filesystem Usage
+This card shows the list of recently installed 25 machines in the form of progress bars with their Used, Reserved & Free areas, to get an idea of filesystem utilization & usage in the cluster.\
+In the below bar, Green shows Used space, Yellow shows Reserved space, and Gray shows Free space in the cluster.
+
+<img src="/images/unified-dashboard/dashboard-12.png" />

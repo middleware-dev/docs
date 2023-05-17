@@ -1,0 +1,36 @@
+Logs
+----
+
+You can see Logs of your infrastructure and applications in a unified dashboard.\
+At the top part, you can see the summary of Logs and at the bottom part, you can see a list of logs with details.
+
+Details of data in Logs
+-----------------------
+
+As per the selected timeframe in the chart, data of Logs will display.\
+The top module is showing complete counts of
+
+-   Total Logs (incl. Unique logs)
+-   Total Errors.
+-   Total Warning.
+-   Total Info Logs.
+
+<img src="/images/unified-dashboard/dashboard-13.png" />\
+The down module contains 2 cards. These cards also contain the following data for a recent 1 Hour or selected interval.
+
+-   Log ratio
+-   Log list
+
+### Log Ratio
+This card shows the log trends in the form of a stacked-bar format, you can get a complete idea of log numbers (with Errors, Warnings, Info & Debug counts) for every minute up to 1 hour. You can also apply the filter on this card If you want to see only the Errors or Warnings trend. so this will more helpful to measure application behavior.\
+This data gets updated in real-time.\
+<img src="/images/unified-dashboard/dashboard-14.png" />
+
+### Log List
+This card will show the recent logs as per the mode, If Live mode is on then you will see all the coming logs & If History mode is on then it will show the logs based on the selected time frame. you can modify it with available filters & you can categories your logs based on App & Infra filter.\
+You can also check its triggered counts, it will be incremented format if the same log will trigger again. each log has its own Mini-chart on the right side, that represents the counts of the same log occurrences in the last 1 hour.\
+<img src="/images/unified-dashboard/dashboard-15.png" />
+
+To get more details of each log, you can click on any log so it will open a side panel to elaborate more on that log with its Tags, Properties, Raw data & Source/Similar logs. To know more about its side panel, please refer to this [link](https://docs.middleware.io/docs/logs).
+
+<Note> If there are no logs available for the last 1 hour, it shows the latest logs since 24 hours.  So you can better idea what was the problem in the system for last 24 hour. </Note>
