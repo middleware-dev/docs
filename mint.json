@@ -36,7 +36,7 @@
   "navigation": [
     {
        "group": "Middleware Docs",
-        "pages": ["Quickstart"]
+        "pages": ["quickstart"]
     },
     
     {
