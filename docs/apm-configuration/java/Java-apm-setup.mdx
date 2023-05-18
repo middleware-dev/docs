@@ -1,54 +1,47 @@
-
-
-## Prerequisites 
-
+## Prerequisites
 * To monitor APM data on dashboard, Middleware Host agent needs to be installed.
 * You can refer [this demo project](https://github.com/middleware-labs/demo-apm/tree/master/java) to refer use cases of
   APM.
 
---------------------
-
 ## Distributed Tracing
-
 For recording the traces you will need to download JAR files given below.
-
 [middleware-javaagent.jar](https://install.middleware.io/jars/middleware-javaagent.jar)
 
 And then run your project with command given below
-
 ```java
 java -javaagent:/PATH/TO/middleware-javaagent.jar \
-    -Dotel.service.name=test-service \
-    -Dotel.resource.attributes=project.name=test-project \
+    -Dotel.service.name={APM-SERVICE-NAME} \
+    -Dotel.resource.attributes=project.name={APM-PROJECT-NAME} \
     -jar <YOUR_APP>.jar
 ```
 
+### Clojure/Ring Demo
+https://github.com/middleware-labs/demo-apm/tree/master/java/ring-demo
+
 ## Add custom logs
-
 Add this dependency in pom.xml
-
 ```java
 <dependency>
   <groupId>io.github.middleware-labs</groupId>
   <artifactId>agent-apm-java</artifactId>
-  <version>0.0.7</version>
+  <version>0.0.16</version>
 </dependency>
 ```
+### Note:
+Refer the latest APM version from the link given below:
+https://central.sonatype.dev/artifact/io.github.middleware-labs/agent-apm-java/0.0.7/versions
 
-Then run ...
-
+Then run
 ```java
 mvn install
 ```
 
 Import logger package
-
 ```java
 import io.github.middlewarelabs.agentapmjava.Logger;
 ```
 
 Use these functions for logging with different severity levels
-
 ```java
 Logger.info("info message");
 Logger.debug("debug message");
@@ -56,18 +49,21 @@ Logger.warn("warn message");
 Logger.error("error message");
 ```
 
-## Note
+## Note for APM inside Kubernetes
+If you are using APM in a Kubernetes cluster make sure to follow these 2 steps:
 
-If you are using APM in a Kubernetes cluster make sure to pass ENV variable:
+### Step 1 : Find your Middleware Service namespace
+For older setup, your "mw-service" can be inside "mw-agent-ns-{FIRST-5-LETTERS-OF-API-KEY}" namespace
+For newer setup, we simplified the namespace name to "mw-agent-ns"
 
+### Step 2 : Set this ENV variable in your application deployment YAML
 ```java
-MW_AGENT_SERVICE=mw-service.mw-agent-ns-{FIRST-5-LETTERS-OF-API-KEY}.svc.cluster.local
+MW_AGENT_SERVICE=mw-service.NAMESPACE.svc.cluster.local
 ```
+<Note> Please replace "NAMESPACE" with the correct value that you found from Step 1. </Note>
 
-## Error Handling
-
+## Error Handling 
 If you want to record exception in traces then you can use Logger.recordError(e) method.
-
 ```java
 import io.github.middlewarelabs.agentapmjava.Logger;
         
@@ -78,4 +74,5 @@ try {
        Logger.recordError(e);
        System.out.println("Something went wrong.");
      }
+```
  
