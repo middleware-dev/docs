@@ -12,10 +12,7 @@
     "dark": "#e95e5f"
   },
   "topbarLinks": [
-    {
-      "name": "Features",
-      "url": "https://middleware.io/platform/unified-experience/"
-    },
+   
     {
       "name": "Pricing",
       "url": "https://middleware.io/pricing/"
