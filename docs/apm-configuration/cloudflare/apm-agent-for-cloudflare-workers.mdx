@@ -1,6 +1,6 @@
 
 
-In order to track http requests in your cloudflare worker , You need to ..
+In order to track http requests in your cloudflare worker, follow these steps
 
 ### Step 1 :  Install Middleware Worker Package
 
@@ -24,6 +24,7 @@ tracker.init({
     target:"https://{ACCOUNT-UID}.middleware.io"
 })
 ```
+<Note> If you want to watch instrumented logs in terminal, set consoleLogEnabled:true </Note>
 
 ### Step 4 : Track all the requests with middleware SDK
 ```javascript		
