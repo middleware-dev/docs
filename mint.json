@@ -89,7 +89,53 @@
           "pages": ["docs/apm-configuration/next-js/Next.js-apm-setup","docs/apm-configuration/next-js/Vercel-integration"]
         }
     ]
+    },
+    
+     {
+      "group": "Unified Dashboard",
+       "pages": ["docs/unified-dashboard/Unified-view","docs/unified-dashboard/Metrics-in-unified-dashboard","docs/unified-dashboard/Logs-in-unified-dashboard","docs/unified-dashboard/Traces-in-unified-dashboard"]
+    },
+    
+    {
+      "group": "Infrastructure Monitoring",
+       "pages": ["docs/infrastructure-monitoring/Host","docs/infrastructure-monitoring/Container-monitoring","docs/infrastructure-monitoring/Kubernetes-monitoring","docs/infrastructure-monitoring/Processes"]
+    },
+    
+    {
+      "group": "APM",
+       "pages": ["docs/apm/APM-dashboard","docs/apm/Service-monitoring","docs/apm/Traces","docs/apm/Error-traces"]
+    },
+    
+    {
+      "group": "Log Monitoring",
+       "pages": ["docs/log-monitoring/Logs"]
+    },
+    
+    {
+      "group": "Synthetic Monitoring",
+       "pages": ["docs/synthetic-monitoring/Synthetic-monitoring","docs/synthetic-monitoring/IP-address"]
+    },
+    
+    {
+      "group": "Custom Dashboard Builder",
+       "pages": ["docs/custom-dashboard/Build-custom-dashboard"]
+    },
+    
+    {
+      "group": "Alerts",
+       "pages": ["docs/alerting/Setup-alert"]
+    },
+    
+    {
+     "group": "Integration",
+     "pages": ["docs/integrations/Slack-integration","docs/integrations/MicrosoftTeam-integration","docs/integrations/Jira-integration"] 
+    },
+    
+    {
+     "group": "Settings",
+     "pages": ["docs/settings/Profile","docs/settings/Role-&-permission","docs/settings/Billing-&-usages"] 
     }
+    
    
     
    
