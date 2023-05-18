@@ -35,6 +35,11 @@
   ],
   "navigation": [
     {
+       "group": "Get Started",
+        "pages": ["introduction"]
+    },
+    
+    {
       "group": "Agent Installation",
       "pages": [
         {
