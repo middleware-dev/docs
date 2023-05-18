@@ -30,9 +30,8 @@
     "url": "https://app.middleware.io/auth/register/"
   },
   "anchors": [
-
-
   ],
+  
   "navigation": [
     {
        "group": "Middleware Docs",
@@ -60,7 +59,7 @@
         }
       
       ]    
-    },
+     },
     
     {
     "group": "APM Configuration",
@@ -96,7 +95,7 @@
     ]
     },
     
-     {
+    {
       "group": "Unified Dashboard",
        "pages": ["docs/unified-dashboard/Unified-view","docs/unified-dashboard/Metrics-in-unified-dashboard","docs/unified-dashboard/Logs-in-unified-dashboard","docs/unified-dashboard/Traces-in-unified-dashboard"]
     },
@@ -141,8 +140,7 @@
      "pages": ["docs/settings/Profile","docs/settings/Role-&-permission","docs/settings/Billing-&-usages"] 
     }
     
-   
-    
+      
    
   ],
   "footerSocials": {
