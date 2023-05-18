@@ -87,7 +87,7 @@
        },
         {
           "group": "Next.js",
-          "pages": ["docs/apm-configuration/next-js/Next.js-apm-setup","docs/apm-configuration/next-js/Vercel-integration"]
+          "pages": ["docs/apm-configuration/next-js/next.js-apm-setup","docs/apm-configuration/next-js/vercel-integration"]
         }
     ]
     },
