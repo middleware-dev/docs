@@ -16,7 +16,7 @@ import * as tracker from "@middleware.io/agent-apm-worker";
 ### Step 3 : Initialize Tracker with your Middleare API key  
 
 Add this snippet given below and replace the required details.
-```typescript
+```javascript
 tracker.init({
     projectName:"{APM-PROJECT-NAME}",
     serviceName:"{APM-SERVICE-NAME}",
@@ -26,8 +26,19 @@ tracker.init({
 ```
 
 ### Step 4 : Track all the requests with middleware SDK
-
-```typescript		
+```javascript		
 const sdk = tracker.track(request, ctx);
 sdk.sendResponse(response);
 ```
+
+### Step 5 : Add Logging
+```javascript
+// sdk.logger.SEVERITY( MESSAGE, KEY-VALUE PAIRS )
+
+sdk.logger.error("error test")
+sdk.logger.error("error with attributes",{"log.file.name":"error.log"})
+sdk.logger.info("info test")
+sdk.logger.debug("debug test")
+sdk.logger.warn("warn test")
+```
+
