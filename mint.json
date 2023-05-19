@@ -52,7 +52,7 @@
         },
          {
           "group": "Troubleshooting",
-          "pages": ["docs/agent-installation/Troubleshooting"]
+          "pages": ["docs/agent-installation/troubleshooting"]
         }
       
       ]    
@@ -124,7 +124,7 @@
     
     {
       "group": "Alerts",
-       "pages": ["docs/alerting/Setup-alert"]
+       "pages": ["docs/alerting/setup-alert"]
     },
     
     {
