@@ -94,12 +94,12 @@
     
     {
       "group": "Unified Dashboard",
-       "pages": ["docs/unified-dashboard/Unified-view","docs/unified-dashboard/Metrics-in-unified-dashboard","docs/unified-dashboard/Logs-in-unified-dashboard","docs/unified-dashboard/Traces-in-unified-dashboard"]
+       "pages": ["docs/unified-dashboard/unified-view","docs/unified-dashboard/metrics-in-unified-dashboard","docs/unified-dashboard/logs-in-unified-dashboard","docs/unified-dashboard/traces-in-unified-dashboard"]
     },
     
     {
       "group": "Infrastructure Monitoring",
-       "pages": ["docs/infrastructure-monitoring/Host","docs/infrastructure-monitoring/Container-monitoring","docs/infrastructure-monitoring/Kubernetes-monitoring","docs/infrastructure-monitoring/Processes"]
+       "pages": ["docs/infrastructure-monitoring/host","docs/infrastructure-monitoring/container-monitoring","docs/infrastructure-monitoring/kubernetes-monitoring","docs/infrastructure-monitoring/processes"]
     },
     
     {
@@ -109,12 +109,12 @@
     
     {
       "group": "Log Monitoring",
-       "pages": ["docs/log-monitoring/Logs"]
+       "pages": ["docs/log-monitoring/logs"]
     },
     
     {
       "group": "Synthetic Monitoring",
-       "pages": ["docs/synthetic-monitoring/Synthetic-monitoring","docs/synthetic-monitoring/IP-address"]
+       "pages": ["docs/synthetic-monitoring/synthetic-monitoring","docs/synthetic-monitoring/ip-address"]
     },
     
     {
@@ -129,12 +129,12 @@
     
     {
      "group": "Integration",
-     "pages": ["docs/integrations/Slack-integration","docs/integrations/MicrosoftTeam-integration","docs/integrations/Jira-integration"] 
+     "pages": ["docs/integrations/slack-integration","docs/integrations/microsoftteam-integration","docs/integrations/jira-integration"] 
     },
     
     {
      "group": "Settings",
-     "pages": ["docs/settings/Profile","docs/settings/Role-&-permission","docs/settings/Billing-&-usages"] 
+     "pages": ["docs/settings/profile","docs/settings/role-&-permission","docs/settings/billing-&-usages"] 
     }
     
       
