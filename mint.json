@@ -91,6 +91,16 @@
         }
     ]
     },
+
+    {
+      "group": "Data Ingestion APIs",
+      "pages": [
+        {
+          "group": "Metrics",
+          "pages": ["docs/data-ingestion-apis/metrics"]
+        }
+      ]    
+     },
     
     {
       "group": "Unified Dashboard",
