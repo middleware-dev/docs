@@ -5,9 +5,17 @@ description: ""
 
 
 <h2>Supported Machines</h2>
-<p>We have created docker distributions using https://github.com/marketplace/actions/build-and-push-docker-images</p>
-<p>All the OS that supports docker should also support our docker based agent.</p>
-<p>This is applicable on both x86 & ARM based machines, as we are using multi-platform builds.</p>
+We have created docker distributions using https://github.com/marketplace/actions/build-and-push-docker-images. All the OS that supports docker should also support our docker based agent.
+This is applicable on both x86 & ARM based machines, as we are using multi-platform builds.
+
+Here is a list of Tested AWS EC2 instances.
+
+| AWS Machines      |   Agent Compatibility   
+|------             |    ---------           
+|Amazon Linux       |   x86 + ARM             
+|Ubuntu             |   x86 + ARM             
+|Debian             |   x86 + ARM            
+|Red Hat            |   x86 + ARM            
 
 <h2>Current Technical Approach</h2>
 <p>In order to collect host level details, our docker agent works on host network mode.</p>
