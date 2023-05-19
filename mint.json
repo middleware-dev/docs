@@ -63,27 +63,27 @@
      "pages": [
         {
           "group": "Node.js",
-          "pages": ["docs/apm-configuration/node-js/Node.js-overview","docs/apm-configuration/node-js/Node.js-apm-setup"]
+          "pages": ["docs/apm-configuration/node-js/node.js-overview","docs/apm-configuration/node-js/node.js-apm-setup"]
         },
         {
           "group": "Go",
-          "pages": ["docs/apm-configuration/go/Golang-overview","docs/apm-configuration/go/Golang-apm-setup"]
+          "pages": ["docs/apm-configuration/go/golang-overview","docs/apm-configuration/go/golang-apm-setup"]
         },
         {
           "group": "Python",
-          "pages": ["docs/apm-configuration/python/Python-overview","docs/apm-configuration/python/Python-apm-setup"]
+          "pages": ["docs/apm-configuration/python/python-overview","docs/apm-configuration/python/python-apm-setup"]
         },
        {
           "group": "Java",
-          "pages": ["docs/apm-configuration/java/Java-overview","docs/apm-configuration/java/Java-apm-setup"]
+          "pages": ["docs/apm-configuration/java/java-overview","docs/apm-configuration/java/java-apm-setup"]
         },
         {
           "group": "PHP",
-          "pages": ["docs/apm-configuration/php/PHP-overview","docs/apm-configuration/php/PHP-apm-setup"]
+          "pages": ["docs/apm-configuration/php/php-overview","docs/apm-configuration/php/php-apm-setup"]
         },
        {
           "group": "Cloudflare",
-          "pages": ["docs/apm-configuration/cloudflare/Cloudflare-overview","docs/apm-configuration/cloudflare/apm-agent-for-cloudflare-workers"]
+          "pages": ["docs/apm-configuration/cloudflare/cloudflare-overview","docs/apm-configuration/cloudflare/apm-agent-for-cloudflare-workers"]
        },
         {
           "group": "Next.js",
@@ -104,7 +104,7 @@
     
     {
       "group": "APM",
-       "pages": ["docs/apm/APM-dashboard","docs/apm/Service-monitoring","docs/apm/Traces","docs/apm/Error-traces"]
+       "pages": ["docs/apm/apm-dashboard","docs/apm/service-monitoring","docs/apm/traces","docs/apm/error-traces"]
     },
     
     {
@@ -119,7 +119,7 @@
     
     {
       "group": "Custom Dashboard Builder",
-       "pages": ["docs/custom-dashboard/Build-custom-dashboard"]
+       "pages": ["docs/custom-dashboard/build-custom-dashboard"]
     },
     
     {
