@@ -4,7 +4,7 @@ description: ""
 ---
 
 
-<h2>Prerequisites</h2>
+## Prerequisites
 
 
 <ol>
@@ -12,7 +12,7 @@ description: ""
     <li>Keep logging into your account  </li>
     <li>If you are a Windows user, please make sure Bash and curl tools are installed in your system. </li>
 </ol>
-<h2>Use our one-step easy installation </h2>
+## Use our one-step easy installation
 
 <p>To proceed with the agent installation, make sure you have docker installed and running on your system. You can install docker for <a href="https://docs.docker.com/desktop/install/windows-install/">windows</a> or <a href="https://docs.docker.com/desktop/install/mac-install/" >macOS</a> or <a href="https://docs.docker.com/engine/install/ubuntu/">Ubuntu</a>. </p>
 
@@ -35,7 +35,7 @@ MW_API_KEY=xxxxxxxxxxxx TARGET=https://uid.middleware.io:443 bash -c "$(curl -L 
 <Info>Replace "uid" with the text in the URL (ex URL is "s05zpimz.middleware.io" , here s05zpimz is uid.)</Info>
 
 
-<h2>Verify the status of agent  </h2>
+## Verify the status of agent
 <p>Run the agent’s status command to verify the installation.</p>
 
 
@@ -53,7 +53,7 @@ docker ps -a --filter ancestor=ghcr.io/middleware-labs/agent-host-go:master
 <img src="/images/agent-installation/fail-docker.png" />
 
 
-<h2>Uninstall the Middleware agent</h2>
+## Uninstall the Middleware agent
 <p>To uninstall the middleware agent, please use the following command.</p>
 
 ```javascript Shell
