@@ -99,9 +99,17 @@
           "group": "Metrics",
           "pages": ["docs/data-ingestion-apis/metrics"]
         }
-      ]    
+      ]
      },
-    
+    {
+      "group": "AWS",
+      "pages": [
+        {
+          "group": "CloudWatch Metrics",
+          "pages": ["docs/aws/cloudwatch-metrics/installation"]
+        }
+       ]
+    },
     {
       "group": "Unified Dashboard",
        "pages": ["docs/unified-dashboard/unified-view","docs/unified-dashboard/metrics-in-unified-dashboard","docs/unified-dashboard/logs-in-unified-dashboard","docs/unified-dashboard/traces-in-unified-dashboard"]
