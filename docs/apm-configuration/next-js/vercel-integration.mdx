@@ -8,12 +8,25 @@ Once you set up the integration, traces from your Vercel project will be streame
 
 
 ## Prerequisites
-Before using this integration, you need to create a project that will be deployed on the Vercel platform. You can refer to this <a href="https://vercel.com/docs/concepts/projects/overview" rel="nofollow noopener noreferrer" target="_blank" translate="no"> link </a> to learn more about Vercel deployment.
+After this integration, you need to create a project that will be deployed on the Vercel platform. You can refer to this <a href="https://vercel.com/docs/concepts/projects/overview" rel="nofollow noopener noreferrer" target="_blank" translate="no"> link </a> to learn more about Vercel deployment.
 
 
+## Steps to integrate
+To integrate the <a href="https://vercel.com/integrations/middleware" rel="nofollow noopener noreferrer" target="_blank" translate="no" color="blue"> Middleware </a>, follow these steps.
+<ol>
+   
+    <li>Go to Vercel’s marketplace, and search for “Middleware”, or go directly to this <a href="https://vercel.com/integrations/middleware/new" rel="nofollow noopener noreferrer" target="_blank" translate="no">link</a>. <img src="/images/agent-installation/vercel-1.png" /> </li>
+    <li>Click “Add Integration”. </li>
+    <li>From the popup window, select the Vercel account, that you want to connect, and then click “Continue”.  <img src="/images/agent-installation/vercel-2.png" /></li>
+     <li>Select the project, which you want to track, so here you can select all of your projects or choose any specific also, then click “Continue”.  <img src="/images/agent-installation/vercel-3.png" />  </li>
+     <li>On the next step, the popup will show which of the permission should be granted to track your project. To proceed, click  “Add integration”. <img src="/images/agent-installation/vercel-4.png" /> </li>
+      <li>You will be redirected to the Middleware’s Login page, where you can log in with your account so that Vercel will be able to send all the activity to your Middleware’s dashboard.  <img src="/images/agent-installation/vercel-5.png"/></li>
+      <li>After logging in, Middleware and Vercel will exchange tokens to establish seamless collaboration, enabling comprehensive activity tracking. Upon completing this final step, you will receive a confirmation message indicating a successful installation. <img src="/images/agent-installation/vercel-6.png" /></li>
+      <li>After 3sec, You will be redirected back to the marketplace page with Middleware integrated. </li>
+</ol>
 
-## Getting Started
-Follow these steps to integrate Middleware into your Vercel project and track your project activity on a live basis:
+## Getting Started with Code
+After the successful integration, follow these steps to integrate Middleware into your Vercel project and track your project activity on a live basis:
 
 1. Install the following package that will help to send all the traces generated from your project. This package will instrument your project based on the OpenTelemetry approach.
 
@@ -50,25 +63,12 @@ export function register() {
     });
 }
 ```
-    <Note>For additional information and in-depth guidance, you can clone the sample project from the [GitHub](https://github.com/middleware-labs/demo-apm/tree/master/nextjs/setup) repository to explore further.</Note>
 
 4. Now deploy your project to vercel platform.
-5. Integrate <a href="https://vercel.com/integrations/middleware" rel="nofollow noopener noreferrer" target="_blank" translate="no" color="blue"> Middleware </a> from the Vercel marketplace
 
+<Note>For additional information and in-depth guidance, you can clone the sample project from the [GitHub](https://github.com/middleware-labs/demo-apm/tree/master/nextjs/setup) repository to explore further.</Note>
 
-## Steps to integrate
-To integrate the Middleware, follow these steps.
-<ol>
-   
-    <li>Go to Vercel’s marketplace, and search for “Middleware”, or go directly to this <a href="https://vercel.com/integrations/middleware/new" rel="nofollow noopener noreferrer" target="_blank" translate="no"> link </a> <img src="/images/agent-installation/vercel-1.png" /> </li>
-    <li>Click “Add Integration”. </li>
-    <li>From the popup window, select the Vercel account, that you want to connect, and then click “Continue”.  <img src="/images/agent-installation/vercel-2.png" /></li>
-     <li>Select the project, which you want to track, so here you can select all of your projects or choose any specific also, then click “Continue”.  <img src="/images/agent-installation/vercel-3.png" />  </li>
-     <li>On the next step, the popup will show which of the permission should be granted to track your project. To proceed, click  “Add integration”. <img src="/images/agent-installation/vercel-4.png" /> </li>
-      <li>You will be redirected to the Middleware’s Login page, where you can log in with your account so that Vercel will be able to send all the activity to your Middleware’s dashboard.  <img src="/images/agent-installation/vercel-5.png"/></li>
-      <li>After logging in, Middleware and Vercel will exchange tokens to establish seamless collaboration, enabling comprehensive activity tracking. Upon completing this final step, you will receive a confirmation message indicating a successful installation. <img src="/images/agent-installation/vercel-6.png" /></li>
-      <li>After 3sec, You will be redirected back to the marketplace page with Middleware integrated. </li>
-</ol>
+<Note>Make sure you have set up the <a href="https://vercel.com/integrations/middleware" rel="nofollow noopener noreferrer" target="_blank" translate="no" color="blue"> Middleware </a> integration and enabled traces before deploying your project. Otherwise, you will need to perform a <strong>project redeployment</strong> in order to activate and utilize traces.</Note>
 
 ## Visualize Your Data
 Once you have set up the integration between Vercel and Middleware, you can visualize your data in Middleware's dashboard. The dashboard provides an overview of your Vercel project's performance and allows you to drill down into your traces.
