@@ -139,7 +139,7 @@
     
     {
      "group": "Integration",
-     "pages": ["docs/integrations/slack-integration","docs/integrations/microsoftteam-integration","docs/integrations/jira-integration"] 
+     "pages": ["docs/integrations/slack-integration","docs/integrations/microsoftteam-integration","docs/integrations/jira-integration","docs/integrations/pagerduty-integration"] 
     },
     
     {
