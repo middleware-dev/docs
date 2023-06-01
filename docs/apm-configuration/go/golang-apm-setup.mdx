@@ -25,10 +25,11 @@ Call track method in your main function
 go track.Track(
     track.WithConfigTag("service", {APM-SERVICE-NAME}),
     track.WithConfigTag("projectName", {APM-PROJECT-NAME}),
+    track.WithConfigTag("accessToken", "{ACCOUNT_KEY}"),
 )
 ```
 Running this method with go routine is important !
-This will start collecting the application Metrics
+This will start collecting the application traces & profiling data.
 
 ## Add custom logs
 ```go
@@ -48,13 +49,18 @@ You may need to add a framework specific middleware, to watch traces.
 |------             |    ---------  |
 |gin/gonic          |   [GIN Demo](https://github.com/middleware-labs/demo-apm/tree/master/golang/features/trace/gin)   |
 |gorilla/mux        |   [MUX Demo](https://github.com/middleware-labs/demo-apm/tree/master/golang/features/trace/mux)  |
-|go-chi             |   [go-chi Demo](https://github.com/middleware-labs/demo-apm/tree/master/golang/features/trace/go-chi)  |
+|go-chi             |   [go-chi Demo](https://github.com/middleware-labs/demo-apm/tree/master/golang/features/trace/go-chi-legacy)  |
+|go-chi/v5          |   [go-chi/v5 Demo](https://github.com/middleware-labs/demo-apm/tree/master/golang/features/trace/go-chi)  |
 |astaxie-beego      |   [astaxie-beego Demo](https://github.com/middleware-labs/demo-apm/tree/master/golang/features/trace/astaxie-beego)  |
 |beego/v2           |   [beego/v2 Demo](https://github.com/middleware-labs/demo-apm/tree/master/golang/features/trace/beego-v2)  |
 |database/sql       |   [SQL Demo](https://github.com/middleware-labs/demo-apm/tree/master/golang/features/trace/sql)  |
 |go-pg/pg           |   [PG Demo](https://github.com/middleware-labs/demo-apm/tree/master/golang/features/trace/pg)  |
+|GORM 1             |   [GORM 1 Demo](https://github.com/middleware-labs/demo-apm/tree/master/golang/features/trace/gorm1)  |
+|GORM 2             |   [GORM 2 Demo](https://github.com/middleware-labs/demo-apm/tree/master/golang/features/trace/gorm2)  |
 |go-pg/mongo        |   [Mongo Demo](https://github.com/middleware-labs/demo-apm/tree/master/golang/features/trace/mongo)  |
 |gRPC               |   [gRPC Demo](https://github.com/middleware-labs/demo-apm/tree/master/golang/features/trace/grpc)  |
+|go-redis/redis/v9  |   [go-redis/redis/v9 Demo](https://github.com/middleware-labs/demo-apm/tree/master/golang/features/trace/go-redis-v9)  |
+|go-redis/redis/v8  |   [go-redis/redis/v8 Demo](https://github.com/middleware-labs/demo-apm/tree/master/golang/features/trace/go-redis-v8)  |
 
 ---------------
 
