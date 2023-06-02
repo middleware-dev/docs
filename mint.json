@@ -29,6 +29,12 @@
   "anchors": [
   ],
   
+  "analytics": {
+    "ga4": {
+        "measurementId": "G-2KBHR7YB2G"
+    }
+  },
+  
   "navigation": [
     {
        "group": "Middleware Docs",
