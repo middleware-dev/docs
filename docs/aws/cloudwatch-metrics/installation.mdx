@@ -1,0 +1,35 @@
+---
+title: "Installation"
+description: ""
+---
+
+<p>AWS [Metric Streams](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Metric-Streams.html) is a service provided by Amazon Web Services (AWS) that enables real-time streaming of AWS CloudWatch metrics.<br/><br/>Configure CloudWatch using the AWS Console : </p>
+
+## Create a new Kinesis Data Firehose Delivery Stream
+
+<ol>
+<li>Sign in to the AWS Management Console and open the Kinesis console at [https://console.aws.amazon.com/kinesis](https://console.aws.amazon.com/kinesis).</li>
+<li>Choose <b>Data Firehose</b> in the navigation panel.</li>
+<li>Choose <b>Create delivery stream</b>.</li>
+<li>
+The stream’s Source should be <b>Direct PUT</b> and Destination set to <b>HTTP Endpoint</b> with the following details:<br/>
+<b>Kinesis endpoint:</b> https://`{ACCOUNT-UID}`.middleware.io/v1/metrics/cloudwatch<br/>
+<b>Access key :</b> Enter your Middleware API key.
+</li>
+<li>In the Backup settings, select an S3 backup bucket to receive any failed events that exceed the retry duration.</li>
+</ol>
+
+<Info>Replace `{ACCOUNT-UID}` with the text in the URL (ex URL is "s05zpimz.middleware.io" , here s05zpimz is `{ACCOUNT-UID}`.)</Info>
+
+## Create a new CloudWatch Metric Stream
+
+<ol>
+<li>Open the CloudWatch AWS console at [https://console.aws.amazon.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch).</li>
+<li>In the left navigation pane, choose <b>Metrics → Streams</b>.</li>
+<li>Click the <b>Create metric stream button</b>.</li>
+<li>Choose the <b>All namespaces </b> in the metric stream.</li>
+<li>Choose <b>Select an existing Firehose owned by your account</b>, and select the Firehose Delivery Stream you created earlier.</li>
+<li>Specify an <b>Output Format of OpenTelemetry 0.7</b>.</li>
+<li>Optionally, specify a name for this metric stream under <b>Metric Stream Name</b>.</li>
+<li>Choose <b>Create metric stream</b>.</li>
+</ol>
