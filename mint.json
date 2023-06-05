@@ -128,7 +128,7 @@
     
     {
       "group": "APM",
-       "pages": ["docs/apm/apm-dashboard","docs/apm/service-monitoring","docs/apm/traces","docs/apm/error-traces"]
+       "pages": ["docs/apm/apm-dashboard","docs/apm/service-monitoring","docs/apm/traces","docs/apm/error-traces", "docs/apm/continuous-profiling"]
     },
     
     {
