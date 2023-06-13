@@ -51,7 +51,7 @@ const nextConfig = {
 module.exports = nextConfig
 ```
 
-3. Create a custom instrumentation.ts file in your project root directory, and add the following code:
+3. Create a custom `instrumentation.ts` file in your project root directory, and add the following code:
 
 ```javascript Shell
 // @ts-ignore
@@ -66,6 +66,8 @@ export function register() {
     });
 }
 ```
+<Note>You can find your &lt;ACCOUNT-KEY&gt; on the Installation screen for <a href="https://app.middleware.io/installation#apm/nextjs" rel="nofollow noopener noreferrer" target="_blank" translate="no" color="blue">NextJs / Vercel</a>.</Note>
+
 4. To enable logging in your project, add the following code in your file:
 ```javascript
 // @ts-ignore
