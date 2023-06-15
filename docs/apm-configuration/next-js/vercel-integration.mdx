@@ -29,7 +29,7 @@ To integrate the <a href="https://vercel.com/integrations/middleware" rel="nofol
 Once you have successfully integrated Middleware, proceed with the following steps to incorporate it into your Vercel project and monitor real-time activity:
 
 1. Install the following package that will help to send all the traces generated from your project. This package will instrument your project based on the OpenTelemetry approach.
-
+<Note>Make sure you have installed the latest version of Next.js or a version greater than 13.2.0, as Vercel introduced their experimental feature in that release.</Note>
 <Note>Before proceeding with the Next.js APM setup, make sure you have the **@opentelemetry/api** package installed. If it's not already installed, run the following command: `npm install @opentelemetry/api@">=1.3.0 <1.5.0"`</Note>
 
 ```javascript Shell
