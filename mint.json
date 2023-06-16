@@ -101,18 +101,13 @@
       "pages": [
         {
           "group": "Metrics",
-          "pages": ["docs/data-ingestion-apis/metrics"]
+          "pages": ["docs/data-ingestion-apis/opentelemetry-metrics"]
         }
       ]
-     },
+    },
     {
       "group": "AWS",
-      "pages": [
-        {
-          "group": "CloudWatch Metrics",
-          "pages": ["docs/aws/cloudwatch-metrics/installation"]
-        }
-       ]
+      "pages": ["docs/aws/kinesis-streams"]
     },
     {
       "group": "Unified Dashboard",

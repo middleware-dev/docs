@@ -1,7 +1,9 @@
 ---
-title: "Installation"
+title: "Ingest AWS Kinesis Streams"
 description: ""
 ---
+
+<img src="/images/aws/kinesis-middleware.png" />
 
 <p>AWS [Metric Streams](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Metric-Streams.html) is a service provided by Amazon Web Services (AWS) that enables real-time streaming of AWS CloudWatch metrics.<br/><br/>Configure CloudWatch using the AWS Console : </p>
 
@@ -33,3 +35,25 @@ The stream’s Source should be <b>Direct PUT</b> and Destination set to <b>HTTP
 <li>Optionally, specify a name for this metric stream under <b>Metric Stream Name</b>.</li>
 <li>Choose <b>Create metric stream</b>.</li>
 </ol>
+
+## Visualize Your Metrics
+
+Once you have completed the setup mentioned above, you can visualize your data in the 2 difefrent ways.
+
+### 1. Middleware's Default AWS Dashboards
+
+<p>We have created default dashboards for all the popular AWS services.</p>
+<p>Each dashboard consists a good amount of graphs representing all the important metrics for that particular namespace.</p>
+
+Here is one sample dashboard for EC2 namespace.
+<img src="/images/aws/ec2-dashboard.png" />
+
+You can refer all similar dashboards relevant to AWS over [here](https://app.middleware.io/reports?search=AWS)
+
+### 2. Build Custom Widgets using Middleware's Dashboard Builder
+
+<p>You can create a dashboard from scratch by yourself.</p>
+<p>If you add a new widget to any existing dashboard, you will be able to see list of available AWS metrics under the "cloud" Data source.</p>
+<p>You can visualize in many different Widget types i.e. Timeseries, Bar Chart, Pie Chart, etc.</p>
+
+<img src="/images/aws/aws-metrics-widget.png" />
