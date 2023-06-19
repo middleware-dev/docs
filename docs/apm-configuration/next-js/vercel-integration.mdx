@@ -25,6 +25,13 @@ To integrate the <a href="https://vercel.com/integrations/middleware" rel="nofol
       <li>After 3sec, You will be redirected back to the marketplace page with Middleware integrated. </li>
 </ol>
 
+## Essential Considerations
+<ul>
+    <li>The instrumentation file must be located at the root of your project, not inside the `app` or `pages` directory.</li>
+    <li>In case you're using the `src` folder, please ensure that the instrumentation file is placed within the `src` directory, alongside the `pages` and `app` directories.</li>
+    <li>If you use the `pagesExtension` <a href="https://nextjs.org/docs/pages/api-reference/next-config-js/pageExtensions" rel="nofollow noopener noreferrer" target="_blank" translate="no" color="blue"> config option </a> to add a suffix, it is essential to synchronize the instrumentation filename accordingly. For example, if you use `pagesExtension: ['ts']`, the instrumentation file should be named `instrumentation.ts`.</li>
+</ul>
+
 ## Getting Started with Code
 Once you have successfully integrated Middleware, proceed with the following steps to incorporate it into your Vercel project and monitor real-time activity:
 
@@ -36,7 +43,7 @@ Once you have successfully integrated Middleware, proceed with the following ste
 npm install @middleware.io/agent-apm-nextjs
 ```
 
-2. As this feature is experimental, modify your next.config.js where you need to explicitly opt-in by enabling the instrumentation hook as true. Check the following code for a better idea:
+2. As this feature is experimental, modify your `next.config.js` where you need to explicitly opt-in by enabling the instrumentation hook as true. Check the following code for a better idea:
 
 ```javascript Shell
 const nextConfig = {
