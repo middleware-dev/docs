@@ -30,6 +30,7 @@ To integrate the <a href="https://vercel.com/integrations/middleware" rel="nofol
     <li>The instrumentation file must be located at the root of your project, not inside the `app` or `pages` directory.</li>
     <li>In case you're using the `src` folder, please ensure that the instrumentation file is placed within the `src` directory, alongside the `pages` and `app` directories.</li>
     <li>If you use the `pagesExtension` <a href="https://nextjs.org/docs/pages/api-reference/next-config-js/pageExtensions" rel="nofollow noopener noreferrer" target="_blank" translate="no" color="blue"> config option </a> to add a suffix, it is essential to synchronize the instrumentation filename accordingly. For example, if you use `pagesExtension: ['ts']`, the instrumentation file should be named `instrumentation.ts`.</li>
+    <li>When you don't have any APIs (such as serverless or edge functions) integrated, the Vercel platform will treat the app as a static website during deployment. Consequently, in this scenario, the `instrumentation.ts` file will not be invoked, resulting in the absence of traces or logs in your Middleware account.</li>
 </ul>
 
 ## Getting Started with Code
