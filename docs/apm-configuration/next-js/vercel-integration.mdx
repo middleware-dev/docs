@@ -30,8 +30,9 @@ To integrate the <a href="https://vercel.com/integrations/middleware" rel="nofol
     <li>The instrumentation file must be located at the root of your project, not inside the `app` or `pages` directory.</li>
     <li>In case you're using the `src` folder, please ensure that the instrumentation file is placed within the `src` directory, alongside the `pages` and `app` directories.</li>
     <li>If you use the `pagesExtension` <a href="https://nextjs.org/docs/pages/api-reference/next-config-js/pageExtensions" rel="nofollow noopener noreferrer" target="_blank" translate="no" color="blue"> config option </a> to add a suffix, it is essential to synchronize the instrumentation filename accordingly. For example, if you use `pagesExtension: ['ts']`, the instrumentation file should be named `instrumentation.ts`.</li>
-    <li>When you don't have any APIs (such as serverless or edge functions) integrated, the Vercel platform will treat the app as a static website during deployment. Consequently, in this scenario, the `instrumentation.ts` file will not be invoked, resulting in the absence of traces or logs in your Middleware account.</li>
+    <li>When you don't have any APIs (or Serverless functions) integrated, the Vercel platform will treat the app as a static website during deployment. Consequently, in this scenario, the `instrumentation.ts` file will not be invoked, resulting in the absence of traces or logs in your Middleware account.</li>
 </ul>
+<Note>You can read detailed prerequisites and essential information about OpenTelemetry in <a href="https://nextjs.org/docs/pages/building-your-application/optimizing/open-telemetry" rel="nofollow noopener noreferrer" target="_blank" translate="no" color="blue">Vercel's documentation</a>. This will be helpful for you in seamlessly integrating it into your project.</Note>
 
 ## Getting Started with Code
 Once you have successfully integrated Middleware, proceed with the following steps to incorporate it into your Vercel project and monitor real-time activity:
