@@ -5,11 +5,11 @@
 
 ## Distributed Tracing
 For recording the traces you will need to download JAR files given below.
-[middleware-javaagent.jar](https://install.middleware.io/jars/middleware-javaagent.jar)
+[middleware-javaagent-1.1.0.jar](https://install.middleware.io/jars/middleware-javaagent-1.1.0.jar)
 
 And then run your project with command given below
 ```java
-java -javaagent:/PATH/TO/middleware-javaagent.jar \
+java -javaagent:/PATH/TO/middleware-javaagent-1.1.0.jar \
     -Dotel.service.name={APM-SERVICE-NAME} \
     -Dotel.resource.attributes=project.name={APM-PROJECT-NAME} \
     -jar <YOUR_APP>.jar
