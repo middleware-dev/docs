@@ -151,7 +151,7 @@
     
     {
      "group": "Settings",
-     "pages": ["docs/settings/profile","docs/settings/role-&-permission","docs/settings/billing-&-usages"] 
+     "pages": ["docs/settings/profile","docs/settings/role-&-permission","docs/settings/billing-&-usages", "docs/settings/advanced"] 
     },
     
     {
