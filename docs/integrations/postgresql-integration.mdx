@@ -1,0 +1,62 @@
+---
+title: "PostgreSQL Integration"
+---
+Collects PostgreSQL performance and health metrics
+
+Prerequisites
+-------------
+1.  Middleware Host agent should be already installed on your machine, in order to use PostgreSQL integration.
+
+## Setup
+1. You will have to create a yaml file in your system containing database collection details, as follows:
+
+Ex. `/home/ubuntu/postgres-creds.yaml`
+```
+postgresql:
+    endpoint: localhost:5432
+    username: postgres
+    password: postgres
+```
+2. Go to Store, Enable PostgreSQL Integration, Select a host, and set YAML path to the file created in step 1.
+<img src="/images/integration/pgdb-store.png" />
+
+## Visualize Analytics
+
+There are 2 possible ways to Visualize PostgreSQL Analytics :
+
+### 1. Middleware's Default PostgreSQL Dashboard
+Once you setup the PostgreSQL Integration, You will be able to see different Analytics in the default PostgreSQL Dashboard.
+<img src="/images/integration/postgres-dashboard.png" />
+
+### 2. Create your own dashboard
+<p>You can create a dashboard from scratch by yourself.</p>
+<p>If you add a new widget to any existing dashboard, you will be able to see list of available PostgreSQL metrics under the "postgres" Data source.</p>
+<p>You can visualize in many different Widget types i.e. Timeseries, Bar Chart, Pie Chart, etc.</p>
+
+<img src="/images/integration/postgres-custom-graphs.png" />
+
+The exhaustive list for PostgreSQL metrics can be seen [here](#metrics-collected)
+
+## Metrics collected
+
+| Metric | Description |
+|--------|-------------|
+| postgresql.backends | The number of backends.
+| postgresql.bgwriter.buffers.allocated | Number of buffers allocated.
+| postgresql.bgwriter.buffers.writes | Number of buffers written.
+| postgresql.bgwriter.checkpoint.count | The number of checkpoints performed.
+| postgresql.bgwriter.duration | Total time spent writing and syncing files to disk by checkpoints.
+| postgresql.bgwriter.maxwritten | Number of times the background writer stopped a cleaning scan because it had written too many buffers.
+| postgresql.blocks_read | The number of blocks read.
+| postgresql.commits | The number of commits.
+| postgresql.connection.max | Configured maximum number of client connections allowed
+| postgresql.database.count | Number of user databases.
+| postgresql.db_size | The database disk usage.
+| postgresql.index.scans | The number of index scans on a table.
+| postgresql.index.size | The size of the index on disk.
+| postgresql.operations | The number of db row operations.
+| postgresql.rollbacks | The number of rollbacks.
+| postgresql.rows | The number of rows in the database.
+| postgresql.table.count | Number of user tables in a database.
+| postgresql.table.size | Disk space used by a table.
+| postgresql.table.vacuum.count | Number of times a table has manually been vacuumed.
