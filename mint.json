@@ -146,7 +146,7 @@
     
     {
      "group": "Integration",
-     "pages": ["docs/integrations/slack-integration","docs/integrations/microsoftteam-integration","docs/integrations/jira-integration","docs/integrations/pagerduty-integration","docs/integrations/opsgenie-integration", "docs/integrations/postgresql-integration"] 
+     "pages": ["docs/integrations/slack-integration","docs/integrations/microsoft-team-integration","docs/integrations/jira-integration","docs/integrations/pagerduty-integration","docs/integrations/opsgenie-integration", "docs/integrations/postgresql-integration"] 
     },
     
     {
