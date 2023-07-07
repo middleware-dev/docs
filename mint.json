@@ -126,7 +126,7 @@
     
     {
       "group": "Log Monitoring",
-       "pages": ["docs/log-monitoring/logs"]
+       "pages": ["docs/log-monitoring/logs" , "docs/log-monitoring/log-transaction"]
     },
     
     {
