@@ -101,7 +101,7 @@
       "pages": [
         {
           "group": "Metrics",
-          "pages": ["docs/data-ingestion-apis/opentelemetry-metrics"]
+          "pages": ["docs/data-ingestion-apis/opentelemetry-metrics", "docs/data-ingestion-apis/datadog-ingestion"]
         }
       ]
     },
@@ -126,7 +126,7 @@
     
     {
       "group": "Log Monitoring",
-       "pages": ["docs/log-monitoring/logs"]
+       "pages": ["docs/log-monitoring/logs" , "docs/log-monitoring/log-transaction"]
     },
     
     {
@@ -146,12 +146,12 @@
     
     {
      "group": "Integration",
-     "pages": ["docs/integrations/slack-integration","docs/integrations/microsoftteam-integration","docs/integrations/jira-integration","docs/integrations/pagerduty-integration","docs/integrations/opsgenie-integration"] 
+     "pages": ["docs/integrations/slack-integration","docs/integrations/microsoft-team-integration","docs/integrations/jira-integration","docs/integrations/pagerduty-integration","docs/integrations/opsgenie-integration", "docs/integrations/postgresql-integration", "docs/integrations/mongodb-integration"] 
     },
     
     {
      "group": "Settings",
-     "pages": ["docs/settings/profile","docs/settings/role-&-permission","docs/settings/billing-&-usages"] 
+     "pages": ["docs/settings/profile","docs/settings/role-&-permission","docs/settings/billing-&-usages", "docs/settings/advanced"] 
     },
     
     {

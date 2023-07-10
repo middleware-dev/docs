@@ -1,0 +1,56 @@
+Gouping Logs Into Transaction
+=============================
+
+Logs Transactions are a way to group related log events together, allowing you to analyze and visualize the flow of logs within your application. A log transaction is typically a sequence of events that occur within a specific context, such as a user request or a specific business process. By grouping logs into transactions, you can easily trace the path of a request or process through your application and gain deeper insights into its behavior.
+
+<img src="/images/log-monitoring/l10.png" />
+
+Using Logs Transactions offers several benefits:
+
+1.  Seamless Log Aggregation: Middleware agent collects logs from various sources, such as applications, servers, and cloud platforms, and aggregates them into a single, centralized location. This makes it easier to search, filter, and analyze logs across your entire infrastructure.
+
+1.  Contextual Log Analysis: Logs within a transaction are linked together, providing a contextual view of the log events associated with a specific request or process. This helps in troubleshooting issues and understanding the flow of events.
+
+Improved Troubleshooting: By visualizing logs transactions, you can quickly   identify bottlenecks, errors, or anomalies in your application's behavior. 
+
+1.  Efficient Root Cause Analysis: When investigating an incident, logs transactions allow you to follow the flow of events from start to finish, making it easier to pinpoint the root cause of an issue.
+
+1.  Enhanced Performance Monitoring: Logs Transactions enable you to track the performance of critical transactions, measure response times, and identify areas for optimization.
+
+To set up Logs Transactions, follow these steps:
+
+1.  Define Transaction Boundaries:
+
+<img src="/images/log-monitoring/l11.png" />
+
+-   Determine the boundaries of your log transactions. For example, a transaction could be a user request, a background job, or a specific business process.
+
+-   Modify your application's logging framework or code to include transaction identifiers in log entries. These identifiers could be unique request IDs, job IDs, or any other identifier that helps correlate related logs.
+
+2.  Log Transaction Metric: 
+
+<img src="/images/log-monitoring/l12.png" />
+
+-   Enhance your logs with additional metadata by selecting Metric for relevant attributes. This could include information such as user IDs, request parameters, source , container names , kubernetes clusters or other contextual information.
+
+-   The metrics include the count of selected attribute , Maximum value/measure of attribute and Maximum frequency over time.
+
+3.  Configure Log Parsing and Parsing Rules:
+
+<img src="/images/log-monitoring/l13.png" />
+
+-   Configure log parsing rules to extract structured data from your logs. This will enable you to query and filter logs based on specific fields or attributes.
+
+-   Define parsing rules using where expressions from the selection.
+
+    .
+
+4.  Visualize Logs Transactions: 
+
+<img src="/images/log-monitoring/l14.png" />
+
+Once logs are flowing into list, use the Logs UI to explore logs transactions.
+
+Each transaction result can be further explored by checking its detailed information which consist of the tags , its timeline and frequent logs of the same groupings;
+
+Middleware's Logs Transactions provide a powerful mechanism for gaining visibility into the flow of logs within your application. By grouping related log events togetherand analyzing them as transactions, you can easily trace the path of requests or processes, troubleshoot issues efficiently, and gain valuable insights into your application's behavior. By following the steps outlined in this documentation and adopting best practices, you can effectively set up, analyze, and monitor logs transactions using Middleare, empowering you to proactively detect and resolve issues, optimize performance, and ensure the reliability of your applications.

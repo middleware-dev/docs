@@ -1,0 +1,82 @@
+---
+title: "MongoDB Integration"
+---
+Collects MongoDB performance and health metrics
+
+Prerequisites
+-------------
+1.  Middleware Host agent should be already installed on your machine, in order to use MongoDB integration.
+
+## Setup
+1. You will have to create a yaml file in your system containing database collection details, as follows:
+
+Ex. `/home/ubuntu/mongodb-creds.yaml`
+```
+mongodb:
+    endpoint: localhost:27017
+    username: mongodb
+    password: mongodb
+```
+
+### Note for Docker Agent Users
+If you are running the Middleware Docker agent, then we recommend to keep the creds YAML under `/var/log` directory. 
+
+This is because, the Docker agent will not allow dynamic volume binding.
+
+
+
+2. Go to Store, Enable MongoDB Integration, Select a host, and set YAML path to the file created in step 1.
+<img src="/images/integration/mongodb-store.png" />
+
+## Visualize Analytics
+
+There are 2 possible ways to Visualize MongoDB Analytics :
+
+### 1. Middleware's Default MongoDB Dashboard
+Once you setup the MongoDB Integration, You will be able to see different Analytics in the default MongoDB Dashboard.
+<img src="/images/integration/mongodb-dashboard.png" />
+
+### 2. Create your own dashboard
+<p>You can create a dashboard from scratch by yourself.</p>
+<p>If you add a new widget to any existing dashboard, you will be able to see list of available MongoDB metrics under the "mongodb" Data source.</p>
+<p>You can visualize in many different Widget types i.e. Timeseries, Bar Chart, Pie Chart, etc.</p>
+
+<img src="/images/integration/mongodb-custom-graphs.png" />
+
+The exhaustive list for MongoDB metrics can be seen [here](#metrics-collected)
+
+## Metrics collected
+
+| Metric | Description |                                                                                     
+| ------------------------------ | --------------------------------------------------------------------------------------------------- |
+| mongodb.cache.operations       | The number of cache operations of the instance.                                                     |
+| mongodb.collection.count       | The number of collections.                                                                           |
+| mongodb.data.size              | The size of the collection. Data compression does not affect this value.                            |
+| mongodb.connection.count       | The number of connections.                                                                           |
+| mongodb.extent.count           | The number of extents.                                                                               |
+| mongodb.global_lock.time       | The time the global lock has been held.                                                              |
+| mongodb.index.count            | The number of indexes.                                                                               |
+| mongodb.index.size             | Sum of the space allocated to all indexes in the database, including free index space.              |
+| mongodb.memory.usage           | The amount of memory used.                                                                           |
+| mongodb.object.count           | The number of objects.                                                                               |
+| mongodb.operation.latency.time | The latency of operations.                                                                           |
+| mongodb.operation.count        | The number of operations executed.                                                                   |
+| mongodb.operation.repl.count   | The number of replicated operations executed.                                                        |
+| mongodb.storage.size           | The total amount of storage allocated to this collection.                                            |
+| mongodb.database.count         | The number of existing databases.                                                                    |
+| mongodb.index.access.count     | The number of times an index has been accessed.                                                      |
+| mongodb.document.operation.count | The number of document operations executed.                                                          |
+| mongodb.network.io.receive     | The number of bytes received.                                                                        |
+| mongodb.network.io.transmit    | The number of by transmitted.                                                                        |
+| mongodb.network.request.count   | The number of requests received by the server.                                                       |
+| mongodb.operation.time          | The total time spent performing operations.                                                          |
+| mongodb.session.count           | The total number of active sessions.                                                                 |
+| mongodb.cursor.count            | The number of open cursors maintained for clients.                                                   |
+| mongodb.cursor.timeout.count    | The number of cursors that have timed out.                                                           |
+| mongodb.lock.acquire.count      | Number of times the lock was acquired in the specified mode.                                         |
+| mongodb.lock.acquire.wait_count | Number of times the lock acquisitions encountered waits because the locks were held in a conflicting mode. |
+| mongodb.lock.acquire.time       | Cumulative wait time for the lock acquisitions.                                                      |
+| mongodb.lock.deadlock.count     | Number of times the lock acquisitions encountered deadlocks.                                         |
+| mongodb.health                 | The health status of the server.                                                                     |
+| mongodb.uptime                 | The amount of time that the server has been running.                                                 |
+
