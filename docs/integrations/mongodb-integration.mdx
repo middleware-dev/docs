@@ -15,7 +15,10 @@ Ex. `/home/ubuntu/mongodb-creds.yaml`
 mongodb:
     hosts:
       - endpoint: localhost:27017
+    username: mongodb
+    password: mongodb
 ```
+You can skip the fields `username` and `password` if database is not password protected.
 
 ### Note for Docker Agent Users
 If you are running the Middleware Docker agent, then we recommend to keep the creds YAML under `/var/log` directory. 
