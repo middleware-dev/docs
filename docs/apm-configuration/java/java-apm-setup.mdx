@@ -5,11 +5,11 @@
 
 ## Distributed Tracing
 For recording the traces you will need to download JAR files given below.
-[middleware-javaagent-1.1.0.jar](https://install.middleware.io/jars/middleware-javaagent-1.1.0.jar)
+[middleware-javaagent-1.3.0.jar](https://github.com/middleware-labs/opentelemetry-java-instrumentation/releases/download/v1.3.0/middleware-javaagent-1.3.0.jar)
 
 And then run your project with command given below
 ```java
-java -javaagent:/PATH/TO/middleware-javaagent-1.1.0.jar \
+MW_API_KEY={MW_API_KEY} java -javaagent:/PATH/TO/middleware-javaagent-{version}.jar \
     -Dotel.service.name={APM-SERVICE-NAME} \
     -Dotel.resource.attributes=project.name={APM-PROJECT-NAME} \
     -jar <YOUR_APP>.jar
@@ -24,12 +24,12 @@ Add this dependency in pom.xml
 <dependency>
   <groupId>io.github.middleware-labs</groupId>
   <artifactId>agent-apm-java</artifactId>
-  <version>0.0.16</version>
+  <version>0.0.17</version>
 </dependency>
 ```
 ### Note:
 Refer the latest APM version from the link given below:
-https://central.sonatype.dev/artifact/io.github.middleware-labs/agent-apm-java/0.0.7/versions
+https://central.sonatype.com/artifact/io.github.middleware-labs/agent-apm-java/0.0.17/versions
 
 Then run
 ```java
