@@ -13,13 +13,14 @@
   },
   "topbarLinks": [
    
-    {
-      "name": "Pricing",
-      "url": "https://middleware.io/pricing/"
-    },
+   
     {
       "name": "Home",
       "url": "https://middleware.io/"
+    },
+     {
+      "name": "Pricing",
+      "url": "https://middleware.io/pricing/"
     },
     {
       "name": "Book a demo",
