@@ -4,34 +4,81 @@
 * You can refer [this demo project](https://github.com/middleware-labs/demo-apm/tree/master/python) to refer use cases
   of APM.
 
-## Guide
-### Step 1: Install Python package
+## Getting Started
+### Step 1: Install MW's APM Package
 Run the following command in your terminal:
 ```python
 pip install middleware-apm
 ```
 
-### Step 2: Import Tracker
-Add the following lines at the very start of your project:
-```python
-from apmpythonpackage import apmpythonclass
-tracker=apmpythonclass()
-tracker.mw_tracer({APM-PROJECT-NAME}, {APM-SERVICE-NAME})
-```
-
-## Distributed Tracing
+### Step 2: Auto-install Required Packages
 The `middleware-bootstrap -a install` command reads through the list of packages installed in your active site-packages folder, and installs the corresponding instrumentation libraries for these packages, if applicable.
 ```python
 middleware-bootstrap -a install
 ```
 
-To enable Distributed Tracing, run the following command:
+### Step 3: Import the Tracker
+Add the following lines at the very start of your project:
 ```python
-middleware-instrument --resource_attributes=project.name={APM-PROJECT-NAME} --metrics_exporter none --exporter_otlp_endpoint http://localhost:9319  --traces_exporter otlp --service_name {APM-SERVICE-NAME} python3 <your-file-name>.py
+from mw_tracker import MwTracker
+tracker=MwTracker(
+    access_token="{YOUR-ACCESS_TOKEN}"
+)
 ```
 
-## Note for APM inside Kubernetes
-If you are using APM in a Kubernetes cluster make sure to follow these 2 steps:
+## Enable MW's APM functionalities
+
+### 1. Enable Distributed Tracing
+Distributed-tracing is a default functionality of MW's APM. This will be auto-enabled when you execute the command mentioned in [Run Your Application](https://docs.middleware.io/docs/apm-configuration/python/python-apm-setup#run-your-application) section.
+
+### 2. Enable Metrics
+You can enable metrics by writing the following line just after the tracker initialization.
+```python
+tracker.collect_metrics()
+```
+
+### 3. Enable Logs
+Similar to metrics, you can enable logs by writing the following line.
+```python
+tracker.collect_logs()
+```
+
+### 4. Enable Profiling
+For the Profiling feature, you need to write the following line.
+```python
+tracker.collect_profiling()
+```
+
+## Your Code will look like this
+After adding all the above steps, your code will look like this:
+```python
+import logging
+
+from mw_tracker import MwTracker
+tracker=MwTracker(
+    access_token="{YOUR-ACCESS_TOKEN}"
+)
+
+tracker.collect_metrics()
+tracker.collect_logs()
+tracker.collect_profiling()
+
+loggin.info("Hello World!", extra={'key': 'value'})
+```
+
+## Run Your Application
+To run your application, you need to execute the following command:
+```python
+middleware-instrument \
+--exporter_otlp_endpoint http://localhost:9319 \
+--resource_attributes=project.name={APM-PROJECT-NAME},mw.app.lang=python,runtime.metrics.python=true \
+--service_name {APM-SERVICE-NAME} \
+python3 app.py
+```
+<Note>You need to replace <strong>\{APM-PROJECT-NAME\}</strong> and <strong>\{APM-SERVICE-NAME\}</strong> with your project name and service name respectively.</Note>
+
+## For APM inside Kubernetes
+If you are using APM in a Kubernetes cluster make sure to follow these two steps:
 
 ### Step 1: Find your Middleware Service namespace
 For older setup, your "mw-service" can be inside `mw-agent-ns-{FIRST-5-LETTERS-OF-API-KEY}` namespace
@@ -57,23 +104,8 @@ In linux, you can add this with
 export PATH=$PATH:/home/.../.local/bin
 ```
 
-## Add custom logs
-```python
-tracker.error('python error log sample')
-tracker.debug('ipython debug log sample')
-tracker.warn('python warning log sample')
-tracker.info('python info log sample')
-```
-
-## Python Logging with Middleware
-```python
-handler = tracker.mw_handler()
-logging.getLogger().addHandler(handler)
-logging.error("error log sample")
-```
-
 ## Error Handling :
-If you want to record exception in traces then you can use tracker.record_error(e) method.
+If you want to record exception in traces then, you can use `tracker.record_error(e)` method.
 
 ```python
 randomList = ['a', 0, 2]
