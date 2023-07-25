@@ -1,20 +1,17 @@
 ---
 title: "Auto-Instrumentation in Kubernetes"
-description: "Detect programming languages for all the pods running inside your cluster"
+description: "A couple steps towards monitoring your infrastructure"
 ---
 
-Our Kubernetes auto-instrumentation script...
-<ul>
-    <li>Monitors your Kubernetes cluster as an Infrastructure</li>
-    <li>Collects distributed traces for all the applications running inside your cluster</li>
-</ul>
+Our Kubernetes Auto-Instrumentation script is designed to help you install the Middleware Agent in a few simple steps. The script is accessible through the <b>Installation</b> option found in the bottom of the nav bar. Once the agent is installed it will monitor your Kubernetes cluster and collect distributed traces for all applications running inside the cluster.
+
 ## How Auto-Instrumentation Works
-<p>Once user hits the Kubernetes Auto-Instrumentation script, the script will install a helm chart in the cluster, which will ...</p>
+<p>The Kubernetes Auto-Instrumentation script will install a helm chart in the cluster which will...</p>
 <ol>
-    <li>Detect programming languages for all the pods running inside your cluster. (Refer Language Support section at bottom)</li>
-    <li>Install Opentelemetry auto-instrumentation libraries in all the pods that user wants to monitor.</li>
-    <li>Install a Daemonset to monitor the performance of all the K8s components. Ex. Nodes, Pods, Containers, etc.</li>
-    <li>Send all infrastructure + application data to Middleware backend !</li>
+    <li>Detect supported programming languages for all the pods running inside your cluster (refer to the Language Support section below)</li>
+    <li>Install Opentelemetry auto-instrumentation libraries in all of the pods selected</li>
+    <li>Install a Daemonset to monitor the performance of all K8s components (nodes, pods, containers, etc.)</li>
+    <li>Send all infrastructure + application data to Middleware's backend</li>
 </ol>
 ## Language Support
 <table>
