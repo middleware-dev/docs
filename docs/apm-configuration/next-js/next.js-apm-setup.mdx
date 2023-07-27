@@ -6,21 +6,23 @@ Run the command below in your terminal to install Middleware's Next.js APM packa
 
 <Note>Make sure you have installed the latest version of Next.js or a version greater than 13.4+, as Vercel introduced their experimental feature in that release.</Note>
 <Note>Before proceeding with the Next.js APM setup, make sure you have the **@opentelemetry/api** package installed. If it's not already installed, run the following command: `npm install @opentelemetry/api@">=1.3.0 <1.5.0"`</Note>
-```javascript
+```
 npm install @middleware.io/agent-apm-nextjs
 ```
 
 ### Step 2: Modify the `next.config.js` file
 As this feature is experimental, you need to explicitly opt-in by adding the following code to your **next.config.js** file:
-```javascript
+```javascript Shell
 const nextConfig = {
-     ---
-     ---
+    // ...
+    // Your existing config
+
      experimental: {
          instrumentationHook: true
      }
-     ---
-     ---
+
+    // ...
+    // Your existing config
 }
 module.exports = nextConfig
 ```
@@ -29,7 +31,7 @@ module.exports = nextConfig
 Create a custom `instrumentation.ts` (or `.js`) file in your project <strong>root</strong> directory (or inside `src` folder, if using one), and add the following code as per your choice:
 
 - If you are using [Vercel](https://vercel.com/) platform to deploy your projects, then use the code snippet below for serverless functions:
-```javascript
+```javascript Shell
 // @ts-ignore
 import tracker from '@middleware.io/agent-apm-nextjs';
 
@@ -37,12 +39,12 @@ export function register() {
     tracker.track({
         projectName: "<PROJECT-NAME>",
         serviceName: "<SERVICE-NAME>",
-        accountKey: "<ACCOUNT-KEY>",
-        target: "vercel",
+        accessToken: "<ACCESS-TOKEN>",
+        target: "vercel"
     });
 }
 ```
-<Note>You can find your &lt;ACCOUNT-KEY&gt; on the Installation screen for <a href="https://app.middleware.io/installation#apm/nextjs" rel="nofollow noopener noreferrer" target="_blank" translate="no" color="blue">NextJs / Vercel</a>.</Note>
+<Note>You can find your &lt;ACCESS-TOKEN,&gt; on the Installation screen for <a href="https://app.middleware.io/installation#apm/nextjs" rel="nofollow noopener noreferrer" target="_blank" translate="no" color="blue">NextJs / Vercel</a>.</Note>
 <Note> After Deploying your project on Vercel, you need to integrate the [Middleware](https://vercel.com/integrations/middleware) from the marketplace. You can find more details [here](https://docs.middleware.io/docs/apm-configuration/next-js/Vercel-integration). To get a better idea, you can clone the sample project from the [GitHub](https://github.com/middleware-labs/demo-apm/tree/master/nextjs/setup) repository.</Note>
 
 - If you are using [Middleware's Host-agent](https://docs.middleware.io/docs/installation) on your machine then use code snippet below:
@@ -54,12 +56,12 @@ export function register() {
     tracker.track({
         projectName: "<PROJECT-NAME>",
         serviceName: "<SERVICE-NAME>",
-        accountKey: "<ACCOUNT-KEY>",
+        accessToken: "<ACCESS-TOKEN>"
     });
 }
 ```
 - If you want to instrument your project without installing any host, then use the code snippet below:
-```javascript
+```javascript Shell
 // @ts-ignore
 import tracker from '@middleware.io/agent-apm-nextjs';
 
@@ -67,7 +69,7 @@ export function register() {
     tracker.track({
         projectName: "<PROJECT-NAME>",
         serviceName: "<SERVICE-NAME>",
-        accountKey: "<ACCOUNT-KEY>",
+        accessToken: "<ACCESS-TOKEN>",
         target: "https://{ACCOUNT-UID}.middleware.io"
     });
 }
@@ -75,7 +77,7 @@ export function register() {
 
 ### Step 4: Enable Logging
 To enable logging in your project, you need to add the following code in your file:
-```javascript
+```javascript Shell
 // @ts-ignore
 import tracker from '@middleware.io/agent-apm-nextjs';
 
@@ -103,7 +105,7 @@ For older setup, your "mw-service" can be inside `mw-agent-ns-{FIRST-5-LETTERS-O
 For newer setup, we simplified the namespace name to `mw-agent-ns`
 
 ### Step 2 : Set this ENV variable in your application deployment YAML
-```javascript
+```
 MW_AGENT_SERVICE=mw-service.NAMESPACE.svc.cluster.local
 ```
 <Note> Please replace "NAMESPACE" with the correct value that you found from Step 1. </Note>
