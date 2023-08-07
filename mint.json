@@ -90,6 +90,10 @@
           "group": "PHP",
           "pages": ["docs/apm-configuration/php/php-overview","docs/apm-configuration/php/php-apm-setup"]
         },
+        {
+          "group": ".NET",
+          "pages": ["docs/apm-configuration/dotnet/dotnet-apm-setup"]
+        },
        {
           "group": "Cloudflare",
           "pages": ["docs/apm-configuration/cloudflare/cloudflare-overview","docs/apm-configuration/cloudflare/apm-agent-for-cloudflare-workers"]
