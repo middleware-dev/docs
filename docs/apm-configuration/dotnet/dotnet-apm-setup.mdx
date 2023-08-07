@@ -1,0 +1,43 @@
+## Prerequisites
+---
+* To monitor APM data on dashboard, Middleware Host agent needs to be installed.
+
+## .NET binary installation
+---
+Download the bash script
+```bash
+curl -sSfL https://install.middleware.io/apm/dotnet/v1.0.0-rc.1/scripts/mw-dotnet-auto-install.sh -O
+```
+Install core files
+```bash
+sh ./mw-dotnet-auto-install.sh
+rm -rf mw-dotnet-auto-install.sh
+```
+Enable execution for the instrumentation script
+```bash
+chmod +x $HOME/.mw-dotnet-auto/instrument.sh
+```
+
+## Setup Middleware .NET project
+---
+* Download Latest [Middleware.dll](https://github.com/middleware-labs/dotnet-plugin/releases).
+
+
+* Add Following code in .csproj file
+  ```xml
+  <ItemGroup>
+    <Reference Include="Middleware">
+      <HintPath>path\to\Middleware.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  ```
+
+## Build and run .NET application
+---
+  ```bash
+  MW_API_KEY={MW_API_KEY} \
+    . $HOME/.mw-dotnet-auto/instrument.sh && \
+    OTEL_SERVICE_NAME="{APM-SERVICE-NAME}" \
+    OTEL_RESOURCE_ATTRIBUTES=project.name="{APM-PROJECT-NAME}" \
+    dotnet path/to/YourApplication.dll
+  ```
