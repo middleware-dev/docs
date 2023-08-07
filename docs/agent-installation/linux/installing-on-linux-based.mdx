@@ -19,18 +19,34 @@ description: ""
 
 <p>For DEB (Debian Packages : Compatible for Debian and derivative operating systems)</p>
 
-```javascript Shell
+```bash
 MW_API_KEY=xxxxxxxxxxxxxxx TARGET=https://uid.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/deb-install.sh)"
 ```
 
 <p>For RPM (Package supported by RedHat Package Manager, Compatible for systems like RedHat/CentOS etc.)</p>
 
-```javascript Shell
+```bash
 MW_API_KEY=xxxxxxxxxxxxxxxxx TARGET=https:/uid.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/rpm-install.sh)"
 ```
 <Info>Replace the MW_API_KEY value with your API key or directly copy the full command with the API key from the <a href="https://app.middleware.io/auth/login" rel="nofollow noopener noreferrer" target="_blank" translate="no">installation menu.</a></Info>
 <Info>Replace "uid" with the text in the URL (ex URL is "s05zpimz.middleware.io" , here s05zpimz is uid.)</Info>
 
+## Adding Tags to your host 
+
+If you want to add tags to your host, you can do it by adding `MW_HOST_TAGS` environment variable to your installation command.
+
+
+```bash
+MW_HOST_TAGS=key1:value1,key2:value2
+```
+
+MW_HOST_TAGS can be comma seperated key value pairs as shown above
+
+### Special Tags
+
+| Key | Description |
+| --- | --- |
+| name | "name" tag will be considered as an alias for the host.
 
 ## Verify the status of agent
 <p>Run the agent’s status command to verify the installation.</p>
