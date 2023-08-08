@@ -12,13 +12,11 @@
     "dark": "#e95e5f"
   },
   "topbarLinks": [
-   
-   
     {
       "name": "Home",
       "url": "https://middleware.io/"
     },
-     {
+    {
       "name": "Pricing",
       "url": "https://middleware.io/pricing/"
     },
@@ -31,151 +29,226 @@
     "name": "Get Started",
     "url": "https://app.middleware.io/auth/register/"
   },
-  "anchors": [
-  ],
-  
+  "anchors": [],
   "analytics": {
     "ga4": {
-        "measurementId": "G-2KBHR7YB2G"
+      "measurementId": "G-2KBHR7YB2G"
     }
   },
-  
   "navigation": [
     {
-       "group": "Middleware Docs",
-        "pages": ["quickstart"]
+      "group": "Middleware Docs",
+      "pages": [
+        "quickstart"
+      ]
     },
-    
     {
       "group": "Agent Installation",
       "pages": [
         "docs/agent-installation/host-agent",
         {
           "group": "Kubernetes",
-          "pages": ["docs/agent-installation/kubernetes/auto-instrumentation-in-kubernetes","docs/agent-installation/kubernetes/kubernetes-overview","docs/agent-installation/kubernetes/installing-on-kubernetes"]
+          "pages": [
+            "docs/agent-installation/kubernetes/auto-instrumentation-in-kubernetes",
+            "docs/agent-installation/kubernetes/kubernetes-overview",
+            "docs/agent-installation/kubernetes/installing-on-kubernetes"
+          ]
         },
         {
           "group": "Linux",
-          "pages": ["docs/agent-installation/linux/linux-based-agent-overview","docs/agent-installation/linux/installing-on-linux-based"]
+          "pages": [
+            "docs/agent-installation/linux/linux-based-agent-overview",
+            "docs/agent-installation/linux/installing-on-linux-based"
+          ]
         },
         {
           "group": "Any OS via Docker",
-          "pages": ["docs/agent-installation/docker/docker-overview","docs/agent-installation/docker/installing-on-any-os-via-docker"]
+          "pages": [
+            "docs/agent-installation/docker/docker-overview",
+            "docs/agent-installation/docker/installing-on-any-os-via-docker"
+          ]
         },
         "docs/agent-installation/troubleshooting"
-      
-      ]    
-     },
-    
+      ]
+    },
     {
-    "group": "APM Configuration",
-     "pages": [
+      "group": "APM Configuration",
+      "pages": [
         {
           "group": "Node.js",
-          "pages": ["docs/apm-configuration/node-js/node.js-overview","docs/apm-configuration/node-js/node.js-apm-setup"]
+          "pages": [
+            "docs/apm-configuration/node-js/node.js-overview",
+            "docs/apm-configuration/node-js/node.js-apm-setup"
+          ]
         },
         {
           "group": "Go",
-          "pages": ["docs/apm-configuration/go/golang-overview","docs/apm-configuration/go/golang-apm-setup"]
+          "pages": [
+            "docs/apm-configuration/go/golang-overview",
+            "docs/apm-configuration/go/golang-apm-setup"
+          ]
         },
         {
           "group": "Python",
-          "pages": ["docs/apm-configuration/python/python-overview","docs/apm-configuration/python/python-apm-setup"]
+          "pages": [
+            "docs/apm-configuration/python/python-overview",
+            "docs/apm-configuration/python/python-apm-setup"
+          ]
         },
-       {
+        {
           "group": "Java",
-          "pages": ["docs/apm-configuration/java/java-overview","docs/apm-configuration/java/java-apm-setup"]
+          "pages": [
+            "docs/apm-configuration/java/java-overview",
+            "docs/apm-configuration/java/java-apm-setup"
+          ]
         },
         {
           "group": "PHP",
-          "pages": ["docs/apm-configuration/php/php-overview","docs/apm-configuration/php/php-apm-setup"]
+          "pages": [
+            "docs/apm-configuration/php/php-overview",
+            "docs/apm-configuration/php/php-apm-setup"
+          ]
         },
         {
           "group": ".NET",
-          "pages": ["docs/apm-configuration/dotnet/dotnet-apm-setup"]
+          "pages": [
+            "docs/apm-configuration/dotnet/dotnet-apm-setup"
+          ]
         },
-       {
+        {
           "group": "Cloudflare",
-          "pages": ["docs/apm-configuration/cloudflare/cloudflare-overview","docs/apm-configuration/cloudflare/apm-agent-for-cloudflare-workers"]
-       },
+          "pages": [
+            "docs/apm-configuration/cloudflare/cloudflare-overview",
+            "docs/apm-configuration/cloudflare/apm-agent-for-cloudflare-workers"
+          ]
+        },
         {
           "group": "Next.js",
-          "pages": ["docs/apm-configuration/next-js/next.js-apm-setup","docs/apm-configuration/next-js/vercel-integration"]
+          "pages": [
+            "docs/apm-configuration/next-js/next.js-apm-setup",
+            "docs/apm-configuration/next-js/vercel-integration"
+          ]
         }
-    ]
+      ]
     },
-
     {
       "group": "Data Ingestion APIs",
       "pages": [
         {
           "group": "Metrics",
-          "pages": ["docs/data-ingestion-apis/opentelemetry-metrics", "docs/data-ingestion-apis/datadog-ingestion"]
+          "pages": [
+            "docs/data-ingestion-apis/opentelemetry-metrics",
+            "docs/data-ingestion-apis/datadog-ingestion"
+          ]
         }
       ]
     },
     {
       "group": "AWS",
-      "pages": ["docs/aws/kinesis-streams"]
+      "pages": [
+        "docs/aws/kinesis-streams"
+      ]
     },
     {
       "group": "Unified Dashboard",
-       "pages": ["docs/unified-dashboard/unified-view","docs/unified-dashboard/metrics-in-unified-dashboard","docs/unified-dashboard/logs-in-unified-dashboard","docs/unified-dashboard/traces-in-unified-dashboard"]
+      "pages": [
+        "docs/unified-dashboard/unified-view",
+        "docs/unified-dashboard/metrics-in-unified-dashboard",
+        "docs/unified-dashboard/logs-in-unified-dashboard",
+        "docs/unified-dashboard/traces-in-unified-dashboard"
+      ]
     },
-    
     {
       "group": "Infrastructure Monitoring",
-       "pages": ["docs/infrastructure-monitoring/host","docs/infrastructure-monitoring/container-monitoring","docs/infrastructure-monitoring/kubernetes-monitoring","docs/infrastructure-monitoring/processes"]
+      "pages": [
+        "docs/infrastructure-monitoring/host",
+        "docs/infrastructure-monitoring/container-monitoring",
+        "docs/infrastructure-monitoring/kubernetes-monitoring",
+        "docs/infrastructure-monitoring/processes"
+      ]
     },
-    
+    {
+      "group": "Real User Monitoring (RUM)",
+      "pages": [
+        "docs/rum/rum-overview",
+        "docs/rum/installation",
+        "docs/rum/rum-middleware"
+      ]
+    },
     {
       "group": "APM",
-       "pages": ["docs/apm/apm-dashboard","docs/apm/service-monitoring","docs/apm/traces","docs/apm/error-traces", "docs/apm/continuous-profiling"]
+      "pages": [
+        "docs/apm/apm-dashboard",
+        "docs/apm/service-monitoring",
+        "docs/apm/traces",
+        "docs/apm/error-traces",
+        "docs/apm/continuous-profiling"
+      ]
     },
-    
     {
       "group": "Log Monitoring",
-       "pages": ["docs/log-monitoring/logs" , "docs/log-monitoring/log-transaction" , "docs/log-monitoring/log-custom-metrics"]
+      "pages": [
+        "docs/log-monitoring/logs",
+        "docs/log-monitoring/log-transaction",
+        "docs/log-monitoring/log-custom-metrics"
+      ]
     },
-    
     {
       "group": "Synthetic Monitoring",
-       "pages": ["docs/synthetic-monitoring/synthetic-monitoring","docs/synthetic-monitoring/ip-address"]
+      "pages": [
+        "docs/synthetic-monitoring/synthetic-monitoring",
+        "docs/synthetic-monitoring/ip-address"
+      ]
     },
-    
     {
       "group": "Custom Dashboard Builder",
-       "pages": ["docs/custom-dashboard/build-custom-dashboard"]
+      "pages": [
+        "docs/custom-dashboard/build-custom-dashboard"
+      ]
     },
-    
     {
       "group": "Alerts",
-       "pages": ["docs/alerting/setup-alert"]
+      "pages": [
+        "docs/alerting/setup-alert"
+      ]
     },
-    
     {
-     "group": "Integration",
-     "pages": ["docs/integrations/slack-integration","docs/integrations/microsoft-team-integration","docs/integrations/jira-integration","docs/integrations/pagerduty-integration","docs/integrations/opsgenie-integration", "docs/integrations/postgresql-integration", "docs/integrations/mongodb-integration"] 
+      "group": "Integration",
+      "pages": [
+        "docs/integrations/slack-integration",
+        "docs/integrations/microsoft-team-integration",
+        "docs/integrations/jira-integration",
+        "docs/integrations/pagerduty-integration",
+        "docs/integrations/opsgenie-integration",
+        "docs/integrations/postgresql-integration",
+        "docs/integrations/mongodb-integration"
+      ]
     },
-    
     {
-     "group": "Settings",
-     "pages": ["docs/settings/profile","docs/settings/role-&-permission","docs/settings/billing-&-usages", "docs/settings/advanced"] 
+      "group": "Settings",
+      "pages": [
+        "docs/settings/profile",
+        "docs/settings/role-&-permission",
+        "docs/settings/billing-&-usages",
+        "docs/settings/advanced"
+      ]
     },
-    
     {
-     "group": "FAQ",
-     "pages": ["docs/faq/free-forever","docs/faq/usage-based-charges","docs/faq/logs","docs/faq/pricing","docs/faq/data","docs/faq/other"] 
+      "group": "FAQ",
+      "pages": [
+        "docs/faq/free-forever",
+        "docs/faq/usage-based-charges",
+        "docs/faq/logs",
+        "docs/faq/pricing",
+        "docs/faq/data",
+        "docs/faq/other"
+      ]
     }
-    
-      
-   
   ],
   "footerSocials": {
     "website": "https://www.middleware.io",
-     "linkedin": "https://www.linkedin.com/company/middleware-labs/",
+    "linkedin": "https://www.linkedin.com/company/middleware-labs/",
     "facebook": "https://www.facebook.com/middlewarelabs",
     "twitter": "https://twitter.com/Middleware_Labs"
-   
   }
 }
