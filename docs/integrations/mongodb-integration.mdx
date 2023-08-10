@@ -18,12 +18,9 @@ mongodb:
     username: mongodb
     password: mongodb
 ```
-You can skip the fields `username` and `password` if database is not password protected.
+<Note>You can skip the fields `username` and `password` if database is not password protected.</Note>
 
-### Note for Docker Agent Users
-If you are running the Middleware Docker agent, then we recommend to keep the creds YAML under `/var/log` directory. 
-
-This is because, the Docker agent will not allow dynamic volume binding.
+<Note><strong>For Docker Agent Users</strong>: If you are running the Middleware Docker agent, then we recommend to keep the creds YAML under `/var/log` directory. This is because, the Docker agent might not support dynamic volume binding.</Note>
 
 
 
