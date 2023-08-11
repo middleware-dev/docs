@@ -14,12 +14,10 @@ Ex. `/home/ubuntu/mysql-creds.yaml`
 ```
 mysql:
     endpoint: localhost:3306
-    username: root
-    password: $MYSQL_PASSWORD
-    database: otel
-	collection_interval: 10s
+    username: mysql
+    password: mysql
 ```
-<Note>You can skip the fields `username` and `password`, if your database doesn't require authentication. If you skip `database`, then this integration will collect metrics from all databases, else It will collect for mentioned database only.</Note>
+<Note>You can skip the fields `username` and `password`, if your database doesn't require authentication.</Note>
 
 <Note><strong>For Docker Agent Users</strong>: If you are running the Middleware Docker agent, then we recommend to keep the creds YAML under `/var/log` directory. This is because, the Docker agent might not support dynamic volume binding.</Note>
 
