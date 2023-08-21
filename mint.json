@@ -118,7 +118,7 @@
           "group": "Cloudflare",
           "pages": [
             "docs/apm-configuration/cloudflare/cloudflare-overview",
-            "docs/apm-configuration/cloudflare/apm-agent-for-cloudflare-workers"
+            "docs/apm-configuration/cloudflare/cloudflare-apm-setup"
           ]
         },
         {
