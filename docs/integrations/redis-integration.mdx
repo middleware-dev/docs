@@ -1,0 +1,78 @@
+---
+title: "Redis Integration"
+---
+Retrieve data and metrics from a Redis instance to effectively monitor the performance of the Redis server.
+
+## Prerequisites
+Before using this integration, ensure that the Middleware Host agent has been successfully installed on your machine.
+
+## Setup
+Follow these steps to set up the Redis integration:
+1. Create a YAML file on your system containing the database collection details, as shown below:
+
+Ex. `/home/ubuntu/redis-creds.yaml`
+```
+redis:
+  endpoint: "localhost:7379"
+  password: redis
+```
+
+<Note>Optional settings include:<br />- `password`: if your Redis server requires authentication.<br />- `transport` (default = `tcp`): Type of network, to access the server. Options: `tcp` and `Unix`.<br />- `tls`:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- `insecure` (default = true): To switch client transport security for the connection.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- `ca_file`: Path to the CA certificate file.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- `cert_file`: Path to the TLS certificate file.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- `key_file`: Path to the TLS key file.</Note>
+
+<Note><strong>For Docker Agent Users</strong>: If you are running the Middleware Docker agent, then we recommend to keep the creds YAML under `/var/log` directory. This is because, the Docker agent might not support dynamic volume binding.</Note>
+
+2. In the Middleware Store, enable the Redis Integration, select a host, and provide the YAML file path created in step 1.
+<img src="/images/integration/mysql-store.png" />
+
+## Visualize Analytics
+Redis analytics can be visualized in two ways:
+
+### 1. Middleware's Default Redis Dashboard
+After setting up the Redis Integration, you will gain access to various analytics in the default Redis Dashboard.
+<img src="/images/integration/redis-dashboard.png" />
+
+### 2. Create your own dashboard
+<p>You have the flexibility to create your own dashboard from scratch.</p>
+<p>When adding a new widget to an existing dashboard, you will find a list of available Redis metrics under the "redis" data source.</p>
+<p>These metrics can be visualized using various widget types, such as Timeseries, Bar Chart, Pie Chart, and more.</p>
+<img src="/images/integration/redis-custom-graphs.png" />
+
+## Metrics collected
+Below is a list of Redis metrics that this integration will collect:
+
+| Metric                                    | Description                                                                                       |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| redis.maxmemory                           | The value of the maxmemory configuration directive                                               |
+| redis.role                                | Redis node's role                                                                                 |
+| redis.cmd.calls                           | Total number of calls for a command                                                               |
+| redis.cmd.usec                            | Total time for all executions of this command                                                     |
+| redis.uptime                              | Number of seconds since Redis server start                                                       |
+| redis.cpu.time                            | System CPU consumed by the Redis server in seconds since server start                             |
+| redis.clients.connected                   | Number of client connections (excluding connections from replicas)                               |
+| redis.clients.max_input_buffer            | Biggest input buffer among current client connections                                            |
+| redis.clients.max_output_buffer           | Longest output list among current client connections                                             |
+| redis.clients.blocked                     | Number of clients pending on a blocking call                                                      |
+| redis.keys.expired                        | Total number of key expiration events                                                            |
+| redis.keys.evicted                        | Number of evicted keys due to maxmemory limit                                                    |
+| redis.connections.received                | Total number of connections accepted by the server                                               |
+| redis.connections.rejected                | Number of connections rejected because of maxclients limit                                       |
+| redis.memory.used                         | Total number of bytes allocated by Redis using its allocator                                     |
+| redis.memory.peak                         | Peak memory consumed by Redis (in bytes)                                                         |
+| redis.memory.rss                          | Number of bytes that Redis allocated as seen by the operating system                             |
+| redis.memory.lua                          | Number of bytes used by the Lua engine                                                            |
+| redis.memory.fragmentation_ratio           | Ratio between used_memory_rss and used_memory                                                     |
+| redis.rdb.changes_since_last_save         | Number of changes since the last dump                                                             |
+| redis.commands                            | Number of commands processed per second                                                          |
+| redis.commands.processed                  | Total number of commands processed by the server                                                 |
+| redis.net.input                           | The total number of bytes read from the network                                                  |
+| redis.net.output                          | The total number of bytes written to the network                                                 |
+| redis.keyspace.hits                       | Number of successful lookup of keys in the main dictionary                                       |
+| redis.keyspace.misses                     | Number of failed lookup of keys in the main dictionary                                           |
+| redis.latest_fork                         | Duration of the latest fork operation in microseconds                                           |
+| redis.slaves.connected                    | Number of connected replicas                                                                      |
+| redis.replication.backlog_first_byte_offset | The master offset of the replication backlog buffer                                             |
+| redis.replication.offset                  | The server's current replication offset                                                          |
+| redis.db.keys                             | Number of keyspace keys                                                                            |
+| redis.db.expires                          | Number of keyspace keys with an expiration                                                        |
+| redis.db.avg_ttl                          | Average keyspace keys TTL                                                                          |
+
