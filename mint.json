@@ -221,7 +221,8 @@
         "docs/integrations/opsgenie-integration",
         "docs/integrations/postgresql-integration",
         "docs/integrations/mongodb-integration",
-        "docs/integrations/mysql-integration"
+        "docs/integrations/mysql-integration",
+        "docs/integrations/redis-integration"
       ]
     },
     {
