@@ -15,3 +15,39 @@ Follow the steps below to install the MW Agent in your Kubernetes environment.
 1.  Log in to Middleware
 2.  Navigate to the installation page, in the bottom left corner
   <img src="/images/agent-installation/k1.png" />
+3. Get the current Kubernetes context and ensure that the cluster belonging to this context is the one where you wish to install MW Agent. Use the following command to find out your current Kubernetes context.
+```javascript Shell
+kubectl config get-contexts `kubectl config current-context`
+```
+4. Copy and run the installation command. An example of the command is shown below. Copying the command directly from the Installation page ensures your API key and UID are inserted accurately.
+```javascript Shell
+MW_API_KEY=<xxxxxxxxxx> TARGET=https://<uid>.middleware.io:443 bash -c “$(curl -L https://install.middleware.io/scripts/mw-kube-agent-install.sh)”
+```
+  <img src="/images/agent-installation/k2.png" />
+
+5. Verify the status of the MW Agent with the following command. 
+```javascript Shell
+kubectl get daemonset/mw-kube-agent -n mw-agent–ns
+```
+
+6. Navigate to Middleware and ensure metrics are appearing in the Unified Dashboard. Depending on the size of your cluster, it can take up to a few minutes for metrics to appear. If metrics do not appear after this time head to our troubleshooting page for some common issues.
+
+<Warning>  Run only one MW Agent DaemonSet per cluster. Multiple agents will cause unexpected behavior. </Warning>
+
+## Upgrade
+The MW Agent is frequently updated to add new features and improve performance. More information on new features can be found in our Newsletter. To upgrade MW Agent, use the following command.
+```javascript Shell
+bash -c “$(curl -L https://install.middleware.io/scripts/mw-kube-agent-upgrade.sh)
+```
+
+## Troubleshooting
+Once the MW Agent is installed on your cluster metrics should begin appearing in the Middleware application within a few minutes. If metrics do not appear, confirm that Kubernetes has access to the internet, either directly or through a proxy, and that only one (1) MW Agent is running per cluster. 
+
+For any issues please reach out to our team in your Slack channel or through the help menu in the Middleware Application.
+
+
+## Uninstall
+To uninstall the Middleware Agent use the following command.
+```javascript Shell
+bash -c “$(curl -L https://install.middleware.io/scripts/mw-kube-agent-uninstall.sh)
+```
