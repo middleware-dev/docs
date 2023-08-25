@@ -1,0 +1,70 @@
+This guide walks you through installing the MW Agent on a Linux machine. These instructions can also be found on the Installation page in the Middleware application. 
+
+We offer two install scripts based on your operating system. Please note that not all Linux machines are supported. A list of supported machines can be found under Prerequisites.
+
+## Overview
+### Prerequisites
+
+-   Ubuntu 18.04 or above
+
+-   For AWS EC2 instances Amazon Linux, Ubuntu, or Debian is required. For AWS instances using Red Hat, please install the Docker MW Agent. 
+
+-   MacOS Linux is not supported
+
+## Install
+
+Follow the steps below to install the MW Agent on your Linux machine.
+
+1.  Log in to Middleware
+
+2.  Navigate to the Installation page, in the bottom left corner.
+  <img src="/images/agent-installation/k1.png" />
+
+3. Copy the appropriate installation command based on your machine’s operating system. An example of each command is shown below. Copying the command directly from the Installation page ensures your API key and UID are inserted accurately.
+
+DEB - compatible with Debian or Debian-based operating systems. For AWS instances this includes Ubuntu and Debian.
+```javascript Shell
+MW_API_KEY=<xxxxxxxxxx> MW_TARGET=https://<uid>.middleware.io:443 bash -c “$(curl -L https://install.middleware.io/scripts/deb-install.sh)
+```
+  <img src="/images/agent-installation/k3.jpg" />
+
+RPM - compatible with Red Hat Package Manager and operating systems like Red Hat or CentOS. Use this for AWS instances using Amazon Linux. 
+```javascript Shell
+MW_API_KEY=xxxxxxxxxx MW_TARGET=https://<uid>.middleware.io:443 bash -c “(curl https://install.middleware.io/scripts/rpm-install.sh)
+```
+ <img src="/images/agent-installation/k4.jpg" />
+
+4. [optional] Add tags by adding the MW_HOST_TAGS environment variable to the installation command. Include any desired tags as comma-separated key-value pairs, as shown below. Use the tag “name” to create an alias for the host (e.g. production). 
+```javascript Shell
+MW_HOST_TAGS=<key1>:<value1>,<key2>:<value2>,… MW_API_KEY=…
+```
+
+5. Run the installation command and verify the MW agent’s status with the following. 
+```javascript Shell
+sudo systemctl status mwservice
+```
+
+	A successful installation will return an Agent Status report like the following.
+ <img src="/images/agent-installation/k5.jpg" />
+
+<Warning>  Run only one MW Agent DaemonSet per cluster. Multiple agents will cause unexpected behavior. </Warning>
+
+## Troubleshooting
+Once the MW Agent is installed metrics should begin appearing in the Middleware application within a few minutes. If metrics do not appear, confirm that the machine has access to the internet, either directly or through a proxy, and that only one (1) MW Agent is running per node. 
+
+For any issues please reach out to our team in your Slack channel or through the help menu in the Middleware Application.
+
+
+## Uninstall
+To uninstall the Middleware agent use the appropriate command from the following.
+
+DEB
+```javascript Shell
+bash -c “($curl -L https://install.middleware.io/scripts/apt-uninstall.sh)
+```
+
+RPM
+```javascript Shell
+bash -c “($curl -L https://install.middleware.io/scripts/apt-uninstall.sh)
+```
+
