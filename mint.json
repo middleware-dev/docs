@@ -48,6 +48,7 @@
         "docs/agent-installation/overview",
         "docs/agent-installation/kubernetes",
          "docs/agent-installation/linux",
+        "docs/agent-installation/docker",
          {
           "group": "Kubernetes",
           "pages": [
