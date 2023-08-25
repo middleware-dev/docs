@@ -45,7 +45,7 @@
     {
       "group": "Agent Installation",
       "pages": [
-        "docs/agent-installation/host-agent",
+       // "docs/agent-installation/host-agent",
         {
           "group": "Kubernetes",
           "pages": [
