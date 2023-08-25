@@ -47,7 +47,7 @@ sudo systemctl status mwservice
 	A successful installation will return an Agent Status report like the following.
  <img src="/images/agent-installation/k5.jpg" />
 
-<Warning>  Run only one MW Agent DaemonSet per cluster. Multiple agents will cause unexpected behavior. </Warning>
+<Warning>  Run only one MW Agent per node. Multiple agents will cause unexpected behavior.</Warning>
 
 ## Troubleshooting
 Once the MW Agent is installed metrics should begin appearing in the Middleware application within a few minutes. If metrics do not appear, confirm that the machine has access to the internet, either directly or through a proxy, and that only one (1) MW Agent is running per node. 
