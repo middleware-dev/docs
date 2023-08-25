@@ -45,6 +45,7 @@
     {
       "group": "Installing the Middleware Agent",
       "pages": [
+         "docs/agent-installation/troubleshooting",
        {
           "group": "Kubernetes",
           "pages": [
