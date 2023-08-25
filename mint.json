@@ -49,27 +49,7 @@
         "docs/agent-installation/kubernetes",
          "docs/agent-installation/linux",
         "docs/agent-installation/docker",
-         {
-          "group": "Kubernetes",
-          "pages": [
-            "docs/agent-installation/kubernetes/kubernetes-overview",
-            "docs/agent-installation/kubernetes/installing-on-kubernetes"
-          ]
-        },
-        {
-          "group": "Linux",
-          "pages": [
-            "docs/agent-installation/linux/linux-based-agent-overview",
-            "docs/agent-installation/linux/installing-on-linux-based"
-          ]
-        },
-        {
-          "group": "Any OS via Docker",
-          "pages": [
-            "docs/agent-installation/docker/docker-overview",
-            "docs/agent-installation/docker/installing-on-any-os-via-docker"
-          ]
-        }
+        
        
       ]
     },
