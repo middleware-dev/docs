@@ -66,7 +66,7 @@
             "docs/agent-installation/docker/docker-overview",
             "docs/agent-installation/docker/installing-on-any-os-via-docker"
           ]
-        },
+        }
        
       ]
     },
