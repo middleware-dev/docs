@@ -1,6 +1,37 @@
 ---
 title: "Cloudflare APM Setup"
 ---
+<table border="1" style={{margin: "10px 0", textAlign: "center"}}>
+    <thead>
+    <tr>
+        <th style={{padding:"8px 15px"}}>Traces</th>
+        <th style={{padding:"8px 15px"}}>Metrics</th>
+        <th style={{padding:"8px 15px"}}>App Logs</th>
+        <th style={{padding:"8px 15px"}}>Custom Logs</th>
+        <th style={{padding:"8px 15px"}}>Profiling</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><span style={{
+            background: "url(/images/misc/svg-check.svg) no-repeat",
+            width: "20px",
+            height: "20px",
+            display: "inline-block",
+        }}/></td>
+        <td>-</td>
+        <td>-</td>
+        <td><span style={{
+            background: "url(/images/misc/svg-check.svg) no-repeat",
+            width: "20px",
+            height: "20px",
+            display: "inline-block",
+        }}/></td>
+        <td>-</td>
+    </tr>
+    </tbody>
+</table>
+
 <Note> You can refer [this wrangler project](https://github.com/middleware-labs/demo-apm/tree/master/cloudflare) to see Cloudflare APM in action. </Note>
 
 In order to track http requests in your cloudflare worker, follow these steps
