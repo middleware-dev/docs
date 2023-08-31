@@ -98,6 +98,13 @@
           ]
         },
         {
+          "group": "Ruby",
+          "pages": [
+            "docs/apm-configuration/ruby/ruby-overview",
+            "docs/apm-configuration/ruby/ruby-apm-setup"
+          ]
+        },
+        {
           "group": "Cloudflare",
           "pages": [
             "docs/apm-configuration/cloudflare/cloudflare-overview",
