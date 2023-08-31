@@ -22,7 +22,7 @@ We have env and recording options available with the script.
 </script>
 ```
 
-To add user related information in the RUM data you can pass that data with RUM configuration as below,
+To add user related information in the RUM data you can pass that data with RUM configuration as below (Here name and email both are fixed parameters),
 
 ```javascript
 
@@ -30,8 +30,6 @@ To add user related information in the RUM data you can pass that data with RUM 
 defaultAttributes: { 
     name: 'John Doe', 
     email: 'john@email.com', 
-    extra: {
-        user_type: 'admin', // it can be anything here
-    }
+    user_type: 'admin', // it can be key value pairs
 }
 ```
