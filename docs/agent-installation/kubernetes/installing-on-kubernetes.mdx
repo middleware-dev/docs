@@ -22,7 +22,7 @@ description: "Use our one-step easy installation "
 {/* <p>You can use one-step auto instrumentation as follow</p>
 
 ```javascript Shell
-MW_API_KEY=xxxxxxxxxxxxxxxxxxxxxxxxx TARGET=https://uid.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/mw-vision.sh)"
+MW_API_KEY=xxxxxxxxxxxxxxxxxxxxxxxxx MW_TARGET=https://uid.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/mw-vision.sh)"
 ```
 <p>This script will install our all-in-one helm chart into your k8s cluster.</p>
 <p>Once the script is executed, you will be given instructions to open our 'Middleware Vision UI'.</p>
@@ -31,7 +31,7 @@ MW_API_KEY=xxxxxxxxxxxxxxxxxxxxxxxxx TARGET=https://uid.middleware.io:443 bash -
 
 **Use following command to install agent on Kubernetes**
 ```javascript Shell
-MW_API_KEY=xxxxxxxxxxxxxxxxxx TARGET=https://uid.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/yaml-install.sh)"
+MW_API_KEY=xxxxxxxxxxxxxxxxxx MW_TARGET=https://uid.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/yaml-install.sh)"
 ```
 <p>This script will install a Kubernetes daemonset into your k8s cluster.</p>
 <p>This agent is mainly created to monitor the data of your Kubernetes infrastucture.</p>
