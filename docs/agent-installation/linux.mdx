@@ -24,13 +24,13 @@ Follow the steps below to install the MW Agent on your Linux machine.
 
 DEB - compatible with Debian or Debian-based operating systems. For AWS instances this includes Ubuntu and Debian.
 ```bash
-MW_API_KEY=<xxxxxxxxxx> MW_TARGET=https://<uid>.middleware.io:443 bash -c “$(curl -L https://install.middleware.io/scripts/deb-install.sh)
+MW_API_KEY=<xxxxxxxxxx> MW_TARGET=https://<uid>.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/deb-install.sh)"
 ```
   <img src="/images/agent-installation/k3.jpg" />
 
 RPM - compatible with Red Hat Package Manager and operating systems like Red Hat or CentOS. Use this for AWS instances using Amazon Linux. 
 ```bash
-MW_API_KEY=xxxxxxxxxx MW_TARGET=https://<uid>.middleware.io:443 bash -c “(curl https://install.middleware.io/scripts/rpm-install.sh)
+MW_API_KEY=xxxxxxxxxx MW_TARGET=https://<uid>.middleware.io:443 bash -c "$(curl https://install.middleware.io/scripts/rpm-install.sh)"
 ```
  <img src="/images/agent-installation/k4.jpg" />
 
@@ -60,11 +60,11 @@ To uninstall the Middleware agent use the appropriate command from the following
 
 DEB
 ```bash
-bash -c “$(curl -L https://install.middleware.io/scripts/apt-uninstall.sh)"
+bash -c "$(curl -L https://install.middleware.io/scripts/apt-uninstall.sh)"
 ```
 
 RPM
 ```bash
-bash -c “$(curl -L https://install.middleware.io/scripts/apt-uninstall.sh)"
+bash -c "$(curl -L https://install.middleware.io/scripts/apt-uninstall.sh)"
 ```
 
