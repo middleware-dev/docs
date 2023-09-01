@@ -1,0 +1,40 @@
+---
+title: ".NET Overview"
+---
+
+## Supported .NET Version
+
+The .NET APM should work well with .NET 7+ applications.
+You can check this with ...
+
+```bash
+dotnet --version
+```
+
+## Current Technical Approach
+
+Our .NET APM works on custom [.NET plugin](https://github.com/middleware-labs/dotnet-plugin) based on [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet-instrumentation)
+
+We have customized this base package based on our product requirement.
+
+- Added the support of metrics, traces, and custom logger.
+- Set up data export rules, so that telemetry data can be forwarded to our Host Agent
+
+## Releases
+
+For .NET plugin feature updates, You can refer release list over [here](https://github.com/middleware-labs/dotnet-plugin/releases).
+
+## Feature list
+
+| Feature          | Status              |
+| ---------------- | ------------------- |
+| Traces           | Available           |
+| Application Logs | Not yet implemented |
+| Custom Logs      | Available           |
+| Metrics          | Available           |
+
+## Roadmap
+
+- We are planning to add the suport the unavailable features in [feature list](https://docs.middleware.io/docs/apm-configuration/dotnet/dotnet-overview#feature-list).
+- We are planning to support Hostless APM as well which can send data directly to Middleware without need of any host agent.
+  This will help to monitor cloud based managed applications.

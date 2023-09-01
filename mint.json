@@ -94,6 +94,7 @@
         {
           "group": ".NET",
           "pages": [
+            "docs/apm-configuration/dotnet/dotnet-overview",
             "docs/apm-configuration/dotnet/dotnet-apm-setup"
           ]
         },
