@@ -21,7 +21,7 @@ kubectl config get-contexts `kubectl config current-context`
 ```
 4. Copy and run the installation command. An example of the command is shown below. Copying the command directly from the Installation page ensures your API key and UID are inserted accurately.
 ```javascript Shell
-MW_API_KEY=<xxxxxxxxxx> TARGET=https://<uid>.middleware.io:443 bash -c “$(curl -L https://install.middleware.io/scripts/mw-kube-agent-install.sh)”
+MW_API_KEY=<xxxxxxxxxx> MW_TARGET=https://<uid>.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/mw-kube-agent-install.sh)"
 ```
   <img src="/images/agent-installation/k2.jpg" />
 
@@ -37,7 +37,7 @@ kubectl get daemonset/mw-kube-agent -n mw-agent–ns
 ## Upgrade
 The MW Agent is frequently updated to add new features and improve performance. More information on new features can be found in our <a href="https://newsletters.middleware.io/"> Newsletter </a>. To upgrade MW Agent, use the following command.
 ```javascript Shell
-bash -c “$(curl -L https://install.middleware.io/scripts/mw-kube-agent-upgrade.sh)
+bash -c "$(curl -L https://install.middleware.io/scripts/mw-kube-agent-upgrade.sh)"
 ```
 
 ## Troubleshooting
@@ -49,5 +49,5 @@ For any issues please reach out to our team in your Slack channel or through the
 ## Uninstall
 To uninstall the Middleware Agent use the following command.
 ```javascript Shell
-bash -c “$(curl -L https://install.middleware.io/scripts/mw-kube-agent-uninstall.sh)
+bash -c "$(curl -L https://install.middleware.io/scripts/mw-kube-agent-uninstall.sh)"
 ```
