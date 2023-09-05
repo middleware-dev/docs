@@ -118,7 +118,8 @@
             "docs/apm-configuration/next-js/next.js-apm-setup",
             "docs/apm-configuration/next-js/vercel-integration"
           ]
-        }
+        },
+        "docs/apm-configuration/apm-agent-communication"
       ]
     },
     {
