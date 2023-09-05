@@ -124,10 +124,7 @@
     {
       "group": "Configure Real User Monitoring (RUM)",
       "pages": [
-        "docs/rum/getting-started",
-        "docs/rum/rum-overview",
-        "docs/rum/installation",
-        "docs/rum/rum-middleware"
+        "docs/rum/getting-started"
       ]
     },
     {
