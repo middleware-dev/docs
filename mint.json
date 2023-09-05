@@ -122,7 +122,7 @@
       ]
     },
     {
-      "group": "Real User Monitoring (RUM)",
+      "group": "Configure Real User Monitoring (RUM)",
       "pages": [
         "docs/rum/rum-overview",
         "docs/rum/installation",
