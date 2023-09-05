@@ -122,6 +122,14 @@
       ]
     },
     {
+      "group": "Real User Monitoring (RUM)",
+      "pages": [
+        "docs/rum/rum-overview",
+        "docs/rum/installation",
+        "docs/rum/rum-middleware"
+      ]
+    },
+    {
       "group": "Data Ingestion APIs",
       "pages": [
         {
@@ -155,14 +163,6 @@
         "docs/infrastructure-monitoring/container-monitoring",
         "docs/infrastructure-monitoring/kubernetes-monitoring",
         "docs/infrastructure-monitoring/processes"
-      ]
-    },
-    {
-      "group": "Real User Monitoring (RUM)",
-      "pages": [
-        "docs/rum/rum-overview",
-        "docs/rum/installation",
-        "docs/rum/rum-middleware"
       ]
     },
     {
