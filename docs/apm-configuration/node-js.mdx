@@ -1,63 +1,83 @@
 ---
-title: "Node.js"
+title: "Node.js APM Setup"
 ---
+<a target="_blank" href="https://www.npmjs.com/package/@middleware.io/node-apm">
+    <span style={{
+        background: "url(https://img.shields.io/npm/v/%40middleware.io%2Fnode-apm) no-repeat",
+        width: "125px",
+        height: "20px",
+        display: "inline-block",
+    }}/>
+</a>
 
-
-
-This guide walks you through setting up Application Performance Monitoring (APM) on a Node.js application. These instructions can also be found on the Installation page in your Middleware Account. View <a href="https://github.com/middleware-labs/demo-apm/tree/master/nodejs"> demo project here </a>.
+<table border="1" style={{margin: "10px 0", textAlign: "center"}}>
+    <thead>
+    <tr>
+        <th style={{padding:"8px 15px"}}>Traces</th>
+        <th style={{padding:"8px 15px"}}>Metrics</th>
+        <th style={{padding:"8px 15px"}}>App Logs</th>
+        <th style={{padding:"8px 15px"}}>Custom Logs</th>
+        <th style={{padding:"8px 15px"}}>Profiling</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><span style={{
+            background: "url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkiIGhlaWdodD0iMTkiIHZpZXdCb3g9IjAgMCAxOSAxOSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTkuNDI2NTcgMTguNjA4QzQuMzUyNDIgMTguNjA4IDAuMjQxNDU1IDE0LjQ5NyAwLjI0MTQ1NSA5LjQyMjg1QzAuMjQxNDU1IDQuMzQ4NjkgNC4zNTI0MiAwLjIzNzczMiA5LjQyNjU3IDAuMjM3NzMyQzE0LjUwMDcgMC4yMzc3MzIgMTguNjExNyA0LjM0ODY5IDE4LjYxMTcgOS40MjI4NUMxOC42MTE3IDE0LjQ5NyAxNC41MDA3IDE4LjYwOCA5LjQyNjU3IDE4LjYwOFoiIGZpbGw9IiMyREE0NEUiLz4KPHBhdGggZD0iTTguMjU0OCAxMi4wNDQzTDUuNDU0NTkgOS4yNDQxNCIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxLjMxMjE2IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPHBhdGggZD0iTTEzLjg1NTEgNi40NDM5MUw4LjI1NDY0IDEyLjA0NDMiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMS4zMTIxNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=) no-repeat",
+            width: "20px",
+            height: "20px",
+            display: "inline-block",
+        }}/></td>
+        <td>-</td>
+        <td>-</td>
+        <td><span style={{
+            background: "url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkiIGhlaWdodD0iMTkiIHZpZXdCb3g9IjAgMCAxOSAxOSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTkuNDI2NTcgMTguNjA4QzQuMzUyNDIgMTguNjA4IDAuMjQxNDU1IDE0LjQ5NyAwLjI0MTQ1NSA5LjQyMjg1QzAuMjQxNDU1IDQuMzQ4NjkgNC4zNTI0MiAwLjIzNzczMiA5LjQyNjU3IDAuMjM3NzMyQzE0LjUwMDcgMC4yMzc3MzIgMTguNjExNyA0LjM0ODY5IDE4LjYxMTcgOS40MjI4NUMxOC42MTE3IDE0LjQ5NyAxNC41MDA3IDE4LjYwOCA5LjQyNjU3IDE4LjYwOFoiIGZpbGw9IiMyREE0NEUiLz4KPHBhdGggZD0iTTguMjU0OCAxMi4wNDQzTDUuNDU0NTkgOS4yNDQxNCIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxLjMxMjE2IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPHBhdGggZD0iTTEzLjg1NTEgNi40NDM5MUw4LjI1NDY0IDEyLjA0NDMiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMS4zMTIxNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=) no-repeat",
+            width: "20px",
+            height: "20px",
+            display: "inline-block",
+        }}/></td>
+        <td><span style={{
+            background: "url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkiIGhlaWdodD0iMTkiIHZpZXdCb3g9IjAgMCAxOSAxOSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTkuNDI2NTcgMTguNjA4QzQuMzUyNDIgMTguNjA4IDAuMjQxNDU1IDE0LjQ5NyAwLjI0MTQ1NSA5LjQyMjg1QzAuMjQxNDU1IDQuMzQ4NjkgNC4zNTI0MiAwLjIzNzczMiA5LjQyNjU3IDAuMjM3NzMyQzE0LjUwMDcgMC4yMzc3MzIgMTguNjExNyA0LjM0ODY5IDE4LjYxMTcgOS40MjI4NUMxOC42MTE3IDE0LjQ5NyAxNC41MDA3IDE4LjYwOCA5LjQyNjU3IDE4LjYwOFoiIGZpbGw9IiMyREE0NEUiLz4KPHBhdGggZD0iTTguMjU0OCAxMi4wNDQzTDUuNDU0NTkgOS4yNDQxNCIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxLjMxMjE2IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPHBhdGggZD0iTTEzLjg1NTEgNi40NDM5MUw4LjI1NDY0IDEyLjA0NDMiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMS4zMTIxNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=) no-repeat",
+            width: "20px",
+            height: "20px",
+            display: "inline-block",
+        }}/></td>
+    </tr>
+    </tbody>
+</table>
 
 ## Prerequisites
-* Middleware Host Agent (MW Agent), to install the MW Agent please see our <a href="https://docs.middleware.io/docs/agent-installation/overview"> installation guide </a>. 
-* Node.js version 18.17.1 or above. Check your Node.js version with the following command. 
-```
-node --version
-```
+* To monitor APM data on dashboard, Middleware Host agent needs to be installed.
+* You can refer [this demo project](https://github.com/middleware-labs/demo-apm/tree/master/nodejs) to refer use cases of APM.
 
-## Step 1: Install NPM Package
-Run the following command in your terminal. 
+--------------------
 
+## Step 1 : Install NPM package
+Run this in your terminal
 ```javascript
 npm install @middleware.io/node-apm --save
 ```
 
-## Step 2:  Initialize Tracker
-Add the following lines to the beginning of your application code base. The access token is your account key, which can be found on the Installation page.
+## Step 2 : Prepend APM script
+Add these lines given below at the very start of your project.
 
 ```javascript
 const tracker = require('@middleware.io/node-apm');
 tracker.track({
     projectName: "your-project-name",
     serviceName: "your-service-name",
-    accessToken: “<xxxxxxxxxx>”;
 });
 ```
+---------------------
 
-## Step 3: Container Variables
-Applications running in a container require an additional environment variable. If your application is not running in a container, move to Step 4. 
+## Collect Node.js specific metrics
+The metrics collection starts automatically as soon as you complete `Step 2`
 
-For Docker containers, add the following environment variable to your application.
-```
-MW_AGENT_SERVICE=<docker bridge gateway address>
-```
-<docker bridge gateway address> is the IP address of the gateway between the Docker host and the bridge network, which is 172.17.0.1 by default.
+## Distributed Tracing
+All your APIs are auto-instrumented as soon as you complete `Step 2`
 
-For Kubernetes, first identify the namespace where the MW Agent is running.
-```
-kubectl get service --all-namespaces | grep mw-service
-```
 
-Then add the following environment variable to your application deployment YAML file. 
-```
-MW_AGENT_SERVICE=mw-service.<namespace>.svc.cluster.local
-```
-
-## Step 4: Capture Application Data
-
-### Traces
-Distributed tracing is automatically enabled upon completion of Step 2.
-
-### Custom Logs
-To ingest custom logs into Middleware, utilize the following functions inside your logging method based on desired log severity levels.
+## Add custom logs
 ```javascript
 tracker.info('Info sample');
 tracker.warn('Warning sample');
@@ -65,16 +85,30 @@ tracker.debug('Debugging Sample');
 tracker.error('Error Sample');
 ```
 
-To add stack traces along with the error log, use the following error tracking function.
+If you want to add stack trace along with the error log, you can follow the snippet as given below
+
 ```javascript
 tracker.error(new Error('Error sample with stack trace'));
 ```
 
-### Profiling
-Application Profiling is auto-configured upon completing Step 2.
+## Note for APM inside Kubernetes
 
-### Stack Traces 
-Use the errorRecord method to record a stack trace when an error occurs. See an example of this method below. 
+If you are using APM in a Kubernetes cluster make sure to follow these 2 steps:
+
+### Step 1 : Find your Middleware Service namespace
+For older setup, your "mw-service" can be inside `mw-agent-ns-{FIRST-5-LETTERS-OF-API-KEY}` namespace
+
+For newer setup, we simplified the namespace name to `mw-agent-ns`
+
+### Step 2 : Set this ENV variable in your application deployment YAML
+```
+MW_AGENT_SERVICE=mw-service.NAMESPACE.svc.cluster.local
+```
+<Note> Please replace "NAMESPACE" with the correct value that you found from Step 1. </Note>
+
+## Error Handling 
+If you want to record exception in traces then you can use track.errorRecord(error) method.
+
 ```javascript
  app.get('/error', function (req, res) {
     try{
@@ -83,7 +117,6 @@ Use the errorRecord method to record a stack trace when an error occurs. See an 
        track.errorRecord(e)
     }
     res.status(500).send("wrong");
-}); 
+});
+ 
 ```
-
-
