@@ -415,7 +415,8 @@ For Docker containers, add the following environment variable to your applicatio
 ```bash
 MW_AGENT_SERVICE=DOCKER_BRIDGE_GATEWAY_ADDRESS
 ```
-<Note> docker bridge gateway address is the IP address of the gateway between the Docker host and the bridge network, which is 172.17.0.1 by default. </Note>
+<Note> docker bridge gateway address is the IP address of the gateway between the Docker host and the bridge network, which is 172.17.0.1 by default. 
+Refer more about Docker bridge networking [here](https://docs.docker.com/network/network-tutorial-standalone/) </Note>
 
 ```bash
 kubectl get service --all-namespaces | grep mw-service
