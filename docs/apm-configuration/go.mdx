@@ -331,7 +331,6 @@ import (
           track “github.com/middleware-labs/golang-apm/tracker”
           mw_gorm “github.com/middleware-labs/go-agent-gorm/gorm”
 )
-
 ```
 Initialize the Middleware APM inside the main function. 
 config, _ := track.Track(_
@@ -408,23 +407,7 @@ config, _ := track.Track(_
 mware := mwbeego.MiddleWare(config.ServiceName)
 ```
 
-## Step 4: Container Variables
-Applications running in a container require an additional environment variable. If your application is not running in a container, move to Step 5. 
 
-For Docker containers, add the following environment variable to your application.
-```bash
-MW_AGENT_SERVICE=DOCKER_BRIDGE_GATEWAY_ADDRESS
-```
-<Note> docker bridge gateway address is the IP address of the gateway between the Docker host and the bridge network, which is 172.17.0.1 by default. </Note>
-
-```bash
-kubectl get service --all-namespaces | grep mw-service
-```
-
-Then add the following environment variable to your application deployment YAML file. 
-```bash
-MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
-```
 
 
 
