@@ -50,8 +50,9 @@
       ]
     },
     {
-      "group": "Configure Application Performance Monitoring",
-       {
+     "group": "APM Configuration",
+      "pages": [
+        {
           "group": "Node.js",
           "pages": [
             "docs/apm-configuration/node-js/node.js-overview",
@@ -115,8 +116,7 @@
           ]
         },
         "docs/apm-configuration/apm-agent-communication"
-        
-     ] 
+      ]
        
     },
     {
