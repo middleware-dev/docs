@@ -80,7 +80,7 @@ Applications running in a container require an additional environment variable. 
 
 For Docker containers, add the following environment variable to your application.
 ```
-MW_AGENT_SERVICE=<docker bridge gateway address>
+MW_AGENT_SERVICE=docker bridge gateway address
 ```
 <docker bridge gateway address> is the IP address of the gateway between the Docker host and the bridge network, which is 172.17.0.1 by default.
 For Kubernetes, first identify the namespace where the MW Agent is running.
