@@ -417,7 +417,6 @@ MW_AGENT_SERVICE=<DOCKER_BRIDGE_GATEWAY_ADDRESS>
 ```
 <Note> docker bridge gateway address is the IP address of the gateway between the Docker host and the bridge network, which is 172.17.0.1 by default. </Note>
 
-For Kubernetes, first identify the namespace where the MW Agent is running.
 ```bash
 kubectl get service --all-namespaces | grep mw-service
 ```
