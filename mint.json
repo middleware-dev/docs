@@ -56,7 +56,7 @@
     {
       "group": "Configure Application Performance Monitoring",
        "pages": [
-        "docs/agent-installation/overview",
+        "docs/apm-configuration/overview",
          "docs/apm-configuration/node-js",
           "docs/apm-configuration/go",
           "docs/apm-configuration/python",
