@@ -42,7 +42,7 @@ title: "Golang"
     </tbody>
 </table>
 
-This guide walks you through setting up Application Performance Monitoring (APM) on a Go programming language (Golang) application. These instructions can also be found on the Installation page in your Middleware Account. View example code <a href="https://github.com/middleware-labs/demo-apm/tree/master/golang"> here </a>.
+This guide walks you through setting up Application Performance Monitoring (APM) on a Go programming language (Golang) application. These instructions can also be found on the Installation page in your Middleware Account. View example code [here](https://github.com/middleware-labs/demo-apm/tree/master/golang).
 
 ## Prerequisites
 * The Middleware Host Agent (MW Agent). To install the MW Agent please see our <a href="https://docs.middleware.io/docs/agent-installation/overview"> installation guides </a>. 
@@ -407,7 +407,23 @@ config, _ := track.Track(_
 mware := mwbeego.MiddleWare(config.ServiceName)
 ```
 
+## Step 4: Container Variables
+Applications running in a container require an additional environment variable. If your application is not running in a container, move to Step 5. 
 
+For Docker containers, add the following environment variable to your application.
+```bash
+MW_AGENT_SERVICE=DOCKER_BRIDGE_GATEWAY_ADDRESS
+```
+<Note> docker bridge gateway address is the IP address of the gateway between the Docker host and the bridge network, which is 172.17.0.1 by default. </Note>
+
+```bash
+kubectl get service --all-namespaces | grep mw-service
+```
+
+Then add the following environment variable to your application deployment YAML file. 
+```bash
+MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
+```
 
 
 
