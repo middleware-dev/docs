@@ -1,5 +1,5 @@
 ---
-title: "Node.js APM Setup"
+title: "Node.js"
 ---
 <a target="_blank" href="https://www.npmjs.com/package/@middleware.io/node-apm">
     <span style={{
@@ -46,38 +46,61 @@ title: "Node.js APM Setup"
     </tbody>
 </table>
 
-## Prerequisites
-* To monitor APM data on dashboard, Middleware Host agent needs to be installed.
-* You can refer [this demo project](https://github.com/middleware-labs/demo-apm/tree/master/nodejs) to refer use cases of APM.
+This guide walks you through setting up Application Performance Monitoring (APM) on a Node.js application. These instructions can also be found on the Installation page in your Middleware Account. View <a href="https://github.com/middleware-labs/demo-apm/tree/master/nodejs"> demo project here </a>.
 
+## Prerequisites
+* Middleware Host Agent (MW Agent), to install the MW Agent please see our <a href="https://docs.middleware.io/docs/agent-installation/overview"> installation guide </a>. 
+* Node.js version 18.17.1 or above. Check your Node.js version with the following command. 
+```
+node --version
+```
 --------------------
 
-## Step 1 : Install NPM package
-Run this in your terminal
+## Step 1: Install NPM Package
+Run the following command in your terminal. 
+
 ```javascript
 npm install @middleware.io/node-apm --save
 ```
 
-## Step 2 : Prepend APM script
-Add these lines given below at the very start of your project.
+## Step 2:  Initialize Tracker
+Add the following lines to the beginning of your application code base. The access token is your account key, which can be found on the Installation page.
 
 ```javascript
 const tracker = require('@middleware.io/node-apm');
 tracker.track({
     projectName: "your-project-name",
     serviceName: "your-service-name",
+    accessToken: “<xxxxxxxxxx>”;
 });
 ```
----------------------
 
-## Collect Node.js specific metrics
-The metrics collection starts automatically as soon as you complete `Step 2`
+## Step 3: Container Variables
+Applications running in a container require an additional environment variable. If your application is not running in a container, move to Step 4. 
 
-## Distributed Tracing
-All your APIs are auto-instrumented as soon as you complete `Step 2`
+For Docker containers, add the following environment variable to your application.
+```
+MW_AGENT_SERVICE=<docker bridge gateway address>
+```
+<docker bridge gateway address> is the IP address of the gateway between the Docker host and the bridge network, which is 172.17.0.1 by default.
 
+For Kubernetes, first identify the namespace where the MW Agent is running.
+```
+kubectl get service --all-namespaces | grep mw-service
+```
 
-## Add custom logs
+Then add the following environment variable to your application deployment YAML file. 
+```
+MW_AGENT_SERVICE=mw-service.<namespace>.svc.cluster.local
+```
+
+## Step 4: Capture Application Data
+
+### Traces
+Distributed tracing is automatically enabled upon completion of Step 2.
+
+### Custom Logs
+To ingest custom logs into Middleware, utilize the following functions inside your logging method based on desired log severity levels.
 ```javascript
 tracker.info('Info sample');
 tracker.warn('Warning sample');
@@ -85,30 +108,16 @@ tracker.debug('Debugging Sample');
 tracker.error('Error Sample');
 ```
 
-If you want to add stack trace along with the error log, you can follow the snippet as given below
-
+To add stack traces along with the error log, use the following error tracking function.
 ```javascript
 tracker.error(new Error('Error sample with stack trace'));
 ```
 
-## Note for APM inside Kubernetes
+### Profiling
+Application Profiling is auto-configured upon completing Step 2.
 
-If you are using APM in a Kubernetes cluster make sure to follow these 2 steps:
-
-### Step 1 : Find your Middleware Service namespace
-For older setup, your "mw-service" can be inside `mw-agent-ns-{FIRST-5-LETTERS-OF-API-KEY}` namespace
-
-For newer setup, we simplified the namespace name to `mw-agent-ns`
-
-### Step 2 : Set this ENV variable in your application deployment YAML
-```
-MW_AGENT_SERVICE=mw-service.NAMESPACE.svc.cluster.local
-```
-<Note> Please replace "NAMESPACE" with the correct value that you found from Step 1. </Note>
-
-## Error Handling 
-If you want to record exception in traces then you can use track.errorRecord(error) method.
-
+### Stack Traces 
+Use the errorRecord method to record a stack trace when an error occurs. See an example of this method below. 
 ```javascript
  app.get('/error', function (req, res) {
     try{
@@ -117,6 +126,8 @@ If you want to record exception in traces then you can use track.errorRecord(err
        track.errorRecord(e)
     }
     res.status(500).send("wrong");
-});
- 
+}); 
+
 ```
+
+
