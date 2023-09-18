@@ -23,3 +23,21 @@ Once you save these settings. Middleware agent will start collecting metrics fro
 <Note>Data source "service" contains all the miscellaneous sources. Soon, we will be promoting "prometheus" as a data source.</Note>
 
 <img src="/images/integration/prometheus-integration-2.png" />
+
+
+## Prometheus Integration in K8s
+
+If you want to scrape prometheus endpoint via Middleware Agent, You will have to run this `sidecar` container in your pod.
+
+```yaml
+- name: mw-agent
+  image: ghcr.io/middleware-labs/mw-kube-agent:prometheus-integration
+  imagePullPolicy: Always
+  env:
+  - name: MW_TARGET
+    value: https://xxxxx.middleware.io:443
+  - name: MW_API_KEY
+    value: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+This will start scraping prometheus data at `:8889`
