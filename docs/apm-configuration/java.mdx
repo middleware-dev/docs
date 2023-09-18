@@ -66,16 +66,8 @@ java --version
 ## Step 1: Download JAR
 Download the latest Middleware instrumentation JAR file from the <a href="https://github.com/middleware-labs/opentelemetry-java-instrumentation/releases"> Github release page. </a>
 
-## Step 2: Run Application
-Run your application with the command given below.
-```java
-MW_API_KEY={MW_API_KEY} java -javaagent:/PATH/TO/middleware-javaagent-{version}.jar \
-    -Dotel.service.name={APM-SERVICE-NAME} \
-    -Dotel.resource.attributes=project.name={APM-PROJECT-NAME} \
-    -jar <YOUR_APP>.jar
-```
 
-## Step 3: Container Variables
+## Step 2: Container Variables
 Applications running in a container require an additional environment variable. If your application is not running in a container, move to Step 5. 
 
 For Docker containers, add the following environment variable to your application.
@@ -94,7 +86,7 @@ Then add the following environment variable to your application deployment YAML 
 MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
 ```
 
-## Step 4: Capture Application Data
+## Step 3: Capture Application Data
 
 ### Traces
 Distributed tracing will be automatically enabled upon completing Step 4: Run Application.
@@ -147,6 +139,15 @@ try {
        Logger.recordError(e);
        System.out.println("Something went wrong.");
      }
+```
+
+## Step 2: Run Application
+Run your application with the command given below.
+```java
+MW_API_KEY={MW_API_KEY} java -javaagent:/PATH/TO/middleware-javaagent-{version}.jar \
+    -Dotel.service.name={APM-SERVICE-NAME} \
+    -Dotel.resource.attributes=project.name={APM-PROJECT-NAME} \
+    -jar <YOUR_APP>.jar
 ```
 
 
