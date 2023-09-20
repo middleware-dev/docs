@@ -50,6 +50,26 @@
       ]
     },
     {
+      "group": "Configure Application Performance Monitoring (APM)",
+      "pages": [
+        "docs/apm-configuration/node-js",
+        "docs/apm-configuration/go",
+        "docs/apm-configuration/python",
+        "docs/apm-configuration/java",
+        "docs/apm-configuration/php",
+        "docs/apm-configuration/dotnet",
+        "docs/apm-configuration/ruby",
+        "docs/apm-configuration/next-js",
+        "docs/apm-configuration/cloudflare",
+        "docs/apm-configuration/apm-agent-communication"
+        
+
+       
+        
+       
+      ]
+    },
+    {
      "group": "APM Configuration",
       "pages": [
         {
