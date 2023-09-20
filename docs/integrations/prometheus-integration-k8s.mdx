@@ -1,0 +1,27 @@
+---
+title: "Prometheus Integration in K8s"
+---
+Retrieve metrics from a Prometheus endpoint inside K8s.
+
+## Add Middleware Prometheus Integration as a sidecar container
+
+If you want to scrape prometheus endpoint via Middleware Agent, You will have to add this `sidecar container` in your pod.
+
+```yaml
+- name: middleware-prometheus-agent
+  image: ghcr.io/middleware-labs/mw-kube-agent:prometheus-integration
+  imagePullPolicy: Always
+  env:
+  - name: MW_TARGET
+    value: https://xxxxx.middleware.io:443 # Middleware Target URL
+  - name: MW_API_KEY
+    value: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx # Middleware API Key
+  - name: PROMETHEUS_SCRAPE_CONFIG
+    value: job1@0.0.0.0:8889,job2@0.0.0.0:8890
+```
+
+<Note>Make sure to replace `Middleware Target URL` & `Middleware API Key` with the correct value as per your Middleware account</Note>
+
+You can add multiple prometheus endpoints to scrape with the help of `PROMETHEUS_SCRAPE_CONFIG` environment variable.
+
+The value format : Comma seperated list of `job-name@host:port`

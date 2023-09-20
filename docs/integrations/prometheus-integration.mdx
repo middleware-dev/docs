@@ -6,7 +6,7 @@ Retrieve metrics from a Prometheus endpoint.
 ## Prerequisites
 Before using this integration, ensure that the Middleware Host agent has been successfully installed on your machine.
 
-## Setup
+## 1. Setup
 Follow these steps to set up the Prometheus integration:
 1. In the Middleware UI, navigate to the [**Integrations**](https://app.middleware.io/installation#integration/allintegration) page 
 2. Click on the Prometheus integration and you will see some settings as shown below:
@@ -15,7 +15,7 @@ Follow these steps to set up the Prometheus integration:
     b) Add Prometheus Endpoint Name and URL, which we call Job and Target in Prometheus. (You can also add multiple URLs under 1 name)
 Once you save these settings. Middleware agent will start collecting metrics from the Prometheus endpoint.
 
-### 2. Create your own dashboard
+## 2. Create your own dashboard
 <p>You can create your custom dashboard based on prometheus endpoint we just scraped.</p>
 <p>When adding a new widget to an existing dashboard, you will find a list of available Prometheus metrics under the "service" data source.</p>
 <p>These metrics can be visualized using various widget types, such as Timeseries, Bar Chart, Pie Chart, and more.</p>
@@ -25,19 +25,3 @@ Once you save these settings. Middleware agent will start collecting metrics fro
 <img src="/images/integration/prometheus-integration-2.png" />
 
 
-## Prometheus Integration in K8s
-
-If you want to scrape prometheus endpoint via Middleware Agent, You will have to run this `sidecar` container in your pod.
-
-```yaml
-- name: mw-agent
-  image: ghcr.io/middleware-labs/mw-kube-agent:prometheus-integration
-  imagePullPolicy: Always
-  env:
-  - name: MW_TARGET
-    value: https://xxxxx.middleware.io:443
-  - name: MW_API_KEY
-    value: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-```
-
-This will start scraping prometheus data at `:8889`
