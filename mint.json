@@ -44,7 +44,8 @@
         "docs/agent-installation/overview",
         "docs/agent-installation/kubernetes",
          "docs/agent-installation/linux",
-        "docs/agent-installation/docker"
+        "docs/agent-installation/docker",
+         "docs/agent-installation/windows"
         
        
       ]
