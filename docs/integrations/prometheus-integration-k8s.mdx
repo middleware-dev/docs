@@ -36,3 +36,14 @@ Provides the API key required for authenticating with the Middleware service. En
 Configures Prometheus scraping targets. This variable should be set in the format 'job@address:port', where 'job' represents the scraping job name, 'address' is the IP address or hostname, and 'port' is the port to scrape metrics from.
 
 `Example Value : job1@0.0.0.0:8889,job2@0.0.0.0:8890`
+
+## Visualize Your Prometheus Metrics
+
+You can now access this metrics data under our Dashboard builder
+`https://app.middleware.io/reports`
+
+1. Create a new report
+2. 'Add New Widget' in the report. 
+3. Select "prometheus" under the "Data Source" dropdown as shown in the screenshot below. You will be able to see a list of your metrics.
+<img src="/images/integration/prometheus-k8s.png" />
+<p>These metrics can be visualized using various widget types, such as Timeseries, Bar Chart, Pie Chart, and more.</p>
