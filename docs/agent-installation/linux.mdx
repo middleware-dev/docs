@@ -7,7 +7,7 @@ We offer two install scripts based on your operating system. Please note that no
 
 -   Ubuntu 18.04 or above
 
--   For AWS EC2 instances Amazon Linux, Ubuntu, or Debian is required. For AWS instances using Red Hat, please install the <a href="https://docs.middleware.io/docs/agent-installation/docker"> Docker MW Agent </a>. 
+-   For AWS EC2 instances Amazon Linux, Ubuntu, or Debian is required. For AWS instances using Red Hat, please install the [Docker MW Agent](https://docs.middleware.io/docs/agent-installation/docker) 
 
 -   MacOS Linux is not supported
 
@@ -18,7 +18,8 @@ Follow the steps below to install the MW Agent on your Linux machine.
 1.  Log in to Middleware
 
 2.  Navigate to the Installation page, in the bottom left corner.
-  <img src="/images/agent-installation/k1.png" />
+
+!["Install Button Highlight"](/images/agent-installation/k1.png)
 
 3. Copy the appropriate installation command based on your machine’s operating system. An example of each command is shown below. Copying the command directly from the Installation page ensures your API key and UID are inserted accurately.
 
@@ -26,13 +27,13 @@ DEB - compatible with Debian or Debian-based operating systems. For AWS instance
 ```bash
 MW_API_KEY=<xxxxxxxxxx> MW_TARGET=https://<uid>.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/deb-install.sh)"
 ```
-  <img src="/images/agent-installation/k3.jpg" />
+![DEB Linux install](/images/agent-installation/k3.jpg)
 
 RPM - compatible with Red Hat Package Manager and operating systems like Red Hat or CentOS. Use this for AWS instances using Amazon Linux. 
 ```bash
 MW_API_KEY=xxxxxxxxxx MW_TARGET=https://<uid>.middleware.io:443 bash -c "$(curl https://install.middleware.io/scripts/rpm-install.sh)"
 ```
- <img src="/images/agent-installation/k4.jpg" />
+![RPM Linux install](/images/agent-installation/k3.jpg)
 
 4. [optional] Add tags by adding the MW_HOST_TAGS environment variable to the installation command. Include any desired tags as comma-separated key-value pairs, as shown below. Use the tag “name” to create an alias for the host (e.g. production). 
 ```bash
@@ -45,7 +46,7 @@ sudo systemctl status mwservice
 ```
 
 	A successful installation will return an Agent Status report like the following.
- <img src="/images/agent-installation/k5.jpg" />
+![Linux Agent Status](/images/agent-installation/k5.jpg)
 
 <Warning>  Run only one MW Agent per node. Multiple agents will cause unexpected behavior.</Warning>
 
