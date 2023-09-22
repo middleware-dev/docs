@@ -20,8 +20,30 @@ If you want to scrape prometheus endpoint via Middleware Agent, You will have to
     value: job1@0.0.0.0:8889,job2@0.0.0.0:8890
 ```
 
-<Note>Make sure to replace `Middleware Target URL` & `Middleware API Key` with the correct value as per your Middleware account</Note>
+### Understanding Environment Variables
 
-You can add multiple prometheus endpoints to scrape with the help of `PROMETHEUS_SCRAPE_CONFIG` environment variable.
+**MW_TARGET** :
+Specifies the target URL for the Middleware service. This URL defines the endpoint where your application should interact with the middleware. 
 
-The value format : Comma seperated list of `job-name@host:port`
+`Example Value : https://xxxxx.middleware.io:443`
+
+**MW_API_KEY** :
+Provides the API key required for authenticating with the Middleware service. Ensure the key is kept confidential and only shared with authorized users or services.
+
+`Example Value : xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`
+
+**PROMETHEUS_SCRAPE_CONFIG** :
+Configures Prometheus scraping targets. This variable should be set in the format 'job@address:port', where 'job' represents the scraping job name, 'address' is the IP address or hostname, and 'port' is the port to scrape metrics from.
+
+`Example Value : job1@0.0.0.0:8889,job2@0.0.0.0:8890`
+
+## Visualize Your Prometheus Metrics
+
+You can now access this metrics data under our Dashboard builder
+`https://app.middleware.io/reports`
+
+1. Create a new report
+2. 'Add New Widget' in the report. 
+3. Select "prometheus" under the "Data Source" dropdown as shown in the screenshot below. You will be able to see a list of your metrics.
+<img src="/images/integration/prometheus-k8s.png" />
+<p>These metrics can be visualized using various widget types, such as Timeseries, Bar Chart, Pie Chart, and more.</p>
