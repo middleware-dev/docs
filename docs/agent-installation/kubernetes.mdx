@@ -14,8 +14,9 @@ The installation will set up a DaemonSet inside your Kubernetes cluster and add 
 Follow the steps below to install the MW Agent in your Kubernetes environment.
 
 1.  Log in to Middleware
-2.  Navigate to the installation page, in the bottom left corner
-  <img src="/images/agent-installation/k1.png" />
+2.  Navigate to the installation page, in the bottom left corner 
+
+  !["Install page"](/images/agent-installation/k1.png)
 3. Get the current Kubernetes context and ensure that the cluster belonging to this context is the one where you wish to install MW Agent. Use the following command to find out your current Kubernetes context.
 ```javascript Shell
 kubectl config get-contexts `kubectl config current-context`
@@ -24,7 +25,7 @@ kubectl config get-contexts `kubectl config current-context`
 ```javascript Shell
 MW_API_KEY=<xxxxxxxxxx> MW_TARGET=https://<uid>.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/mw-kube-agent-install.sh)"
 ```
-  <img src="/images/agent-installation/k2.jpg" />
+  !["kubernetes install"](/images/agent-installation/k2.jpg)
 
 5. Verify the status of the MW Agent with the following command. 
 ```javascript Shell
