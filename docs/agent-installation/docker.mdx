@@ -1,8 +1,8 @@
-This guide walks you through installing the MW Agent on a machine deployed through Docker. These instructions can also be found on the Installation page in the Middleware application. 
-
-The Docker MW Agent is a containerized version of the MW Agent. Upon installation, the MW Agent collects host level details from host network mode and uses volume binding for reading logs.
+This guide walks you through installing the Middleware Host Agent (MW Agent) on a machine deployed through Docker. These instructions can also be found on the Installation page in the Middleware application. 
 
 ## Overview
+The Docker MW Agent is a containerized version of the MW Agent. Upon installation, the MW Agent collects host level details from host network mode and uses volume binding for reading logs.
+
 ### Prerequisites
 
 -   Docker version TBD
@@ -20,7 +20,7 @@ The Docker MW Agent is a containerized version of the MW Agent. Upon installatio
     -   MacOS TBD
 
 ## Install
-Follow the steps below to install the MW Agent on your machine deployed through Docker.
+Follow the steps below to install the MW Agent.
 
 1.  Log in to Middleware
 
@@ -51,7 +51,7 @@ A successful installation returns the status ‘Up’ or ‘Exited’. If the in
 <Warning>  Run only one MW Agent. Multiple agents will cause unexpected behavior. </Warning>
 
 ## Troubleshooting
-Once the MW Agent is installed metrics should begin appearing in the Middleware application within a few minutes. If metrics do not appear, confirm that the machine has access to the internet, either directly or through a proxy, and that only one MW Agent container is running. 
+Once the MW Agent is installed metrics should appear in the Middleware Application within a few minutes. If metrics do not appear, confirm that the machine has access to the internet, either directly or through a proxy, and that only one MW Agent per container is running. 
 
 For any issues please reach out to our team in your Slack channel or through the help menu in the Middleware Application.
 
