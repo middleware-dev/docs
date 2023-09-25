@@ -21,26 +21,26 @@ This guide walks you through setting up Application Performance Monitoring (APM)
 
 * Middleware Host Agent (MW Agent), to install the MW Agent please see our <a href="https://docs.middleware.io/docs/agent-installation/overview"> installation guide. </a> 
 * Python 3, version 3.8 or above recommended. Check your Python version with the following command.
-  ```
-  python3 --version
-  ```
+```bash Shell
+python3 --version
+```
 * pip version 23.1.2
 
 ## Step 1: Install Middleware Python APM Package
 Run the following command in your terminal.
-```python
+```python Shell
 pip install middleware-apm
 ```
 
 Then run the following to confirm, and as needed install, instrumentation libraries for the included packages.
-```python
+```python Shell
 middleware-bootstrap -a install
 ```
 
 ## Step 2: Import Tracker
 Add the following lines to the beginning of your application code base. The access token is your account key, which can be found on the Installation page.
 
-```python
+```python Python 3
 from mw_tracker import MwTracker
 tracker=MwTracker(
     access_token="{YOUR-ACCESS_TOKEN}"
@@ -51,18 +51,18 @@ tracker=MwTracker(
 Applications running in a container require an additional environment variable. If your application is not running in a container, move to Step 4. 
 
 For Docker containers, add the following environment variable to your application.
-```bash
+```bash Shell
 MW_AGENT_SERVICE=<DOCKER_BRIDGE_GATEWAY_ADDRESS>
 ```
 <Note> docker bridge gateway address is the IP address of the gateway between the Docker host and the bridge network, which is 172.17.0.1 by default. 
 Refer more about Docker bridge networking [here](https://docs.docker.com/network/network-tutorial-standalone/) </Note>
 
-```bash
+```bash Shell
 kubectl get service --all-namespaces | grep mw-service
 ```
 
 Then add the following environment variable to your application deployment YAML file. 
-```bash
+```bash Shell
 MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
 ```
 
@@ -73,17 +73,17 @@ Distributed tracing will be automatically enabled upon completing Step 4: Run Ap
 
 ### Metrics
 Enable metrics by writing the following line just after the tracker initialization from Step 2.
-```python
+```python Python 3
 tracker.collect_metrics()
 ```
 
 ### Application & Custom Logs
 Enable application logs by writing the following line after the tracker initialization from Step 2. 
-```python
+```python Python 3
 tracker.collect_logs()
 ```
 To ingest custom logs, utilize the following functions based on desired log severity levels.
-```python
+```python Python 3
 logging.info(“<info sample>”)
 logging.warn(“<warn sample>”)
 logging.error(“<error sample>”)
@@ -91,13 +91,13 @@ logging.error(“<error sample>”)
 
 ### Profiling
 Enable profiling by writing the following line after the tracker initialization from Step 2.
-```python
+```python Python 3
 tracker.collect_profiling()
 ```
 
 ### Stack Traces
 Use the tracker.record_error(e) method to record a stack trace when an error occurs. See an example of this method below. 
-```python
+```python Python 3
 randomList = ['a', 0, 2]
 
 for entry in randomList:
@@ -110,7 +110,7 @@ for entry in randomList:
 
 ## Step 5: Run Application
 Run your application with the command given below.
-```python
+```python Shell
 middleware-instrument \
 --exporter_otlp_endpoint http://localhost:9319 \
 --resource_attributes=project.name=<project_name>,mw.app.lang=python,runtime.metrics.python=true \
