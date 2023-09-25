@@ -3,13 +3,13 @@
 This guide walks you through installing the MW Agent on a Microsoft Windows machine. These instructions can also be found on the Installation page in your [Middleware Account](https://app.middleware.io/installation#infrastructures/windows).
 
 ## Prerequisites
-* Microsoft Windows 10 or above.
-* For Microsoft Windows Server instances, Windows Server 2016 and above.
+* Microsoft Windows 10 or above
+* For Microsoft Windows Server instances, Windows Server 2016 and above
 * Windows 64-bit
 
 ## Limitations
-* APM support for Go, Node.js, Python & Java only.
-* Database integrations are currently being tested for deployment and momentarily unavailable on Windows.
+* APM support for Go, Node.js, Python & Java only
+* Database integrations are currently being tested for deployment and momentarily unavailable on Windows
 
 ## Install
  Follow the steps below to install the MW Agent on your Windows machine.
@@ -19,23 +19,23 @@ This guide walks you through installing the MW Agent on a Microsoft Windows mach
    * Right-click on the installer and select "Run as administrator".
 3. Follow the Prompts in the Installation Wizard
 4. Enter MW API Key & MW Target URL:
- You can find your API Key in your [Middleware Account](https://app.middleware.io/installation#infrastructures/windows)
+   * You can find your API Key in your [Middleware Account](https://app.middleware.io/installation#infrastructures/windows)
 
-<img src="/images/agent-installation/windows.png" />
+!["Windows Install CredentialInterface"](/images/agent-installation/windows.png)
 
 5.  Verify Installation:
--   To verify that the MW Agent has been installed successfully, check for the "Middleware Agent" service in the Windows Services Manager. It should be in Running status.
-<img src="/images/agent-installation/windows_verify.png" />
+      * To verify that the MW Agent has been installed successfully, check for the "Middleware Agent" service in the Windows Services Manager. It should be in Running status.
 
--   Alternatively, verify MW Agent installation using the following command in Powershell
+!["Windows Service Manager"](/images/agent-installation/windows_verify.png) 
+
+* Alternatively, verify MW Agent installation using the following command in Powershell 
 
 ```shell
 Get-Service -Name mw-windows-agent
 ```
 
-correct output
-<img src="/images/agent-installation/windows_correct.jpg" />
-
+   * correct output
+!["Verify Windows Present Code"](/images/agent-installation/windows_correct.jpg)
 
 ## Troubleshooting
 Once the MW Agent is installed, metrics should begin appearing in your Middleware Account within a few minutes. If metrics do not appear, ensure that the machine has access to the internet, either directly or through a proxy, and that only one MW Agent is running per server instance.
