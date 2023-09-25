@@ -15,25 +15,25 @@ title: ".Net"
 This guide walks you through setting up Application Performance Monitoring (APM) on a .NET application. These instructions can also be found on the Installation page in your Middleware Account. View demo code <a href="https://github.com/middleware-labs/demo-apm/tree/master/dotnet"> here. </a>
 
 ## Prerequisites
----
-* Middleware Host Agent (MW Agent), to install the MW Agent please see our installation guide. 
-* .NET 7+, you can check your PHP version with the following command.
-```
+
+- Middleware Host Agent (MW Agent), to install the MW Agent please see our installation guide. 
+- .NET 7+, you can check your PHP version with the following command.
+```bash Shell
 dotnet --version
 ```
 
 ## Step 1: .NET Binary Installation
 Download the bash script.
-```bash
+```bash Shell
 curl -sSfL https://install.middleware.io/apm/dotnet/v1.0.0-rc.1/scripts/mw-dotnet-auto-install.sh -O
 ```
 Install core files.
-```bash
+```bash Shell
 sh ./mw-dotnet-auto-install.sh
 rm -rf mw-dotnet-auto-install.sh
 ```
 Enable execution for the instrumentation script.
-```bash
+```bash Shell
 chmod +x $HOME/.mw-dotnet-auto/instrument.sh
 ```
 
@@ -41,17 +41,17 @@ chmod +x $HOME/.mw-dotnet-auto/instrument.sh
 ---
 * Download Latest [Middleware.dll](https://github.com/middleware-labs/dotnet-plugin/releases) and add the following code in the .csproj file..
 
-  ```xml
-  <ItemGroup>
-    <Reference Include="Middleware">
-      <HintPath>path\to\Middleware.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  ```
+```xml XML
+<ItemGroup>
+  <Reference Include="Middleware">
+    <HintPath>path\to\Middleware.dll</HintPath>
+  </Reference>
+</ItemGroup>
+```
 
 ## Step 3: Build and Run .NET Application
 
-  ```bash
+  ```bash Shell
   MW_API_KEY={MW_API_KEY} \
     . $HOME/.mw-dotnet-auto/instrument.sh && \
     OTEL_SERVICE_NAME="{APM-SERVICE-NAME}" \
