@@ -28,19 +28,19 @@ Follow the steps below to install the MW Agent.
 !["Agent Installation"](/images/agent-installation/k1.png)
 
 3. Copy and run the installation command. An example of the command is shown below. Copying the command directly from the Installation page ensures your API key and UID are accurately inputted. 
-```bash
+```bash Shell
 MW_API_KEY=<xxxxxxxxxx> MW_TARGET=https://<uid>.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/docker-install.sh)"
 ```
 
  !["Agent Output"](/images/agent-installation/k7.png)
 
 4.[optional] Add tags by adding the MW_HOST_TAGS environment variable to the installation command. Include any desired tags as comma-separated key-value pairs, as shown below. Use the tag “name” to create an alias for the host (e.g. production). 
-```bash
+```bash Shell
 MW_HOST_TAGS=<key1>:<value1>,<key2>:<value2>,… MW_API_KEY=…
 ```
 
 5. Verify the status of the MW Agent with the following command.
-```bash
+```bash Shell
 docker ps -a --filter ancestor=ghcr.io/middleware-labs/mw-host-agent:master
 ```
 A successful installation returns the status ‘Up’ or ‘Exited’. If the installation is unsuccessful the status will be blank. 
@@ -57,7 +57,7 @@ For any issues please reach out to our team in your Slack channel or through the
 
 ## Uninstall
 To uninstall the Middleware Agent use the following commands:
-```bash
+```bash Shell
 docker stop `docker ps -a -q --filter ancestor=ghcr.io/middleware-labs/mw-host-agent:master`
 docker rm `docker ps -a -q --filter ancestor=ghcr.io/middleware-labs/mw-host-agent:master`
 ```
