@@ -17,7 +17,7 @@ This guide walks you through setting up Application Performance Monitoring (APM)
 ## Prerequisites
 * Middleware Host Agent (MW Agent), to install the MW Agent please see our <a href="https://docs.middleware.io/docs/agent-installation/overview"> installation guide. </a>
 * Java 8+, you can check your Java version with the following command.
-```
+```bash Shell
 java --version
 ```
 
@@ -29,18 +29,18 @@ Download the latest Middleware instrumentation JAR file from the <a href="https:
 Applications running in a container require an additional environment variable. If your application is not running in a container, move to Step 5. 
 
 For Docker containers, add the following environment variable to your application.
-```bash
+```bash Shell
 MW_AGENT_SERVICE=<DOCKER_BRIDGE_GATEWAY_ADDRESS>
 ```
 <Note> docker bridge gateway address is the IP address of the gateway between the Docker host and the bridge network, which is 172.17.0.1 by default. 
 Refer more about Docker bridge networking [here](https://docs.docker.com/network/network-tutorial-standalone/) </Note>
 
-```bash
+```bash Shell
 kubectl get service --all-namespaces | grep mw-service
 ```
 
 Then add the following environment variable to your application deployment YAML file. 
-```bash
+```bash Shell
 MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
 ```
 
@@ -56,7 +56,7 @@ Metrics collection will be automatically enabled upon completing Step 4: Run App
 Application Logs will be automatically enabled upon completing Step 4: Run Application. 
 
 To add custom logs, add this dependency in the pom.xml file.
-```java
+```java Java
 <dependency>
   <groupId>io.github.middleware-labs</groupId>
   <artifactId>agent-apm-java</artifactId>
@@ -65,17 +65,17 @@ To add custom logs, add this dependency in the pom.xml file.
 ```
 
 Install the package into the local repository.
-```java
+```java Shell
 mvn install
 ```
 
 Import the logger package.
-```java
+```java Java
 import io.github.middlewarelabs.agentapmjava.Logger;
 ```
 
 Then utilize the following functions based on desired log severity levels.
-```java
+```java Java
 Logger.info("info message");
 Logger.debug("debug message");
 Logger.warn("warn message");
@@ -87,7 +87,7 @@ Application Profiling is automatically enabled upon completing Step 4: Run Appli
 
 ### Stack Traces
 Use the Logger.recordError(e) method to record a stack trace when an error occurs. See an example of this method below. 
-```java
+```java Java
 import io.github.middlewarelabs.agentapmjava.Logger;
         
 try {
@@ -101,7 +101,7 @@ try {
 
 ## Step 4: Run Application
 Run your application with the command given below.
-```java
+```java Java
 MW_API_KEY={MW_API_KEY} java -javaagent:/PATH/TO/middleware-javaagent-{version}.jar \
     -Dotel.service.name={APM-SERVICE-NAME} \
     -Dotel.resource.attributes=project.name={APM-PROJECT-NAME} \
