@@ -17,13 +17,13 @@ This guide walks you through setting up Application Performance Monitoring (APM)
 ## Prerequisites
 * Middleware Host Agent (MW Agent), to install the MW Agent please see our [installation guide](https://docs.middleware.io/docs/agent-installation/overview).
 * Ruby version 3.0.0, you can check your Ruby version with the following command.
-```bash
+```bash Shell
 ruby --version
 ```
 
 ## Step 1: Add Gem Packages
 
-```ruby
+```ruby Ruby
 gem 'opentelemetry-sdk'
 gem 'opentelemetry-exporter-otlp'
 gem 'opentelemetry-instrumentation-all'
@@ -32,7 +32,7 @@ gem 'middleware_apm', '~> 1.0.0'
 ```
 
 ## Step 2: Import Tracker
-```ruby
+```ruby Ruby
 require 'middleware/ruby_gem'
 Middleware::RubyGem.init 
 ```
@@ -40,7 +40,7 @@ Middleware::RubyGem.init
 ## Step 3: Capture Application Data
 
 ### Traces
-```bash
+```bash Shell
 OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:9320 \ 
 OTEL_SERVICE_NAME="<Your Service Name>" \ 
 OTEL_RESOURCE_ATTRIBUTES=project.name="<Your Project Name>" \ 
