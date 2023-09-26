@@ -13,13 +13,13 @@ Sections below describe how you can configure Datadog agents to send metrics to 
 
 - Middleware supports Datadog agent version 6 and 7. _**Version 5 and below are not supported.**_
 - Middleware supports Datadog API version 1 and 2. You can send metrics using either API version from the Datadog agent.
-- You will need a Middleware API key which can be found within the `Installation` section once you log into your [Middleware account](http://app.middleware.io)
+- You will need a Middleware API key which can be found within the `Installation` section once you log into your [Middleware account](http://app.middleware.io).  
 
 ### Linux Environment
 
-On the host running the Datadog agent, you will need to update the configuration file that is usually located at `/etc/datadog-agent/datadog.yaml` with the following configuration
+On the host running the Datadog agent, you will need to update the configuration file that is usually located at `/etc/datadog-agent/datadog.yaml` with the following configuration:
 
-```
+```yaml yaml
 #########################
 ## Basic Configuration ##
 #########################
@@ -33,9 +33,9 @@ After you update the `datadog.yaml` file, restart the Datadog agent to start sen
 
 ### Docker Environment
 
-If you are using Dockerized version of the Datadog agent, you can pass in the required configuration using environment variables as show below
+If you are using Dockerized version of the Datadog agent, you can pass in the required configuration using environment variables as show below:
 
-```
+```shell Shell
 docker run -d --cgroupns host --pid host --name dd-agent -v /var/run/docker.sock:/var/run/docker.sock:ro -v /proc/:/host/proc/:ro -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro -e DD_API_KEY=<MW_API_KEY> DD_URL=https://<account-id>.middleware.io/datadog gcr.io/datadoghq/agent:7
 ```
 
@@ -45,13 +45,13 @@ If you have deployed the Datadog Agent on Kubernetes using the [Datadog Operator
 
 One way to update this value is by using following command assuming `datadog-secrets` secret is in the `default` namespace. Adjust namespace accordingly if your `datadog-secrets` is in a different namespace.
 
-```
+```shell Shell
 kubectl edit secret datadog-secrets -n default
 ```
 
 Then update the `api_key` value with your Middleware API key, save the file and exit.
 
-```apiVersion: v1
+```apiVersion.v1 yaml
 data:
   api-key: <MW_API_KEY>
 kind: Secret
@@ -66,7 +66,7 @@ type: Opaque
 
 After you update the `api_key`, create a file called `datadog.yaml` with the following contents
 
-```
+```yaml yaml
 kind: DatadogAgent
 apiVersion: datadoghq.com/v2alpha1
 metadata:
@@ -91,7 +91,7 @@ spec:
 
 Use your `<account-id>` in the `global.endpoint` section of the spec.  After you create this file, submit this file using following commands
 
-```
+```shell Shell
 kubectl apply -f datadog.yaml
 ```
 
