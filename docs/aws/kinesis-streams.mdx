@@ -3,38 +3,32 @@ title: "Ingest AWS Kinesis Streams"
 description: ""
 ---
 
-<img src="/images/aws/kinesis-middleware.png" />
+![](/images/aws/kinesis-middleware.png)
 
-<p>AWS [Metric Streams](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Metric-Streams.html) is a service provided by Amazon Web Services (AWS) that enables real-time streaming of AWS CloudWatch metrics.<br/><br/>Configure CloudWatch using the AWS Console : </p>
+AWS [Metric Streams](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Metric-Streams.html) is a service provided by Amazon Web Services (AWS) that enables real-time streaming of AWS CloudWatch metrics. Configure CloudWatch using the AWS Console.
 
 ## Create a new Kinesis Data Firehose Delivery Stream
 
-<ol>
-<li>Sign in to the AWS Management Console and open the Kinesis console at [https://console.aws.amazon.com/kinesis](https://console.aws.amazon.com/kinesis).</li>
-<li>Choose <b>Data Firehose</b> in the navigation panel.</li>
-<li>Choose <b>Create delivery stream</b>.</li>
-<li>
-The stream’s Source should be <b>Direct PUT</b> and Destination set to <b>HTTP Endpoint</b> with the following details:<br/>
-<b>Kinesis endpoint:</b> https://`{ACCOUNT-UID}`.middleware.io/v1/metrics/cloudwatch<br/>
-<b>Access key :</b> Enter your Middleware API key.
-</li>
-<li>In the Backup settings, select an S3 backup bucket to receive any failed events that exceed the retry duration.</li>
-</ol>
+1.  Sign in to the [AWS Management Console](https://console.aws.amazon.com/kinesis) and open the Kinesis console.
+2.  Choose **Data Firehose** in the navigation panel.
+3.  Choose **Create delivery stream**.
+4.  The stream’s Source should be **Direct PUT** and Destination set to **HTTP Endpoint** with the following details:  
+    **Kinesis endpoint:** https://`{ACCOUNT-UID}`.middleware.io/v1/metrics/cloudwatch  
+    **Access key :** Enter your Middleware API key.
+5.  In the Backup settings, select an S3 backup bucket to receive any failed events that exceed the retry duration.
 
-<Info>Replace `{ACCOUNT-UID}` with the text in the URL (ex URL is "s05zpimz.middleware.io" , here s05zpimz is `{ACCOUNT-UID}`.)</Info>
+<Note> Replace `{ACCOUNT-UID}` with the text in the URL (ex URL is "s05zpimz.middleware.io", here s05zpimz is `{ACCOUNT-UID}`.) </Note>
 
 ## Create a new CloudWatch Metric Stream
 
-<ol>
-<li>Open the CloudWatch AWS console at [https://console.aws.amazon.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch).</li>
-<li>In the left navigation pane, choose <b>Metrics → Streams</b>.</li>
-<li>Click the <b>Create metric stream button</b>.</li>
-<li>Choose the <b>All namespaces </b> in the metric stream.</li>
-<li>Choose <b>Select an existing Firehose owned by your account</b>, and select the Firehose Delivery Stream you created earlier.</li>
-<li>Specify an <b>Output Format of OpenTelemetry 0.7</b>.</li>
-<li>Optionally, specify a name for this metric stream under <b>Metric Stream Name</b>.</li>
-<li>Choose <b>Create metric stream</b>.</li>
-</ol>
+1.  Open the [CloudWatch AWS console](https://console.aws.amazon.com/cloudwatch).
+2.  In the left navigation pane, choose **Metrics → Streams**.
+3.  Click the **Create metric stream button**.
+4.  Choose the **All namespaces** in the metric stream.
+5.  Choose **Select an existing Firehose owned by your account**, and select the Firehose Delivery Stream you created earlier.
+6.  Specify an **Output Format of OpenTelemetry 0.7**.
+7.  Optionally, specify a name for this metric stream under **Metric Stream Name**.
+8.  Choose **Create metric stream**.
 
 <Note> To ensure that your request metrics are accurately reported, it is important to [Enable Requests metrics](https://docs.aws.amazon.com/AmazonS3/latest/userguide/cloudwatch-monitoring.html) for your Amazon S3 buckets through the AWS console. </Note>
 
@@ -44,18 +38,21 @@ Once you have completed the setup mentioned above, you can visualize your data i
 
 ### 1. Middleware's Default AWS Dashboards
 
-<p>We have created default dashboards for all the popular AWS services.</p>
-<p>Each dashboard consists a good amount of graphs representing all the important metrics for that particular namespace.</p>
+We have created default dashboards for all the popular AWS services.
+
+Each dashboard consists a good amount of graphs representing all the important metrics for that particular namespace.
 
 Here is one sample dashboard for EC2 namespace.
-<img src="/images/aws/ec2-dashboard.png" />
+![](/images/aws/ec2-dashboard.png)
 
 You can refer all similar dashboards relevant to AWS over [here](https://app.middleware.io/reports?search=AWS)
 
 ### 2. Build Custom Widgets using Middleware's Dashboard Builder
 
-<p>You can create a dashboard from scratch by yourself.</p>
-<p>If you add a new widget to any existing dashboard, you will be able to see list of available AWS metrics under the "cloud" Data source.</p>
-<p>You can visualize in many different Widget types i.e. Timeseries, Bar Chart, Pie Chart, etc.</p>
+You can create a dashboard from scratch by yourself.
 
-<img src="/images/aws/aws-metrics-widget.png" />
+If you add a new widget to any existing dashboard, you will be able to see list of available AWS metrics under the "cloud" Data source.
+
+You can visualize in many different Widget types i.e. Timeseries, Bar Chart, Pie Chart, etc.
+
+![](/images/aws/aws-metrics-widget.png)
