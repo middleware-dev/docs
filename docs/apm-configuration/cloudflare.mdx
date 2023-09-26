@@ -10,25 +10,25 @@ This guide walks you through setting up Application Performance Monitoring (APM)
 
 ## Prerequisites
 * Wrangler version 2.2.2, you can check your Wrangler version with the following command.
-```
+```bash Shell
 wrangler version
 ```
 
 ## Step 1: Install Middleware Worker Package
 Run the following command in your terminal.
-```javascript
+```bash Shell
 npm i @middleware.io/agent-apm-worker 
 ```
 
 ## Step 2: Import Tracker
-```javascript
+```javascript JavaScript
 import * as tracker from "@middleware.io/agent-apm-worker";
 ```
 
 ## Step 3: Initialize Tracker
 
 The access token is your account key, which can be found on the Installation page. To watch instrumented logs in the terminal, set consoleLogEnabled: true.
-```javascript
+```javascript JavaScript
 tracker.init({
     projectName:"{APM-PROJECT-NAME}",
     serviceName:"{APM-SERVICE-NAME}",
@@ -38,14 +38,14 @@ tracker.init({
 ```
 
 ## Step 4: Track Requests with the Middleware SDK
-```javascript		
+```javascript JavaScript
 const sdk = tracker.track(request, ctx);
 sdk.sendResponse(response);
-```
+```  
 
 ## Step 5: Enable Logging
 
-```javascript
+```javascript JavaScript
 // sdk.logger.SEVERITY( MESSAGE, KEY-VALUE PAIRS )
 
 sdk.logger.error("error test")
