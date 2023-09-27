@@ -1,0 +1,41 @@
+---
+title: "Monitoring Mesos Slaves"
+description: ""
+---
+
+## Prerequisites
+
+<ol>
+    <li>Create a <a href="https://app.middleware.io/auth/register/" rel="nofollow noopener noreferrer" target="_blank" translate="no">Middleware account</a></li>
+    <li>Keep Middleware API Key and Target at hand</li>
+</ol>
+## Install Middleware Agent - on Mesos Slave
+
+### Download our DEB file
+```bash
+wget -O mw-agent_1.0.0-1_amd64.deb https://github.com/middleware-labs/mw-agent/releases/download/1.0.0/mw-agent_1.0.0-1_amd64.deb
+```
+
+### Install DEB file
+```bash
+sudo dpkg -i mw-agent_1.0.0-1_amd64.deb
+```
+
+### Start Middleware Agent
+```bash
+mw-agent start --api-key jpawpxwzsiwekdyzgolwnonkbmxzuagqfclu --target https://keval.middleware.io:443
+```
+
+## Uninstall Middleware Agent
+```bash
+sudo dpkg -r mw-agent
+```
+
+
+
+
+
+
+
+
+
