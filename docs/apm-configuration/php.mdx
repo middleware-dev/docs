@@ -10,43 +10,16 @@ title: "PHP"
     }}/>
 </a>
 
-<table border="1" style={{margin: "10px 0", textAlign: "center"}}>
-    <thead>
-    <tr>
-        <th style={{padding:"8px 15px"}}>Traces</th>
-        <th style={{padding:"8px 15px"}}>Metrics</th>
-        <th style={{padding:"8px 15px"}}>App Logs</th>
-        <th style={{padding:"8px 15px"}}>Custom Logs</th>
-        <th style={{padding:"8px 15px"}}>Profiling</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td><span style={{
-            background: "url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkiIGhlaWdodD0iMTkiIHZpZXdCb3g9IjAgMCAxOSAxOSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTkuNDI2NTcgMTguNjA4QzQuMzUyNDIgMTguNjA4IDAuMjQxNDU1IDE0LjQ5NyAwLjI0MTQ1NSA5LjQyMjg1QzAuMjQxNDU1IDQuMzQ4NjkgNC4zNTI0MiAwLjIzNzczMiA5LjQyNjU3IDAuMjM3NzMyQzE0LjUwMDcgMC4yMzc3MzIgMTguNjExNyA0LjM0ODY5IDE4LjYxMTcgOS40MjI4NUMxOC42MTE3IDE0LjQ5NyAxNC41MDA3IDE4LjYwOCA5LjQyNjU3IDE4LjYwOFoiIGZpbGw9IiMyREE0NEUiLz4KPHBhdGggZD0iTTguMjU0OCAxMi4wNDQzTDUuNDU0NTkgOS4yNDQxNCIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxLjMxMjE2IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPHBhdGggZD0iTTEzLjg1NTEgNi40NDM5MUw4LjI1NDY0IDEyLjA0NDMiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMS4zMTIxNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=) no-repeat",
-            width: "20px",
-            height: "20px",
-            display: "inline-block",
-        }}/></td>
-        <td>-</td>
-        <td>-</td>
-        <td><span style={{
-            background: "url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkiIGhlaWdodD0iMTkiIHZpZXdCb3g9IjAgMCAxOSAxOSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTkuNDI2NTcgMTguNjA4QzQuMzUyNDIgMTguNjA4IDAuMjQxNDU1IDE0LjQ5NyAwLjI0MTQ1NSA5LjQyMjg1QzAuMjQxNDU1IDQuMzQ4NjkgNC4zNTI0MiAwLjIzNzczMiA5LjQyNjU3IDAuMjM3NzMyQzE0LjUwMDcgMC4yMzc3MzIgMTguNjExNyA0LjM0ODY5IDE4LjYxMTcgOS40MjI4NUMxOC42MTE3IDE0LjQ5NyAxNC41MDA3IDE4LjYwOCA5LjQyNjU3IDE4LjYwOFoiIGZpbGw9IiMyREE0NEUiLz4KPHBhdGggZD0iTTguMjU0OCAxMi4wNDQzTDUuNDU0NTkgOS4yNDQxNCIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxLjMxMjE2IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPHBhdGggZD0iTTEzLjg1NTEgNi40NDM5MUw4LjI1NDY0IDEyLjA0NDMiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMS4zMTIxNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=) no-repeat",
-            width: "20px",
-            height: "20px",
-            display: "inline-block",
-        }}/></td>
-        <td>-</td>
-    </tr>
-    </tbody>
-</table>
+| Traces | Metrics | App Logs | Custom Logs | Profiling |
+| :----: | :-----: | :------: | :---------: | :-------: |
+| ✅ | ✖️ | ✖️ | ✅ | ✖️ |
 
 This guide walks you through setting up Application Performance Monitoring (APM) on a PHP application. These instructions can also be found on the Installation page in your Middleware Account. View example code <a href="https://github.com/middleware-labs/demo-apm/tree/master/php"> here. </a>
 
 ## Prerequisites
 * Middleware Host Agent (MW Agent), to install the MW Agent please see our <a href="https://docs.middleware.io/docs/agent-installation/overview"> installation guide. </a>
 * PHP version 8+, you can check your PHP version with the following command.
-  ```
+  ```shell Shell
   php -v
   ```
 * <a href="https://pecl.php.net/"> Pecl </a> and <a href="https://getcomposer.org/"> Composer </a> and the otel-instrumentation PHP extension (see below)
@@ -55,29 +28,29 @@ This guide walks you through setting up Application Performance Monitoring (APM)
 Follow these steps to install the required otel-instrumentation PHP extension. 
 
 Install the extension.
-```bash
+```bash Shell
 sudo pecl install channel://pecl.php.net/opentelemetry-1.0.0beta3
 ```
 Mention the extension as extension=opentelemetry.so in your php.ini file. The php.ini file can be found using the following commands based on your Linux distribution.
 
 Ubuntu/Debian
-```bash
+```bash Shell
 sudo nano /etc/php/<php_version>/cli/php.ini
 ```
 CentOS/RHEL
-```bash
+```bash Shell
 sudo nano /etc/php.ini
 ```
 Arch Linux
-```bash
+```bash Shell
 sudo nano /etc/php/php.ini
 ```
 Specific to Web-Serve
-```bash
+```bash Shell
 sudo nano /etc/php/<php_version>/apache2/php.ini
 ```
 Verify the extension is installed and enabled.
-```bash
+```bash Shell
 php -m | grep opentelemetry
 ```
 
@@ -85,16 +58,16 @@ php -m | grep opentelemetry
 Below we cover a few common errors and their solutions. 
 
 If you receive a pecl: command not found error, run the following command.
-```bash
+```bash Shell
 sudo apt-get update
 apt-get install php-pear php8.1-dev
 ```
 If you receive any broken dependency issues, including errors like libpcre2-dev : Depends: libpcre2-8-0 / libpcre2-16-0 / libpcre2-32-0, run the following command.
-```bash
+```bash Shell
 sudo apt --fix-broken install
 ```
 If you receive an ERROR: ‘phpize’ failed error, run the following commands.
-```bash
+```bash Shell
 sudo apt-get update 
 sudo apt-get install php8.1-dev
 
@@ -105,14 +78,14 @@ sudo pecl channel-update pecl.php.net
 
 ## Step 1: Install APM-PHP Package
 Ensure you have a PHP project set up and a composer.json file in your project’s root directory. If you do not have one, create it using composer init. Then run the following to install Middleware’s APM-PHP package.
-```bash
+```bash Shell
 composer update
 composer require middleware/agent-apm-php
 ```
 
 ## Step 2: Import Tracker
 Add these lines to the beginning of your project. 
-```php
+```php PHP
 require 'vendor/autoload.php';
 use Middleware\AgentApmPhp\MwTracker;
 ```
@@ -121,31 +94,31 @@ use Middleware\AgentApmPhp\MwTracker;
 Applications running in a container require an additional environment variable. If your application is not running in a container, move to Step 5. 
 
 For Docker containers, add the following environment variable to your application.
-```bash
+```bash Shell
 MW_AGENT_SERVICE=<DOCKER_BRIDGE_GATEWAY_ADDRESS>
 ```
 <Note> docker bridge gateway address is the IP address of the gateway between the Docker host and the bridge network, which is 172.17.0.1 by default. 
 Refer more about Docker bridge networking [here](https://docs.docker.com/network/network-tutorial-standalone/) </Note>
 
-```bash
+```bash Shell
 kubectl get service --all-namespaces | grep mw-service
 ```
 
 Then add the following environment variable to your application deployment YAML file. 
-```bash
+```bash Shell
 MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
 ```
 
 ## Step 4: Implement APM Collector
 Start a tracing scope at the beginning of your code. 
 
-```php
+```php PHP
 $tracker = new MwTracker('<PROJECT-NAME>', '<SERVICE-NAME>');
 $tracker->preTrack();
 ```
 
 Define hooks with class and function names beneath the tracing scope.
-```php
+```php Shell
 $tracker->registerHook('<CLASS-NAME-1>', '<FUNCTION-NAME-1>', [
     'custom.attr1' => 'value1',
     'custom.attr2' => 'value2',
@@ -154,13 +127,13 @@ $tracker->registerHook('<CLASS-NAME-2>', '<FUNCTION-NAME-2>');
 ```
 
 End the tracing scope after your code. 
-```php
+```php PHP
 $tracker->postTrack();
 ```
 
 ## Step 5: Enable Logging
 To ingest custom logs, utilize the following functions based on desired log severity levels.
- ```php
+ ```php PHP
    $tracker->warn("this is warning log.");
    $tracker->error("this is error log.");
    $tracker->info("this is info log.");
