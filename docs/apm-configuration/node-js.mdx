@@ -51,22 +51,21 @@ This guide walks you through setting up Application Performance Monitoring (APM)
 ## Prerequisites
 * Middleware Host Agent (MW Agent), to install the MW Agent please see our <a href="https://docs.middleware.io/docs/agent-installation/overview"> installation guide </a>. 
 * Node.js version 18.17.1  or above. Check your Node.js version with the following command. 
-```
+``` javascript bash
 node --version
 ```
---------------------
 
 ## Step 1: Install NPM Package
 Run the following command in your terminal. 
 
-```javascript
+```javascript bash
 npm install @middleware.io/node-apm --save
 ```
 
 ## Step 2:  Initialize Tracker
 Add the following lines to the beginning of your application code base. The access token is your account key, which can be found on the Installation page.
 
-```javascript
+```javascript Node.js
 const tracker = require('@middleware.io/node-apm');
 tracker.track({
     projectName: "your-project-name",
@@ -79,18 +78,18 @@ tracker.track({
 Applications running in a container require an additional environment variable. If your application is not running in a container, move to Step 4. 
 
 For Docker containers, add the following environment variable to your application.
-```bash
+```javascript bash
 MW_AGENT_SERVICE=<DOCKER_BRIDGE_GATEWAY_ADDRESS>
 ```
 <Note> docker bridge gateway address is the IP address of the gateway between the Docker host and the bridge network, which is 172.17.0.1 by default. 
 Refer more about Docker bridge networking [here](https://docs.docker.com/network/network-tutorial-standalone/) </Note>
 
-```bash
+```javascript bash
 kubectl get service --all-namespaces | grep mw-service
 ```
 
 Then add the following environment variable to your application deployment YAML file. 
-```bash
+```javascript bash
 MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
 ```
 
@@ -101,7 +100,7 @@ Distributed tracing is automatically enabled upon completion of Step 2.
 
 ### Custom Logs
 To ingest custom logs into Middleware, utilize the following functions inside your logging method based on desired log severity levels.
-```javascript
+```javascript Node.js
 tracker.info('Info sample');
 tracker.warn('Warning sample');
 tracker.debug('Debugging Sample');
@@ -109,7 +108,7 @@ tracker.error('Error Sample');
 ```
 
 To add stack traces along with the error log, use the following error tracking function.
-```javascript
+```javascript Node.js
 tracker.error(new Error('Error sample with stack trace'));
 ```
 
@@ -118,7 +117,7 @@ Application Profiling is auto-configured upon completing Step 2.
 
 ### Stack Traces 
 Use the errorRecord method to record a stack trace when an error occurs. See an example of this method below. 
-```javascript
+```javascript Node.js 
  app.get('/error', function (req, res) {
     try{
         throw new Error('oh error!');
