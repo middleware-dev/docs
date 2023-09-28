@@ -8,8 +8,9 @@ Setup Synthetic Test
 -   Go to "Synthetic Monitoring" from the left menu 
 -   Click on "Create Monitor"
 
-There are several types of synthetic monitoring that can be used to monitor the performance and availability of IT systems and applications,\
-<img src="/images/synthetic-monitoring/s1.png" />
+There are several types of synthetic monitoring that can be used to monitor the performance and availability of IT systems and applications
+
+![](/images/synthetic-monitoring/s1.png)
 
 Here is the detail of each request type:
 
@@ -26,7 +27,7 @@ DNS synthetic monitoring is a technique used to monitor the performance and avai
 WebSocket test synthetic monitoring is a technique used to monitor the performance and availability of WebSocket connections used by web applications. It involves simulating WebSocket connections and measuring the response time, message delivery time, and message accuracy. 
 
 #### UDP
-UDP (User Datagram Protocol) synthetic monitoring is a technique used to monitor the performance and availability of UDP connections used by network applications. It involves simulating UDP packets and measuring the response time, packet loss, and other metrics
+UDP (User Datagram Protocol) synthetic monitoring is a technique used to monitor the performance and availability of UDP connections used by network applications. It involves simulating UDP packets and measuring the response time, packet loss, and other metrics.
 
 #### ICMP
 ICMP (Internet Control Message Protocol) synthetic monitoring is a technique used to monitor the performance and availability of network connections using ICMP packets. It involves simulating ICMP packets and measuring the response time, packet loss, and other metrics.
@@ -37,30 +38,39 @@ TCP (Transmission Control Protocol) synthetic monitoring is a technique used to 
 #### gRPC
 gRPC synthetic monitoring is a technique used to monitor the performance and availability of gRPC connections used by network applications. It involves simulating gRPC requests and measuring the response time, error rate, and other metrics
 
--   Define the request with a name and an environment, then enter the URL where you want to run the test. With an advanced setting option, you can add put request headers, authentication, and query parameters.\
-   <img src="/images/synthetic-monitoring/s2.png" />
+-   Define the request with a name and an environment, then enter the URL where you want to run the test. With an advanced setting option, you can add put request headers, authentication, and query parameters.
 
--   Add as many assertions as you need for your request. If you need more specific testing, assertions can help (for example, the status code should be 200 only).\
-    <img src="/images/synthetic-monitoring/s3.png" />
+![](/images/synthetic-monitoring/s2.png)
 
--   You can choose where you want this test to run. Location selection is useful when you have global users, and your API is accessed worldwide.\
-     <img src="/images/synthetic-monitoring/s4.png" />
+-   Add as many assertions as you need for your request. If you need more specific testing, assertions can help (for example, the status code should be 200 only).
 
--   You can specify the test frequency by selecting a time interval such as every 1m, 5m, etc., or you can define a custom time interval with a day selection (ex: every Monday at 09:00 AM)\
-    <img src="/images/synthetic-monitoring/s5.png" />
+![](/images/synthetic-monitoring/s3.png)   
 
--   Define the test alert, and where you wish to be notified, such as Slack or Gmail.\
-    <img src="/images/synthetic-monitoring/s6.png" />
+-   You can choose where you want this test to run. Location selection is useful when you have global users, and your API is accessed worldwide.
+     
+![](/images/synthetic-monitoring/s4.png)     
+
+-   You can specify the test frequency by selecting a time interval such as every 1m, 5m, etc., or you can define a custom time interval with a day selection (ex: every Monday at 09:00 AM).
+
+![](/images/synthetic-monitoring/s5.png)         
+
+-   Define the test alert, and where you wish to be notified, such as Slack or Gmail.
+
+![](/images/synthetic-monitoring/s6.png)         
 
 Synthetic Test List
 -------------------
-View a list of all created monitors with information such as uptime, interval, status, and the ability to pause/start, edit, or delete the test.\
+View a list of all created monitors with information such as uptime, interval, status, and the ability to pause/start, edit, or delete the test.
 You can also filter the list by request type or location.
-<img src="/images/synthetic-monitoring/s7.png" />
+
+![](/images/synthetic-monitoring/s7.png)  
 
 Test result with details
 ------------------------
--   Select the test from the list to view all the details, including response time by location, network timing, and test run results. <img src="/images/synthetic-monitoring/s8.png" />
+-   Select the test from the list to view all the details, including response time by location, network timing, and test run results.
 
--   Here you can see all the details and list of test runes. Clicking the test run will you overall idea with timeline to understand result of created test.\
-   <img src="/images/synthetic-monitoring/s9.png" />
+![](/images/synthetic-monitoring/s8.png)  
+
+-   Here you can see all the details and list of test runes. Clicking the test run will you overall idea with timeline to understand result of created test.
+
+![](/images/synthetic-monitoring/s9.png)
