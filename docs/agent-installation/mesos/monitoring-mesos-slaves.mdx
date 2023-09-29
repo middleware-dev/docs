@@ -7,35 +7,96 @@ description: ""
 
 <ol>
     <li>Create a <a href="https://app.middleware.io/auth/register/" rel="nofollow noopener noreferrer" target="_blank" translate="no">Middleware account</a></li>
-    <li>Keep Middleware API Key and Target at hand</li>
+    <li>Keep Middleware API Key and Target at hand https://app.middleware.io/installation#infrastructures/ubuntu </li>
 </ol>
-## Install Middleware Agent - on Mesos Slave
 
-### Download our DEB file
+<Note>Make sure to replace `MW_API_KEY_VALUE` and `MW_TARGET_VALUE` placeholders in the steps ahead</Note>
+
+
+## Method 1 : Install & Run Middleware Agent - Via Script
+
+* This script will Install a DEB file and start the Middleware Agent as a service.
+* If systemd is not available, it will create an upstart service.
+### 1-step installation script
+```bash
+MW_API_KEY=MW_API_KEY_VALUE MW_TARGET=MW_TARGET_VALUE bash -c "$(curl -L https://install.middleware.io/scripts/mesos-slave-ubuntu-install.sh)"
+```
+
+
+## Method 2 : Install & Run Middleware Agent - Manually
+
+### 1. Download DEB file
 ```bash
 wget -O mw-agent_1.0.0-1_amd64.deb https://github.com/middleware-labs/mw-agent/releases/download/1.0.0/mw-agent_1.0.0-1_amd64.deb
 ```
 
-### Install DEB file
+### 2. Install DEB file
 ```bash
 sudo dpkg -i mw-agent_1.0.0-1_amd64.deb
 ```
 
-### Start Middleware Agent
+### 3. Run Middleware Agent
+
+#### 3.1. Using CLI
 ```bash
-mw-agent start --api-key jpawpxwzsiwekdyzgolwnonkbmxzuagqfclu --target https://keval.middleware.io:443
+mw-agent start --api-key MW_API_KEY_VALUE --target MW_TARGET_VALUE
+```
+
+#### 3.2. Using Service
+
+##### 3.2.1 For Ubuntu machines having systemd
+
+1. Create `/etc/systemd/system/mwservice.service` with the content given below
+```bash
+[Unit]
+Description=Melt daemon!
+
+[Service]
+WorkingDirectory=$MW_AGENT_HOME/apt
+ExecStart=mw-agent start --api-key MW_API_KEY_VALUE --target MW_TARGET_VALUE
+Type=simple
+TimeoutStopSec=10
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+```
+
+2. Enable & Start the service
+```
+sudo systemctl daemon-reload
+sudo systemctl enable mwservice
+sudo systemctl start mwservice
+```
+##### 3.2.2 For older Ubuntu machines - not having systemd
+
+1. Create `/etc/init/mwservice.conf` with the content given below
+```bash
+mw-agent start --api-key MW_API_KEY_VALUE --target MW_TARGET_VALUE
+```
+
+2. Create `/etc/init/mwservice.conf` with the content given below
+```bash
+start on startup
+stop on shutdown
+
+# Automatically respawn the service if it dies
+respawn
+respawn limit 5 60
+
+# Start the service by running the executable script
+script
+    exec bash /etc/mw-agent/apt/executable
+end script
+```
+
+3. Enable & Start the service
+```
+sudo start mwservice
 ```
 
 ## Uninstall Middleware Agent
 ```bash
 sudo dpkg -r mw-agent
 ```
-
-
-
-
-
-
-
-
-
