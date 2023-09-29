@@ -1,0 +1,8 @@
+Multistep Requests
+==================
+
+Overview
+--------
+
+Multistep Synthetic Monitoring Requests create robust methods for simulating system-wide interactions and transactions. Multistep Requests lets response values from one Step be passed to successive Steps in a single Monitor, creating a chain of requests that can be used to simulate complex behaviors.
+
