@@ -134,6 +134,7 @@
       "group": "Synthetic Monitoring",
       "pages": [
         "docs/synthetic-monitoring/synthetic-monitoring",
+        "docs/synthetic-monitoring/multistep-synthetic-monitoring",
         "docs/synthetic-monitoring/ip-address"
       ]
     },
