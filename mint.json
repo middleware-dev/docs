@@ -82,8 +82,7 @@
         {
           "group": "Metrics",
           "pages": [
-            "docs/data-ingestion-apis/opentelemetry-metrics",
-            "docs/data-ingestion-apis/datadog-ingestion"
+            "docs/data-ingestion-apis/opentelemetry-metrics"
           ]
         }
       ]
