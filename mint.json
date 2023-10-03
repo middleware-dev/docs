@@ -82,16 +82,9 @@
         {
           "group": "Metrics",
           "pages": [
-            "docs/data-ingestion-apis/opentelemetry-metrics",
-            "docs/data-ingestion-apis/datadog-ingestion"
+            "docs/data-ingestion-apis/opentelemetry-metrics"
           ]
         }
-      ]
-    },
-    {
-      "group": "AWS",
-      "pages": [
-        "docs/aws/kinesis-streams"
       ]
     },
     {
@@ -162,7 +155,8 @@
         "docs/integrations/mongodb-integration",
         "docs/integrations/mysql-integration",
         "docs/integrations/redis-integration",
-        "docs/integrations/prometheus-integration"
+        "docs/integrations/prometheus-integration",
+        "docs/aws/kinesis-streams"
       ]
     },
     {
