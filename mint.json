@@ -83,12 +83,6 @@
       ]
     },
     {
-      "group": "AWS",
-      "pages": [
-        "docs/aws/kinesis-streams"
-      ]
-    },
-    {
       "group": "Unified Dashboard",
       "pages": [
         "docs/unified-dashboard/unified-view",
@@ -156,7 +150,8 @@
         "docs/integrations/mongodb-integration",
         "docs/integrations/mysql-integration",
         "docs/integrations/redis-integration",
-        "docs/integrations/prometheus-integration"
+        "docs/integrations/prometheus-integration",
+        "docs/aws/kinesis-streams"
       ]
     },
     {
