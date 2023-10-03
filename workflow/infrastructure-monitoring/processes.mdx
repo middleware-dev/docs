@@ -7,32 +7,34 @@ Process List
 The infrastructure host running processes refer to the individual programs and services that are currently running on a computer system, such as a server or other host machine. It provides a detailed overview of your processes' health, resource consumption, and deployment. Here you can monitor your processes list on a real-time basis.\
 Process List has process id, process name, process command, host, username, cpu usage, ram usage, etc.
 
-<img src="/images/infra-monitoring/p1.png" />
+![](/images/infra-monitoring/p1.png)
 
--   PID: A process ID (PID) is a unique numerical identifier that is assigned to each running process on a computer system.
--   Process Name: The process name is typically a descriptive string that identifies the program or service that is associated with the process.
--   Process Commands: Process commands are instructions that are executed by a system to perform a specific action or task.
--   User name: A process username refers to the system-level user account that is associated with a running process on a system.
--   Host: The process host is typically identified by the system hostname or IP address
--   CPU Usage: CPU usage is typically measured as a percentage of the total CPU time available on the system, and it is an important indicator of process-level performance and resource utilization.
--   RAM Usage: The process RAM usage in percentage refers to the proportion of the total system memory that a running process is using on a system, expressed as a percentage of the available system memory.
--   Started Ago: The process started time refers to the date and time when a running process was started on a system.
+
+-   **PID**: A process ID (PID) is a unique numerical identifier that is assigned to each running process on a computer system.
+-   **Process Name**: The process name is typically a descriptive string that identifies the program or service that is associated with the process.
+-   **Process Commands**: Process commands are instructions that are executed by a system to perform a specific action or task.
+-   **User name**: A process username refers to the system-level user account that is associated with a running process on a system.
+-   **Host**: The process host is typically identified by the system hostname or IP address
+-   **CPU Usage**: CPU usage is typically measured as a percentage of the total CPU time available on the system, and it is an important indicator of process-level performance and resource utilization.
+-   **RAM Usage**: The process RAM usage in percentage refers to the proportion of the total system memory that a running process is using on a system, expressed as a percentage of the available system memory.
+-   **Started Ago**: The process started time refers to the date and time when a running process was started on a system.
 
 Filters
 -------
 We have many options for data filters. Like selecting any date and searching process by process name, pid, and process commands etc. Also in the sidebar section we also have multiple check option available to filter the processes list data.
-<img src="/images/infra-monitoring/p2.png" />
+
+![](/images/infra-monitoring/p2.png)
 
 Process Details
 ---------------
 Click on any list item of a process to view more details, the tab view provides basic process information such as metrics in a graphical view, username, pid, hostname, and process commands. the info will always display the latest data.
 
-<img src="/images/infra-monitoring/p3.png" />
+![](/images/infra-monitoring/p3.png)
 
 ### Process Commands
 Process commands are instructions that are executed by a system to perform a specific action or task. These commands can be entered manually by a user, or they can be automated through scripts or other programming tools.
 
-<img src="/images/infra-monitoring/p4.png" />
+![](/images/infra-monitoring/p4.png)
 
 ### Resource Metrics
 The processes resource metrics, on the other hand, refer to the measurements of the various resources that are consumed by processes on the system. These metrics can be used to monitor the performance and health of the system, identify resource bottlenecks, and optimize resource utilization.
@@ -48,6 +50,6 @@ The processes resource metrics, on the other hand, refer to the measurements of 
 -   The process memory virtual usage metric represents the amount of virtual memory used by a process. Virtual memory includes both physical memory and memory that has been swapped out to disk.
 
 #### Disk Utilization:
--   The process.disk.io metric refers to the measurement of the input/output (I/O) operations performed by processes on a disk. This metric provides information on how much data is being read from or written to a disk by a process, which can help identify performance bottlenecks and optimize disk usage.
--   Read operations: The number of times a process reads data from a disk.
--   Write operations: The number of times a process writes data to a disk.
+The process.disk.io metric refers to the measurement of the input/output (I/O) operations performed by processes on a disk. This metric provides information on how much data is being read from or written to a disk by a process, which can help identify performance bottlenecks and optimize disk usage.
+-   **Read operations**: The number of times a process reads data from a disk.
+-   **Write operations**: The number of times a process writes data to a disk.

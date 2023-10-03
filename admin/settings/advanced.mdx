@@ -5,7 +5,7 @@ Advanced setting will allow you to control how your Host agent will be collectin
 
 Currently, this feature is only applicable with Linux / Docker Host agent.
 
-<img src="/images/settings/advanced.png" />
+![](/images/settings/advanced.png)
 
 ## Infrastructure File-Based Logs
 This setting can help you enable OR disable log collection from your infrastructure files.
@@ -23,7 +23,7 @@ This is the regex pattern that we allow
 '^(\\/(?:[\\w_\\-^* ]+\\/)*(?:[\\w_\\-*]+(?:\\**\\/)?)?[\\w_\\-.]+[^.]$)'
 ```
 
-So, you can add paths like ...
+You can add the follwing paths:
 
 `/home/ubuntu/abc.log`
 
@@ -31,6 +31,6 @@ So, you can add paths like ...
 
 `/home/ubuntu/**/*.log`, where ** represents any number of directories
 
-## How does this work ?
+## How does this work?
 The Middleware Host Agent keeps looking if there is any change in your account configuration.
 If there is any change, it will automatically update the configuration YAML and reload itself.
