@@ -105,7 +105,7 @@ EOF
 
 ### Metrics
 
-There are two components for Metrics, metadata and datapoint.
+There are two components for Metrics: **metadata** and **datapoint**.
 
 #### Metadata
 
@@ -119,7 +119,7 @@ The metadata fields are the request body attributes that define the metric and d
 
 #### Datapoint
 
-The datapoint fields are defined within the data attribute. The datapoint fields are consistent across all data attribute types, and explained below.The data attribute is named one of the following types:
+The datapoint fields are defined within the data attribute. The datapoint fields are consistent across all data attribute types, and explained below. The data attribute is named one of the following types:
 - **Gauge**: A scalar metric that always exports the current value for every data point. It should be used for unknown aggregation.
 - **Sum**: A scalar metric that is calculated as a sum of all reported measurements over a time interval.
 - **Histogram**: A metric that is calculated by aggregating as a histogram of all reported measurements over a time interval.
