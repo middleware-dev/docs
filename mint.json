@@ -61,6 +61,7 @@
         "docs/apm-configuration/dotnet",
         "docs/apm-configuration/ruby",
         "docs/apm-configuration/next-js",
+        "docs/apm-configuration/next-js/vercel-integration",
         "docs/apm-configuration/cloudflare",
         "docs/apm-configuration/apm-agent-communication"
         
@@ -156,7 +157,8 @@
         "docs/integrations/mongodb-integration",
         "docs/integrations/mysql-integration",
         "docs/integrations/redis-integration",
-        "docs/integrations/prometheus-integration"
+        "docs/integrations/prometheus-integration",
+        "docs/aws/kinesis-streams"
       ]
     },
     {
