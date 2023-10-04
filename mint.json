@@ -84,12 +84,6 @@
       ]
     },
     {
-      "group": "AWS",
-      "pages": [
-        "docs/aws/kinesis-streams"
-      ]
-    },
-    {
       "group": "Unified Dashboard",
       "pages": [
         "docs/unified-dashboard/unified-view",
