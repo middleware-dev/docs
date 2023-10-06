@@ -48,7 +48,7 @@
     {
       "group": "Middleware Docs",
       "pages": [
-        "quickstart",
+        "quickstart","workflow/workflow-welcome", "admin/admin-welcome",
         {
           "group": "Middleware Agent",
           "pages": [
@@ -104,6 +104,22 @@
           ]
         },
         {
+          "group": "Alerts",
+          "pages": [
+            "workflow/alerting/setup-alert"
+          ]
+        },
+        {
+          "group": "APM",
+          "pages": [
+            "workflow/apm/apm-dashboard",
+            "workflow/apm/service-monitoring",
+            "workflow/apm/traces",
+            "workflow/apm/error-traces",
+            "workflow/apm/continuous-profiling"
+          ]
+        }, 
+        {
           "group": "Dashboard Builder",
           "pages": [
             "workflow/custom-dashboard/build-custom-dashboard",
@@ -117,17 +133,7 @@
               ]
             }
           ]
-        },    
-        {
-          "group": "APM",
-          "pages": [
-            "workflow/apm/apm-dashboard",
-            "workflow/apm/service-monitoring",
-            "workflow/apm/traces",
-            "workflow/apm/error-traces",
-            "workflow/apm/continuous-profiling"
-          ]
-        },    
+        },       
         {
           "group": "Infrastructure Monitoring",
           "pages": [
@@ -151,12 +157,6 @@
             "workflow/synthetic-monitoring/synthetic-monitoring",
             "workflow/synthetic-monitoring/multistep-synthetic-monitoring",
             "workflow/synthetic-monitoring/ip-address"
-          ]
-        },
-        {
-          "group": "Alerts",
-          "pages": [
-            "workflow/alerting/setup-alert"
           ]
         },
         {
