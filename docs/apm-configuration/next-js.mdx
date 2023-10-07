@@ -1,5 +1,5 @@
 ---
-title: "Next.js / Vercel"
+title: "Next.js"
 ---
 <a target="_blank" href="https://www.npmjs.com/package/@middleware.io/agent-apm-nextjs">
     <span style={{
@@ -14,27 +14,46 @@ title: "Next.js / Vercel"
 | :----: | :-----: | :------: | :---------: | :-------: |
 | ✅ | ✖️ | ✖️ | ✅ | ✅ |
 
-This guide walks you through setting up Application Performance Monitoring (APM) on a Next.js application. These instructions can also be found on the Installation page in your Middleware Account. View demo code [here](https://github.com/middleware-labs/demo-apm/tree/master/nextjs).
 
-## Prerequisites
-* Middleware Host Agent (MW Agent), to install the MW Agent please see our [installation guide](https://docs.middleware.io/docs/agent-installation/overview).
-* Next.js version 13.4+, you can check your Next.js version with the following command.
+# Overview
+
+This guide walks you through setting up Application Performance Monitoring (APM) on a Next.js application. 
+
+These instructions can also be found on the Installation page in your Middleware Account. View demo code [here](https://github.com/middleware-labs/demo-apm/tree/master/nextjs).
+
+# Prerequisites
+
+1 Middleware Agent (MW Agent) is installed
+<Note> Installing the MW Agent is not required, however, we strongly recommend installing the MW Agent for ease of installation </Note>
+2. Must have `Next.js version 13.4` or newer installed. Check your Next.js version with the following command:
 ```bash Shell
 npx next --version
 ```
-* @opentelemetry/api package installed. If not installed run this command
+3. `@opentelemetry/api package` installed. If not, run the following command:
 ```bash Shell
 npm install @opentelemetry/api”>=1.3.0 <1.5.0”
 ```
 
-## Step 1: Install Next.js APM Package
-Run the following command in your terminal.
+4. The `instrumentation.ts` file must be located at the `root` of your project unless you are using the `src` directory. If you are using the `src` directory, ensure the `instrumentation.ts` file is placed within the `src` directory, alongside the pages and app directories.
+
+5. Synchronize your instrumentation filename when using the `pagesExtension` config option to add suffixes
+<Note> Example: If you use pagesExtension: ['ts'], the instrumentation file should be named `instrumentation.ts`. </Note>
+
+6. Integrate your APIs or Serverless functions prior to deployment. Vercel will treat your app as a static website during deployment if you have not integrated any APIs or Serverless functions and the `instrumentation.ts` file will not be invoked, resulting in the absence of traces or logs in your Middleware account. 
+
+# Install
+
+### Step 1: Install Next.js APM Package
+
+1. Run the following command in your terminal:
 ```bash Shell 
 npm install @middleware.io/agent-apm-nextjs
 ```
 
-## Step 2: Modify Config File
-Add the following to your next.config.js file.
+### Step 2: Modify Config File
+
+1. Add the following code to your next.config.js file:
+
 ```javascript Next.js
 const nextConfig = {
     // ...
@@ -49,77 +68,77 @@ const nextConfig = {
 }
 module.exports = nextConfig
 ```
+### Step 3: Container Variables
 
-## Step 3: Container Variables
-Applications running in a container require an additional environment variable. If your application is not running in a container, move to Step 5. 
+<Warning>If your application is not running in a container Kubernetes cluster, move to [Step 5](insert step 5 hyperlink)</Warning> 
 
-For Docker containers, add the following environment variable to your application.
+* For Docker containers, add the following environment variable to your application:
+
 ```bash Shell
 MW_AGENT_SERVICE=<DOCKER_BRIDGE_GATEWAY_ADDRESS>
 ```
-<Note> docker bridge gateway address is the IP address of the gateway between the Docker host and the bridge network, which is 172.17.0.1 by default. 
+<Note> Docker bridge gateway address is the IP address of the gateway between the Docker host and the bridge network, which is 172.17.0.1 by default. 
 Refer more about Docker bridge networking [here](https://docs.docker.com/network/network-tutorial-standalone/) </Note>
 
+* For Kubernetes clusters, add the following environment variable to your application:
 ```bash Shell
 kubectl get service --all-namespaces | grep mw-service
 ```
+* Add the following environment variable to your application deployment YAML file:
 
-Then add the following environment variable to your application deployment YAML file. 
 ```bash Shell
 MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
 ```
-## Step 4: Vercel Integration
-Middleware offers a Vercel integration that streams traces from Vercel projects into Middleware where they can be viewed alongside logs and profiling information on the APM dashboard. If not using Vercel, skip this step.
 
-Add the [Middleware integration](https://vercel.com/integrations/middleware/new) from the Vercel marketplace and follow the instructions to select the Vercel projects and log in to Middleware.
+### Step 4: Create Instrumentation File
 
-## Step 5: Create Instrumentation File
-Create a custom instrumentation.ts (or .js) file in your project root directory or inside the src folder, if applicable. Add the appropriate code snippet from the following options. The access token is your account key, which can be found on the Installation page.
+1. Create a custom instrumentation.ts (or .js) file in your project root directory or inside the src folder
 
-For projects deployed through Vercel (note Step 3 must be completed). 
-```javascript Next.js
-// @ts-ignore
-import tracker from '@middleware.io/agent-apm-nextjs';
+<Warning>The `instrumentation.ts` file must be located at the `root` of your project unless you are using the `src` directory. If you are using the `src` directory, ensure the `instrumentation.ts` file is placed within the `src` directory, alongside the pages and app directories.</Warning>
 
-export function register() {
-    tracker.track({
-        projectName: "<PROJECT-NAME>",
-        serviceName: "<SERVICE-NAME>",
-        accessToken: "<xxxxxxxxxx>",
-        target: "vercel"
-    });
-}
-```
+2. Synchronize your instrumentation filename if you are using the `pagesExtension` config option to add suffixes
+
+<Note> Example: If you use pagesExtension: ['ts'], the instrumentation file should be named `instrumentation.ts`. </Note>
+
+3. Add the below code snippet depending on your current setup. The access token is your account key, which can be found on the Installation page:
+
 For machines with the Middleware Agent (MW Agent) installed.
-```javascript Next.js
-// @ts-ignore
-import tracker from '@middleware.io/agent-apm-nextjs';
 
-export function register() {
-    tracker.track({
-        projectName: "<PROJECT-NAME>",
-        serviceName: "<SERVICE-NAME>",
-        accessToken: "<xxxxxxxxxx>"
-    });
-}
-```
-For machines that do NOT have the Middleware Agent (MW Agent) installed.
-```javascript Next.js
-// @ts-ignore
-import tracker from '@middleware.io/agent-apm-nextjs';
+<Tabs>
+  <Tab title="MW Agent Installed">
+    ```javascript Next.js
+        // @ts-ignore
+        import tracker from '@middleware.io/agent-apm-nextjs';
 
-export function register() {
-    tracker.track({
-        projectName: "<PROJECT-NAME>",
-        serviceName: "<SERVICE-NAME>",
-        accessToken: "<ACCESS-TOKEN>",
-        target: "https://{ACCOUNT-UID}.middleware.io"
-    });
-}
-```
+        export function register() {
+            tracker.track({
+                projectName: "<PROJECT-NAME>",
+                serviceName: "<SERVICE-NAME>",
+                accessToken: "<xxxxxxxxxx>"
+            });
+        }
+    ```
+  </Tab>
+  <Tab title="MW Agent NOT Installed">
+    ```javascript Next.js
+        // @ts-ignore
+        import tracker from '@middleware.io/agent-apm-nextjs';
 
-## Step 6: Enable Logging
-To ingest custom logs, utilize the following functions based on desired log severity levels.
+        export function register() {
+            tracker.track({
+                projectName: "<PROJECT-NAME>",
+                serviceName: "<SERVICE-NAME>",
+                accessToken: "<ACCESS-TOKEN>",
+                target: "https://{ACCOUNT-UID}.middleware.io"
+            });
+        }
+    ```
+  </Tab>
+</Tabs>
+
+### Step 6: Enable Logging
+1. Ingest custom logs by using the following functions based on desired log severity levels:
+
 ```javascript Next.js
 // @ts-ignore
 import tracker from '@middleware.io/agent-apm-nextjs';
@@ -140,14 +159,9 @@ export default async function handler(req, res) {
 }
 ```
 
+### Step 7: Deploy your Project
 
-
-
-
-
-
-
-
+<Note>If you’re looking to set up a sample Next.js project with API routes, you can use the following command in your terminal: `npx create-next-app@latest --example api-routes`</Note>
 
 
 
