@@ -60,7 +60,7 @@
           ]
         },
         {
-          "group": "Application Performance Monitoring (APM)",
+          "group": "APM",
           "pages": [
             "docs/apm-configuration/cloudflare",
             "docs/apm-configuration/go",
@@ -113,7 +113,7 @@
           ]
         },
         {
-          "group": "Real User Monitoring (RUM)",
+          "group": "RUM",
           "pages": [
             "docs/rum/getting-started"
           ]
