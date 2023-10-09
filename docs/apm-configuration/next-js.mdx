@@ -24,35 +24,29 @@ These instructions can also be found on the Installation page in your Middleware
 # Prerequisites
 
 1 Middleware Agent (MW Agent) is installed
-<Note> Installing the MW Agent is not required, however, we strongly recommend installing the MW Agent for ease of installation </Note>
+<Note> Although the Middleware Agent is not required for the Next.js APM, we recommend installing it for improved performance. </Note>
+
 2. Must have `Next.js version 13.4` or newer installed. Check your Next.js version with the following command:
 ```bash Shell
 npx next --version
 ```
-3. `@opentelemetry/api package` installed. If not, run the following command:
+3. `@opentelemetry/api package` version >= 1.3.0 and < 1.5.0:
 ```bash Shell
 npm install @opentelemetry/api”>=1.3.0 <1.5.0”
 ```
-
-4. The `instrumentation.ts` file must be located at the `root` of your project unless you are using the `src` directory. If you are using the `src` directory, ensure the `instrumentation.ts` file is placed within the `src` directory, alongside the pages and app directories.
-
-5. Synchronize your instrumentation filename when using the `pagesExtension` config option to add suffixes
-<Note> Example: If you use pagesExtension: ['ts'], the instrumentation file should be named `instrumentation.ts`. </Note>
-
-6. Integrate your APIs or Serverless functions prior to deployment. Vercel will treat your app as a static website during deployment if you have not integrated any APIs or Serverless functions and the `instrumentation.ts` file will not be invoked, resulting in the absence of traces or logs in your Middleware account. 
 
 # Install
 
 ### Step 1: Install Next.js APM Package
 
-1. Run the following command in your terminal:
+Run the following command in your terminal:
 ```bash Shell 
 npm install @middleware.io/agent-apm-nextjs
 ```
 
 ### Step 2: Modify Config File
 
-1. Add the following code to your next.config.js file:
+Add the following code to your next.config.js file:
 
 ```javascript Next.js
 const nextConfig = {
@@ -72,7 +66,7 @@ module.exports = nextConfig
 
 <Warning>If your application is not running in a container Kubernetes cluster, move to [Step 5](insert step 5 hyperlink)</Warning> 
 
-* For Docker containers, add the following environment variable to your application:
+For Docker containers, add the following environment variable to your application:
 
 ```bash Shell
 MW_AGENT_SERVICE=<DOCKER_BRIDGE_GATEWAY_ADDRESS>
@@ -80,11 +74,11 @@ MW_AGENT_SERVICE=<DOCKER_BRIDGE_GATEWAY_ADDRESS>
 <Note> Docker bridge gateway address is the IP address of the gateway between the Docker host and the bridge network, which is 172.17.0.1 by default. 
 Refer more about Docker bridge networking [here](https://docs.docker.com/network/network-tutorial-standalone/) </Note>
 
-* For Kubernetes clusters, add the following environment variable to your application:
+For Kubernetes clusters, add the following environment variable to your application:
 ```bash Shell
 kubectl get service --all-namespaces | grep mw-service
 ```
-* Add the following environment variable to your application deployment YAML file:
+Add the following environment variable to your application deployment YAML file:
 
 ```bash Shell
 MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
@@ -92,7 +86,7 @@ MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
 
 ### Step 4: Create Instrumentation File
 
-1. Create a custom instrumentation.ts (or .js) file in your project root directory or inside the src folder
+1. Create a custom instrumentation.ts (or .js) file in your project `root` directory or inside the `src` folder
 
 <Warning>The `instrumentation.ts` file must be located at the `root` of your project unless you are using the `src` directory. If you are using the `src` directory, ensure the `instrumentation.ts` file is placed within the `src` directory, alongside the pages and app directories.</Warning>
 
@@ -100,9 +94,7 @@ MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
 
 <Note> Example: If you use pagesExtension: ['ts'], the instrumentation file should be named `instrumentation.ts`. </Note>
 
-3. Add the below code snippet depending on your current setup. The access token is your account key, which can be found on the Installation page:
-
-For machines with the Middleware Agent (MW Agent) installed.
+3. Add the below code snippet depending on your current setup:
 
 <Tabs>
   <Tab title="MW Agent Installed">
