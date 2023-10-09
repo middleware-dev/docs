@@ -183,11 +183,15 @@
         {
           "group": "Settings",
           "pages": [
-            "admin/settings/profile",
-            "admin/settings/role-&-permission",
-            "admin/settings/billing-&-usages",
-            "admin/settings/advanced",
-            "admin/settings/Projects"
+            "admin/settings/advanced_settings",
+            "admin/settings/api_keys",
+            "admin/settings/legal_compliance",
+            "admin/settings/plans_billing",
+            "admin/settings/profile",            
+            "admin/settings/Projects",
+            "admin/settings/teams",
+            "admin/settings/usage",
+            "admin/settings/users"
           ]
         },
         {
