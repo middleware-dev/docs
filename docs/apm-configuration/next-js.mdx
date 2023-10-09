@@ -23,14 +23,14 @@ These instructions can also be found on the Installation page in your Middleware
 
 # Prerequisites
 
-1 Middleware Agent (MW Agent) is installed
+1. [Middleware Agent (MW Agent)](/docs/agent-installation/overview) is installed
 <Note> Although the Middleware Agent is not required for the Next.js APM, we recommend installing it for improved performance. </Note>
 
-2. Must have `Next.js version 13.4` or newer installed. Check your Next.js version with the following command:
+2. `Next.js version 13.4` or newer installed. Check your Next.js version with the following command:
 ```bash Shell
 npx next --version
 ```
-3. `@opentelemetry/api package` version >= 1.3.0 and < 1.5.0:
+3. `@opentelemetry/api` package version >= 1.3.0 and < 1.5.0:
 ```bash Shell
 npm install @opentelemetry/api”>=1.3.0 <1.5.0”
 ```
@@ -64,7 +64,13 @@ module.exports = nextConfig
 ```
 ### Step 3: Container Variables
 
-<Warning>If your application is not running in a container Kubernetes cluster, move to [Step 5](insert step 5 hyperlink)</Warning> 
+<Warning>If your application is not running in a container or Kubernetes cluster, move to [Step 4](#step-4-create-instrumentation-file)</Warning> 
+
+Add the following environment variable to your application deployment YAML file:
+
+```bash Shell
+MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
+```
 
 For Docker containers, add the following environment variable to your application:
 
@@ -77,11 +83,6 @@ Refer more about Docker bridge networking [here](https://docs.docker.com/network
 For Kubernetes clusters, add the following environment variable to your application:
 ```bash Shell
 kubectl get service --all-namespaces | grep mw-service
-```
-Add the following environment variable to your application deployment YAML file:
-
-```bash Shell
-MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
 ```
 
 ### Step 4: Create Instrumentation File
@@ -128,8 +129,8 @@ MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
   </Tab>
 </Tabs>
 
-### Step 6: Enable Logging
-1. Ingest custom logs by using the following functions based on desired log severity levels:
+### Step 5: Enable Logging
+Ingest custom logs by using the following functions based on desired log severity levels:
 
 ```javascript Next.js
 // @ts-ignore
@@ -151,7 +152,7 @@ export default async function handler(req, res) {
 }
 ```
 
-### Step 7: Deploy your Project
+### Step 6: Deploy your Project
 
 <Note>If you’re looking to set up a sample Next.js project with API routes, you can use the following command in your terminal: `npx create-next-app@latest --example api-routes`</Note>
 
