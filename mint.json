@@ -62,17 +62,17 @@
         {
           "group": "APM",
           "pages": [
-            "docs/apm-configuration/cloudflare",
-            "docs/apm-configuration/go",
-            "docs/apm-configuration/java",              
-            "docs/apm-configuration/dotnet",
-            "docs/apm-configuration/next-js", 
-            "docs/apm-configuration/node-js",         
-            "docs/apm-configuration/php",
-            "docs/apm-configuration/python",                        
-            "docs/apm-configuration/ruby",
-            "docs/apm-configuration/vercel-integration",            
-            "docs/apm-configuration/apm-agent-communication"
+            "apm-configuration/cloudflare",
+            "apm-configuration/go",
+            "apm-configuration/java",              
+            "apm-configuration/dotnet",
+            "apm-configuration/next-js", 
+            "apm-configuration/node-js",         
+            "apm-configuration/php",
+            "apm-configuration/python",                        
+            "apm-configuration/ruby",
+            "apm-configuration/vercel-integration",            
+            "apm-configuration/apm-agent-communication"
           ]
         },
         {
@@ -81,32 +81,32 @@
             {
               "group": "Collaboration",
               "pages":[
-                "docs/integrations/jira-integration",
-                "docs/integrations/microsoft-team-integration",
-                "docs/integrations/opsgenie-integration",
-                "docs/integrations/pagerduty-integration",
-                "docs/integrations/slack-integration"             
+                "integrations/jira-integration",
+                "integrations/microsoft-team-integration",
+                "integrations/opsgenie-integration",
+                "integrations/pagerduty-integration",
+                "integrations/slack-integration"             
               ]
             },
             {
               "group": "Cloud",
               "pages":[
-                "docs/integrations/kinesis-streams"
+                "integrations/kinesis-streams"
               ]
             },
             {
               "group": "Databases",
               "pages":[                
-                "docs/integrations/mongodb-integration",
-                "docs/integrations/mysql-integration",
-                "docs/integrations/postgresql-integration"
+                "integrations/mongodb-integration",
+                "integrations/mysql-integration",
+                "integrations/postgresql-integration"
               ]
             },
             {
              "group": "Telemetry",
              "pages": [
-              "docs/integrations/prometheus-integration",
-              "docs/integrations/redis-integration"          
+              "integrations/prometheus-integration",
+              "integrations/redis-integration"          
              ]
             }                    
             
@@ -115,13 +115,13 @@
         {
           "group": "RUM",
           "pages": [
-            "docs/rum/getting-started"
+            "rum/getting-started"
           ]
         },
         {
           "group": "Data Ingestion APIs",
           "pages": [
-            "docs/data-ingestion-apis/opentelemetry-metrics"
+            "data-ingestion-apis/opentelemetry-metrics"
           ]
         },
         {
