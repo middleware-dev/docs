@@ -58,17 +58,17 @@ go get github.com/middleware-labs/golang-apm-gin
 Add the Middleware APM Gin package to the existing import statement from Step 2.
 ```go Golang
 import (
-     track “github.com/middleware-labs/golang-apm/tracker”
-     mwgin “github.com/middleware-labs/golang-apm-gin/gin”
+     track "github.com/middleware-labs/golang-apm/tracker"
+     mwgin "github.com/middleware-labs/golang-apm-gin/gin"
 )
 ```
 Initialize the Middleware APM wherever the Gin package is initialized, typically in the main function. 
 ```go Golang
 r := gin.Default()
 config, _ := track.Track(
-     track.WithConfigTag(“service”,”<apm-service-name>”),
-     track.WithConfigTag(“projectName”,”<apm-project-name>”),
-     track.WithConfigTag(“accessToken”,”<xxxxxxxxxx>”),
+     track.WithConfigTag("service","<apm-service-name>"),
+     track.WithConfigTag("projectName","<apm-project-name>"),
+     track.WithConfigTag("accessToken","<xxxxxxxxxx>"),
 )
 r.Use(mwgin.Middleware(config))
 ```
@@ -84,17 +84,17 @@ go get github.com/middleware-labs/golang-apm-mux
 Add the Middleware APM MUX package to the existing import statement from Step 2.
 ```go Golang
 import (
-     track “github.com/middleware-labs/golang-apm/tracker”
-     mwmux “github.com/middleware-labs/golang-apm-mux/mux”
+     track "github.com/middleware-labs/golang-apm/tracker"
+     mwmux "github.com/middleware-labs/golang-apm-mux/mux"
 )
 ```
 Initialize the Middleware APM wherever the MUX package is initialized, typically in the main function. 
 ```go Golang
 r := mux.newRouter()
 config, _ := track.Track(
-     track.WithConfigTag(“service”, ”<apm-service-name>”),
-     track.WithConfigTag(“projectName”, “<apm-service-name>”),
-     track.WithConfigTag(“accessToken”, “<xxxxxxxxxx>”),
+     track.WithConfigTag("service", "<apm-service-name>"),
+     track.WithConfigTag("projectName", "<apm-service-name>"),
+     track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
 )
 r.Use(mwmux.Middleware.config))
 ```
@@ -110,19 +110,19 @@ go get github.com/middleware-labs/agent-apm-go-chi-legacy
 Add the Middleware APM go-chi package to the existing import statement from Step 2.
 ```go Golang
 import (
-     track “github.com/middleware-labs/golang-apm/tracker”
-     mwchi “github.com/middleware-labs/agent-apm-go-chi-legacy”
+     track "github.com/middleware-labs/golang-apm/tracker"
+     mwchi "github.com/middleware-labs/agent-apm-go-chi-legacy"
 )
 ```
 Initialize the Middleware APM wherever the go-chi package is initialized, typically in the main function. 
 ```go Golang
 config, _ := track.Track(
-     track.WithConfigTag(“service”, ”<apm-service-name>”),
-     track.WithConfigTag(“projectName”, “<apm-service-name>”),
-     track.WithConfigTag(“accessToken”, “<xxxxxxxxxx>”),
+     track.WithConfigTag("service", "<apm-service-name>"),
+     track.WithConfigTag("projectName", "<apm-service-name>"),
+     track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
 )
 r := chi.NewRouter()
-r.Use(mwchi.Middleware(“<my-server>”, mwchi.WithChiRoutes(r)))
+r.Use(mwchi.Middleware("<my-server>", mwchi.WithChiRoutes(r)))
 ```
 
 
@@ -136,19 +136,19 @@ go get github.com/middleware-labs/agent-apm-go-chi
 Add the Middleware APM go-chi package to the existing import statement from Step 2.
 ```go Golang
 import (
-     track “github.com/middleware-labs/golang-apm/tracker”
-     mwchi “github.com/middleware-labs/agent-apm-go-chi”
+     track "github.com/middleware-labs/golang-apm/tracker"
+     mwchi "github.com/middleware-labs/agent-apm-go-chi"
 )
 ```
 Initialize the Middleware APM wherever the go-chi package is initialized, typically in the main function.
 ```go Golang
 config, _ := track.Track(
-     track.WithConfigTag(“service”, ”<apm-service-name>”),
-     track.WithConfigTag(“projectName”, “<apm-service-name>”),
-     track.WithConfigTag(“accessToken”, “<xxxxxxxxxx>”),
+     track.WithConfigTag("service", "<apm-service-name>"),
+     track.WithConfigTag("projectName", "<apm-service-name>"),
+     track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
 )
 r := chi.NewRouter()
-r.Use(mwchi.Middleware(“<my-server>”, mwchi.WithChiRoutes(r)))
+r.Use(mwchi.Middleware("<my-server>", mwchi.WithChiRoutes(r)))
 ```
 
 ### astaxie-beego
@@ -161,16 +161,16 @@ go get github.com/middleware-labs/golang-apm-beego
 Add the Middleware APM astaxie-beego package to the existing import statement from Step 2.
 ```go Golang
 import (
-     track “github.com/middleware-labs/golang-apm/tracker”
-     mw_beego “github.com/middleware-labs/golang-apm-beego/beego”
+     track "github.com/middleware-labs/golang-apm/tracker"
+     mw_beego "github.com/middleware-labs/golang-apm-beego/beego"
 )
 ```
 Initialize the Middleware APM wherever the astaxie-beego package is initialized, typically in the main function. 
 ```go Golang
 config, _ := track.Track(_
-     track.WithConfigTag(“service”, ”<apm-service-name>”),
-     track.WithConfigTag(“projectName”, “<apm-service-name>”),
-     track.WithConfigTag(“accessToken”, “<xxxxxxxxxx>”),
+     track.WithConfigTag("service", "<apm-service-name>"),
+     track.WithConfigTag("projectName", "<apm-service-name>"),
+     track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
 )
 mware := mw_beego.Middleware(config)
 ```
@@ -185,16 +185,16 @@ go get github.com/middleware-labs/golang-apm-beego
 Add the Middleware APM astaxie-beego package to the existing import statement from Step 2.
 ```go Golang
 import (
-     track “github.com/middleware-labs/golang-apm/tracker”
-     mw_beego “github.com/middleware-labs/golang-apm-beego/beego”
+     track "github.com/middleware-labs/golang-apm/tracker"
+     mw_beego "github.com/middleware-labs/golang-apm-beego/beego"
 )
 ```
 Initialize the Middleware APM wherever the astaxie-beego package is initialized, typically in the main function. 
 ```go Golang
 config, _ := track.Track(_
-     track.WithConfigTag(“service”, ”<apm-service-name>”),
-     track.WithConfigTag(“projectName”, “<apm-service-name>”),
-     track.WithConfigTag(“accessToken”, “<xxxxxxxxxx>”),
+     track.WithConfigTag("service", "<apm-service-name>"),
+     track.WithConfigTag("projectName", "<apm-service-name>"),
+     track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
 )
 mware := mw_beego.Middleware(config)
 ```
@@ -210,18 +210,18 @@ go get github.com/middleware-labs/golang-apm-sql
 Add the Middleware APM SQL package to the existing import statement from Step 2.
 ```go Golang
 import (
-     track “github.com/middleware-labs/golang-apm/tracker”
-     mw_sql “github.com/middleware-labs/golang-apm-sql/sql”
+     track "github.com/middleware-labs/golang-apm/tracker"
+     mw_sql "github.com/middleware-labs/golang-apm-sql/sql"
 )
 ```
 Initialize the Middleware APM wherever the SQL package is initialized, typically in the main function. 
 ```go Golang
 config, _ := track.Track(
-     track.WithConfigTag(“service”, ”<apm-service-name>”),
-     track.WithConfigTag(“projectName”, “<apm-service-name>”),
-     track.WithConfigTag(“accessToken”, “<xxxxxxxxxx>”),
+     track.WithConfigTag("service", "<apm-service-name>"),
+     track.WithConfigTag("projectName", "<apm-service-name>"),
+     track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
 )
-db, err := mw_sql.Open(“mysql”, “uname:password@tcp(127.0.0.1:3306)/todo”)
+db, err := mw_sql.Open("mysql", "uname:password@tcp(127.0.0.1:3306)/todo")
 ```
 
 
@@ -235,23 +235,23 @@ go get github.com/middleware-labs/golang-apm-pg
 Add the Middleware APM PG package to the existing import statement from Step 2.
 ```go Golang
 import (
-     “github.com/go-pg/pg/v10”
-          track “github.com/middleware-labs/golang-apm/tracker”
-          mw_pg “github.com/middleware-labs/golang-apm-pg/pg”
+     "github.com/go-pg/pg/v10"
+          track "github.com/middleware-labs/golang-apm/tracker"
+          mw_pg "github.com/middleware-labs/golang-apm-pg/pg"
 )
 ```
 Initialize the Middleware APM wherever the PG package is initialized, typically in the main function.
 ```go Golang
 config, _ := track.Track(_
-     track.WithConfigTag(“service”, ”<apm-service-name>”),
-     track.WithConfigTag(“projectName”, “<apm-service-name>”),
-     track.WithConfigTag(“accessToken”, “<xxxxxxxxxx>”),
+     track.WithConfigTag("service", "<apm-service-name>"),
+     track.WithConfigTag("projectName", "<apm-service-name>"),
+     track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
 )
 db := pg.Connect(&pg.Options{
-               Addr:          “:5432”,
-               User:          “postgres”,
-               Password:  “postgres”,
-               Database:  “dbname”,
+               Addr:      ":5432",
+               User:      "postgres",
+               Password:  "postgres",
+               Database:  "dbname",
           })
 mw_pg.AddQueryHook(db)
 ```
@@ -266,18 +266,18 @@ go get github.com/middleware-labs/golang-apm-sql
 Add the Middleware APM SQL package to the existing import statement from Step 2.
 ```go Golang
 import (
-     track “github.com/middleware-labs/golang-apm/tracker”
-     mw_sql “github.com/middleware-labs/golang-apm-sql/sql”
+     track "github.com/middleware-labs/golang-apm/tracker"
+     mw_sql "github.com/middleware-labs/golang-apm-sql/sql"
 )
 ```
 Initialize the Middleware APM inside the main function. 
 ```go Golang
 config, _ := track.Track(_
-     track.WithConfigTag(“service”, ”<apm-service-name>”),
-     track.WithConfigTag(“projectName”, “<apm-service-name>”),
-     track.WithConfigTag(“accessToken”, “<xxxxxxxxxx>”),
+     track.WithConfigTag("service", "<apm-service-name>"),
+     track.WithConfigTag("projectName", "<apm-service-name>"),
+     track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
 )
-db, err := mw_sql.Open(driverName, dataSourceName, mw_sql.WithDBName(dbname), mw_sql.WithAttributes(tracker.String(“db.system”,”mysql”)))
+db, err := mw_sql.Open(driverName, dataSourceName, mw_sql.WithDBName(dbname), mw_sql.WithAttributes(tracker.String("db.system","mysql")))
 ```
 
 ### GORM 2
@@ -290,24 +290,24 @@ go get github.com/middleware-labs/go-agent-gorm
 Add the Middleware APM GORM package to the existing import statement from Step 2.
 ```go Golang
 import (
-     “gorm.io/gorm”
-     “gorm.io/driver/mysql”
-          track “github.com/middleware-labs/golang-apm/tracker”
-          mw_gorm “github.com/middleware-labs/go-agent-gorm/gorm”
+     "gorm.io/gorm"
+     "gorm.io/driver/mysql"
+          track "github.com/middleware-labs/golang-apm/tracker"
+          mw_gorm "github.com/middleware-labs/go-agent-gorm/gorm"
 )
 ```
 Initialize the Middleware APM inside the main function. 
 ```go Golang
 config, _ := track.Track(_
-     track.WithConfigTag(“service”, ”<apm-service-name>”),
-     track.WithConfigTag(“projectName”, “<apm-service-name>”),
-     track.WithConfigTag(“accessToken”, “<xxxxxxxxxx>”),
+     track.WithConfigTag("service", "<apm-service-name>"),
+     track.WithConfigTag("projectName", "<apm-service-name>"),
+     track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
 )
-db, err := gorm.Open(mysql.Open(“username:password@tcp(127.0.0.1:3306)/dbname”), &gorm.Config{})
+db, err := gorm.Open(mysql.Open("username:password@tcp(127.0.0.1:3306)/dbname"), &gorm.Config{})
 if err != nil {
      panic(err)
 }
-if err := db.Use(mw_gorm.NewPlugin(mw.gorm.WithDBName(“dbname”), mw_gorm.WithAttributes(track.String(“db.system”, “mysql”)))); err != nil {
+if err := db.Use(mw_gorm.NewPlugin(mw.gorm.WithDBName("dbname"), mw_gorm.WithAttributes(track.String("db.system", "mysql")))); err != nil {
      panic(err)
 }
 ```
@@ -315,7 +315,7 @@ if err := db.Use(mw_gorm.NewPlugin(mw.gorm.WithDBName(“dbname”), mw_gorm.Wit
 Then use db.WithContext(ctx) to propagate the active span.
 ```go Golang
 var num int
-if err := db.WithContext(ctx).Raw(“SELECT 42”).Scan(&num).Error; err != nil {
+if err := db.WithContext(ctx).Raw("SELECT 42").Scan(&num).Error; err != nil {
      panic(err)
 }
 ```
@@ -331,18 +331,18 @@ go get github.com/middleware-labs/golang-apm-mongo
 Add the Middleware APM Mongo package to the existing import statement from Step 2.
 ```go Golang
 import (
-     “go.mongodb.org/mongo-driver/mongo/options”
+     "go.mongodb.org/mongo-driver/mongo/options"
 
-     track “github.com/middleware-labs/golang-apm/tracker”
-     mw_mongo “github.com/middleware-labs/golang-apm-mongo/mongo”
+     track "github.com/middleware-labs/golang-apm/tracker"
+     mw_mongo "github.com/middleware-labs/golang-apm-mongo/mongo"
 )
 ```
 Initialize the Middleware APM inside the main function. 
 ```go Golang
 config, _ := track.Track(_
-     track.WithConfigTag(“service”, ”<apm-service-name>”),
-     track.WithConfigTag(“projectName”, “<apm-service-name>”),
-     track.WithConfigTag(“accessToken”, “<xxxxxxxxxx>”),
+     track.WithConfigTag("service", "<apm-service-name>"),
+     track.WithConfigTag("projectName", "<apm-service-name>"),
+     track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
 )
 opts := options.Client()
 opts.Monitor = mw_mongo.NewMonitor()
@@ -358,16 +358,16 @@ go get github.com/middleware-labs/golang-apm-grpc
 Add the Middleware APM astaxie-beego package to the existing import statement from Step 2.
 ```go Golang
 import (
-     track “github.com/middleware-labs/golang-apm/tracker”
-     mw_grpc “github.com/middleware-labs/golang-apm-grpc/grpc”
+     track "github.com/middleware-labs/golang-apm/tracker"
+     mw_grpc "github.com/middleware-labs/golang-apm-grpc/grpc"
 )
 ```
 Initialize the Middleware APM wherever the astaxie-beego package is initialized, typically in the main function. 
 ```go Golang
 config, _ := track.Track(_
-     track.WithConfigTag(“service”, ”<apm-service-name>”),
-     track.WithConfigTag(“projectName”, “<apm-service-name>”),
-     track.WithConfigTag(“accessToken”, “<xxxxxxxxxx>”),
+     track.WithConfigTag("service", "<apm-service-name>"),
+     track.WithConfigTag("projectName", "<apm-service-name>"),
+     track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
 )
 mware := mwbeego.MiddleWare(config.ServiceName)
 ```
@@ -417,7 +417,7 @@ Application Profiling is auto-configured upon completing Step 2.
 Use the track.RecordError(ctx,error) method to record a stack trace when an error occurs. See an example of this method below. 
 
 ```go Golang
-app.get('/hello', (req, res) => {
+app.get("/hello", (req, res) => {
     ctx := req.Context()
     try {
         throw ("error");
