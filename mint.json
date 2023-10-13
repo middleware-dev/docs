@@ -134,8 +134,7 @@
         },
         {
           "group": "APM",
-          "pages": [
-            "workflow/apm/apm-dashboard-overview",
+          "pages": [    
             "workflow/apm/apm-dashboard",
             "workflow/apm/continuous-profiling",
             "workflow/apm/error-traces",            
@@ -146,7 +145,6 @@
         {
           "group": "Dashboard Builder",
           "pages": [
-            "workflow/unified-dashboard/dashboard-overview",
             "workflow/custom-dashboard/build-custom-dashboard",
             {
               "group": "Unified View",
@@ -161,7 +159,7 @@
         },       
         {
           "group": "Infrastructure Monitoring",
-          "pages": [            
+          "pages": [          
             "workflow/infrastructure-monitoring/container-monitoring",
             "workflow/infrastructure-monitoring/host",
             "workflow/infrastructure-monitoring/kubernetes-monitoring",
@@ -171,7 +169,6 @@
         {
           "group": "Log Monitoring",
           "pages": [
-            "workflow/log-monitoring/log-monitoring-overview",
             "workflow/log-monitoring/logs",
             "workflow/log-monitoring/log-custom-metrics",
             "workflow/log-monitoring/log-transaction"
@@ -180,7 +177,6 @@
         {
           "group": "Synthetic Monitoring",
           "pages": [
-            "workflow/synthetic-monitoring/synthetic-monitoring-dashboard",
             "workflow/synthetic-monitoring/synthetic-monitoring",
             "workflow/synthetic-monitoring/multistep-synthetic-monitoring",
             "workflow/synthetic-monitoring/ip-address"
@@ -189,17 +185,16 @@
         {
           "group": "Settings",
           "pages": [
-            "admin/settings/settings_overview",
-            "admin/settings/advanced_settings",
+            "admin/settings/profile",  
+            "admin/settings/users",
+            "admin/settings/teams",
+            "admin/settings/role-&-permission",
+            "admin/settings/Projects",
+            "admin/settings/plans_billing",
+            "admin/settings/usage",
             "admin/settings/api_keys",
             "admin/settings/legal_compliance",
-            "admin/settings/plans_billing",
-            "admin/settings/profile",            
-            "admin/settings/Projects",
-            "admin/settings/role-&-permission",
-            "admin/settings/teams",
-            "admin/settings/usage",
-            "admin/settings/users"
+            "admin/settings/advanced_settings"
           ]
         },
         {

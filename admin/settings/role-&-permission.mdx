@@ -1,18 +1,63 @@
 ---
-title: Role & Permissions
+title: Roles & Permissions
 ---
 
-You can view the list of roles in the Roles & Permissions section under the setting module. With this feature, you can give limited access to your users for the platform so users can have access to their respective modules and data.\
-There will be 2 default roles in your account (Admin and user role).
+# Overview
 
-Once role is created , you can see detailed permission and edit it.
+The Roles & Permissions section is where you manage and view your team's access to Middleware. You can add new roles to your organization, edit existing role permissions, and view the members that have access to each respective role.
 
-<Warning> The default role can't be deleted and the Admin role can't be edited. </Warning>
+# Create New Role
 
-![](/images/settings/r1.png)
+### Step 1: Navigate to Settings
 
-![](/images/settings/r2.png)
+### Step 2: Select Roles & Permissions
 
-You can create more roles by clicking on "Create new role" and assign the permission to specific role.
+### Step 3: Click Create New Role
 
-![](/images/settings/r3.png)
+![](https://lh5.googleusercontent.com/A-uzVDTO8dQDZELluFI8WQ3gnYPxA_jR9An0YWx_AsqVG8mqA6n18OaHl9hZw9vNgR1Z24R58ZwWZjYi3KFT5VvE3cqdA5tcglB3DUsL_qXd9ytv2w-8LzfkSSsYRmnGj-Glv9NcGNNu_cZOfYEeloI)
+
+### Step 4: Name the Role
+
+### Step 5: Enable New Permissions
+
+### Step 6: Save Settings
+
+![](https://lh6.googleusercontent.com/gq9PrLvxw46VErn5WSgfXP_VbXB8GX3z3nop-y62kZXkE7GhEX1-fr_wmZP9NupfCC5iMgdlc0utQ20Mw5i_CUtuLmvCOsNx-kymDVYEFQ-j1W5THgtJsK7Y1PiKFpkFdUr_ncpiblSt9TpfCts4d3Q)
+
+# Edit Existing Permissions
+
+### Step 1: Select Ellipses
+
+![](https://lh3.googleusercontent.com/xIh9wqBdyKjRLGrSGp8vH-gRW2WLUu0iIhaUp23U5crWWaL1gXZpea_1D6tJuimMAfEiL2zORv_h7PUXn2yZYWQ3L7roTN7w7qvQhLx48W1Qex39BnsG594v-ZeK70jznw35xElFO7VrLYX50hWno1A)
+
+### Step 2: Click Edit
+
+![](https://lh3.googleusercontent.com/7cy5oGaIcmIxLi8W3Rr3VdQEqQIZ1mhbbO31tFWifAVd2xDScaR9A67isaSJ5uVnXDWe7d7bsf_nDrJ9jidAGSWc9NGLbzWwhCMvfeLsDuIUtTnL0kBzrhxtnNvGrfgIz_PDjmjX2PLvp3r5rRoltas)
+
+### Step 3: Edit Permissions
+
+### Step 4: Save Settings
+
+![](https://lh6.googleusercontent.com/zI1rCa9jBlDOb9a29ffKDSBKT6TGhhZ7RQaF8TMgH9NaUPXTQ8iyjpIgp9QPrkAoZZHYyXLIY-cgnutuNQMl71kCfsSzt-n-1-gT6-9FPGSn-xklpB5S5H2ByjJz3v9p4KxlgnGGmFF2vceuVAW33rg)
+
+# Admin vs User Role
+
+Admin and Users are the default roles available to Middleware users upon account creation.
+
+<Note> When you add a new team member from the [Users](/admin/settings/users#overview) section to your Organization, you can specify their role as either Admin or User</Note>
+
+
+| **Permission**     | **Admin**    | **User** |
+| :-----------------: | :----------: | :------: |
+| **Alert** | `Create New Alerts` `View Alert History` | `View Alert History` |
+| **API Keys** | `Access To View Api Keys` `Create Api Keys` `Edit Remove Api Key` | `Access To View Api Keys` |
+| **APM** | `APM Dashboard` `Projects` `Traces`| `APM Dashboard` `Projects` `Traces` |
+| **Audit Logs** | `View Audit Logs` `Export Audit Logs` | `View Audit Logs` |
+| **Billing** | `Billing And Usages` | ✖️ |
+| **Infrastructure** | `Host List` `Container` `Process` | `Host List` `Container` `Process` | 
+| **Installation** | `Access To View Installation Script` | `Access To View Installation Script` |
+| **Logs** | `Logs` | `Logs` | 
+| **Preference** | `Setup Notification Preference` `Setup Timezone` | ✖️ | 
+| **Teams** | `Access To View Teams` `Create Teams` `Edit Remove Teams` | `Access To View Teams` |
+| **Unified Dashboard** | `Unified View` | `Unified View` | 
+| **User Management** | `Access To Invite User` `Access To View Users` | `Access To View Users` |

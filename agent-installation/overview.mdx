@@ -1,13 +1,18 @@
-## Installing the Middleware Agent
+---
+title: Overview
+---
 
-This guide provides an overview of the Middleware Agent and instructions for its installation on [Kubernetes](/agent-installation/kubernetes), [Linux](/agent-installation/linux), and [Docker](/agent-installation/docker), and [Windows](/agent-installation/windows).
+This guide provides an overview of the Middleware Agent and instructions for its installation on Kubernetes, Linux, and Docker, and Windows.
+
 The Middleware Agent (MW Agent) is observability software that runs on your host infrastructure collecting events and metrics to send to Middleware for you to analyze and monitor. The MW Agent collects data at the system and process levels in real-time to provide detailed insights into host performance and behavior. 
 
-
-## Benefits
+# Benefits
 Host agents are a secure and efficient method of data collection. They operate within the trusted boundaries of the host system and perform with minimal impact on system resources.
 
 Beyond security, host agents also offer flexibility in configuration, customization, and integration with other tools and frameworks. This allows host agents to collect data from all supported integrations, including those lacking comprehensive APIs or standard interfaces. 
 
-## Is the MW Agent required?
-The MW Agent needs to be installed to send data from any of the infrastructure or application monitoring systems. Data can be forwarded to Middleware through the <a href="https://docs.middleware.io/docs/data-ingestion-apis/opentelemetry-metrics"> Data Ingestion APIs </a>, however we strongly recommend installing the MW Agent to get the most value from Middleware.
+# FAQ
+
+<Accordion title="Is the MW Agent required?">
+  The MW Agent needs to be installed to send data from any of the infrastructure or application monitoring systems. Data can be forwarded to Middleware through the <a href="https://docs.middleware.io/docs/data-ingestion-apis/opentelemetry-metrics"> Data Ingestion APIs </a>, however we strongly recommend installing the MW Agent to get the most value from Middleware.
+</Accordion>
