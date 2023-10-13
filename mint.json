@@ -101,14 +101,14 @@
               "pages":[                
                 "integrations/mongodb-integration",
                 "integrations/mysql-integration",
-                "integrations/postgresql-integration"
+                "integrations/postgresql-integration",
+                "integrations/redis-integration" 
               ]
             },
             {
              "group": "Telemetry",
              "pages": [
-              "integrations/prometheus-integration",
-              "integrations/redis-integration"          
+              "integrations/prometheus-integration"
              ]
             }                    
             
