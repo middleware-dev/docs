@@ -108,7 +108,8 @@
             {
              "group": "Telemetry",
              "pages": [
-              "integrations/prometheus-integration"
+              "integrations/prometheus-integration",
+              "integrations/prometheus-integration-k8s"
              ]
             }                    
             
