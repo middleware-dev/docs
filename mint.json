@@ -31,183 +31,149 @@
       "measurementId": "G-2KBHR7YB2G"
     }
   },
-  "tabs": [
-    {
-      "name": "Workflows",
-      "url": "workflow"
-    },
-    {
-      "name": "Administration",
-      "url": "admin"
-    }
-  ],
-  "primaryTab": {
-    "name": "Getting Started"
-  },
   "navigation": [
     {
       "group": "Middleware Docs",
       "pages": [
-        "quickstart","workflow/workflow-welcome", "admin/admin-welcome",
-        {
-          "group": "Middleware Agent",
-          "pages": [
-            "agent-installation/overview",
-            "agent-installation/docker",
-            "agent-installation/kubernetes",
-            "agent-installation/linux",            
-            "agent-installation/windows"
-          ]
-        },
-        {
-          "group": "APM",
-          "pages": [
-            "apm-configuration/apm_overview",
-            "apm-configuration/cloudflare",
-            "apm-configuration/go",
-            "apm-configuration/java",              
-            "apm-configuration/dotnet",
-            "apm-configuration/next-js", 
-            "apm-configuration/node-js",         
-            "apm-configuration/php",
-            "apm-configuration/python",                        
-            "apm-configuration/ruby",
-            "apm-configuration/vercel-integration",            
-            "apm-configuration/apm-agent-communication"
-          ]
-        },
-        {
-          "group": "Integrations",
-          "pages": [ 
-            "integrations/integrations_overview",
-            {
-              "group": "Collaboration",
-              "pages":[
-                "integrations/jira-integration",
-                "integrations/microsoft-team-integration",
-                "integrations/opsgenie-integration",
-                "integrations/pagerduty-integration",
-                "integrations/slack-integration"             
-              ]
-            },
-            {
-              "group": "Cloud",
-              "pages":[
-                "integrations/kinesis-streams"
-              ]
-            },
-            {
-              "group": "Databases",
-              "pages":[                
-                "integrations/mongodb-integration",
-                "integrations/mysql-integration",
-                "integrations/postgresql-integration",
-                "integrations/redis-integration" 
-              ]
-            },
-            {
-             "group": "Telemetry",
-             "pages": [
-              "integrations/prometheus-integration"
-             ]
-            }                    
-            
-          ]
-        },
-        {
-          "group": "RUM",
-          "pages": [
-            "rum/getting-started"
-          ]
-        },
-        {
-          "group": "Data Ingestion APIs",
-          "pages": [
-            "data-ingestion-apis/opentelemetry-metrics"
-          ]
-        },
-        {
-          "group": "Alerts",
-          "pages": [
-            "workflow/alerting/setup-alert"
-          ]
-        },
-        {
-          "group": "APM",
-          "pages": [    
-            "workflow/apm/apm-dashboard",
-            "workflow/apm/continuous-profiling",
-            "workflow/apm/error-traces",            
-            "workflow/apm/service-monitoring",
-            "workflow/apm/traces"                        
-          ]
-        }, 
-        {
-          "group": "Dashboard Builder",
-          "pages": [
-            "workflow/custom-dashboard/build-custom-dashboard",
-            {
-              "group": "Unified View",
-              "pages": [
-                "workflow/unified-dashboard/unified-view",
-                "workflow/unified-dashboard/logs-in-unified-dashboard",
-                "workflow/unified-dashboard/metrics-in-unified-dashboard",                
-                "workflow/unified-dashboard/traces-in-unified-dashboard"
-              ]
-            }
-          ]
-        },       
-        {
-          "group": "Infrastructure Monitoring",
-          "pages": [          
-            "workflow/infrastructure-monitoring/container-monitoring",
-            "workflow/infrastructure-monitoring/host",
-            "workflow/infrastructure-monitoring/kubernetes-monitoring",
-            "workflow/infrastructure-monitoring/processes"
-          ]
-        },
-        {
-          "group": "Log Monitoring",
-          "pages": [
-            "workflow/log-monitoring/logs",
-            "workflow/log-monitoring/log-custom-metrics",
-            "workflow/log-monitoring/log-transaction"
-          ]
-        },
-        {
-          "group": "Synthetic Monitoring",
-          "pages": [
-            "workflow/synthetic-monitoring/synthetic-monitoring",
-            "workflow/synthetic-monitoring/multistep-synthetic-monitoring",
-            "workflow/synthetic-monitoring/ip-address"
-          ]
-        },
-        {
-          "group": "Settings",
-          "pages": [
-            "admin/settings/profile",  
-            "admin/settings/users",
-            "admin/settings/teams",
-            "admin/settings/role-&-permission",
-            "admin/settings/Projects",
-            "admin/settings/plans_billing",
-            "admin/settings/usage",
-            "admin/settings/api_keys",
-            "admin/settings/legal_compliance",
-            "admin/settings/advanced_settings"
-          ]
-        },
-        {
-          "group": "FAQ",
-          "pages": [
-            "admin/faq/free-forever",
-            "admin/faq/usage-based-charges",
-            "admin/faq/logs",
-            "admin/faq/pricing",
-            "admin/faq/data",
-            "admin/faq/other"
-          ]
-        }
+        "quickstart"
+      ]
+    },
+    {
+      "group": "Installing the Middleware Agent",
+      "pages": [
+        "docs/agent-installation/overview",
+        "docs/agent-installation/kubernetes",
+         "docs/agent-installation/linux",
+        "docs/agent-installation/docker",
+         "docs/agent-installation/windows"
+        
+       
+      ]
+    },
+    {
+      "group": "Configure Application Performance Monitoring (APM)",
+      "pages": [
+        "docs/apm-configuration/node-js",
+        "docs/apm-configuration/go",
+        "docs/apm-configuration/python",
+        "docs/apm-configuration/java",
+        "docs/apm-configuration/php",
+        "docs/apm-configuration/dotnet",
+        "docs/apm-configuration/ruby",
+        "docs/apm-configuration/next-js",
+        "docs/apm-configuration/next-js/vercel-integration",
+        "docs/apm-configuration/cloudflare",
+        "docs/apm-configuration/apm-agent-communication"
+        
+
+       
+        
+       
+      ]
+    },
+    {
+      "group": "Configure Real User Monitoring (RUM)",
+      "pages": [
+        "docs/rum/getting-started"
+      ]
+    },
+    {
+      "group": "Data Ingestion APIs",
+      "pages": [
+        "docs/data-ingestion-apis/opentelemetry-metrics"
+      ]
+    },
+    {
+      "group": "Unified Dashboard",
+      "pages": [
+        "docs/unified-dashboard/unified-view",
+        "docs/unified-dashboard/metrics-in-unified-dashboard",
+        "docs/unified-dashboard/logs-in-unified-dashboard",
+        "docs/unified-dashboard/traces-in-unified-dashboard"
+      ]
+    },
+    {
+      "group": "Infrastructure Monitoring",
+      "pages": [
+        "docs/infrastructure-monitoring/host",
+        "docs/infrastructure-monitoring/container-monitoring",
+        "docs/infrastructure-monitoring/kubernetes-monitoring",
+        "docs/infrastructure-monitoring/processes"
+      ]
+    },
+    {
+      "group": "APM",
+      "pages": [
+        "docs/apm/apm-dashboard",
+        "docs/apm/service-monitoring",
+        "docs/apm/traces",
+        "docs/apm/error-traces",
+        "docs/apm/continuous-profiling"
+      ]
+    },
+    {
+      "group": "Log Monitoring",
+      "pages": [
+        "docs/log-monitoring/logs",
+        "docs/log-monitoring/log-transaction",
+        "docs/log-monitoring/log-custom-metrics"
+      ]
+    },
+    {
+      "group": "Synthetic Monitoring",
+      "pages": [
+        "docs/synthetic-monitoring/synthetic-monitoring",
+        "docs/synthetic-monitoring/multistep-synthetic-monitoring",
+        "docs/synthetic-monitoring/ip-address"
+      ]
+    },
+    {
+      "group": "Custom Dashboard Builder",
+      "pages": [
+        "docs/custom-dashboard/build-custom-dashboard"
+      ]
+    },
+    {
+      "group": "Alerts",
+      "pages": [
+        "docs/alerting/setup-alert"
+      ]
+    },
+    {
+      "group": "Integration",
+      "pages": [
+        "docs/integrations/slack-integration",
+        "docs/integrations/microsoft-team-integration",
+        "docs/integrations/jira-integration",
+        "docs/integrations/pagerduty-integration",
+        "docs/integrations/opsgenie-integration",
+        "docs/integrations/postgresql-integration",
+        "docs/integrations/mongodb-integration",
+        "docs/integrations/mysql-integration",
+        "docs/integrations/redis-integration",
+        "docs/integrations/prometheus-integration",
+        "docs/aws/kinesis-streams"
+      ]
+    },
+    {
+      "group": "Settings",
+      "pages": [
+        "docs/settings/profile",
+        "docs/settings/role-&-permission",
+        "docs/settings/billing-&-usages",
+        "docs/settings/advanced",
+        "docs/settings/Projects"
+      ]
+    },
+    {
+      "group": "FAQ",
+      "pages": [
+        "docs/faq/free-forever",
+        "docs/faq/usage-based-charges",
+        "docs/faq/logs",
+        "docs/faq/pricing",
+        "docs/faq/data",
+        "docs/faq/other"
       ]
     }
   ],
@@ -215,7 +181,6 @@
     "website": "https://www.middleware.io",
     "linkedin": "https://www.linkedin.com/company/middleware-labs/",
     "facebook": "https://www.facebook.com/middlewarelabs",
-    "twitter": "https://twitter.com/Middleware_Labs",
-    "github": "https://github.com/middleware-labs"
+    "twitter": "https://twitter.com/Middleware_Labs"
   }
 }
