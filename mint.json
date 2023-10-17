@@ -217,5 +217,8 @@
     "facebook": "https://www.facebook.com/middlewarelabs",
     "twitter": "https://twitter.com/Middleware_Labs",
     "github": "https://github.com/middleware-labs"
+  },
+  "feedback": {
+    "thumbsRating": true
   }
 }
