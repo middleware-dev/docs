@@ -178,8 +178,7 @@
           "group": "Synthetic Monitoring",
           "pages": [
             "workflow/synthetic-monitoring/synthetic-monitoring",
-            "workflow/synthetic-monitoring/multistep-synthetic-monitoring",
-            "workflow/synthetic-monitoring/ip-address"
+            "workflow/synthetic-monitoring/multistep-synthetic-monitoring"
           ]
         },
         {
