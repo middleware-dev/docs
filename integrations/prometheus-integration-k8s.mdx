@@ -5,7 +5,9 @@ Retrieve metrics from a Prometheus endpoint inside K8s.
 
 ## Add Middleware Prometheus Integration as a sidecar container
 
-If you want to scrape prometheus endpoint via Middleware Agent, You will have to add this `sidecar container` in your pod.
+<Note> We are currently updating this feature. If you have any issues configuring this integration, please contast us at support[at]middleware.io </Note>
+
+To scrape the prometheus endpoint via Middleware Agent, You will have to add this `sidecar container` in your pod:
 
 ```yaml
 - name: middleware-prometheus-agent
