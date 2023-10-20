@@ -37,60 +37,60 @@ POST https://<UID>.middleware.io/v1/metrics
 View the following example of a curl request sending a custom metric, swap-usage, to Middleware.
 
 ```shell Shell
-curl -X POST “https://demo.middleware.io/v1/metrics” \
--H “Accept: application.json” \
--H “Content-type: application.json” \
+curl -X POST "https://demo.middleware.io/v1/metrics" \
+-H "Accept: application.json" \
+-H "Content-type: application.json" \
 -d @ << EOF
 {
-   “resource_metrics”: [
-      {
-         “resource”: {
-            “attributes”: [
-               {
-                  “key”: “mw.account_key”,
-                  “value”: {
-                     “string_value”: “xxxxxxxxxx”
-                  }
-               },
-               {
-                  “key”: “mw.resource_type”,
-                  “value”: {
-                     “string_value”: “custom”
-                  }
-               }
-            ]
-         },
-         “scope_metrics”: [
-            {
-               “metrics”: [
-                  {
-                     “name”: “swap-usage”,
-                     “description”: “SWAP Usage”,
-                     “unit”: “bytes”,
-                     “gauge:” {
-                        “data_points”: [
-                           {
-                              “attributes”: [
-                                 {
-                                    “key”: “device”,
-                                    “value”: {
-                                       “string_value”: “nvme0n1p4”
+    "resource_metrics": [
+        {
+            "resource": {
+                "attributes": [
+                    {
+                        "key": "mw.account_key",
+                        "value": {
+                            "string_value": "xxxxxxxxxx"
+                        }
+                    },
+                    {
+                        "key": "mw.resource_type",
+                        "value": {
+                            "string_value": "custom"
+                        }
+                    }
+                ]
+            },
+            "scope_metrics": [
+                {
+                    "metrics": [
+                        {
+                            "name": "swap-usage",
+                            "description": "SWAP Usage",
+                            "unit": "bytes",
+                            "gauge": {
+                                "data_points": [
+                                    {
+                                        "attributes": [
+                                            {
+                                                "key": "device",
+                                                "value": {
+                                                    "string_value": "nvme0n1p4"
+                                                }
+                                            }
+                                        ],
+                                        "start_time_unix_nano": 1673435153000000000,
+                                        "time_unix_nano": 1673435153000000000,
+                                        "asInt": 400500678
                                     }
-                                 }
-                              ],
-                              “start_time_unix_nano”: 1673435153000000000,
-                              “time_unix_nano”: 1673435153000000000,
-                              “asInt”: 400500678
-                           }
-                        ]
-                     }
-                  }
-               ]
-            }
-         ]
-      }
-   ]                            
-} 
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
 EOF  
 ```
 
@@ -144,53 +144,53 @@ POST https://<UID>.middleware.io:443/v1/logs
 
 View the following example of a curl request sending custom logs to Middleware.
 ```shell Shell
-curl -X POST “https://demo.middleware.io:443/v1/logs” \
--H “Accept: application/json” \
--H “Content-type: application/json” \
+curl -X POST "https://demo.middleware.io:443/v1/logs" \
+-H "Accept: application/json" \
+-H "Content-type: application/json" \
 -d @- << EOF
 {
-   “resource_logs”: [
+   "resource_logs": [
       {
-         “resource”: {
-            “attributes”: [
+         "resource": {
+            "attributes": [
                {
-                  “key”: “mw.account_key”,
-                  “value”: {
-                     “string_value”: “xxxxxxxxxx”
+                  "key": "mw.account_key",
+                  "value": {
+                     "string_value": "xxxxxxxxxx"
                   }
                },
                {
-                  “key”: “mw.resource_type”,
-                  “value”: {
-                     “string_value”: “custom”
+                  "key": "mw.resource_type",
+                  "value": {
+                     "string_value": "custom"
                   }
                },
                {
-                  “key”: “service_name”,
-                  “value”: {
-                     “string_value”: “nginx-123”
+                  "key": "service_name",
+                  "value": {
+                     "string_value": "nginx-123"
                   }
                }
             ]
          },
-         “scope_logs”: [
+         "scope_logs": [
             {
-               “log_records”: [
+               "log_records": [
                   {
-                     “severity_text”: “WARN”,
-                     “body”: {
-                        “string_value”: “upstream server not accepting request”
+                     "severity_text": "WARN",
+                     "body": {
+                        "string_value": "upstream server not accepting request"
                      },
-                     “severity_number”: “11”,
-                     “attributes”: [
+                     "severity_number": "11",
+                     "attributes": [
                         {
-                           “key”: “server”,
-                           “value”: {
-                              “string_value”: “nginx”
+                           "key": "server",
+                           "value": {
+                              "string_value": "nginx"
                            }
                         }
                      ],
-                     “time_unix_nano”: “1694030143000”
+                     "time_unix_nano": "1694030143000"
                   }
                ]
             }
