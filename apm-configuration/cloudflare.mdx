@@ -22,24 +22,25 @@ npm i @middleware.io/agent-apm-worker
 
 ## Step 2: Import Tracker
 ```javascript JavaScript
-import * as tracker from "@middleware.io/agent-apm-worker";
+import { init,track } from '@middleware.io/agent-apm-worker';
 ```
 
 ## Step 3: Initialize Tracker
 
 The access token is your account key, which can be found on the Installation page. To watch instrumented logs in the terminal, set consoleLogEnabled: true.
 ```javascript JavaScript
-tracker.init({
-    projectName:"{APM-PROJECT-NAME}",
-    serviceName:"{APM-SERVICE-NAME}",
-    accountKey:"{ACCOUNT_KEY}",
-    target:"https://{ACCOUNT-UID}.middleware.io"
-})
+init({
+   projectName:"{APM-PROJECT-NAME}",
+   serviceName:"{APM-SERVICE-NAME}",
+   accountKey:"{ACCOUNT_KEY}",
+   target:"https://{ACCOUNT-UID}.middleware.io",
+   consoleLogEnabled:false,
+});
 ```
 
 ## Step 4: Track Requests with the Middleware SDK
 ```javascript JavaScript
-const sdk = tracker.track(request, ctx);
+const sdk = track(request, ctx);
 sdk.sendResponse(response);
 ```  
 
