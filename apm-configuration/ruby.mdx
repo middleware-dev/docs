@@ -21,21 +21,48 @@ This guide walks you through setting up Application Performance Monitoring (APM)
 ruby --version
 ```
 
-## Step 1: Add Gem Packages
+## Step 1: Add Gems to Your Gemfile
 
-```ruby Ruby
-gem 'opentelemetry-sdk'
-gem 'opentelemetry-exporter-otlp'
-gem 'opentelemetry-instrumentation-all'
-gem 'pyroscope'
-gem 'middleware_apm', '~> 1.0.0'
-```
+<Tabs>
+  <Tab title="Linux Gemfile">
+    ```ruby Ruby
+       gem 'opentelemetry-sdk'
+       gem 'opentelemetry-exporter-otlp'
+       gem 'opentelemetry-instrumentation-all'
+       gem 'pyroscope'
+       gem 'middleware_apm_linux', '~> 2.0.0'
+    ```
+  </Tab>
+  <Tab title="Windows Gemfile">
+    ```ruby Ruby
+        gem 'opentelemetry-sdk'
+        gem 'opentelemetry-exporter-otlp'
+        gem 'opentelemetry-instrumentation-all'
+        gem 'pyroscope'
+        gem 'middleware_apm_windows', '~> 2.0.0'
+    ```
+  </Tab>
+</Tabs>
+
+
+
 
 ## Step 2: Import Tracker
-```ruby Ruby
-require 'middleware/ruby_gem'
-Middleware::RubyGem.init 
-```
+
+<Tabs>
+  <Tab title="Linux Environment">
+    ```ruby Ruby
+        require 'middleware/ruby_gem_linux'
+        Middleware::RubyGem.init
+    ```
+  </Tab>
+  <Tab title="Windows Environment">
+    ```ruby Ruby
+        require 'middleware/ruby_gem_windows'
+        Middleware::RubyGem.init
+    ```
+  </Tab>
+</Tabs>
 
 ## Step 3: Capture Application Data
 
@@ -50,3 +77,4 @@ MW_API_KEY=<Your API Key> \
 ### Profiling
 Application Profiling is auto-configured upon completion of Step 2.
 
+<Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>

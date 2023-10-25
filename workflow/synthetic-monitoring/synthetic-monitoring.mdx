@@ -1,76 +1,98 @@
-Overview
---------
-Synthetic tests allow you to observe how your systems and applications are performing using simulated requests and actions from all global locations. Synthetic network performance monitoring involves simulating network traffic and measuring the performance of the network under various conditions. You can use this to identify performance issues before they affect end-users and to proactively detect and troubleshoot network issues.
+---
+title: Synthetic Monitoring
+---
 
-Setup Synthetic Test
---------------------
--   [Login](https://app.middleware.io/auth/login/) to Middleware
--   Go to "Synthetic Monitoring" from the left menu 
--   Click on "Create Monitor"
+# Overview
 
-There are several types of synthetic monitoring that can be used to monitor the performance and availability of IT systems and applications
+Synthetic Monitoring allows you to observe your systems and application's performance using simulated requests from global locations. You can simulate network traffic and measure its performance under various constraints and conditions. Anticipate performance issues, prevent impact on end-users, and efficiently detect and troubleshoot network issues.
 
-![](/images/synthetic-monitoring/s1.png)
+# Create Synthetic Monitor
 
-Here is the detail of each request type:
+### Step 1: Create Monitor
 
-#### HTTP 
+1.  Navigate to Synthetic Monitoring
+
+2.  Click Create Monitor 
+
+![](https://lh5.googleusercontent.com/uxO2bcG0kniHNGbpDQSIKW-5oNZmt5-UHxJyBUaYDEHpLUvRKhrUL0R3iH1zUQuDqmqbCP-dOIXP8GDz2cMMeSsHpq_SpS4_rdQSin-as8SqiwZWXUuvlYj3zlSXFVWssAS5u9s8VYFBjaz3uRT1Q54)
+
+### Step 2: Choose Your Request Type
+
+<Note> The Default Request Type is set to HTTP if you do not specify it in this section</Note>
+
+![](https://lh4.googleusercontent.com/mJugWpCnBAC3txzV96Tevq-Y76oIWlUZuFIqSunC4seyKiqE-Q6ZmFYv6lF13VaAb8sBMcC_CqAPuziioqtX5yMva7sXwt5eMO6WuvItWvrgvM5Jmq62TmbVoy8gk7mPIUi0cu6Jgt4uG8902mshe0g)
+
+### Step 3: Define Request
+
+1.  Add Info per Your Request Type
+
+2.  Name Your Request
+
+3.  Choose Your Environment
+
+4.  Add Tags
+
+![](https://lh6.googleusercontent.com/ZcidaHkx4bt57e_3Ij0XPp9rQiwHI9Ltuu9gXT2ngfCevPp0tQ1Xej0d5MpG6Ru8bDYT6OaCb6qj5RYFP6n2mkz0jYab5LB1eAPk5XRoAWDnmGO5zPV1dWlILOZKmkTH2F4iitdtDveaGFPQNeZAmww)
+
+### Step 4: Define Assertions
+
+### Step 5: Select Locations
+
+![](https://lh5.googleusercontent.com/jlBKAP9GXu7gHI1tpKNTCubyPI8Dg63Ly30VHGw4H8XDeAvJED7VlgQaFOiiX6KYQroaYU99eQII9TKUWHPY6F8DWosVbhm5_ol4nBsk2Z9aIwCwxVT6J7InSKE3VfoSGv_tXA36XP8rWUttjBVM0kw)
+
+### Step 6: Specify Test Frequency
+
+### Step 5: Choose Notification Source
+
+![](https://lh6.googleusercontent.com/VRe7NzrIRSHoOTvjXQKKkAWhP0CzOOmMkXQwr-aFetgRNfRPJrSmI-eqr23PSbOyOcJkbNblnrZGCemJI41yEs4XFfsBwFdR66pRZ6M2UYC3mLHP1vOn1Gxvr1523-n28cto9j22a0jKD-usfA4DY3k)
+
+# Request Types
+
+<Accordion title="HTTP ">
 HTTP requests monitoring is a technique used to monitor the performance and availability of web applications or websites. It involves simulating HTTP requests and measuring the response time, status code, and content of the response. 
+</Accordion>
 
-#### SSL
+<Accordion title="SSL">
 SSL monitoring is a technique used to monitor the performance and availability of SSL/TLS certificates used by web applications or websites. It involves simulating SSL/TLS handshakes and measuring the certificate validation time, certificate expiration, and other certificate-related metrics. 
+</Accordion>
 
-#### DNS
+<Accordion title="DNS">
 DNS synthetic monitoring is a technique used to monitor the performance and availability of DNS servers and DNS resolution for a domain name. It involves simulating DNS queries and measuring the response time and accuracy of the DNS server.
+</Accordion>
 
-#### WebSocket
+<Accordion title="WebSocket">
 WebSocket test synthetic monitoring is a technique used to monitor the performance and availability of WebSocket connections used by web applications. It involves simulating WebSocket connections and measuring the response time, message delivery time, and message accuracy. 
+</Accordion>
 
-#### UDP
+<Accordion title="UDP">
 UDP (User Datagram Protocol) synthetic monitoring is a technique used to monitor the performance and availability of UDP connections used by network applications. It involves simulating UDP packets and measuring the response time, packet loss, and other metrics.
+</Accordion> 
 
-#### ICMP
+<Accordion title="ICMP">
 ICMP (Internet Control Message Protocol) synthetic monitoring is a technique used to monitor the performance and availability of network connections using ICMP packets. It involves simulating ICMP packets and measuring the response time, packet loss, and other metrics.
+</Accordion>
 
-#### TCP
+<Accordion title="TCP">
 TCP (Transmission Control Protocol) synthetic monitoring is a technique used to monitor the performance and availability of TCP connections used by network applications. It involves simulating TCP connections and measuring the response time, packet loss, and other metrics.
+</Accordion>
 
-#### gRPC
-gRPC synthetic monitoring is a technique used to monitor the performance and availability of gRPC connections used by network applications. It involves simulating gRPC requests and measuring the response time, error rate, and other metrics
+<Accordion title="gRPC">
+gRPC synthetic monitoring is a technique used to monitor the performance and availability of gRPC connections used by network applications. It involves simulating gRPC requests and measuring the response time, error rate, and other metrics       
+</Accordion>
 
--   Define the request with a name and an environment, then enter the URL where you want to run the test. With an advanced setting option, you can add put request headers, authentication, and query parameters.
+# Public IP Addresses
 
-![](/images/synthetic-monitoring/s2.png)
+Our synthetic agent is designed to test different networks and protocols of your application. If your system has restricted access to certain networks only, you will need to whitelist the following public IP addresses of our infrastructure. This will allow our synthetic agent to access your services for monitoring.
 
--   Add as many assertions as you need for your request. If you need more specific testing, assertions can help (for example, the status code should be 200 only).
+<Note> Please note that we may add, remove or change server IP addresses for security and performance reasons. We will notify you in advance of any planned changes.</Note>
 
-![](/images/synthetic-monitoring/s3.png)   
+| US | Asia Pacific | Europe | Canada | South America | Middle East | Africa |
+| :-:| :----------: | :----: | :----: | :-----------: | :---------: | :----: |
+| **North Virginia** 184.73.132.14 | **Hong Kong** 16.162.16.221 | **Frankfurt** 52.57.15.39 | **Central Canada** 3.97.34.227 | **São Paulo** 54.207.185.173 | **Bahrain** 15.184.102.232 | **Cape Town** 13.244.83.119
+| **California** 18.144.107.2 | **Mumbai** 35.154.132.98 | **London** 3.11.236.173 |
+| | **Seoul** 43.201.168.121 | **Paris** 52.47.67.164 |
+| | **Singapore** 52.76.158.43 |
+| | **Sydney** 13.210.225.158 |
+| | **Tokyo** 54.249.157.179 | 
 
--   You can choose where you want this test to run. Location selection is useful when you have global users, and your API is accessed worldwide.
-     
-![](/images/synthetic-monitoring/s4.png)     
-
--   You can specify the test frequency by selecting a time interval such as every 1m, 5m, etc., or you can define a custom time interval with a day selection (ex: every Monday at 09:00 AM).
-
-![](/images/synthetic-monitoring/s5.png)         
-
--   Define the test alert, and where you wish to be notified, such as Slack or Gmail.
-
-![](/images/synthetic-monitoring/s6.png)         
-
-Synthetic Test List
--------------------
-View a list of all created monitors with information such as uptime, interval, status, and the ability to pause/start, edit, or delete the test.
-You can also filter the list by request type or location.
-
-![](/images/synthetic-monitoring/s7.png)  
-
-Test result with details
-------------------------
--   Select the test from the list to view all the details, including response time by location, network timing, and test run results.
-
-![](/images/synthetic-monitoring/s8.png)  
-
--   Here you can see all the details and list of test runes. Clicking the test run will you overall idea with timeline to understand result of created test.
-
-![](/images/synthetic-monitoring/s9.png)
+<Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
