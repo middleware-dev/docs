@@ -1,0 +1,18 @@
+---
+title: Overview
+---
+
+This guide provides an overview of the Middleware Agent and instructions for its installation on Kubernetes, Linux, Docker, and Windows.
+
+The Middleware Agent (MW Agent) is light weight software that runs on your host infrastructure collecting and sending events and metrics to Middleware. The MW Agent collects data at the system and process levels in real-time to provide detailed insights into host performance and behavior. 
+
+# Benefits
+Host agents are a secure and efficient method of data collection. They operate within the trusted boundaries of the host system and perform with minimal impact on system resources.
+
+Beyond security, host agents also offer flexibility in configuration, customization, and integration with other tools and frameworks. This allows host agents to collect data from all supported integrations, including those lacking comprehensive APIs or standard interfaces. 
+
+# FAQ
+
+<Accordion title="Is the MW Agent required?">
+  The MW Agent needs to be installed to send data from any of the infrastructure or application monitoring systems. Data can be forwarded to Middleware through the <a href="https://docs.middleware.io/docs/data-ingestion-apis/opentelemetry-metrics"> Data Ingestion APIs </a>, however we strongly recommend installing the MW Agent to get the most value from Middleware.
+</Accordion>
