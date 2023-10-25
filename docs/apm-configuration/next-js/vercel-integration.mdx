@@ -25,7 +25,6 @@ These instructions can also be found on the Installation page in your Middleware
 # Prerequisites
 
 1. `Next.js version 13.4` or newer installed. Check your Next.js version with the following command:
-
 ```bash Shell
 npx next --version
 ```
@@ -69,7 +68,7 @@ npm install @opentelemetry/api”>=1.3.0 <1.5.0”
 
  <Note> After three seconds you should be redirected back to the Vercel marketplace </Note>
 
-7. In Vercel, enable traces prior to deploying your project
+7. Enable traces in Vercel prior to deploying your project
 
 ### Step 2: Install Next.js APM Package
 
@@ -122,8 +121,6 @@ export function register() {
 ```
 4. Integrate your APIs or Serverless functions prior to deployment. Vercel will treat your app as a static website during deployment if you have not integrated any APIs or Serverless functions and the `instrumentation.ts` file will not be invoked, resulting in the absence of traces or logs in your Middleware account. 
 
-<Warning> Vercel does not support instrumentation for edge functions. </Warning>
-
 ### Step 5: Enable Logging
 
 Ingest custom logs by using  the following functions based on desired log severity levels:
@@ -151,8 +148,12 @@ export default async function handler(req, res) {
 
 <Note>If you’re looking to set up a sample Next.js project with API routes, you can use the following command in your terminal: `npx create-next-app@latest --example api-routes`</Note>
 
-# Troubleshooting
+## Troubleshooting
 
 If you do not see any data appear on the Middleware dashboard, redeploy your project on Vercel. This should ensure that the traces and profiling data are properly generated and collected by Middleware.
 
-<Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
+
+
+
+
+

@@ -108,7 +108,8 @@
             {
              "group": "Telemetry",
              "pages": [
-              "integrations/prometheus-integration"
+              "integrations/prometheus-integration",
+              "integrations/prometheus-integration-k8s"
              ]
             }                    
             
@@ -127,9 +128,12 @@
           ]
         },
         {
-          "group": "Alerts",
-          "pages": [
-            "workflow/alerting/setup-alert"
+          "group": "Infrastructure Monitoring",
+          "pages": [          
+            "workflow/infrastructure-monitoring/container-monitoring",
+            "workflow/infrastructure-monitoring/host",
+            "workflow/infrastructure-monitoring/kubernetes-monitoring",
+            "workflow/infrastructure-monitoring/processes"
           ]
         },
         {
@@ -141,7 +145,21 @@
             "workflow/apm/service-monitoring",
             "workflow/apm/traces"                        
           ]
-        }, 
+        },
+        {
+          "group": "Log Monitoring",
+          "pages": [
+            "workflow/log-monitoring/logs",
+            "workflow/log-monitoring/log-custom-metrics",
+            "workflow/log-monitoring/log-transaction"
+          ]
+        },
+        {
+          "group": "Alerts",
+          "pages": [
+            "workflow/alerting/setup-alert"
+          ]
+        },         
         {
           "group": "Dashboard Builder",
           "pages": [
@@ -156,30 +174,12 @@
               ]
             }
           ]
-        },       
-        {
-          "group": "Infrastructure Monitoring",
-          "pages": [          
-            "workflow/infrastructure-monitoring/container-monitoring",
-            "workflow/infrastructure-monitoring/host",
-            "workflow/infrastructure-monitoring/kubernetes-monitoring",
-            "workflow/infrastructure-monitoring/processes"
-          ]
-        },
-        {
-          "group": "Log Monitoring",
-          "pages": [
-            "workflow/log-monitoring/logs",
-            "workflow/log-monitoring/log-custom-metrics",
-            "workflow/log-monitoring/log-transaction"
-          ]
-        },
+        },                       
         {
           "group": "Synthetic Monitoring",
           "pages": [
             "workflow/synthetic-monitoring/synthetic-monitoring",
-            "workflow/synthetic-monitoring/multistep-synthetic-monitoring",
-            "workflow/synthetic-monitoring/ip-address"
+            "workflow/synthetic-monitoring/multistep-synthetic-monitoring"
           ]
         },
         {
@@ -217,5 +217,8 @@
     "facebook": "https://www.facebook.com/middlewarelabs",
     "twitter": "https://twitter.com/Middleware_Labs",
     "github": "https://github.com/middleware-labs"
+  },
+  "feedback": {
+    "thumbsRating": true
   }
 }
