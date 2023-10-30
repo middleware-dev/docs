@@ -35,8 +35,8 @@ Add the following lines in your index.html file below the script tag entered in 
             projectName: "project_name",
             accountKey: "account_key",
             target:"https://<UID>.middleware.io",
-            env: “production”,
-            recording: “1”
+            env: "production",
+            recording: "1"
         })
     }
 </script>
@@ -59,6 +59,52 @@ if(window.Middleware){
 
 Once RUM is configured, metrics should begin appearing on the RUM Dashboard in Middleware within a few minutes. For more information on the RUM Dashboards see [here](https://docs.middleware.io/docs/rum/rum-middleware).
 
-For any issues please reach out to our team in your Slack channel or through the help menu in your [Middleware Account](https://app.middleware.io/auth/login).
+# Connect RUM to Tracing
+
+RUM Tracing allows you to gain insight into the specific actions of your users. You can watch time-stamped videos of user's website interactions, pinpoint performance bottlenecks across your platform, and identify the major causes of customer drop off.
+
+The following installation uses OpenTelemetry B3 Propagator heads. You can learn more about B3 Propagation [here](https://github.com/openzipkin/b3-propagation).
+
+<Warning> The following APMs are supported: --------------------- </Warning>
+
+## Install
+
+### Step 1: Modify Middleware SDK
+Add `tracePropagationTargets` to your SDK from [Step 3](#step-3-initialize-the-sdk) of the RUM Installation.
+
+```javascript JavaScript
+<script>
+    if (window.Middleware){
+        Middleware.track({
+            serviceName: "service_name",
+            projectName: "project_name",
+            accountKey: "account_key",
+            target:"https://<UID>.middleware.io",
+            env: "production",
+            recording: "1"
+            tracePropagationTargets: [/localhost:3000/i, /api.domain.com/i]
+        })
+    }
+</script>
+```
+
+### Step 2: Modify APM SDK
+
+Navigate to your desired APM to complete your Install:
+
+| Supported APMs| 
+| :----:|
+| APM 1 |
+|etc |
+
+## Accessing Session Replay
+
+This section shows you how to access Session Replay.
+
+### Step 1: Navigate to Trace List
+Insert image (APM --> Trace List --> Session Replay)
+
+### Step 2: Choosing a Trace
+Insert image(Select trace --> access time-stamped user clickthrough)
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
