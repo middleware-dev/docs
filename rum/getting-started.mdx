@@ -35,8 +35,8 @@ Add the following lines in your index.html file below the script tag entered in 
             projectName: "project_name",
             accountKey: "account_key",
             target:"https://<UID>.middleware.io",
-            env: “production”,
-            recording: “1”
+            env: "production",
+            recording: "1"
         })
     }
 </script>
@@ -59,6 +59,75 @@ if(window.Middleware){
 
 Once RUM is configured, metrics should begin appearing on the RUM Dashboard in Middleware within a few minutes. For more information on the RUM Dashboards see [here](https://docs.middleware.io/docs/rum/rum-middleware).
 
-For any issues please reach out to our team in your Slack channel or through the help menu in your [Middleware Account](https://app.middleware.io/auth/login).
+# Using RUM
+
+## Performance Summary
+
+The Performance Summary provides insight into your top-level RUM performance data. Learn about your Core Web Vitals Metrics, the total errors incurred, and the total unique user sessions and pages visits within a certain period of time.
+
+![](https://lh7-us.googleusercontent.com/0VNW2N5_GdWBkfztTGMD0bAGwSyZhbxMG6Gga00CZ8QSae-05rHQ9NSC_Lwi7akpGrsV3NalAf_ab6KDCxNvpok5Jw2Mn5u4VTUNUNu6GNQHQebiD253eXJNa3x06B8bCPEXaOXruoK2F2tycmdu1C0)
+
+## Session & Replays
+
+The Session & Replays section provides insight into your top-level RUM Session data and the ability to drill into specific session details to easily diagnose issues and understand user behavior.
+
+Select from the Sessions table to drill into a RUM Session. Get time stamped recordings of users' interactions.
+
+* include gif of user accessing contiinuous profiling
+
+## Browser Errors
+
+The Browser Errors section provides insight into when and where your application throws Errors.
+
+![](https://lh7-us.googleusercontent.com/sBtmkfYANQAniUTVEgREs4IAQ_xPiEE4uFy8QqdNvjut5yAdDW8ApDuYF0yMqw2qSKx8xMzzrrEHXfZ6-DON9nHvw6utveB0d1fI3cgewK5eaIPIeFs0oXtrhKjA-8GjteuBV0nG4PhAh6eGChRqPYk)
+
+# Connect RUM to Tracing
+
+RUM Tracing allows you to gain insight into the specific actions of your users. You can watch time-stamped videos of user's website interactions, pinpoint performance bottlenecks across your platform, and identify the major causes of customer drop off.
+
+The following installation uses OpenTelemetry B3 Propagator heads. You can learn more about B3 Propagation [here](https://github.com/openzipkin/b3-propagation).
+
+## Install
+
+### Step 1: Modify Middleware SDK
+Add `tracePropagationTargets` to your SDK from [Step 3](#step-3-initialize-the-sdk) of the RUM Installation.
+
+```javascript JavaScript
+<script>
+    if (window.Middleware){
+        Middleware.track({
+            serviceName: "service_name",
+            projectName: "project_name",
+            accountKey: "account_key",
+            target:"https://<UID>.middleware.io",
+            env: "production",
+            recording: "1"
+            tracePropagationTargets: [/localhost:3000/i, /api.domain.com/i]
+        })
+    }
+</script>
+```
+
+### Step 2: Modify APM SDK
+
+Navigate to your desired APM to complete your Install:
+
+| Supported APMs| 
+| :----:|
+| APM 1 |
+|etc |
+
+## Accessing Session Replay
+
+This section shows you how to access Session Replay.
+
+### Step 1: Navigate to Trace List
+Insert image (APM --> Trace List --> Session Replay)
+
+### Step 2: Choosing a Trace
+Insert image(Select trace --> access time-stamped user clickthrough)
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
+
+<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaGF4ZzRxN3JocGRkZTl2cWcybGVuYWRhaG5yN3Y1bzNzOThncXZqMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/fDz8nkYcv8gKeHKNOs/giphy.gif" width="900" height="900" />
+
