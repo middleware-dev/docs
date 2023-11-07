@@ -1,0 +1,63 @@
+---
+title: "AWS ECS Monitoring"
+---
+
+## ECS + EC2 setup Monitoring
+
+You can run Middleware Agent as type "Daemon" to monitor all your ECS tasks + containers.
+
+
+
+
+## ECS + Fargate setup Monitoring
+
+### Metrics Monitoring
+
+For ECS Perfomance Metrics, You will have to run Middleware Agent as sidecar use this snippet
+```
+{
+    "name": "mw-agent-ecsmetrics",
+    "image": "ghcr.io/middleware-labs/mw-host-agent:fargate-keval",
+    "cpu": 256,
+    "portMappings": [],
+    "essential": true,
+    "environment": [
+        {
+            "name": "MW_API_KEY",
+            "value": <Your Middleware API Key>
+        },
+        {
+            "name": "MW_TARGET",
+            "value": <Middleware Target Endpoint>
+        }
+    ],
+    "mountPoints": [],
+    "volumesFrom": [],
+    "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+            "awslogs-create-group": "true",
+            "awslogs-group": "/ecs/go-webserver-fargate",
+            "awslogs-region": "us-west-2",
+            "awslogs-stream-prefix": "ecs"
+        },
+        "secretOptions": []
+    }
+}
+```
+
+### Logs Monitoring
+
+AWS ECS + Fargate based apps use "awslogs" as default logging driver. Therefore, by default these logs are available at Cloudwatch.
+Middleware agent can fetch these logs from Cloudwatch and Visualize them on app.middleware.io
+
+You will have to run Middleware Agent as an independent task for collecting AWS ECS task logs.
+
+<Note>
+As Middleware Agent will be running as an ECS task, it will run with `ecsTaskExecutionRole`. By default this role is not permitted to read CloudWatch logs, 
+Therefore, you will have to add an inline policy to allow `ecsTaskExecutionRole` to read CloudWatch logs. Alternatively, you can create a new IAM role for this usecase and then assign this role to Middleware Agent task. 
+</Note>
+
+
+
+
