@@ -1,0 +1,63 @@
+---
+title: "AWS ECS Monitoring"
+---
+
+## ECS + Fargate setup Monitoring
+
+For Each ECS Task that you want to monitor, add this one sidecar container in your task definition.
+```
+{
+    "name": "mw-agent",
+    "image": "ghcr.io/middleware-labs/mw-host-agent:fargate-solution",
+    "cpu": 256,
+    "portMappings": [],
+    "essential": true,
+    "environment": [
+        {
+            "name": "MW_API_KEY",
+            "value": <Your Middleware API Key>
+        },
+        {
+            "name": "MW_TARGET",
+            "value": <Middleware Target Endpoint>
+        },
+        {
+            "name": "MW_AWS_ECS_TASK_FAMILY",
+            "value": <Task for which you want to fetch logs>
+        },
+        {
+            "name": "MW_AWS_ECS_TASK_REGION",
+            "value": <Task Region>
+        },
+    ],
+    "mountPoints": [],
+    "volumesFrom": [],
+    "logConfiguration": {
+        <You can fill these details from the main container>
+    }
+}
+```
+
+### Metrics Data Collection
+Adding the sidecar container as mentioned above, will automatically start collecting metrics data from your ECS tasks and containers.
+Middleware Agent using AWS ECS Task Metadata Endpoint to fetch metrics data.
+
+### Logs Monitoring
+
+AWS ECS + Fargate based apps use "awslogs" as default logging driver. Therefore, by default these logs are available at Cloudwatch.
+Adding the sidecar container as mentioned above, will automatically start collecting task logs from CloudWatch.
+
+
+<Note>
+As Middleware Agent will be running as an ECS task, it will run with `ecsTaskExecutionRole`. By default this role is not permitted to read CloudWatch logs, 
+Therefore, you will have to add an inline policy to allow `ecsTaskExecutionRole` to read CloudWatch logs. Alternatively, you can create a new IAM role for this usecase and then assign this role to Middleware Agent task. 
+</Note>
+
+
+## ECS + EC2 setup Monitoring
+
+You can run Middleware Agent as type `Daemon` to monitor all your ECS tasks + containers.
+More Details TBA.
+
+
+
