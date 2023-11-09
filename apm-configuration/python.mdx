@@ -19,12 +19,17 @@ This guide walks you through setting up Application Performance Monitoring (APM)
 
 ## Prerequisites
 
-* Middleware Host Agent (MW Agent), to install the MW Agent please see our <a href="https://docs.middleware.io/docs/agent-installation/overview"> installation guide. </a> 
-* Python 3, version 3.8 or above recommended. Check your Python version with the following command.
+1. Middleware Host Agent (MW Agent), to install the MW Agent please see our <a href="https://docs.middleware.io/docs/agent-installation/overview"> installation guide. </a> 
+
+2. `Python 3 version 3.8` or above recommended. Check your Python version with the following command.
 ```bash Shell
 python3 --version
 ```
-* pip version 23.1.2
+
+3. `pip version 23.1.2`. Check your pip version with the following command.
+```bash Shell
+pip --version
+```
 
 ## Step 1: Install Middleware Python APM Package
 Run the following command in your terminal.
@@ -37,14 +42,14 @@ Then run the following to confirm, and as needed install, instrumentation librar
 middleware-bootstrap -a install
 ```
 
-## Step 2: Import Tracker
+## Step 2: Import Middleware Tracker
 Add the following lines to the beginning of your application code base. The access token is your account key, which can be found on the Installation page.
 
 ```python Python 3
-from mw_tracker import MwTracker
-tracker=MwTracker(
-    access_token="{YOUR-ACCESS_TOKEN}"
-)
+import logging 
+ 
+from middleware import MwTracker
+tracker=MwTracker()
 ```
 
 ## Step 3: Container Variables
@@ -68,34 +73,17 @@ MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
 
 ## Step 4: Capture Application Data
 
-### Traces
-Distributed tracing will be automatically enabled upon completing Step 4: Run Application. 
+### Enable Custom Logs
 
-### Metrics
-Enable metrics by writing the following line just after the tracker initialization from Step 2.
-```python Python 3
-tracker.collect_metrics()
-```
-
-### Application & Custom Logs
-Enable application logs by writing the following line after the tracker initialization from Step 2. 
-```python Python 3
-tracker.collect_logs()
-```
 To ingest custom logs, utilize the following functions based on desired log severity levels.
+
 ```python Python 3
 logging.info(“<info sample>”)
-logging.warn(“<warn sample>”)
-logging.error(“<error sample>”)
+logging.warning("Sample Warning Log.") 
+logging.error("Sample Error Log.", extra={'tester': 'Alex'})
 ```
 
-### Profiling
-Enable profiling by writing the following line after the tracker initialization from Step 2.
-```python Python 3
-tracker.collect_profiling()
-```
-
-### Stack Traces
+### Stack Errors
 Use the tracker.record_error(e) method to record a stack trace when an error occurs. See an example of this method below. 
 ```python Python 3
 randomList = ['a', 0, 2]
@@ -108,14 +96,39 @@ for entry in randomList:
          tracker.record_error(e)
 ```
 
-## Step 5: Run Application
-Run your application with the command given below.
-```python Shell
-middleware-instrument \
---exporter_otlp_endpoint http://localhost:9319 \
---resource_attributes=project.name=<project_name>,mw.app.lang=python,runtime.metrics.python=true \
---service_name <service_name> \
-python3 <app>.py
+### Traces, Metrics, Logs, & Profiling Data
+
+Create a `.ini` file based on the features you want to observe
+
+```python .ini
+[middleware.common]
+
+# The name of your application as service-name, as it will appear in the UI to filter out your data.
+service_name = {APM-SERVICE-NAME}
+
+# This Token binds the Python Agent's data and profiling data to your account.
+access_token = {YOUR-ACCESS-TOKEN}
+
+# The service name, where Middleware Agent is running, in case of K8s.
+mw_agent_service = mw-service.mw-agent-ns.svc.cluster.local
+
+# Distributed traces for your application (false = disabled).
+collect_traces = true
+
+# Collection of metrics for your application (false = disabled).
+collect_metrics = true
+
+# Collection of logs for your application (false = disabled).
+collect_logs = true
+
+# Collection of profiling data for your application (false = disabled).
+collect_profiling = true
+```
+
+## Step 5: Start Your Project
+After deploying your application, run the following command to start your project:
+```shell Shell
+MIDDLEWARE_CONFIG_FILE=./middleware.ini middleware-apm run python app.py
 ```
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
