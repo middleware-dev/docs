@@ -25,7 +25,22 @@
     "name": "Get Started",
     "url": "https://app.middleware.io/auth/register/"
   },
-  "anchors": [],
+  "anchors": [
+    {
+      "icon": "slack",
+      "name": "Slack",
+      "url": "https://join.slack.com/t/middlewarepublic/shared_invite/zt-24ty2slva-mGgbIzbPm5zQ8GpCCPMeRQ",
+      "color": "#e95e5f",
+      "iconType":"brands"
+    },
+    {
+      "icon": "github",
+      "name": "GitHub",
+      "url": "https://github.com/middleware-labs",
+      "color": "#e95e5f",
+      "iconType":"brands"
+    }
+  ],
   "analytics": {
     "ga4": {
       "measurementId": "G-2KBHR7YB2G"
