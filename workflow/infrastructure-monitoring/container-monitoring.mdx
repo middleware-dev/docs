@@ -2,23 +2,25 @@
 title: Infrastructure Monitoring
 ---
 
-This guide provides an overview of Middleware’s Infrastructure Monitoring page. Effortlessly collect, configure, and visualize complex telemetry data with our autodetection capabilities across your entire Infrastructure stack.
+This guide provides an overview of Middleware’s Infrastructure Monitoring page. Collect, configure, and visualize complex telemetry across your Infrastructures with our autodetection capabilities.
 
-Quickly isolate and drill into blockers within your teams Infrastructure stack, monitor your cluster, node, and pod data in one place, and effortlessly manage and review your overall Infrastructure utilization cluster by cluster.
+The Middleware Host Agent auto collects data across the stack using the OTel framework. While collecting, the Agent will also compress and batch data to your account to allow near real time analysis on all data points regarding your clusters, nodes, pods and services.
+
+Middleware supports Infra Monitoring on many distributions, all can be found [here](/agent-installation/overview)."
 
 # Key Concepts
 
 ### Host List
 
-Host List provides insight into your Kubernetes orchestration data, database usage, system-wide infrastructure utilization and more. It is the highest level compoenent overview, providing a top-down approach for diagnosing, monitoring, and maintaining your stack.
+The Host List is the highest level compoenent overview, providing a top-down approach for diagnosing, monitoring, and maintaining your stack. It provides insights into your orchestration data, database usage, system-wide infrastructure utilization and general health of your stack.
 
 ### Containers
 
-Containers provide visibility into the health and performance of your containerized environments. This section does not include containers that are part of an orchestration tool (e.g. Kubernetes). 
+Containers provide visibility into the health and performance of your containerized environments. Middleware collects Container data based on the VMs running in your infra. This does not include containers managed by Kubernetes.
 
 ### Processes
 
-Processes are managed within your containers to ensure your Infrastructure is effectively monitored, maintained, and optimized for performance, reliability, and operability.
+Processes are system level methods being run or managed inside of your hosts. This data is pulled directly from the kernel of each host and imported to Middleware through the Host Agent. You may use this data to analyze process health, overall process impact on your infrastructure, and drill into each process to uncover further data points.
 
 ### Kubernetes
 
