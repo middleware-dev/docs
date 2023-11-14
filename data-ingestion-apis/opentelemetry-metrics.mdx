@@ -1,42 +1,77 @@
 ---
-title: "Data Ingestions API"
+title: "Customizing Telemetry Ingestion"
+sidebarTitle: "OpenTelemetry"
 ---
 
 # Overview
 This guide provides an overview and setup instructions for Middleware’s OpenTelemetry Data Ingestion API. The OpenTelemetry Ingestion API has two endpoints: [metrics](#metrics-endpoint) and [logs](#logs-endpoint).
 
-## Resource Types
 
-For both endpoints, the resource type attribute groups the ingested data under the specified label on Middleware dashboards and reports. The resource type field requires one of the following options.
+# Prerequisites
 
+1. Middleware Agent needs to already be installed
+2. App must already be configured to collect telemetry 
 
-| **Group** | **Resource Type** |
-| :---------: | :---------------: |
-| host | host.id |
-| k8s.node | k8s.node.uid |
-|k8s.pod | k8s.pod.uid |
-| k8s.deployment | k8s.deployment.uid |
-| k8s.daemonset | k8s.daemonset.uid |
-| k8s.replicaset| k8s.replicaset.uid |
-| k8s.statefulset | k8s.statefulset.uid |
-| k8s.namespace | k8s.namespace.uid |
-| service | service.name |
-| os | os.type |
-| custom | custom |
+### Step 1: Setup Resource Attributes
 
-## Metrics Endpoint
+Embed the Middleware Resource Attributes in your instrumentation file:
 
-The Metrics endpoint lets you send custom metrics to the Middleware backend. 
+```javascript JavaScript
+const resource = new Resource({
+  [SemanticResourceAttributes.SERVICE_NAME]: "{your-service-name}",
+  ["mw_agent"]: true,
+  ["mw.account_key"]: "{your-api-key}",
+});
+```
 
-To send custom metrics to Middleware, POST to the following endpoint.
+### Step 2: Initialize Provider (factory)
 
-```post POST
+Determine which providers (e.g. log, trace, and metric factories) will export data to Middleware.
+
+<Warning> Log ingestion is an experimental feature within Open Telemetry. Proceed with caution. </Warning>
+
+### Step 3: Configure your Exporter
+
+Configure your exporter(s) to send data to Middleware with OTLP/HTTP or OTLP/gRPC. 
+
+<CodeGroup>
+
+```javascript OTLP/HTTP
+// Send HTTP POST requests to endpoints:
+POST https://<UID>.middleware.io/v1/logs
+POST https://<UID>.middleware.io/v1/traces
 POST https://<UID>.middleware.io/v1/metrics
 ```
 
-View the following example of a curl request sending a custom metric, swap-usage, to Middleware.
+```javascript OTLP/gRPC
+// Install gRPC exporter libraries
+const { OTLPLogExporter } = require("@opentelemetry/exporter-logs-otlp-grpc");
+const { OTLPTraceExporter } = require("@opentelemetry/exporter-trace-otlp-grpc");
+const { OTLPMetricExporter } = require("@opentelemetry/exporter-metrics-otlp-grpc");
 
-```shell Shell
+// Place the following in your global SDK
+// Set exporter to use Middleware gRPC logger endpoint
+const loggerExporter = new OTLPLogExporter({
+  url: "https://sandbox.middleware.io:443",
+});
+
+// Set exporter to use Middleware gRPC metric endpoint
+const metricExporter = new OTLPMetricExporter({
+    url: "https://sandbox.middleware.io:443",
+});
+
+// Set exporter to use Middleware gRPC trace endpoint
+const traceExporter = new OTLPTraceExporter({
+    url: "https://sandbox.middleware.io:443",
+});
+
+```
+</CodeGroup>
+
+<Accordion title="Example: OTLP/HTTP Curl Request">
+
+<Note> Data must be in OTLP/HTTP format. Learn more [here](https://opentelemetry.io/docs/specs/otlp/#otlphttp). </Note>
+```
 curl -X POST "https://demo.middleware.io/v1/metrics" \
 -H "Accept: application.json" \
 -H "Content-type: application.json" \
@@ -93,139 +128,8 @@ curl -X POST "https://demo.middleware.io/v1/metrics" \
 }
 EOF  
 ```
+</Accordion>
 
-<Note> Data must be in OTLP/HTTP format. Learn more about [OTLP/HTTP](https://opentelemetry.io/docs/specs/otlp/#otlphttp). </Note>
-
-### Resource Attributes
-
-| **Field** | **Required** | **Description** |
-| :-------: | :----------: | :------------- |
-| mw.account_key | ✅ | Authenticates into your Middleware Account |
-| mw.resource_type | ✅ | Groups and labels the metric, see [Resource Types](#resource-types) for allowed values |
-
-### Metrics
-
-There are two components for Metrics: **metadata** and **datapoint**
-
-#### Metadata
-
-The metadata fields are the request body attributes that define the metric and determine how it will appear in Middleware.
-
-| **Metadata Field** | **Required** | **Description** |
-| :-------: | :----------: | :------------- |
-| name | ✅ | Defines the metric name |
-| description | ✖️ | Additional details about the metric |
-| unit | ✖️ | Identifies the measurement type |
-
-#### Datapoint
-
-The datapoint fields are defined within the data attribute. The datapoint fields are consistent across all data attribute types, and explained below. The data attribute is named one of the following types:
-- **Gauge**: A scalar metric that always exports the current value for every data point. It should be used for unknown aggregation.
-- **Sum**: A scalar metric that is calculated as a sum of all reported measurements over a time interval.
-- **Histogram**: A metric that is calculated by aggregating as a histogram of all reported measurements over a time interval.
-- **Exponential Histogram**: A metric that is calculated by aggregating as an exponential histogram of all reported double measurements over a time interval.
-- **Summary**: Metric data used to convey quantile summaries.
-
-| **Datapoint Field** | **Required** | **Description** |
-| :-------: | :----------: | :------------- |
-| attributes | ✅ | Key-value pairs associated with the data point |
-| time_unix_nano | ✅ | Set to the end time of the aggregation |
-| start_time_unix_nano | ✖️ | Indicates the start time, should be included whenever possible |
-
-## Logs Endpoint
-
-The Logs endpoint lets you send custom logs to the Middleware backend. 
-
-To send custom logs to Middleware, POST to the following endpoint.
-
-```post POST
-POST https://<UID>.middleware.io:443/v1/logs
-```
-
-View the following example of a curl request sending custom logs to Middleware.
-```shell Shell
-curl -X POST "https://demo.middleware.io:443/v1/logs" \
--H "Accept: application/json" \
--H "Content-type: application/json" \
--d @- << EOF
-{
-   "resource_logs": [
-      {
-         "resource": {
-            "attributes": [
-               {
-                  "key": "mw.account_key",
-                  "value": {
-                     "string_value": "xxxxxxxxxx"
-                  }
-               },
-               {
-                  "key": "mw.resource_type",
-                  "value": {
-                     "string_value": "custom"
-                  }
-               },
-               {
-                  "key": "service_name",
-                  "value": {
-                     "string_value": "nginx-123"
-                  }
-               }
-            ]
-         },
-         "scope_logs": [
-            {
-               "log_records": [
-                  {
-                     "severity_text": "WARN",
-                     "body": {
-                        "string_value": "upstream server not accepting request"
-                     },
-                     "severity_number": "11",
-                     "attributes": [
-                        {
-                           "key": "server",
-                           "value": {
-                              "string_value": "nginx"
-                           }
-                        }
-                     ],
-                     "time_unix_nano": "1694030143000"
-                  }
-               ]
-            }
-         ]
-      }
-   ]
-}
-EOF   
-```
-
-### Resource Attributes
-
-| **Field** | **Required** | **Description** |
-| :-------: | :----------: | :------------- |
-| mw.account_key | ✅ | Authenticates into your Middleware Account |
-| mw.resource_type | ✅ | Groups and labels the log source, see [Resource Types](#resource-types) for allowed values |
-| service_name | ✖️ | Additional parameter to identify and filter logs |
-
-### Log Records
-
-| **Field** | **Required** | **Description** |
-| :-------: | :----------: | :------------- |
-| severity_text |  ✖️ | Labels log severity (string), requires one of FATAL, ERROR, WARN, INFO, DEBUG, TRACE |
-| [severity_number](#severity-number) |  ✖️ | Labels log severity (integer), number must be between 1 and 24 |
-| body | ✅ | The actual log body to ingest |
-| time_unix_nano | ✅ | Sets a timestamp for the log |
-
-#### severity_number
-|||
-| :-------------: | :--------: |
-| 1-4 | TRACE |
-| 5-8 | DEBUG |
-| 9-12 | INFO |
-| 13-16 | WARN |
-| 17-20 | ERROR |
-| 21-24 | FATAL |
+### Step 4: Send Data to Middleware
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>

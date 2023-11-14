@@ -120,13 +120,7 @@
           "pages": [
             "rum/getting-started"
           ]
-        },
-        {
-          "group": "Data Ingestion APIs",
-          "pages": [
-            "data-ingestion-apis/opentelemetry-metrics"
-          ]
-        },
+        },"data-ingestion-apis/opentelemetry-metrics",
         {
           "group": "Infrastructure Monitoring",
           "pages": [          
