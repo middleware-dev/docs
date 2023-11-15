@@ -73,29 +73,11 @@ MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
 
 ## Step 4: Capture Application Data
 
-### Enable Custom Logs
 
-To ingest custom logs, utilize the following functions based on desired log severity levels:
 
-```python Python 3
-logging.info(“<info sample>”)
-logging.warning("Sample Warning Log.") 
-logging.error("Sample Error Log.", extra={'tester': 'Alex'})
-```
+### Setup .ini File
 
-### Stack Errors
-Use `tracker.record_error()` method to record a stack trace when an error occurs:
-
-```python Python 3
-try:
-    not_possible = 12/0
-except ZeroDivisionError as e:
-    tracker.record_error(e)
-```
-
-### Traces, Metrics, Logs, & Profiling Data
-
-Create a `.ini` file based on the features you want to observe:
+Create a `.ini` file based on the features you want to observe. `service_name` and `access_token` are required for the tracker to send data to Middleware.
 
 ```python .ini
 [middleware.common]
@@ -120,6 +102,25 @@ collect_logs = true
 
 # Collection of profiling data for your application (false = disabled).
 collect_profiling = true
+```
+### Enable Custom Logs
+
+To ingest custom logs, utilize the following functions based on desired log severity levels:
+
+```python Python 3
+logging.info("info sample")
+logging.warning("Sample Warning Log") 
+logging.error("Sample Error Log.", extra={'tester': 'Alex'})
+```
+
+### Stack Errors
+Use `tracker.record_error()` method to record a stack trace when an error occurs:
+
+```python Python 3
+try:
+    not_possible = 12/0
+except ZeroDivisionError as e:
+    tracker.record_error(e)
 ```
 
 ## Step 5: Start Your Project
