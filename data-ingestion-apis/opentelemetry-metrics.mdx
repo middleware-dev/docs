@@ -4,13 +4,15 @@ sidebarTitle: "OpenTelemetry"
 ---
 
 # Overview
-This guide provides an overview and setup instructions for Middleware’s OpenTelemetry Data Ingestion API. The OpenTelemetry Ingestion API has two endpoints: [metrics](#metrics-endpoint) and [logs](#logs-endpoint).
+We recommend using Middleware's Agent and associated SDKs to ingest data, however, more advanced users have the option to use the OpenTelemetry Protocol Exporter. Each language will have a different approach which can be an adaptation from our relevant Host Agent. Instrument your OpenTelemetry code with languages that are supported by both Middleware and [OpenTelemetry](https://opentelemetry.io/docs/instrumentation/).
 
+The example below is using javascript and an abstraction from our [node agent](https://github.com/middleware-labs/agent-apm-nodejs). All other agents can be found in our [middleware-labs repo](https://github.com/middleware-labs). If you need assistance with a specific language we are happy to work with you, however, we do not have every approach documented at this time.
 
 # Prerequisites
 
-1. Middleware Agent needs to already be installed
-2. App must already be configured to collect telemetry 
+1. App must already be configured to collect telemetry 
+
+# Installation
 
 ### Step 1: Setup Resource Attributes
 
@@ -68,7 +70,7 @@ const traceExporter = new OTLPTraceExporter({
 ```
 </CodeGroup>
 
-<Accordion title="Example: OTLP/HTTP Curl Request">
+<Accordion title="Sample OTLP/HTTP Curl Request">
 
 <Note> Data must be in OTLP/HTTP format. Learn more [here](https://opentelemetry.io/docs/specs/otlp/#otlphttp). </Note>
 ```
@@ -131,5 +133,6 @@ EOF
 </Accordion>
 
 ### Step 4: Send Data to Middleware
+Once you have setup your resource attributes, initialize your providers, and configure your exporters, begin sending data to Middleware. 
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
