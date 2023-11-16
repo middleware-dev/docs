@@ -4,7 +4,7 @@ sidebarTitle: "OpenTelemetry"
 ---
 
 # Overview
-We recommend using Middleware's Agent and associated SDKs to ingest data, however, more advanced users have the option to use the OpenTelemetry Protocol Exporter. Each language will have a different approach which can be an adaptation from our relevant Host Agent. Instrument your OpenTelemetry code with languages that are supported by both Middleware and [OpenTelemetry](https://opentelemetry.io/docs/instrumentation/).
+We recommend using Middleware's Agent and associated SDKs to ingest data, however, more advanced users have the option to use OpenTelemetry Protocol Exporters. Each language will have a different approach which can be an adaptation from our relevant Host Agent. Instrument your OpenTelemetry code with languages that are supported by both Middleware and [OpenTelemetry](https://opentelemetry.io/docs/instrumentation/).
 
 The example below is using javascript and an abstraction from our [node agent](https://github.com/middleware-labs/agent-apm-nodejs). All other agents can be found in our [middleware-labs repo](https://github.com/middleware-labs). If you need assistance with a specific language we are happy to work with you, however, we do not have every approach documented at this time.
 
@@ -16,7 +16,8 @@ The example below is using javascript and an abstraction from our [node agent](h
 
 ### Step 1: Setup Resource Attributes
 
-Embed the Middleware Resource Attributes in your instrumentation file:
+Embed OpenTelemetry Resource Attributes:
+<Note> Learn more about OpenTelemetry resources here </Note>
 
 ```javascript JavaScript
 const resource = new Resource({
@@ -25,25 +26,24 @@ const resource = new Resource({
   ["mw.account_key"]: "{your-api-key}",
 });
 ```
+### Resource Attributes
 
-### Step 2: Initialize Provider (factory)
+| Field | Type | Required | description |
+| :--: |:--:| :---: | :----:| 
+| mw.account_key | string | ✅ | API key that authenticates your MW Account |
+| mw_agent | boolean |✅ | Required by MW |
+| SERVICE_NAME | string | ✅ | Logical name of service required by OpenTelemetry | 
 
-Determine which providers (e.g. log, trace, and metric factories) will export data to Middleware.
+<Note> For more information on OpenTelemetry JavaScript Resources, head [here](https://opentelemetry.io/docs/instrumentation/js/resources/) </Note>
 
-<Warning> Log ingestion is an experimental feature within Open Telemetry. Proceed with caution. </Warning>
 
-### Step 3: Configure your Exporter
+### Step 2: Configure your Exporter
 
 Configure your exporter(s) to send data to Middleware with OTLP/HTTP or OTLP/gRPC. 
 
-<CodeGroup>
+<Warning> Log ingestion is an experimental feature within Open Telemetry. Proceed with caution. </Warning>
 
-```javascript OTLP/HTTP
-// Send HTTP POST requests to endpoints:
-POST https://<UID>.middleware.io/v1/logs
-POST https://<UID>.middleware.io/v1/traces
-POST https://<UID>.middleware.io/v1/metrics
-```
+<CodeGroup>
 
 ```javascript OTLP/gRPC
 // Install gRPC exporter libraries
@@ -68,11 +68,18 @@ const traceExporter = new OTLPTraceExporter({
 });
 
 ```
+
+```javascript OTLP/HTTP
+// Send HTTP POST requests to endpoints:
+POST https://<UID>.middleware.io/v1/logs
+POST https://<UID>.middleware.io/v1/traces
+POST https://<UID>.middleware.io/v1/metrics
+```
 </CodeGroup>
 
 <Accordion title="Sample OTLP/HTTP Curl Request">
 
-<Note> Data must be in OTLP/HTTP format. Learn more [here](https://opentelemetry.io/docs/specs/otlp/#otlphttp). </Note>
+<Note> The following should be used as an example - we do not recommend using this specific curl request for OTLP/HTTP curl requests. Data must be in OTLP/HTTP format. Learn more [here](https://opentelemetry.io/docs/specs/otlp/#otlphttp). </Note>
 ```
 curl -X POST "https://demo.middleware.io/v1/metrics" \
 -H "Accept: application.json" \
@@ -132,7 +139,7 @@ EOF
 ```
 </Accordion>
 
-### Step 4: Send Data to Middleware
+### Step 3: Send Data to Middleware
 Once you have setup your resource attributes, initialize your providers, and configure your exporters, begin sending data to Middleware. 
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
