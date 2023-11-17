@@ -4,9 +4,9 @@ title: Infrastructure Monitoring
 
 This guide provides an overview of Middleware’s Infrastructure Monitoring page. Collect, configure, and visualize complex telemetry across your Infrastructures with our autodetection capabilities.
 
-The Middleware Host Agent auto collects data across the stack using the OTel framework. While collecting, the Agent will also compress and batch data to your account to allow near real time analysis on all data points regarding your clusters, nodes, pods and services.
+The Middleware Host Agent auto collects data across your stack using the OpenTelemetry framework. While collecting, the Agent will compresses and batches data to your account to allow near real time analysis on all data points regarding your clusters, nodes, pods and services.
 
-Middleware supports Infra Monitoring on many distributions, all can be found [here](/agent-installation/overview)."
+Middleware supports Infra Monitoring on many distributions, which can be found [here](/agent-installation/overview)."
 
 # Key Concepts
 
@@ -16,15 +16,15 @@ The Host List is the highest level compoenent overview, providing a top-down app
 
 ### Containers
 
-Containers provide visibility into the health and performance of your containerized environments. Middleware collects Container data based on the VMs running in your infra. This does not include containers managed by Kubernetes.
+The Containers section provides visibility into the health and performance of your containerized workloads. Middleware collects Container data based on the VMs running in your infra. This does not include containers managed by Kubernetes.
 
 ### Processes
 
-Processes are system level methods being run or managed inside of your hosts. This data is pulled directly from the kernel of each host and imported to Middleware through the Host Agent. You may use this data to analyze process health, overall process impact on your infrastructure, and drill into each process to uncover further data points.
+Processes are system level ystem level programs being executed inside of your hosts or containers. This data is pulled directly from your operating system and imported to Middleware through the Host Agent. You may use this data to analyze process health, overall process impact on your infrastructure, and drill into each process to uncover further data points.
 
 ### Kubernetes
 
-Kubernetes is a container orchestration platform that automates the deployment, scaling, management, and operation of containerized applications. Effortlessly personalize your k8s data visualization experience.
+Kubernetes is a container orchestration platform that automates the deployment, scaling, management, and operation of containerized applications. Our Middleware Agent runs as a Kubernetes DaemonSet that collects and transmits data. Effortlessly personalize your Kubernetes data visualization experience.
 
 <Accordion title="Clusters">
   A cluster is a collection of nodes that operate together as a single unit. These include control plane components and nodes that run the actual workloads.
@@ -81,7 +81,7 @@ Kubernetes is a container orchestration platform that automates the deployment, 
 
 # Usage Graph
 
-The Usage graph displays all of your team's Infrastructure usage data. Gain immediate insight into your stack's performance.
+The Usage graph displays all of your team's Infrastructure usage data. Gain immediate insight into your stack's performance with the Usage Graph, which by default allows summaraziation by CPU or Memory usage, and a date range picker to drill into a specific timeframe. Start your data exploration experience with easy to access high level insights from the Usage graph.
 
 ### Change Usage Type
 
@@ -97,36 +97,37 @@ Select your own date range from the calendar or choose from our default options.
 
 # Data Table
 
-The List Tab displays all of your specific Infrastructure data in a single table. You can manage your list view by adding and removing specific metrics.
-
+The Data Table section displays all of your high level Infrastructure data in a single table. Tailor your experience by adding and removing specific metrics, filtering your data to quickly drill into important Infrastructure issues, and toggle between ingesting data in real-time or from a static table. Quickly isolate high level issues within your infrastructure and drill into them to find granular issues. 
 ### Add & Remove Data
-Select specific Infrastructure data you would like to see in your data table by toggling on and off each metric.
+Select specific Infrastructure data you would like to see in your data table by toggling on and off each attribute or metric.
 
 <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzhsdm1ycHB5b244a3B1ZTJnaDNjOGlmZzFteDFob2FrZjAzdG1nZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/PtGflEPrP0lFAGdV4i/giphy.gif" width="750" height="750"/>
 
 ### Filter & Search
-Access specific Hosts, Host IDs, Host Names, K8s Nodes, OS Types, and other key attributes with the Filters bar. Quickly index across all of your infrastructure data in one search. 
+Access specific Hosts, Host IDs, Host Names, Kubernetes Nodes, OS Types, and other key attributes with the Filters bar. Quickly index across all of your infrastructure data in one search. 
 
 <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZXJmNDM5d2JmYzd4aTJ2OHg3ZHd3dms2bTJwZ3R1Z3dzcXl0anNkeiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/rEJAUGmdTiJZqvOEBT/giphy.gif" width="750" height="750"/>
 
 ### Live & History View
-Toggle between a static data table with the History View or track your Infrastructure data in real-time with Live View.
+Toggle between a static data table with the History View or track your Infrastructure data in real-time with Live View. 
+
+<Note> When you select a specific date range, you will be viewing your data in History View. Deselect the date range you previously specified to switch back to Live View.</Note>
 
 <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXR2ZmFlN244YndlcmYybTUyZXltZ3E5NXpxbXBrbHQ0MDU2cHE4MSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Hm44urt27NsM3QDptx/giphy.gif" width="750" height="750"/>
 
 # Drilling Into Your Data
 
-The below section describes some of the many ways you can drill into your Infrastructure data. Learn how to pinpoint and address your major performance bottlenecks or issues, ensuring optimal system operation. Identify common usage patterns throughout your stack to ensure future system reliability and effective capacity planning.
+The below section describes some of the many ways you can drill into your Infrastructure data. By default Middleware connects data across your stack using span and thread ids to ensure a drillable experience across all components. This enables users to have an easy path to root cause regardless of where they start their exploration. In the examples below you'll see how to drill into the Host List and Kubernetes Data, however, the drill is available from any data point across the Data table.
 
 ### Drilling Into Host List Data
 
-The following example will show you how to drill into your Host List Infrastructure data.
+The following example will show you how to drill into your Host List Infrastructure data. When drilling into the host, Middleware by default associates data across all Metrics, Pods, Containers, Processes, Logs and Services.
 
 <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExb2l2OTgyNXI3bjc2NXN4OXpxeGgxenRsNXBpYnpyNzR0MTVoMG1iMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/rCUVKi8tZpX5wqd5bh/giphy.gif" width="750" height="750"/>
 
 ### Drilling Into Kubernetes Data
 
-The following example will show you how to drill into your Kubernetes Infrastructure data.
+The following example will show you how to drill into your Kubernetes Infrastructure data. When drilling into Kubernetes data, Middleware by default associates data across Clusters, Nodes, Services, and Workloads. 
 
 <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYzVpd2d5aHlncnFva214aWE4ZnJmb2dxbXA1NDBhaGIzNmVyM3MzdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/s0gTM8K2LQiJt1bBat/giphy.gif" width="750" height="750"/>
 
