@@ -121,7 +121,8 @@
                 "integrations/mongodb-integration",
                 "integrations/mysql-integration",
                 "integrations/postgresql-integration",
-                "integrations/redis-integration" 
+                "integrations/redis-integration",
+                "integrations/cassandra-integration"
               ]
             },
             {
