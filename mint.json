@@ -114,13 +114,7 @@
             }                    
             
           ]
-        },
-        {
-          "group": "RUM",
-          "pages": [
-            "rum/getting-started"
-          ]
-        },
+        },"rum/getting-started",
         {
           "group": "Data Ingestion APIs",
           "pages": [
@@ -145,7 +139,7 @@
             "workflow/apm/service-monitoring",
             "workflow/apm/traces"                        
           ]
-        },
+        }, "workflow/using-rum",
         {
           "group": "Log Monitoring",
           "pages": [

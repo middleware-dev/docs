@@ -1,23 +1,23 @@
 ---
-title: "Getting Started"
-description: "This guide provides setup instructions for Middleware Real User Monitoring."
+title: Installing RUM
+sidebarTitle: "RUM"
 ---
 
-## Overview
+# Overview
 Middleware Real User Monitoring (RUM) provides insights into your application or website through detailed data on user interactions and frontend performance. With real-time data on page load times, errors, and more you can quickly identify and resolve performance issues to improve user experience and engagement. Check out the video below for more information.
 
 <a href="https://www.loom.com/share/ed0f136a6dd7436ba951356c936e0ca3" target="_blank">
   <img height="200" noZoom src="/images/rum_0.png" />
 </a>
 
-## Prerequisites
+# Prerequisites
 JavaScript-based web application (mobile apps not currently supported)
 
-## Install
+# Install
 This guide walks you through setting up Real User Monitoring (RUM) with JavaScript. These instructions can also be found on the Installation page in your Middleware Account.
 
 ### Step 1: Create Application Reference
-Navigate to the Installation page in your Middleware Account. In the Real User Monitoring section, select `Create New Application` and provide the application name and origin(s) to whitelist. Multiple origins can be listed as a comma-separated list.
+Navigate to the Installation page in your Middleware Account. In the Real User Monitoring section, select `Create New Application` and provide the application name, origin(s) and Trace Propogation Target(s)[Optional] to whitelist. Multiple origins can be listed as a comma-separated list.
 
 ### Step 2: Import Javascript CDN
 Add the following script tag to the head section of your index.html file. The tag can be copied directly from the Installation page upon completing Step 1.
@@ -59,28 +59,6 @@ if(window.Middleware){
 
 Once RUM is configured, metrics should begin appearing on the RUM Dashboard in Middleware within a few minutes. For more information on the RUM Dashboards see [here](https://docs.middleware.io/docs/rum/rum-middleware).
 
-# Using RUM
-
-## Performance Summary
-
-The Performance Summary provides insight into your top-level RUM performance data. Learn about your Core Web Vitals Metrics, the total errors incurred, and the total unique user sessions and pages visits within a certain period of time.
-
-![](https://lh7-us.googleusercontent.com/0VNW2N5_GdWBkfztTGMD0bAGwSyZhbxMG6Gga00CZ8QSae-05rHQ9NSC_Lwi7akpGrsV3NalAf_ab6KDCxNvpok5Jw2Mn5u4VTUNUNu6GNQHQebiD253eXJNa3x06B8bCPEXaOXruoK2F2tycmdu1C0)
-
-## Session & Replays
-
-The Session & Replays section provides insight into your top-level RUM Session data and the ability to drill into specific session details to easily diagnose issues and understand user behavior.
-
-Select from the Sessions table to drill into a RUM Session. Get time stamped recordings of users' interactions.
-
-* include gif of user accessing contiinuous profiling
-
-## Browser Errors
-
-The Browser Errors section provides insight into when and where your application throws Errors.
-
-![](https://lh7-us.googleusercontent.com/sBtmkfYANQAniUTVEgREs4IAQ_xPiEE4uFy8QqdNvjut5yAdDW8ApDuYF0yMqw2qSKx8xMzzrrEHXfZ6-DON9nHvw6utveB0d1fI3cgewK5eaIPIeFs0oXtrhKjA-8GjteuBV0nG4PhAh6eGChRqPYk)
-
 # Connect RUM to Tracing
 
 RUM Tracing allows you to gain insight into the specific actions of your users. You can watch time-stamped videos of user's website interactions, pinpoint performance bottlenecks across your platform, and identify the major causes of customer drop off.
@@ -110,24 +88,30 @@ Add `tracePropagationTargets` to your SDK from [Step 3](#step-3-initialize-the-s
 
 ### Step 2: Modify APM SDK
 
-Navigate to your desired APM to complete your Install:
+In order to enable Trace Propagation, some languages require the `OTEL_PROPAGATORS=b3` environment variable. Those languages are called out in the table below. All other langugages will work with the standard APM install.
 
-| Supported APMs| 
-| :----:|
-| APM 1 |
-|etc |
+### Supported APMs
+|       | | |
+| :----:| :--:|:--:|
+| **Language**                                |    **Supported**   | **APM Version** | **Environment Variable** |
+| [Cloudflare](/apm-configuration/cloudflare) |           ✖️        |   ✖️             |        ✖️             |
+| [Go](/apm-configuration/go)           |                ✅        |   `>= 1.1.100`     |        ✖️             |
+| [Java](/apm-configuration/java)         |              ✅        |    ✖️            |         ✅               | 
+| [.NET](/apm-configuration/dotnet)       |              ✅        |     ✖️           |       ✅                 |
+| [Next.js](/apm-configuration/next-js)      |           ✅        |     ✖️           |            ✖️             |
+| [Node.js](/apm-configuration/node-js)      |           ✅        | `>= 1.2.5`         |            ✖️             |
+| [PHP](/apm-configuration/php)          |                ✖️        |    ✖️            |            ✖️             |
+| [Python](/apm-configuration/python)       |            ✅        | `>= 0.3.2`         |            ✖️             |
+| [Ruby](/apm-configuration/ruby)         |              ✅        | `>= 2.1.0`         |   ✅  |
+| [Vercel](/apm-configuration/vercel-integration)   |     ✅        |    ✖️            |            ✖️             |
 
-## Accessing Session Replay
+## Access RUM From Trace List
 
-This section shows you how to access Session Replay.
+To access your Session Replay data, navigate to the APM section, select the Trace List tab and choose a trace to view your data.
 
-### Step 1: Navigate to Trace List
-Insert image (APM --> Trace List --> Session Replay)
+<Note> For more information about using RUM, head to the [RUM Workflow page](/workflow/using-rum). </Note>
 
-### Step 2: Choosing a Trace
-Insert image(Select trace --> access time-stamped user clickthrough)
+<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNnRxNzFmajVnYXZpZW8xbGR6OHF3NjZ6aWozYXRjZmZ5OHlnc3c4eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/AQhJ5ezOms5ncTNH7a/giphy.gif" width="900" height="900" />
+
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
-
-<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaGF4ZzRxN3JocGRkZTl2cWcybGVuYWRhaG5yN3Y1bzNzOThncXZqMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/fDz8nkYcv8gKeHKNOs/giphy.gif" width="900" height="900" />
-
