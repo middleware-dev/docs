@@ -63,7 +63,10 @@
     {
       "group": "Middleware Docs",
       "pages": [
-        "quickstart","workflow/workflow-welcome", "admin/admin-welcome",
+        "quickstart",
+        "workflow/workflow-welcome", 
+        "admin/admin-welcome",
+        "workflow/infrastructure-monitoring/container-monitoring",
         {
           "group": "Middleware Agent",
           "pages": [
@@ -141,15 +144,6 @@
           "group": "Data Ingestion APIs",
           "pages": [
             "data-ingestion-apis/opentelemetry-metrics"
-          ]
-        },
-        {
-          "group": "Infrastructure Monitoring",
-          "pages": [          
-            "workflow/infrastructure-monitoring/container-monitoring",
-            "workflow/infrastructure-monitoring/host",
-            "workflow/infrastructure-monitoring/kubernetes-monitoring",
-            "workflow/infrastructure-monitoring/processes"
           ]
         },
         {
