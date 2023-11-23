@@ -10,7 +10,15 @@ For Each ECS Task that you want to monitor, add this one sidecar container in yo
     "name": "mw-agent",
     "image": "ghcr.io/middleware-labs/mw-host-agent:fargate-solution",
     "cpu": 256,
-    "portMappings": [],
+    "portMappings": [
+        {
+            "name": "8006-tcp",
+            "containerPort": 8006,
+            "hostPort": 8006,
+            "protocol": "tcp",
+            "appProtocol": "http"
+        }
+    ],
     "essential": true,
     "environment": [
         {
@@ -38,25 +46,39 @@ Middleware Agent using AWS ECS Task Metadata Endpoint to fetch metrics data.
 
 We offer a few different methods to forward your ECS task logs to Middleware.
 
-#### Method 1 :  Forward ECS Task logs via AWS FireLens
+#### Method 1 :  Forward ECS Task logs to Middleware
 
-You will need to add these configurations inside main container of your task definition.
-These configurations will forward the logs to 24224 port in fluentbit format.
+Make sure you are already running "mw-agent" sidecar mentioned at the top of this document before running the next steps.
+
+##### Step 1: Add a fluent sidecar in your ECS task
+```
+{
+    "name": "log_router",
+    "image": "amazon/aws-for-fluent-bit:stable",
+    "cpu": 0,
+    "portMappings": [],
+    "essential": true,
+    "environment": [],
+    "mountPoints": [],
+    "volumesFrom": [],
+    "user": "0",
+    "firelensConfiguration": {
+        "type": "fluentbit",
+        "options": {
+            "enable-ecs-log-metadata": "true"
+        }
+    }
+}
+```
+##### Step 2 : Add this log Configuration in your main container
 
 ```
 "logConfiguration": {
     "logDriver": "awsfirelens",
     "options": {
-        "Name": "middleware",
-        "delivery_stream": "middleware-stream",
-        "log-driver-buffer-limit": "2097152",
-        "region": "us-west-2"
-    }
-},
-"firelensConfiguration": {
-    "type": "fluentbit",
-    "options": {
-        "enable-ecs-log-metadata": "true"
+        "Host": "127.0.0.1",
+        "Name": "forward",
+        "Port": "8006"
     }
 }
 ```
