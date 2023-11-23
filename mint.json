@@ -106,7 +106,8 @@
                 "integrations/microsoft-team-integration",
                 "integrations/opsgenie-integration",
                 "integrations/pagerduty-integration",
-                "integrations/slack-integration"             
+                "integrations/slack-integration"    
+                
               ]
             },
             {
