@@ -15,9 +15,11 @@ The Elasticsearch Integration allows users to track their Elasticsearch performa
 
 ### Step 1: Create YAML file
 
-Create a `.yaml` file in your system with the rest of your database collection details
+Create a `.yaml` file in your system to store your database collection details
 
 `/home/ubuntu/elasticsearch-creds.yaml`
+
+<Note> If you are running the Middleware Docker Agent, keep the YAML file within the `/var/log` directory. Docker Agents might not support dynamic volume binding.</Note>
 
 ### Step 2: Add Elasticsearch Credentials to the YAML file
 
@@ -29,8 +31,6 @@ elasticsearch:
   username: YOUR_USERNAME
   password: YOUR_PASSWORD
 ```
-
-<Note> If you are running the Middleware Docker Agent, keep the YAML file within the `/var/log` directory. Docker Agents might not support dynamic volume binding.</Note>
 
 ### Step 3: Connect Elasticsearch Integration
 
