@@ -1,14 +1,19 @@
 ---
-title: "AWS ECS Monitoring"
+title: "AWS ECS Fargate Monitoring"
 ---
 
-## ECS + Fargate setup Monitoring
+ECS (Elastic Container Service) is a tool provided by AWS that enables container orchestration.
+ECS tasks can be ran via EC2 instances or on AWS Fargate.
+This doc will help you in monitoring your AWS ECS Fargate tasks using Middleware Agent.
 
-For Each ECS Task that you want to monitor, add this one sidecar container in your task definition.
+### Metrics Collection
+You can monitor performance metrics of your ECS Fargate tasks using Middleware Agent sidecar.
+You just need to add the sidecar given below to your ECS Task `containerDefinitions`
+
 ```
 {
     "name": "mw-agent",
-    "image": "ghcr.io/middleware-labs/mw-host-agent:fargate-solution",
+    "image": "ghcr.io/middleware-labs/mw-host-agent:master",
     "cpu": 256,
     "portMappings": [
         {
@@ -38,19 +43,29 @@ For Each ECS Task that you want to monitor, add this one sidecar container in yo
 }
 ```
 
-### Metrics Collection
-Adding the sidecar container as mentioned above, will automatically start collecting metrics data from your ECS tasks and containers.
-Middleware Agent using AWS ECS Task Metadata Endpoint to fetch metrics data.
 
-### Logs Collection
 
-We offer a few different methods to forward your ECS task logs to Middleware.
+### Log Monitoring
+<img src="/images/integration/aws-ecs-fargate-log-monitoring.jpg" />
 
-#### Method 1 :  Forward ECS Task logs to Middleware
+You can forward your ECS task logs to Middleware UI using the steps mentioned below.
 
-Make sure you are already running "mw-agent" sidecar mentioned at the top of this document before running the next steps.
+#### Step 1 : Set awsfirelens as log driver for your ECS task
+Add this logConfiguration into your ECS container block
 
-##### Step 1: Add a fluent sidecar in your ECS task
+```
+"logConfiguration": {
+    "logDriver": "awsfirelens",
+    "options": {
+        "Host": "127.0.0.1",
+        "Name": "forward",
+        "Port": "8006"
+    }
+}
+```
+
+#### Step 2 : Add a AWS Fluent sidecar in your ECS task
+Add this sidecar container in your ECS task `containerDefinitions`
 ```
 {
     "name": "log_router",
@@ -70,21 +85,46 @@ Make sure you are already running "mw-agent" sidecar mentioned at the top of thi
     }
 }
 ```
-##### Step 2 : Add this log Configuration in your main container
 
+#### Step 3 : Add Middleware Agent sidecar in your ECS task
+Add this sidecar container in your ECS task `containerDefinitions`
 ```
-"logConfiguration": {
-    "logDriver": "awsfirelens",
-    "options": {
-        "Host": "127.0.0.1",
-        "Name": "forward",
-        "Port": "8006"
+{
+    "name": "mw-agent",
+    "image": "ghcr.io/middleware-labs/mw-host-agent:master",
+    "cpu": 256,
+    "portMappings": [
+        {
+            "name": "8006-tcp",
+            "containerPort": 8006,
+            "hostPort": 8006,
+            "protocol": "tcp",
+            "appProtocol": "http"
+        }
+    ],
+    "essential": true,
+    "environment": [
+        {
+            "name": "MW_API_KEY",
+            "value": <Your Middleware API Key>
+        },
+        {
+            "name": "MW_TARGET",
+            "value": <Middleware Target Endpoint>
+        },
+    ],
+    "mountPoints": [],
+    "volumesFrom": [],
+    "logConfiguration": {
+        <Setup Log Configurations as per your requirement>
     }
 }
 ```
+
+
 Middleware Agent sidecar will fetch these logs and will forward them to Middleware UI.
 
-#### Method 2 : Forward ECS Task Logs from CloudWatch 
+{/* #### Method 2 : Forward ECS Task Logs from CloudWatch 
 AWS ECS + Fargate based apps use "awslogs" as default logging driver. Therefore, by default these logs are available at Cloudwatch.
 Adding the sidecar container as mentioned above, will automatically start collecting task logs from CloudWatch.
 
@@ -106,12 +146,7 @@ You will need to add 2 environment variables in order to fetch logs for only a s
 <Note>
 As Middleware Agent will be running as an ECS task, it will run with `ecsTaskExecutionRole`. By default this role is not permitted to read CloudWatch logs, 
 Therefore, you will have to add an inline policy to allow `ecsTaskExecutionRole` to read CloudWatch logs. Alternatively, you can create a new IAM role for this usecase and then assign this role to Middleware Agent task. 
-</Note>
-
-## ECS + EC2 setup Monitoring
-
-You can run Middleware Agent as type `Daemon` to monitor all your ECS tasks + containers.
-More Details TBA.
+</Note> */}
 
 
 
