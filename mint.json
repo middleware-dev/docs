@@ -113,7 +113,8 @@
             {
               "group": "Cloud",
               "pages":[
-                "integrations/kinesis-streams"
+                "integrations/kinesis-streams",
+                "integrations/aws-ecs-monitoring"
               ]
             },
             {
