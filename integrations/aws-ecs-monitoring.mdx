@@ -60,7 +60,7 @@ We offer a few different methods to forward your ECS task logs to Middleware.
 
 ### Forward ECS Task logs to Middleware
 
-Make sure you are already running "mw-agent" sidecar mentioned at the top of this document before running the next steps.
+Make sure you are already running `mw-agent` sidecar mentioned at the top of this document before running the next steps.
 
 <AccordionGroup>
     <Accordion title="Step 1: Add a fluent sidecar in your ECS task">
@@ -87,7 +87,8 @@ Make sure you are already running "mw-agent" sidecar mentioned at the top of thi
     </Accordion>
 
     <Accordion title="Step 2 : Add this log Configuration in your main container">
-
+    
+        The Middleware Agent sidecar will fetch these logs and send them to Middleware.
 
         ```json JSON
         "logConfiguration": {
@@ -101,8 +102,6 @@ Make sure you are already running "mw-agent" sidecar mentioned at the top of thi
         ```
     </Accordion>
 </AccordionGroup>
-
-Middleware Agent sidecar will fetch these logs and will forward them to Middleware UI.
 
 ### Forward ECS Task Logs from CloudWatch 
 
@@ -270,7 +269,7 @@ Fargate apps use `awslogs` as the default logging driver which make them availab
 
 Begin collecting container trace and log data in your EC2 instance. The MW Agent will collect ECS container logs emitted to the `stdout` and `stderr` log stream and receive traces from your application and send to your Middleware account.
 
-<Warning> The MW Agent must already be running as an application before setting up container trace and log collection. If not, attempted trace collection will throw an error while connecting to the agent and logs will not be sent at all.</Warning>
+<Warning> The MW Agent must be running as an app before setting up collection. If not, attempted trace collection will throw an error while connecting to the agent and logs will not be sent at all.</Warning>
 
 ### Modify your Application Task Definition
 
