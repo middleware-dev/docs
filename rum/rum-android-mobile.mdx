@@ -94,23 +94,23 @@ Middleware.builder()
 ```
 ### Custom Events [Optional]
 
-<AccordionGroup>
+<AccordionGroup>   
     <Accordion title="Send Custom Events">
-      Send custom events and workflows using `addEvent` and `startWorkflow` APIs
-      
+      Send custom events and workflows using `addEvent` 
         ```java Java
         Middleware.getInstance().addEvent("You clicked on Button", BUTTON_ATTRIBUES);
         ```
     </Accordion>
 
     <Accordion title="Start Custom Event Workflow">
+      Start custom events and workflows using `startWorkflow`  
         ```java Java
         Span loginWorkflow = Middleware.getInstance().startWorkflow("User Login Flow");
         ```
     </Accordion>
 
     <Accordion title="End Custom Event Workflow">
-      
+      End custom events and workflows using `end`
         ```java Java
         loginWorkflow.end();
         ```
@@ -169,12 +169,12 @@ Middleware.builder()
     | `os.version`              |      String    |  Operating System version. Example: Android version `11` |
   </Accordion>
 
-  <Accordion title="Inastrumentation Attributes">
+  <Accordion title="Instrumentation Attributes">
 
     The following Instrumentation Attributes are additional properties the Android SDK provides:
 
         <Accordion title="Crash Reporting">
-        Crash Reporting is enabled by default and adds the following Crash Reporting attributes to spans that represent uncaught exceptions which are by default enabled:
+        Crash Reporting is enabled by default and adds the following Crash Reporting attributes to spans that represent uncaught exceptions:
 
       |         __Name__          |    __Type__    |                     __Description__                                             | 
       | :----------------------:  | :-------------:| :----------------------------------------------------------------------------- |
