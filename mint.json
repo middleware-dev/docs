@@ -25,7 +25,22 @@
     "name": "Get Started",
     "url": "https://app.middleware.io/auth/register/"
   },
-  "anchors": [],
+  "anchors": [
+    {
+      "icon": "slack",
+      "name": "Slack",
+      "url": "https://join.slack.com/t/middlewarepublic/shared_invite/zt-27ocdb77k-PTPf652Vl4EgWJiEDdjJnQ",
+      "color": "#e95e5f",
+      "iconType":"brands"
+    },
+    {
+      "icon": "github",
+      "name": "GitHub",
+      "url": "https://github.com/middleware-labs",
+      "color": "#e95e5f",
+      "iconType":"brands"
+    }
+  ],
   "analytics": {
     "ga4": {
       "measurementId": "G-2KBHR7YB2G"
@@ -48,7 +63,10 @@
     {
       "group": "Middleware Docs",
       "pages": [
-        "quickstart","workflow/workflow-welcome", "admin/admin-welcome",
+        "quickstart",
+        "workflow/workflow-welcome", 
+        "admin/admin-welcome",
+        "workflow/infrastructure-monitoring/container-monitoring",
         {
           "group": "Middleware Agent",
           "pages": [
@@ -57,6 +75,7 @@
             "agent-installation/kubernetes",
             "agent-installation/linux",            
             "agent-installation/windows"
+            
           ]
         },
         {
@@ -87,7 +106,8 @@
                 "integrations/microsoft-team-integration",
                 "integrations/opsgenie-integration",
                 "integrations/pagerduty-integration",
-                "integrations/slack-integration"             
+                "integrations/slack-integration"    
+                
               ]
             },
             {
@@ -102,7 +122,8 @@
                 "integrations/mongodb-integration",
                 "integrations/mysql-integration",
                 "integrations/postgresql-integration",
-                "integrations/redis-integration" 
+                "integrations/redis-integration",
+                "integrations/elasticsearch-integration"
               ]
             },
             {
@@ -115,13 +136,7 @@
             }                    
             
           ]
-        },
-        {
-          "group": "RUM",
-          "pages": [
-            "rum/getting-started"
-          ]
-        },
+        },"rum/getting-started",
         {
           "group": "Infrastructure Monitoring",
           "pages": [          
@@ -129,6 +144,7 @@
             "workflow/infrastructure-monitoring/host",
             "workflow/infrastructure-monitoring/kubernetes-monitoring",
             "workflow/infrastructure-monitoring/processes"
+
           ]
         },
         {
@@ -140,7 +156,7 @@
             "workflow/apm/service-monitoring",
             "workflow/apm/traces"                        
           ]
-        },
+        }, "workflow/using-rum",
         {
           "group": "Log Monitoring",
           "pages": [

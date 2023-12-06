@@ -1,73 +1,136 @@
 ---
-title: "Container Monitoring"
+title: Infrastructure Monitoring
 ---
-Overview
---------
-Container Monitoring provides real-time visibility into health and performance of containerized environments. 
 
-Container List
---------------
-The container list enables visibility into all containers across your environment excluding Kubernetes. It provides a detailed overview of your containers' health, resource consumption, and deployment. The collection of containers is container id, container name, host, status, cpu usage, ram usage, etc.
+This guide provides an overview of Middleware’s Infrastructure Monitoring page. Collect, configure, and visualize complex telemetry across your Infrastructures with our autodetection capabilities.
 
-![](/images/infra-monitoring/c1.png)
+The Middleware Host Agent auto collects data across your stack using the OpenTelemetry framework. While collecting, the Agent will compress and batch data to your account to allow near real time analysis on all data points regarding your clusters, nodes, pods and services.
 
-### Container ID
-This shows the id of the container and IDs are randomly generated and are typically 12 characters long.
+Middleware supports Infra Monitoring on many distributions, which can be found [here](/agent-installation/overview).
 
-### Container Name
-This shows the name of the container and the name is a user-friendly identifier that is assigned to a container.  
+# Key Concepts
 
-### Host
-The host can be a physical or virtual machine running any operating system, such as Linux, Windows, or macOS.  
+### Host List
 
-### Status
-The container status refers to the current state of a container. The container status states include:
+The Host List is the highest level compoenent overview, providing a top-down approach for diagnosing, monitoring, and maintaining your stack. It provides insights into your orchestration data, database usage, system-wide Infrastructure utilization and general health of your stack.
 
--   **Running**: The container is currently running and its main process is active.
--   **Restarting**: The container is in the process of restarting after being stopped or restarted.
--   **Exited**: The container has stopped running and its main process has exited.
--   **Dead**: The container has stopped running due to an error or crash, and its main process is no longer active.
+### Containers
 
-### CPU Usage
-This shows the percentage of CPU used. The CPU usage of a container refers to the percentage of the host system's CPU resources that are currently being used by the container's processes.
+The Containers section provides visibility into the health and performance of your containerized workloads. Middleware collects Container data based on the VMs running in your infra. This does not include containers managed by Kubernetes.
 
-### RAM Usage
-This shows the percentage of RAM used. The container RAM usage in percentage refers to the proportion of allocated memory resources that a container is currently using on the host system.
+### Processes
 
-### Started Ago
-This indicates when the container was started. when a container is started, and records the time it was started and saves this information as metadata associated with the container.
+Processes are system level programs being executed inside of your hosts or containers. This data is pulled directly from your operating system and imported to Middleware through the Host Agent. You may use this data to analyze process health, overall process impact, and drill into each process to uncover further data points.
 
-Filters
--------
-We have many options for data filters. Like selecting any date and searching container by a container name, container id, container image, etc. Also in the sidebar section, we also have multiple check options available to filter the containers list data.
+### Kubernetes
 
-![](/images/infra-monitoring/c2.png)
+Kubernetes is a container orchestration platform that automates the deployment, scaling, management, and operation of containerized applications. Our Middleware Agent runs as a Kubernetes DaemonSet that collects and transmits data. 
 
-Container Details
------------------
-Click on any container to view more details, the tab view provides basic container information such as metrics in a graphical view, hostname, and container image. the info will always display the latest data. You can view resources metrics and logs related to that container in this detail view.
+<Accordion title="Clusters">
+  A cluster is a collection of nodes that operate together as a single unit. These include control plane components and nodes that run the actual workloads.
+</Accordion>
 
-![](/images/infra-monitoring/c3.png)
+<Accordion title="Nodes">
+    A node is a physical or virtual machine within a Kubernetes cluster where containers are deployed and run.
+</Accordion>
 
-### CPU Utilization (%)
-The container CPU percent refers to the percentage of CPU resources that a container is currently using on the host system. The container runs as a separate process on the host system and is allocated a certain amount of CPU resources based on its configuration and resources that are currently being used by the container's processes.
+<Accordion title="Services">
+    A service defines a particular set of pods and provides a consistent network endpoint to access them. A service can be used for load balancing, service discovery, and a layer of abstraction for connecting to applications within a cluster.
+</Accordion>
 
-### RAM Utilization (%)
-The container memory percent refers to the percentage of memory resources that a container is currently using on the host system, relative to the total memory resources available on the host system.
+<Accordion title="Workloads">
+    A workload is a tool for managing the configuration and scale of your application components within a Kubernetes cluster.
 
-### Network IO Utilization
-The container network I/O usage refers to the amount of data that is transmitted and received by a container over the network interface. this is typically measured in terms of the number of packets that are transmitted and received by the container, as well as the number of packets that are dropped.
+    <AccordionGroup>
+        <Accordion title="Pods">
+            Pods are the smallest deployable unit in Kubernetes. They represent one or more containers that share the same network namespace, storage, and IP address. Pods are scheduled onto nodes.
 
--   **RX (receive) packets**: The number of packets that are received by the container over the network interface.
--   **TX (transmit) packets**: The number of packets that are transmitted by the container over the network interface.
--   **RX dropped**: The number of packets that are dropped or discarded by the container due to errors or other issues during transmission.
--   **TX dropped**: The number of packets that are dropped or discarded by the container due to errors or other issues during transmission.
+        </Accordion>
 
-![](/images/infra-monitoring/c4.png)
+        <Accordion title="Containers">
+            Containers are the fundamental units running with pods, which are scheduled onto nodes in a Kubernetes cluster.
+        </Accordion>
 
-### Block IO service recursive
-The container block I/O usage refers to the amount of data that is read from or written to a block device, such as a disk or storage volume, by a container. this is typically measured in terms of the number of input/output (I/O) operations and the amount of data that is transferred during those operations. The container.blockio.io_service_bytes_recursive metric key provides information about the amount of data that is read from or written to the block device in bytes, broken down by individual operations.
+        <Accordion title="Deployments">
+            Deployments provide declarative updates to applications. They are a high-level abstraction that simplifies the management and scaling of applications.
+        </Accordion>
 
-![](/images/infra-monitoring/c5.png)
+        <Accordion title="ReplicaSets">
+            ReplicaSets ensure a specified number of replica pods are running at any given time. ReplicaSets can be used for horizontally scaling your applications. 
+        </Accordion>
+
+        <Accordion title="Jobs">
+            Jobs are controller objects that represent finite and short-lived tasks or batch processes that run within pods.
+        </Accordion>
+
+        <Accordion title="CronJobs">
+            CronJobs are controller objects that can be scheduled to automate task execution. CronJobs are Jobs that can be run on a periodic schedule.
+        </Accordion>
+
+        <Accordion title="DaemonSet">
+            DaemonSets are controllers that ensure a specific set of pods is running across your cluster. DaemonSets are used to run exactly one instance of a pod on each node in the cluster.
+        </Accordion>
+
+        <Accordion title="StatefulSet">
+            StatefulSets are used for managing stateful applications that are comprised of unique network identifiers, persistent storage, and specific ordering requirements for their deployment and scaling. 
+        </Accordion>
+
+        </AccordionGroup>
+
+</Accordion>
+
+# Usage Graph
+
+The Usage graph is a timeseries representation of data from across your Infrastructure. Gain immediate insight into your stack's performance with the Usage Graph, which by default allows summaraziation by CPU or Memory usage, and a date range picker to drill into a specific timeframe.
+
+### Change Usage Type
+
+Toggle between your Infrastructure CPU and Memory usage over time.
+
+<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaDRkZHlldGN3bWJ4b281emh3Ym52ZHFpaGJ4anF2OWtzZTMyMW9vbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/CMxUd2XqN2sQKFTXEW/giphy.gif" width="750" height="750"/>
+
+### Select Date Range
+
+Select your own date range from the calendar or choose from our default options.
+
+<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMWpuamp5amFsM3dtazFobXVibnhpb2xmc3NqOWN6d3djczM4anQydCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/9ZT90BmYhPrqB3fiWt/giphy.gif" width="750" height="750"/>
+
+# Data Table
+
+The Data Table section displays all Infrastructure data in a single table. Tailor your experience by adding and removing specific metrics, filtering your data to quickly drill into important Infrastructure issues, and toggle between displaying data in real-time or from a static timeframe. Quickly isolate high level issues and drill into them to identify root cause. 
+### Add & Remove Data
+Select specific Infrastructure data you would like to see in your data table by toggling on and off each attribute or metric.
+
+<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzhsdm1ycHB5b244a3B1ZTJnaDNjOGlmZzFteDFob2FrZjAzdG1nZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/PtGflEPrP0lFAGdV4i/giphy.gif" width="750" height="750"/>
+
+### Filter & Search
+Access specific Hosts, Host IDs, Host Names, Kubernetes Nodes, OS Types, and other key attributes with the Filters bar. Quickly index across all of your infrastructure data in one search. 
+
+<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZXJmNDM5d2JmYzd4aTJ2OHg3ZHd3dms2bTJwZ3R1Z3dzcXl0anNkeiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/rEJAUGmdTiJZqvOEBT/giphy.gif" width="750" height="750"/>
+
+### Live & History View
+Toggle between a static timerange with the History View or track your Infrastructure data in real-time with Live View. 
+
+<Note> When you select a specific date range, you will be viewing your data in History View. Deselect the date range you previously specified to switch back to Live View.</Note>
+
+<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXR2ZmFlN244YndlcmYybTUyZXltZ3E5NXpxbXBrbHQ0MDU2cHE4MSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Hm44urt27NsM3QDptx/giphy.gif" width="750" height="750"/>
+
+# Drilling Into Your Data
+
+The below section describes some of the many ways you can drill into your data. By default Middleware connects data across your stack using attributes and span and thread ids to ensure a drillable experience across all components. This enables users to have an easy path to root cause regardless of where they start their exploration. 
+
+In the examples below you'll see how to drill into the Host List and Kubernetes Data, however, the drill is available from any data point across the Data table.
+
+### Drilling Into Host List Data
+
+The following example will show you how to drill into a specific Host to better understand the associated components. When drilling into the Host, Middleware by default associates data across all Metrics, Pods, Containers, Processes, Logs and Services.
+
+<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExb2l2OTgyNXI3bjc2NXN4OXpxeGgxenRsNXBpYnpyNzR0MTVoMG1iMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/rCUVKi8tZpX5wqd5bh/giphy.gif" width="750" height="750"/>
+
+### Drilling Into Kubernetes Data
+
+The following example will show you how to drill into your Kubernetes Infrastructure. When drilling into Kubernetes data, Middleware by default associates data across Clusters, Nodes, Services, and Workloads. 
+
+<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYzVpd2d5aHlncnFva214aWE4ZnJmb2dxbXA1NDBhaGIzNmVyM3MzdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/s0gTM8K2LQiJt1bBat/giphy.gif" width="750" height="750"/>
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
