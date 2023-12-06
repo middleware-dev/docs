@@ -109,7 +109,8 @@
              "group": "Telemetry",
              "pages": [
               "integrations/prometheus-integration",
-              "integrations/prometheus-integration-k8s"
+              "integrations/prometheus-integration-k8s",
+              "data-ingestion-apis/opentelemetry-metrics"
              ]
             }                    
             
@@ -120,7 +121,7 @@
           "pages": [
             "rum/getting-started"
           ]
-        },"data-ingestion-apis/opentelemetry-metrics",
+        },
         {
           "group": "Infrastructure Monitoring",
           "pages": [          

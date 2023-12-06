@@ -16,8 +16,9 @@ The example below is using javascript and an abstraction from our [node agent](h
 
 ### Step 1: Setup Resource Attributes
 
-Embed OpenTelemetry Resource Attributes:
-<Note> Learn more about OpenTelemetry resources here </Note>
+Middleware connects via Otel using the `mw.account_key` which can be found in the [Resource Attributes](/data-ingestion-apis/opentelemetry-metrics#resource-attributes) section. To get started, you need to set up appropriate OpenTelemetry Resource attributes, seen below:
+
+<Note> Learn more about OpenTelemetry resources [here](https://opentelemetry.io/docs/instrumentation/js/resources/) </Note>
 
 ```javascript JavaScript
 const resource = new Resource({
@@ -31,8 +32,8 @@ const resource = new Resource({
 | Field | Type | Required | description |
 | :--: |:--:| :---: | :----:| 
 | mw.account_key | string | ✅ | API key that authenticates your MW Account |
-| mw_agent | boolean |✅ | Required by MW |
-| SERVICE_NAME | string | ✅ | Logical name of service required by OpenTelemetry | 
+| mw_agent | boolean |✅ | True if using a host agent, false if running serverless |
+| SERVICE_NAME | string | ✅ | Logical name of service, and desired filter value in Middleware | 
 
 <Note> For more information on OpenTelemetry JavaScript Resources, head [here](https://opentelemetry.io/docs/instrumentation/js/resources/) </Note>
 
