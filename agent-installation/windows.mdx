@@ -1,17 +1,19 @@
-## Overview
+---
+title: "Windows"
+---
 
 This guide walks you through installing the MW Agent on a Microsoft Windows machine. These instructions can also be found on the Installation page in your [Middleware Account](https://app.middleware.io/installation#infrastructures/windows).
 
-## Prerequisites
+# Prerequisites
 * Microsoft Windows 10 or above
 * For Microsoft Windows Server instances, Windows Server 2016 and above
 * Windows 64-bit
 
-## Limitations
+# Limitations
 * APM support for Go, Node.js, Python & Java only
 * Database integrations are currently being tested for deployment and momentarily unavailable on Windows
 
-## Install
+# Install
  Follow the steps below to install the MW Agent on your Windows machine.
 
 1. Download the MW Agent [Installer](https://github.com/middleware-labs/mw-agent/releases/latest/download/mw-windows-agent-setup.exe)
@@ -37,11 +39,11 @@ Get-Service -Name mw-windows-agent
    * correct output
 !["Verify Windows Present Code"](/images/agent-installation/windows_correct.jpg)
 
-## Troubleshooting
+# Troubleshooting
 Once the MW Agent is installed, metrics should begin appearing in your Middleware Account within a few minutes. If metrics do not appear, ensure that the machine has access to the internet, either directly or through a proxy, and that only one MW Agent is running per server instance.
 For any issues, please reach out to our team through the help menu in your Middleware Account or by contacting our support.
 
-## Uninstall
+# Uninstall
 To uninstall the MW Agent on a Windows machine, follow these steps.
 
 1. Access Settings in the Windows Launcher and go to Apps section. 
