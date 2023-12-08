@@ -33,13 +33,15 @@ pip --version
 
 # Install
 
-## Step 1: Install Middleware Python APM Package
+<Accordion title="Step 1: Install Middleware Python APM Package"> 
 Run the following command in your terminal:
 ```python Shell
 pip install middleware-apm
 ```
+</Accordion>
 
-## Step 2: Import Middleware Tracker
+<Accordion title="Step 2: Import Middleware Tracker"> 
+
 Add the following lines to the beginning of your application:
 
 ```python Python 3
@@ -48,8 +50,9 @@ import logging
 from middleware import MwTracker
 tracker=MwTracker()
 ```
+</Accordion>
 
-## Step 3: Container Variables (Optional)
+<Accordion title="Step 3: Container Variables (Optional)"> 
 Applications running in a container require an additional environment variable. If your application is not running in a container, move to Step 4. 
 
 For Docker containers, add the following environment variable to your application:
@@ -69,64 +72,72 @@ Then add the following environment variable to your application deployment YAML 
 ```bash Shell
 MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
 ```
+</Accordion>
 
-## Step 4: Capture Application Data
+<Accordion title="Step 4: Capture Application Data"> 
+    <AccordionGroup>
+        <Accordion title="Setup .ini File"> 
 
+            Create a `.ini` file based on the features you want to observe. `service_name` and `access_token` are required for the tracker to send data to Middleware.
 
+            ```python .ini
+            [middleware.common]
 
-### Setup .ini File
+            # The name of your application as service-name, as it will appear in the UI to filter out your data.
+            service_name = {APM-SERVICE-NAME}
 
-Create a `.ini` file based on the features you want to observe. `service_name` and `access_token` are required for the tracker to send data to Middleware.
+            # This Token binds the Python Agent's data and profiling data to your account.
+            access_token = {YOUR-ACCESS-TOKEN}
 
-```python .ini
-[middleware.common]
+            # The service name, where Middleware Agent is running, in case of K8s.
+            mw_agent_service = mw-service.mw-agent-ns.svc.cluster.local
 
-# The name of your application as service-name, as it will appear in the UI to filter out your data.
-service_name = {APM-SERVICE-NAME}
+            # Distributed traces for your application (false = disabled).
+            collect_traces = true
 
-# This Token binds the Python Agent's data and profiling data to your account.
-access_token = {YOUR-ACCESS-TOKEN}
+            # Collection of metrics for your application (false = disabled).
+            collect_metrics = true
 
-# The service name, where Middleware Agent is running, in case of K8s.
-mw_agent_service = mw-service.mw-agent-ns.svc.cluster.local
+            # Collection of logs for your application (false = disabled).
+            collect_logs = true
 
-# Distributed traces for your application (false = disabled).
-collect_traces = true
+            # Collection of profiling data for your application (false = disabled).
+            collect_profiling = true
+            ```
+        </Accordion>
 
-# Collection of metrics for your application (false = disabled).
-collect_metrics = true
+        <Accordion title="Enable Custom Logs"> 
 
-# Collection of logs for your application (false = disabled).
-collect_logs = true
+            To ingest custom logs, utilize the following functions based on desired log severity levels:
 
-# Collection of profiling data for your application (false = disabled).
-collect_profiling = true
-```
-### Enable Custom Logs
+            ```python Python 3
+            logging.info("info sample")
+            logging.warning("Sample Warning Log") 
+            logging.error("Sample Error Log.", extra={'tester': 'Alex'})
+            ```
+        </Accordion>
 
-To ingest custom logs, utilize the following functions based on desired log severity levels:
+        <Accordion title="Stack Errors"> 
+            
+            Use `tracker.record_error()` method to record a stack trace when an error occurs:
 
-```python Python 3
-logging.info("info sample")
-logging.warning("Sample Warning Log") 
-logging.error("Sample Error Log.", extra={'tester': 'Alex'})
-```
+            ```python Python 3
+            try:
+                not_possible = 12/0
+            except ZeroDivisionError as e:
+                tracker.record_error(e)
+            ```
+        </Accordion>
+    </AccordionGroup>
+</Accordion>
 
-### Stack Errors
-Use `tracker.record_error()` method to record a stack trace when an error occurs:
+<Accordion title="Step 5: Start Your Project">
 
-```python Python 3
-try:
-    not_possible = 12/0
-except ZeroDivisionError as e:
-    tracker.record_error(e)
-```
-
-## Step 5: Start Your Project
 After deploying your application, run the following command to start your project:
 ```shell Shell
 MIDDLEWARE_CONFIG_FILE=./middleware.ini middleware-apm run python app.py
 ```
+</Accordion>
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
 

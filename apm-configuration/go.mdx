@@ -17,14 +17,15 @@ go version
 
 # Install
 
-## Step 1: Install Go package
+<Accordion title="Step 1: Install Go package">
 Run the following command in your terminal.
 
 ```go Go
 go get github.com/middleware-labs/golang-apm
 ```
+</Accordion>
 
-## Step 2: Import Tracker
+<Accordion title="Step 2: Import Tracker">
 Add the following lines to the beginning of your application code base.
 
 ```go Go
@@ -41,344 +42,361 @@ go track.Track(
     track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
 )
 ```
+</Accordion>
 
-## Step 3: Framework-Specific Configuration
-If any of the following Go web frameworks are used in your application additional configuration is required. View additional configuration steps per framework below.
+<Accordion title="Step 3: Framework-Specific Configuration">
+If any of the following Go web frameworks are used in your application, additional configuration is required. View additional configuration steps per framework below.
 
-| Framework          |  
-| :------:             |   
-| [gin/gonic](#gin-gonic) | [gorilla/mux](#gorilla-mux) | [go-chi](#go-chi) | [go-chi/v5](#go-chi-v5) | [astaxie-beego](#astaxie-beego) | [beego/v2](#beego-v2) | [database/sql](#database-sql) |   
-| [go-pg/pg](#go-pg-pg) | [GORM 1](#gorm-1) | [GORM 2](#gorm-1) | [go-pg/mongo](#go-pg-mongo) | [gRPC](#grpc) |   
+     <AccordionGroup>
+          <Accordion title="gin/gonic">
+     
+               Middleware APM requires Gin version 1.1.18 or higher. 
 
-### gin/gonic
-Middleware APM requires Gin version 1.1.18 or higher. 
+               Install the Middleware APM Gin package.
+               ```go Go
+               go get github.com/middleware-labs/golang-apm-gin
+               ```
+               Add the Middleware APM Gin package to the existing import statement from Step 2.
+               ```go Go
+               import (
+                    track "github.com/middleware-labs/golang-apm/tracker"
+                    mwgin "github.com/middleware-labs/golang-apm-gin/gin"
+               )
+               ```
+               Initialize the Middleware APM wherever the Gin package is initialized, typically in the main function. 
+               ```go Go
+               r := gin.Default()
+               config, _ := track.Track(
+                    track.WithConfigTag("service","<apm-service-name>"),
+                    track.WithConfigTag("projectName","<apm-project-name>"),
+                    track.WithConfigTag("accessToken","<xxxxxxxxxx>"),
+               )
+               r.Use(mwgin.Middleware(config))
+               ```
+          </Accordion>
 
-Install the Middleware APM Gin package.
-```go Go
-go get github.com/middleware-labs/golang-apm-gin
-```
-Add the Middleware APM Gin package to the existing import statement from Step 2.
-```go Go
-import (
-     track "github.com/middleware-labs/golang-apm/tracker"
-     mwgin "github.com/middleware-labs/golang-apm-gin/gin"
-)
-```
-Initialize the Middleware APM wherever the Gin package is initialized, typically in the main function. 
-```go Go
-r := gin.Default()
-config, _ := track.Track(
-     track.WithConfigTag("service","<apm-service-name>"),
-     track.WithConfigTag("projectName","<apm-project-name>"),
-     track.WithConfigTag("accessToken","<xxxxxxxxxx>"),
-)
-r.Use(mwgin.Middleware(config))
-```
+          <Accordion title="gorilla/mux">
 
+               Middleware APM requires MUX version 1.8.0
 
-### gorilla/mux
-Middleware APM requires MUX version 1.8.0
+               Install the Middleware APM MUX package.
 
-Install the Middleware APM MUX package.
+               ```go Go
+               go get github.com/middleware-labs/golang-apm-mux
+               ```
 
-```go Go
-go get github.com/middleware-labs/golang-apm-mux
-```
+               Add the Middleware APM MUX package to the existing import statement from Step 2.
 
-Add the Middleware APM MUX package to the existing import statement from Step 2.
+               ```go Go
+               import (
+                    track "github.com/middleware-labs/golang-apm/tracker"
+                    mwmux "github.com/middleware-labs/golang-apm-mux/mux"
+               )
+               ```
+               Initialize the Middleware APM wherever the MUX package is initialized, typically in the main function.
 
-```go Go
-import (
-     track "github.com/middleware-labs/golang-apm/tracker"
-     mwmux "github.com/middleware-labs/golang-apm-mux/mux"
-)
-```
-Initialize the Middleware APM wherever the MUX package is initialized, typically in the main function.
+               ```go Go
+               r := mux.newRouter()
+               config, _ := track.Track(
+                    track.WithConfigTag("service", "<apm-service-name>"),
+                    track.WithConfigTag("projectName", "<apm-service-name>"),
+                    track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
+               )
+               r.Use(mwmux.Middleware(config))
+               ```
+          </Accordion>
 
-```go Go
-r := mux.newRouter()
-config, _ := track.Track(
-     track.WithConfigTag("service", "<apm-service-name>"),
-     track.WithConfigTag("projectName", "<apm-service-name>"),
-     track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
-)
-r.Use(mwmux.Middleware(config))
-```
+          <Accordion title="go-chi">
 
+               Middleware APM requires go-chi/chi version 1.5.4 or higher.
 
-### go-chi
-Middleware APM requires go-chi/chi version 1.5.4 or higher.
+               Install the Middleware APM go-chi package.
+               ```go Go
+               go get github.com/middleware-labs/agent-apm-go-chi-legacy
+               ```
+               Add the Middleware APM go-chi package to the existing import statement from Step 2.
+               ```go Go
+               import (
+                    track "github.com/middleware-labs/golang-apm/tracker"
+                    mwchi "github.com/middleware-labs/agent-apm-go-chi-legacy"
+               )
+               ```
+               Initialize the Middleware APM wherever the go-chi package is initialized, typically in the main function. 
+               ```go Go
+               config, _ := track.Track(
+                    track.WithConfigTag("service", "<apm-service-name>"),
+                    track.WithConfigTag("projectName", "<apm-service-name>"),
+                    track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
+               )
+               r := chi.NewRouter()
+               r.Use(mwchi.Middleware("<my-server>", mwchi.WithChiRoutes(r)))
+               ```
+          </Accordion>
 
-Install the Middleware APM go-chi package.
-```go Go
-go get github.com/middleware-labs/agent-apm-go-chi-legacy
-```
-Add the Middleware APM go-chi package to the existing import statement from Step 2.
-```go Go
-import (
-     track "github.com/middleware-labs/golang-apm/tracker"
-     mwchi "github.com/middleware-labs/agent-apm-go-chi-legacy"
-)
-```
-Initialize the Middleware APM wherever the go-chi package is initialized, typically in the main function. 
-```go Go
-config, _ := track.Track(
-     track.WithConfigTag("service", "<apm-service-name>"),
-     track.WithConfigTag("projectName", "<apm-service-name>"),
-     track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
-)
-r := chi.NewRouter()
-r.Use(mwchi.Middleware("<my-server>", mwchi.WithChiRoutes(r)))
-```
+          <Accordion title="go-chi/v5">
 
+               Middleware APM requires go-chi/chi/v5 version 5.0.8 or higher.
 
-### go-chi/v5
-Middleware APM requires go-chi/chi/v5 version 5.0.8 or higher.
+               Install the Middleware APM go-chi package.
+               ```go Go
+               go get github.com/middleware-labs/agent-apm-go-chi
+               ```
+               Add the Middleware APM go-chi package to the existing import statement from Step 2.
+               ```go Go
+               import (
+                    track "github.com/middleware-labs/golang-apm/tracker"
+                    mwchi "github.com/middleware-labs/agent-apm-go-chi"
+               )
+               ```
+               Initialize the Middleware APM wherever the go-chi package is initialized, typically in the main function.
+               ```go Go
+               config, _ := track.Track(
+                    track.WithConfigTag("service", "<apm-service-name>"),
+                    track.WithConfigTag("projectName", "<apm-service-name>"),
+                    track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
+               )
+               r := chi.NewRouter()
+               r.Use(mwchi.Middleware("<my-server>", mwchi.WithChiRoutes(r)))
+               ```
+          </Accordion>
 
-Install the Middleware APM go-chi package.
-```go Go
-go get github.com/middleware-labs/agent-apm-go-chi
-```
-Add the Middleware APM go-chi package to the existing import statement from Step 2.
-```go Go
-import (
-     track "github.com/middleware-labs/golang-apm/tracker"
-     mwchi "github.com/middleware-labs/agent-apm-go-chi"
-)
-```
-Initialize the Middleware APM wherever the go-chi package is initialized, typically in the main function.
-```go Go
-config, _ := track.Track(
-     track.WithConfigTag("service", "<apm-service-name>"),
-     track.WithConfigTag("projectName", "<apm-service-name>"),
-     track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
-)
-r := chi.NewRouter()
-r.Use(mwchi.Middleware("<my-server>", mwchi.WithChiRoutes(r)))
-```
+          <Accordion title="astaxie-beego">
+     
+               Middleware APM requires astaxie/beego version 1.12.3 or higher.
 
-### astaxie-beego
-Middleware APM requires astaxie/beego version 1.12.3 or higher.
+               Install the Middleware APM astaxie-beego package.
+               ```go Go
+               go get github.com/middleware-labs/golang-apm-beego
+               ```
+               Add the Middleware APM astaxie-beego package to the existing import statement from Step 2.
+               ```go Go
+               import (
+                    track "github.com/middleware-labs/golang-apm/tracker"
+                    mw_beego "github.com/middleware-labs/golang-apm-beego/beego"
+               )
+               ```
+               Initialize the Middleware APM wherever the astaxie-beego package is initialized, typically in the main function. 
+               ```go Golang
+               config, _ := track.Track(_
+                    track.WithConfigTag("service", "<apm-service-name>"),
+                    track.WithConfigTag("projectName", "<apm-service-name>"),
+                    track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
+               )
+               mware := mw_beego.Middleware(config)
+               ```
+          </Accordion>
 
-Install the Middleware APM astaxie-beego package.
-```go Go
-go get github.com/middleware-labs/golang-apm-beego
-```
-Add the Middleware APM astaxie-beego package to the existing import statement from Step 2.
-```go Go
-import (
-     track "github.com/middleware-labs/golang-apm/tracker"
-     mw_beego "github.com/middleware-labs/golang-apm-beego/beego"
-)
-```
-Initialize the Middleware APM wherever the astaxie-beego package is initialized, typically in the main function. 
-```go Golang
-config, _ := track.Track(_
-     track.WithConfigTag("service", "<apm-service-name>"),
-     track.WithConfigTag("projectName", "<apm-service-name>"),
-     track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
-)
-mware := mw_beego.Middleware(config)
-```
+          <Accordion title="beego/v2">
 
-### beego/v2
-Middleware APM requires beego/v2 version 2.0.7 or higher.
+               Middleware APM requires beego/v2 version 2.0.7 or higher.
 
-Install the Middleware APM astaxie-beego package.
-```go Go
-go get github.com/middleware-labs/golang-apm-beego
-```
-Add the Middleware APM astaxie-beego package to the existing import statement from Step 2.
-```go Go
-import (
-     track "github.com/middleware-labs/golang-apm/tracker"
-     mw_beego "github.com/middleware-labs/golang-apm-beego/beego"
-)
-```
-Initialize the Middleware APM wherever the astaxie-beego package is initialized, typically in the main function. 
-```go Go
-config, _ := track.Track(_
-     track.WithConfigTag("service", "<apm-service-name>"),
-     track.WithConfigTag("projectName", "<apm-service-name>"),
-     track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
-)
-mware := mw_beego.Middleware(config)
-```
+               Install the Middleware APM astaxie-beego package.
+               ```go Go
+               go get github.com/middleware-labs/golang-apm-beego
+               ```
+               Add the Middleware APM astaxie-beego package to the existing import statement from Step 2.
+               ```go Go
+               import (
+                    track "github.com/middleware-labs/golang-apm/tracker"
+                    mw_beego "github.com/middleware-labs/golang-apm-beego/beego"
+               )
+               ```
+               Initialize the Middleware APM wherever the astaxie-beego package is initialized, typically in the main function. 
+               ```go Go
+               config, _ := track.Track(_
+                    track.WithConfigTag("service", "<apm-service-name>"),
+                    track.WithConfigTag("projectName", "<apm-service-name>"),
+                    track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
+               )
+               mware := mw_beego.Middleware(config)
+               ```
+          </Accordion>
 
+          <Accordion title="database/sql">
 
-### database/sql
-Middleware APM requires go-sql-driver/mysql version 1.7.1 or higher.
+               Middleware APM requires go-sql-driver/mysql version 1.7.1 or higher.
 
-Install the Middleware APM SQL package.
-```go Go
-go get github.com/middleware-labs/golang-apm-sql
-```
-Add the Middleware APM SQL package to the existing import statement from Step 2.
-```go Go
-import (
-     track "github.com/middleware-labs/golang-apm/tracker"
-     mw_sql "github.com/middleware-labs/golang-apm-sql/sql"
-)
-```
-Initialize the Middleware APM wherever the SQL package is initialized, typically in the main function. 
-```go Go
-config, _ := track.Track(
-     track.WithConfigTag("service", "<apm-service-name>"),
-     track.WithConfigTag("projectName", "<apm-service-name>"),
-     track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
-)
-db, err := mw_sql.Open("mysql", "uname:password@tcp(127.0.0.1:3306)/todo")
-```
+               Install the Middleware APM SQL package.
+               ```go Go
+               go get github.com/middleware-labs/golang-apm-sql
+               ```
+               Add the Middleware APM SQL package to the existing import statement from Step 2.
+               ```go Go
+               import (
+                    track "github.com/middleware-labs/golang-apm/tracker"
+                    mw_sql "github.com/middleware-labs/golang-apm-sql/sql"
+               )
+               ```
+               Initialize the Middleware APM wherever the SQL package is initialized, typically in the main function. 
+               ```go Go
+               config, _ := track.Track(
+                    track.WithConfigTag("service", "<apm-service-name>"),
+                    track.WithConfigTag("projectName", "<apm-service-name>"),
+                    track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
+               )
+               db, err := mw_sql.Open("mysql", "uname:password@tcp(127.0.0.1:3306)/todo")
+               ```
+          </Accordion>
 
+          <Accordion title="go-pg/pg">
 
-### go-pg/pg
-Middleware APM requires go-pg/pg version 10.11.1 or higher.
+               Middleware APM requires go-pg/pg version 10.11.1 or higher.
 
-Install the Middleware APM PG package.
-```go Go
-go get github.com/middleware-labs/golang-apm-pg
-```
-Add the Middleware APM PG package to the existing import statement from Step 2.
-```go Go
-import (
-     "github.com/go-pg/pg/v10"
-          track "github.com/middleware-labs/golang-apm/tracker"
-          mw_pg "github.com/middleware-labs/golang-apm-pg/pg"
-)
-```
-Initialize the Middleware APM wherever the PG package is initialized, typically in the main function.
-```go Go
-config, _ := track.Track(_
-     track.WithConfigTag("service", "<apm-service-name>"),
-     track.WithConfigTag("projectName", "<apm-service-name>"),
-     track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
-)
-db := pg.Connect(&pg.Options{
-               Addr:      ":5432",
-               User:      "postgres",
-               Password:  "postgres",
-               Database:  "dbname",
-          })
-mw_pg.AddQueryHook(db)
-```
+               Install the Middleware APM PG package.
+               ```go Go
+               go get github.com/middleware-labs/golang-apm-pg
+               ```
+               Add the Middleware APM PG package to the existing import statement from Step 2.
+               ```go Go
+               import (
+                    "github.com/go-pg/pg/v10"
+                         track "github.com/middleware-labs/golang-apm/tracker"
+                         mw_pg "github.com/middleware-labs/golang-apm-pg/pg"
+               )
+               ```
+               Initialize the Middleware APM wherever the PG package is initialized, typically in the main function.
+               ```go Go
+               config, _ := track.Track(_
+                    track.WithConfigTag("service", "<apm-service-name>"),
+                    track.WithConfigTag("projectName", "<apm-service-name>"),
+                    track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
+               )
+               db := pg.Connect(&pg.Options{
+                              Addr:      ":5432",
+                              User:      "postgres",
+                              Password:  "postgres",
+                              Database:  "dbname",
+                         })
+               mw_pg.AddQueryHook(db)
+               ```
+          </Accordion>
 
-### GORM 1
-Middleware APM requires jinzhu/gorm version 1.9.16 or higher.
+          <Accordion title="GORM 1">
+     
+               Middleware APM requires jinzhu/gorm version 1.9.16 or higher.
 
-Install the Middleware APM SQL package.
-```go Go
-go get github.com/middleware-labs/golang-apm-sql
-```
-Add the Middleware APM SQL package to the existing import statement from Step 2.
-```go Go
-import (
-     track "github.com/middleware-labs/golang-apm/tracker"
-     mw_sql "github.com/middleware-labs/golang-apm-sql/sql"
-)
-```
-Initialize the Middleware APM inside the main function. 
-```go Go
-config, _ := track.Track(_
-     track.WithConfigTag("service", "<apm-service-name>"),
-     track.WithConfigTag("projectName", "<apm-service-name>"),
-     track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
-)
-db, err := mw_sql.Open(driverName, dataSourceName, mw_sql.WithDBName(dbname), mw_sql.WithAttributes(tracker.String("db.system","mysql")))
-```
+               Install the Middleware APM SQL package.
+               ```go Go
+               go get github.com/middleware-labs/golang-apm-sql
+               ```
+               Add the Middleware APM SQL package to the existing import statement from Step 2.
+               ```go Go
+               import (
+                    track "github.com/middleware-labs/golang-apm/tracker"
+                    mw_sql "github.com/middleware-labs/golang-apm-sql/sql"
+               )
+               ```
+               Initialize the Middleware APM inside the main function. 
+               ```go Go
+               config, _ := track.Track(_
+                    track.WithConfigTag("service", "<apm-service-name>"),
+                    track.WithConfigTag("projectName", "<apm-service-name>"),
+                    track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
+               )
+               db, err := mw_sql.Open(driverName, dataSourceName, mw_sql.WithDBName(dbname), mw_sql.WithAttributes(tracker.String("db.system","mysql")))
+               ```
+          </Accordion>
 
-### GORM 2
-Middleware APM requires gorm.io/gorm version 1.25.1 or higher.
+          <Accordion title="GORM 2">
+               
+               Middleware APM requires gorm.io/gorm version 1.25.1 or higher.
 
-Install the Middleware APM GORM package.
-```go Go
-go get github.com/middleware-labs/go-agent-gorm
-```
-Add the Middleware APM GORM package to the existing import statement from Step 2.
-```go Go
-import (
-     "gorm.io/gorm"
-     "gorm.io/driver/mysql"
-          track "github.com/middleware-labs/golang-apm/tracker"
-          mw_gorm "github.com/middleware-labs/go-agent-gorm/gorm"
-)
-```
-Initialize the Middleware APM inside the main function. 
-```go Go
-config, _ := track.Track(_
-     track.WithConfigTag("service", "<apm-service-name>"),
-     track.WithConfigTag("projectName", "<apm-service-name>"),
-     track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
-)
-db, err := gorm.Open(mysql.Open("username:password@tcp(127.0.0.1:3306)/dbname"), &gorm.Config{})
-if err != nil {
-     panic(err)
-}
-if err := db.Use(mw_gorm.NewPlugin(mw.gorm.WithDBName("dbname"), mw_gorm.WithAttributes(track.String("db.system", "mysql")))); err != nil {
-     panic(err)
-}
-```
+               Install the Middleware APM GORM package.
+               ```go Go
+               go get github.com/middleware-labs/go-agent-gorm
+               ```
+               Add the Middleware APM GORM package to the existing import statement from Step 2.
+               ```go Go
+               import (
+                    "gorm.io/gorm"
+                    "gorm.io/driver/mysql"
+                         track "github.com/middleware-labs/golang-apm/tracker"
+                         mw_gorm "github.com/middleware-labs/go-agent-gorm/gorm"
+               )
+               ```
+               Initialize the Middleware APM inside the main function. 
+               ```go Go
+               config, _ := track.Track(_
+                    track.WithConfigTag("service", "<apm-service-name>"),
+                    track.WithConfigTag("projectName", "<apm-service-name>"),
+                    track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
+               )
+               db, err := gorm.Open(mysql.Open("username:password@tcp(127.0.0.1:3306)/dbname"), &gorm.Config{})
+               if err != nil {
+                    panic(err)
+               }
+               if err := db.Use(mw_gorm.NewPlugin(mw.gorm.WithDBName("dbname"), mw_gorm.WithAttributes(track.String("db.system", "mysql")))); err != nil {
+                    panic(err)
+               }
+               ```
 
-Then use db.WithContext(ctx) to propagate the active span.
-```go Go
-var num int
-if err := db.WithContext(ctx).Raw("SELECT 42").Scan(&num).Error; err != nil {
-     panic(err)
-}
-```
+               Then use db.WithContext(ctx) to propagate the active span.
+               ```go Go
+               var num int
+               if err := db.WithContext(ctx).Raw("SELECT 42").Scan(&num).Error; err != nil {
+                    panic(err)
+               }
+               ```
+          </Accordion>
 
+          <Accordion title="go-pg/mongo">
 
-### go-pg/mongo
-Middleware APM requires go.mongodb.org/mongo-driver version 1.12.1 or higher.
+               Middleware APM requires go.mongodb.org/mongo-driver version 1.12.1 or higher.
 
-Install the Middleware APM Mongo package.
-```go Go
-go get github.com/middleware-labs/golang-apm-mongo
-```
-Add the Middleware APM Mongo package to the existing import statement from Step 2.
-```go Go
-import (
-     "go.mongodb.org/mongo-driver/mongo/options"
+               Install the Middleware APM Mongo package.
+               ```go Go
+               go get github.com/middleware-labs/golang-apm-mongo
+               ```
+               Add the Middleware APM Mongo package to the existing import statement from Step 2.
+               ```go Go
+               import (
+                    "go.mongodb.org/mongo-driver/mongo/options"
 
-     track "github.com/middleware-labs/golang-apm/tracker"
-     mw_mongo "github.com/middleware-labs/golang-apm-mongo/mongo"
-)
-```
-Initialize the Middleware APM inside the main function. 
-```go Go
-config, _ := track.Track(_
-     track.WithConfigTag("service", "<apm-service-name>"),
-     track.WithConfigTag("projectName", "<apm-service-name>"),
-     track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
-)
-opts := options.Client()
-opts.Monitor = mw_mongo.NewMonitor()
-```
+                    track "github.com/middleware-labs/golang-apm/tracker"
+                    mw_mongo "github.com/middleware-labs/golang-apm-mongo/mongo"
+               )
+               ```
+               Initialize the Middleware APM inside the main function. 
+               ```go Go
+               config, _ := track.Track(_
+                    track.WithConfigTag("service", "<apm-service-name>"),
+                    track.WithConfigTag("projectName", "<apm-service-name>"),
+                    track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
+               )
+               opts := options.Client()
+               opts.Monitor = mw_mongo.NewMonitor()
+               ```
+          </Accordion>
 
-### gRPC
-Middleware APM requires google.golang.org/grpc version 1.53.0 or higher.
+          <Accordion title="gRPC">
 
-Install the Middleware APM gRPC package.
-```go Go
-go get github.com/middleware-labs/golang-apm-grpc
-```
-Add the Middleware APM astaxie-beego package to the existing import statement from Step 2.
-```go Go
-import (
-     track "github.com/middleware-labs/golang-apm/tracker"
-     mw_grpc "github.com/middleware-labs/golang-apm-grpc/grpc"
-)
-```
-Initialize the Middleware APM wherever the astaxie-beego package is initialized, typically in the main function. 
-```go Go
-config, _ := track.Track(_
-     track.WithConfigTag("service", "<apm-service-name>"),
-     track.WithConfigTag("projectName", "<apm-service-name>"),
-     track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
-)
-mware := mwbeego.MiddleWare(config.ServiceName)
-```
+               Middleware APM requires google.golang.org/grpc version 1.53.0 or higher.
 
-## Step 4: Container Variables
+               Install the Middleware APM gRPC package.
+               ```go Go
+               go get github.com/middleware-labs/golang-apm-grpc
+               ```
+               Add the Middleware APM astaxie-beego package to the existing import statement from Step 2.
+               ```go Go
+               import (
+                    track "github.com/middleware-labs/golang-apm/tracker"
+                    mw_grpc "github.com/middleware-labs/golang-apm-grpc/grpc"
+               )
+               ```
+               Initialize the Middleware APM wherever the astaxie-beego package is initialized, typically in the main function. 
+               ```go Go
+               config, _ := track.Track(_
+                    track.WithConfigTag("service", "<apm-service-name>"),
+                    track.WithConfigTag("projectName", "<apm-service-name>"),
+                    track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
+               )
+               mware := mwbeego.MiddleWare(config.ServiceName)
+               ```
+          </Accordion>
+     </AccordionGroup>
+</Accordion>
+
+<Accordion title="Step 4: Container Variables">
 Applications running in a container require an additional environment variable. If your application is not running in a container, move to Step 5. 
 
 For Docker containers, add the following environment variable to your application.
@@ -396,10 +414,9 @@ Then add the following environment variable to your application deployment YAML 
 ```bash Shell
 MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
 ```
+</Accordion>
 
-
-
-## Step 5: Capture Application Data
+<Accordion title="Step 5: Capture Application Data">
 
 ### Traces
 Distributed tracing is automatically enabled upon completion of Step 2.
@@ -432,5 +449,6 @@ app.get("/hello", (req, res) => {
     }
 })
 ```
+</Accordion>
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>

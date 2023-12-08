@@ -27,7 +27,8 @@ This guide walks you through setting up Application Performance Monitoring (APM)
 
 # Install
 
-### PHP Extension
+<Accordion title="PHP Extension">
+
 Follow these steps to install the required otel-instrumentation PHP extension. 
 
 Install the extension.
@@ -56,44 +57,48 @@ Verify the extension is installed and enabled.
 ```bash Shell
 php -m | grep opentelemetry
 ```
+    <Accordion title="Troubleshooting">        
+        Below we cover a few common errors and their solutions. 
 
-### Troubleshooting
-Below we cover a few common errors and their solutions. 
+        If you receive a pecl: command not found error, run the following command.
+        ```bash Shell
+        sudo apt-get update
+        apt-get install php-pear php8.1-dev
+        ```
+        If you receive any broken dependency issues, including errors like libpcre2-dev : Depends: libpcre2-8-0 / libpcre2-16-0 / libpcre2-32-0, run the following command.
+        ```bash Shell
+        sudo apt --fix-broken install
+        ```
+        If you receive an ERROR: ‘phpize’ failed error, run the following commands.
+        ```bash Shell
+        sudo apt-get update 
+        sudo apt-get install php8.1-dev
 
-If you receive a pecl: command not found error, run the following command.
-```bash Shell
-sudo apt-get update
-apt-get install php-pear php8.1-dev
-```
-If you receive any broken dependency issues, including errors like libpcre2-dev : Depends: libpcre2-8-0 / libpcre2-16-0 / libpcre2-32-0, run the following command.
-```bash Shell
-sudo apt --fix-broken install
-```
-If you receive an ERROR: ‘phpize’ failed error, run the following commands.
-```bash Shell
-sudo apt-get update 
-sudo apt-get install php8.1-dev
-
-sudo apt-get update
-sudo pecl channel-update pecl.php.net
-```
+        sudo apt-get update
+        sudo pecl channel-update pecl.php.net
+        ```
+    </Accordion>
+</Accordion>
 
 
-## Step 1: Install APM-PHP Package
+<Accordion title="Step 1: Install APM-PHP Package"> 
+
 Ensure you have a PHP project set up and a composer.json file in your project’s root directory. If you do not have one, create it using composer init. Then run the following to install Middleware’s APM-PHP package.
 ```bash Shell
 composer update
 composer require middleware/agent-apm-php
 ```
+</Accordion>
 
-## Step 2: Import Tracker
+<Accordion title="Step 2: Import Tracker"> 
 Add these lines to the beginning of your project. 
 ```php PHP
 require 'vendor/autoload.php';
 use Middleware\AgentApmPhp\MwTracker;
 ```
+</Accordion>
 
-## Step 3: Container Variables
+<Accordion title="Step 3: Container Variables"> 
 Applications running in a container require an additional environment variable. If your application is not running in a container, move to Step 5. 
 
 For Docker containers, add the following environment variable to your application.
@@ -111,8 +116,9 @@ Then add the following environment variable to your application deployment YAML 
 ```bash Shell
 MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
 ```
+</Accordion>
 
-## Step 4: Implement APM Collector
+<Accordion title="Step 4: Implement APM Collector"> 
 Start a tracing scope at the beginning of your code. 
 
 ```php PHP
@@ -133,8 +139,9 @@ End the tracing scope after your code.
 ```php PHP
 $tracker->postTrack();
 ```
+</Accordion>
 
-## Step 5: Enable Logging
+<Accordion title="Step 5: Enable Logging"> 
 To ingest custom logs, utilize the following functions based on desired log severity levels.
  ```php PHP
    $tracker->warn("this is warning log.");
@@ -142,5 +149,6 @@ To ingest custom logs, utilize the following functions based on desired log seve
    $tracker->info("this is info log.");
    $tracker->debug("this is debug log.");
 ```
+</Accordion>
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>

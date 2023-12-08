@@ -24,7 +24,8 @@ dotnet --version
 
 # Install
 
-## Step 1: .NET Binary Installation
+<Accordion title="Step 1: .NET Binary Installation">
+
 Download the bash script.
 ```bash Shell
 curl -sSfL https://install.middleware.io/apm/dotnet/v1.0.0-rc.1/scripts/mw-dotnet-auto-install.sh -O
@@ -38,9 +39,10 @@ Enable execution for the instrumentation script.
 ```bash Shell
 chmod +x $HOME/.mw-dotnet-auto/instrument.sh
 ```
+</Accordion>
 
-## Step 2: Setup Middleware .NET Project
----
+<Accordion title="Step 2: Setup Middleware .NET Project">
+
 * Download Latest [Middleware.dll](https://github.com/middleware-labs/dotnet-plugin/releases) and add the following code in the .csproj file..
 
 ```xml XML
@@ -50,8 +52,9 @@ chmod +x $HOME/.mw-dotnet-auto/instrument.sh
   </Reference>
 </ItemGroup>
 ```
+</Accordion>
 
-## Step 3: Build and Run .NET Application
+<Accordion title="Step 3: Build and Run .NET Application">
 
   ```bash Shell
   MW_API_KEY={MW_API_KEY} \
@@ -60,5 +63,6 @@ chmod +x $HOME/.mw-dotnet-auto/instrument.sh
     OTEL_RESOURCE_ATTRIBUTES=project.name="{APM-PROJECT-NAME}" \
     dotnet path/to/YourApplication.dll
   ```
+</Accordion>
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>

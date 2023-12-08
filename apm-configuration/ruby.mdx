@@ -24,7 +24,7 @@ ruby --version
 
 # Install
 
-## Step 1: Add Gems to Your Gemfile
+<Accordion title="Step 1: Add Gems to Your Gemfile">
 
 <Tabs>
   <Tab title="Linux Gemfile">
@@ -46,11 +46,9 @@ ruby --version
     ```
   </Tab>
 </Tabs>
+</Accordion>
 
-
-
-
-## Step 2: Import Tracker
+<Accordion title="Step 2: Import Tracker">
 
 <Tabs>
   <Tab title="Linux Environment">
@@ -66,18 +64,26 @@ ruby --version
     ```
   </Tab>
 </Tabs>
+</Accordion>
 
-## Step 3: Capture Application Data
+<Accordion title="Step 3: Capture Application Data">
+  <AccordionGroup>
+      <Accordion title="Traces">
+      
+      ```bash Shell
+      OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:9320 \ 
+      OTEL_SERVICE_NAME="<Your Service Name>" \ 
+      OTEL_RESOURCE_ATTRIBUTES=project.name="<Your Project Name>" \ 
+      MW_API_KEY=<Your API Key> \ 
+      <YOUR COMMAND> 
+      ```
+      </Accordion>
 
-### Traces
-```bash Shell
-OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:9320 \ 
-OTEL_SERVICE_NAME="<Your Service Name>" \ 
-OTEL_RESOURCE_ATTRIBUTES=project.name="<Your Project Name>" \ 
-MW_API_KEY=<Your API Key> \ 
-<YOUR COMMAND> 
-```
-### Profiling
-Application Profiling is auto-configured upon completion of Step 2.
+      <Accordion title="Profiling">
+      Application Profiling is auto-configured upon completion of Step 2.
+      </Accordion>
+
+  </AccordionGroup>
+</Accordion>
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>

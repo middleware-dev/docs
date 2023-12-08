@@ -26,14 +26,17 @@ node --version
 
 # Install
 
-## Step 1: Install NPM Package
+<Accordion title="Step 1: Install NPM Package">
+
 Run the following command in your terminal. 
 
 ```javascript bash
 npm install @middleware.io/node-apm --save
 ```
+</Accordion>
 
-## Step 2:  Initialize Tracker
+<Accordion title="Step 2:  Initialize Tracker">
+
 Add the following lines to the beginning of your application code base. The access token is your account key, which can be found on the Installation page.
 
 ```javascript Node.js
@@ -44,8 +47,10 @@ tracker.track({
     accessToken: “<xxxxxxxxxx>”;
 });
 ```
+</Accordion>
 
-## Step 3: Container Variables
+<Accordion title="Step 3: Container Variables">
+
 Applications running in a container require an additional environment variable. If your application is not running in a container, move to Step 4. 
 
 For Docker containers, add the following environment variable to your application.
@@ -63,41 +68,50 @@ Then add the following environment variable to your application deployment YAML 
 ```javascript bash
 MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
 ```
+</Accordion>
 
-## Step 4: Capture Application Data
+<Accordion title="Step 4: Capture Application Data">
+    <AccordionGroup>
+        <Accordion title="Traces">
+            
+            Distributed tracing is automatically enabled upon completion of Step 2.
+        </Accordion>
 
-### Traces
-Distributed tracing is automatically enabled upon completion of Step 2.
+        <Accordion title="Custom Logs">
+            
+            To ingest custom logs into Middleware, utilize the following functions inside your logging method based on desired log severity levels.
+            ```javascript Node.js
+            tracker.info('Info sample');
+            tracker.warn('Warning sample');
+            tracker.debug('Debugging Sample');
+            tracker.error('Error Sample');
+            ```
 
-### Custom Logs
-To ingest custom logs into Middleware, utilize the following functions inside your logging method based on desired log severity levels.
-```javascript Node.js
-tracker.info('Info sample');
-tracker.warn('Warning sample');
-tracker.debug('Debugging Sample');
-tracker.error('Error Sample');
-```
+            To add stack traces along with the error log, use the following error tracking function.
+            ```javascript Node.js
+            tracker.error(new Error('Error sample with stack trace'));
+            ```
+        </Accordion>
 
-To add stack traces along with the error log, use the following error tracking function.
-```javascript Node.js
-tracker.error(new Error('Error sample with stack trace'));
-```
+        <Accordion title="Profiling">            
+            Application Profiling is auto-configured upon completing Step 2.
+        </Accordion>
 
-### Profiling
-Application Profiling is auto-configured upon completing Step 2.
-
-### Stack Traces 
-Use the errorRecord method to record a stack trace when an error occurs. See an example of this method below. 
-```javascript Node.js 
- app.get('/error', function (req, res) {
-    try{
-        throw new Error('oh error!');
-    }catch (e) {
-       track.errorRecord(e)
-    }
-    res.status(500).send("wrong");
-}); 
-
-```
+        <Accordion title="Stack Traces ">  
+            
+            Use the errorRecord method to record a stack trace when an error occurs. See an example of this method below. 
+            ```javascript Node.js 
+            app.get('/error', function (req, res) {
+                try{
+                    throw new Error('oh error!');
+                }catch (e) {
+                track.errorRecord(e)
+                }
+                res.status(500).send("wrong");
+            }); 
+            ```
+        </Accordion>
+    </AccordionGroup>
+</Accordion>
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
