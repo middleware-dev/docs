@@ -1,13 +1,15 @@
 ---
 title: "PostgreSQL"
 ---
+
 Collects PostgreSQL performance and health metrics
 
-Prerequisites
--------------
+# Prerequisites
+
 1.  Middleware Host agent should be already installed on your machine, in order to use PostgreSQL integration.
 
-## Setup
+# Setup
+
 1. You will have to create a yaml file in your system containing database collection details, as follows:
 
 Ex. `/home/ubuntu/postgres-creds.yaml`
@@ -20,7 +22,7 @@ postgresql:
 2. Go to Store, Enable PostgreSQL Integration, Select a host, and set YAML path to the file created in step 1.
 <img src="/images/integration/pgdb-store.png" />
 
-## Visualize Analytics
+# Visualize Analytics
 
 There are 2 possible ways to Visualize PostgreSQL Analytics :
 
@@ -37,7 +39,7 @@ Once you setup the PostgreSQL Integration, You will be able to see different Ana
 
 The exhaustive list for PostgreSQL metrics can be seen [here](#metrics-collected)
 
-## Alerting
+# Alerting
 
 You can also setup alerting for your PostgreSQL metrics from the Middleware's UI.
 
@@ -46,7 +48,7 @@ Opt for the "PostgreSQL" database and select the metrics you want to setup alert
 
 <img src="/images/integration/postgresql-alerts.png" />
 
-## Metrics collected
+# Metrics collected
 
 | Metric | Description |
 |--------|-------------|
