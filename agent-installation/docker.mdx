@@ -7,37 +7,47 @@ This guide walks you through installing the Middleware Host Agent (MW Agent) on 
 The Docker MW Agent is a containerized version of the MW Agent. Upon installation, the MW Agent collects host level details from host network mode and uses volume binding for reading logs.
 
 # Install
-Follow the steps below to install the MW Agent.
 
-1.  Log in to Middleware
+<Accordion title="Step 1: Access One-Step Install">
+    Log in to Middleware, navigate to the installation page in the bottom left corner and select Docker from the Infrastructure section
+    
+    !["Agent Installation"](/images/agent-installation/k1.png)
 
-2.  Navigate to the installation page, in the bottom left corner
-!["Agent Installation"](/images/agent-installation/k1.png)
+    !["Docker install page"](/images/agent-installation/k6.jpg)
+</Accordion>
 
-3. Copy and run the installation command. An example of the command is shown below. Copying the command directly from the Installation page ensures your API key and UID are accurately inputted. 
-```bash Shell
-MW_API_KEY=<xxxxxxxxxx> MW_TARGET=https://<uid>.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/docker-install.sh)"
-```
+<Accordion title="Step 2: Run Docker Install Command">
+    Copy and run the installation command. Copy the command directly from the Installation page to ensure your API key and UID are correct 
+    
+    ```bash Shell
+    MW_API_KEY=<xxxxxxxxxx> MW_TARGET=https://<uid>.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/docker-install.sh)"
+    ```
+</Accordion>
 
- !["Agent Output"](/images/agent-installation/k7.png)
+<Accordion title="Step 3: Add Tags to installation [Optional]">
+    Add tags by adding the `MW_HOST_TAGS` environment variable to the installation command. Include any desired tags as comma-separated key-value pairs, as shown below. Use the tag “name” to create an alias for the host (e.g. production). 
+    
+    ```bash Shell
+    MW_HOST_TAGS=<key1>:<value1>,<key2>:<value2>,… MW_API_KEY=…
+    ```
+</Accordion>
 
-4.[optional] Add tags by adding the MW_HOST_TAGS environment variable to the installation command. Include any desired tags as comma-separated key-value pairs, as shown below. Use the tag “name” to create an alias for the host (e.g. production). 
-```bash Shell
-MW_HOST_TAGS=<key1>:<value1>,<key2>:<value2>,… MW_API_KEY=…
-```
+<Accordion title="Step 4: Verify Installation">
+    Verify the status of the MW Agent. If status is `UP` or `Exited`, the installation was successful. If status is blank, installation was unsiccessful. Run the following command to verify the MW Agent status:
 
-5. Verify the status of the MW Agent with the following command.
-```bash Shell
-docker ps -a --filter ancestor=ghcr.io/middleware-labs/mw-host-agent:master
-```
-A successful installation returns the status ‘Up’ or ‘Exited’. If the installation is unsuccessful the status will be blank. 
- !["Docker install page"](/images/agent-installation/k6.jpg)
+    ```bash Shell
+    docker ps -a --filter ancestor=ghcr.io/middleware-labs/mw-host-agent:master
+    ```
+</Accordion>
 
-6. Navigate to Middleware and ensure metrics are appearing in the <a href="https://docs.middleware.io/docs/unified-dashboard/unified-view"> Unified Dashboard </a>. It can take up to a few minutes for metrics to appear. If metrics do not appear after this time head to our troubleshooting page for some common issues.
+<Accordion title="Step 5: Check Your Dashboard">
+    Navigate to Middleware and ensure metrics are appearing in the <a href="https://docs.middleware.io/docs/unified-dashboard/unified-view"> Unified Dashboard </a>. It can take up to a few minutes for metrics to appear. If metrics do not appear after this time head to our troubleshooting page for some common issues.
+</Accordion>
+
+# Troubleshooting
 
 <Warning>  Run only one MW Agent. Multiple agents will cause unexpected behavior. </Warning>
 
-# Troubleshooting
 Once the MW Agent is installed metrics should appear in the Middleware Application within a few minutes. If metrics do not appear, confirm that the machine has access to the internet, either directly or through a proxy, and that only one MW Agent per container is running. 
 
 For any issues please reach out to our team in your Slack channel or through the help menu in the Middleware Application.
