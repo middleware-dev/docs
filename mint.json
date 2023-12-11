@@ -120,11 +120,12 @@
             {
               "group": "Databases",
               "pages":[                
+                "integrations/elasticsearch-integration",  
                 "integrations/mongodb-integration",
                 "integrations/mysql-integration",
                 "integrations/postgresql-integration",
                 "integrations/redis-integration",
-                "integrations/elasticsearch-integration"
+                "integrations/redpanda-integration"
               ]
             },
             {
