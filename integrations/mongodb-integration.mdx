@@ -1,16 +1,19 @@
 ---
 title: "MongoDB"
 ---
+
 Collects MongoDB performance and health metrics
 
-Prerequisites
--------------
+# Prerequisites
+
 1.  Middleware Host agent should be already installed on your machine, in order to use MongoDB integration.
 
-## Setup
+# Setup
+
 1. You will have to create a yaml file in your system containing database collection details, as follows:
 
 Ex. `/home/ubuntu/mongodb-creds.yaml`
+
 ```
 mongodb:
     hosts:
@@ -27,7 +30,7 @@ mongodb:
 2. Go to Store, Enable MongoDB Integration, Select a host, and set YAML path to the file created in step 1.
 <img src="/images/integration/mongodb-store.png" />
 
-## Visualize Analytics
+# Visualize Analytics
 
 There are 2 possible ways to Visualize MongoDB Analytics :
 
@@ -44,7 +47,7 @@ Once you setup the MongoDB Integration, You will be able to see different Analyt
 
 The exhaustive list for MongoDB metrics can be seen [here](#metrics-collected)
 
-## Metrics collected
+# Metrics collected
 
 | Metric | Description |                                                                                     
 | ------------------------------ | --------------------------------------------------------------------------------------------------- |

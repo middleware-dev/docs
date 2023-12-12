@@ -91,8 +91,7 @@
             "apm-configuration/php",
             "apm-configuration/python",                        
             "apm-configuration/ruby",
-            "apm-configuration/vercel-integration",            
-            "apm-configuration/apm-agent-communication"
+            "apm-configuration/vercel-integration"
           ]
         },
         {
