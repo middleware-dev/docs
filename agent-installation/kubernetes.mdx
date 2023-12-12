@@ -64,7 +64,7 @@ bash -c "$(curl -L https://install.middleware.io/scripts/mw-kube-agent-upgrade.s
 ```
 
 # Troubleshooting
-<Warning>  Run only one MW Agent DaemonSet per cluster. Multiple agents will cause unexpected behavior. </Warning>
+<Warning>  Run only one MW Agent DaemonSet per cluster per host. Multiple agents will cause unexpected behavior. </Warning>
 
 Once the MW Agent is installed on your cluster metrics should begin appearing in the Middleware application within a few minutes. If metrics do not appear, confirm that Kubernetes has access to the internet, either directly or through a proxy, and that only one MW Agent is running per cluster. 
 
