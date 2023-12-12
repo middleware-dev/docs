@@ -135,7 +135,14 @@
             }                    
             
           ]
-        },"rum/getting-started",
+        },
+        {
+          "group": "RUM",
+          "pages": [
+            "rum/getting-started",
+            "rum/rum-android-mobile"
+          ]
+        },
         {
           "group": "Data Ingestion APIs",
           "pages": [
