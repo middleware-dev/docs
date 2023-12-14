@@ -103,28 +103,29 @@ Middleware.builder()
 ```
 ### Custom Events [Optional]
 
-<AccordionGroup>   
-    <Accordion title="Send Custom Events">
-      Send custom events and workflows using `addEvent` 
-        ```java Java
-        Middleware.getInstance().addEvent("You clicked on Button", BUTTON_ATTRIBUES);
-        ```
-    </Accordion>
 
-    <Accordion title="Start Custom Event Workflow">
-      Start custom events and workflows using `startWorkflow`  
-        ```java Java
-        Span loginWorkflow = Middleware.getInstance().startWorkflow("User Login Flow");
-        ```
-    </Accordion>
+<Accordion title="Create Custom Events">
+  #### Step 1: Setup Your Custom Event
+  Send custom events and workflows using `addEvent` 
+    ```java Java
+    Middleware.getInstance().addEvent("You clicked on Button", BUTTON_ATTRIBUES);
+    ```
 
-    <Accordion title="End Custom Event Workflow">
-      End custom events and workflows using `end`
-        ```java Java
-        loginWorkflow.end();
-        ```
-    </Accordion>
-</AccordionGroup>
+
+#### Step 2: Start Custom Event Workflow
+  Start custom events and workflows using `startWorkflow`  
+    ```java Java
+    Span loginWorkflow = Middleware.getInstance().startWorkflow("User Login Flow");
+    ```
+
+
+#### Step 3: End Custom Event Workflow
+  End custom events and workflows using `end`
+    ```java Java
+    loginWorkflow.end();
+    ```
+</Accordion>
+
 
 ### Error Reporting [Optional]
 
