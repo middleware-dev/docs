@@ -1,0 +1,180 @@
+---
+title: "Continuous Profiling with Python"
+sidebarTitle: "Continuous Profiling"
+---
+
+When software applications are first built, they may initially meet our requirements. However, it's not enough for our applications to simply meet the bare minimum. We also want them to be as efficient as possible, but figuring out how or where to improve them can be challenging.
+
+<Note> Although this guide focuses on a Python-specific implementation, Middleware supports all major programming languages. You can find instructions for your language of choice in our [APM Documentation](https://docs.middleware.io/apm-configuration/apm_overview). </Note>
+
+# Profiling
+
+Profiling, in the context of software development, refers to the process of analyzing and measuring the performance characteristics of a program or system. 
+
+It involves using specialized tools known as application profiling tools to gather metrics like CPU usage, memory allocation, and execution time.
+
+# Continuous Profiling
+
+Continuous profiling takes things a step further by enabling real-time monitoring and detection of performance regressions. It allows developers to proactively address any emerging issues before they impact users. 
+
+Continuous Profiling can be done by setting up an Application Performance Monitoring (APM) tool like the one available from [Middleware](https://middleware.io/).
+
+# Profiling A Flask Web Application
+
+### Prerequisites
+
+<Steps>
+  <Step title="MW Agent Installed">
+    The MW Host Agent must already be installed
+  </Step>
+  <Step title="VPS or Cloud Computer">
+    Access to a VPS or a cloud computer service instance like EC2, Azure VM, or Digital Ocean Droplet
+  </Step>
+</Steps>
+
+### Create Your Flask App
+
+<Accordion title="calculations.py">
+
+    `calculations.py` contains a set of functions that allows us to simulate a bottleneck, along with other functions that perform some mathematical calculations:
+
+    `calc1` - a function with a quadratic time complexity.
+
+    `calc2` - a function with a quadratic time complexity. It's a bit different from calc 1 because it does not have the extra square root added to the value. Both calc1 and calc2 simply serve to demonstrate calc3 as a bottleneck.
+
+    `calc3` - a function with a factorial time complexity.
+
+    `efficient` - a function that calls calc1 and calc2 and returns a sum of those functions.
+
+    `with_bottlneck` - a function that calls calc1 calc2 and calc3 and returns a sum of those functions. calc3 will be our bottleneck function in this example.
+
+
+    ```python Python
+        import math
+
+        def calc1(n: int) -> int:
+            value = 0
+            for i in range(0, n):
+                for j in range(0, n):
+                    value += math.sqrt(j)
+                    value += math.sqrt(i)
+            return value
+
+        def calc2(n: int) -> float:
+            value = 0
+            for i in range(0, n):
+                for j in range(0, n):
+                    value += math.sqrt(j)
+            return value
+
+        def calc3(n: int) -> float:
+            elements = list(range(1, n + 1))
+            num_permutations = math.factorial(n)
+            value = 0
+            for i in range(num_permutations):
+                value += sum(elements)
+                j = n - 2
+                while j >= 0 and elements[j] > elements[j + 1]:
+                    j -= 1
+
+                if j == -1:
+                    break
+
+                k = n - 1
+                while elements[j] > elements[k]:
+                    k -= 1
+
+                elements[j], elements[k] = elements[k], elements[j]
+
+                left = j + 1
+                right = n - 1
+                while left < right:
+                    elements[left], elements[right] = elements[right], elements[left]
+                    left += 1
+                    right -= 1
+
+            return value
+
+        def efficient(n: int) -> float:
+            value = 0
+            value += calc1(n)
+            value += calc2(n)
+            return value
+
+        def with_bottleneck(n: int) -> float:
+            value = 0
+            value += calc1(n)
+            value += calc2(n)
+            value += calc3(n)
+            return value
+
+    ```
+</Accordion>
+
+<Accordion title="app.py">
+
+    `app.py` contains our Flask application with two endpoints.
+
+    `/calculate1` - an endpoint designed to be faster than `calculate2` and calls `calculations.efficient()` 
+
+    `/calculate2` - calls the `calculations.with_bottleneck()` function and is comparatively slower than the `/calculate1` endpoint.
+
+    ```python Python
+        import calculations
+        from flask import Flask
+        import os
+
+        # Required middleware import 
+        from middleware import MwTracker
+        tracker = MwTracker()
+
+        app = Flask(__name__)
+        app.secret_key = os.environ.get("FLASK_SECRET_KEY", default="Da!8j97ZZq^6Fe3y!D@U")
+
+        @app.errorhandler(404)
+        def not_found(e):
+            return "<h1> 404 Not found </h1>"
+
+        @app.route("/calculate1/<int:number>")
+        def calculate1(number):
+            value = calculations.efficient(number)
+            return {"value": value}
+
+        @app.route("/calculate2/<int:number>")
+        def calculate2(number):
+            value = calculations.with_bottleneck(number)
+            return {"value": value}
+    ```
+</Accordion>
+
+<Accordion title="wsgi.py">
+
+    `wsgi.py` is a file Gunicorn will use to run our Flask app.
+
+    ```python Python
+        from app import app
+
+        # To bind to gunicorn
+        # gunicorn wsgi:app
+        if __name__ == "__main__":
+            app.run()
+    ```
+</Accordion>
+
+# Finding a Bottleneck
+
+After creating the application and deploying it to the platform of your choice, follow the steps from [Python APM](https://docs.middleware.io/apm-configuration/python), login to middleware.io, and head to [APM > Continuous Profiling](https://app.middleware.io/apm/continuous-profiling). 
+
+To identify individual functions/methods that consume a significant amount of CPU time, click on the Table and Flamegraph section. 
+
+Within the table, sort the functions/methods by the amount of time they consume in descending order by clicking on the “Self” header.
+
+![](https://lh7-us.googleusercontent.com/WQAtXx61AXLgXvGUOCobEZaAhckbQ0XT4bbL3W8BsgCECsUJnl7iS7Rprj6tnn3qsGlf9J2xHh9Uwy-ewwmmYbFf6mB4SetBjk7yX5LzAZocwg4GHy21UlH7EC3GGUk9hYwHYqp4kW0ztv-8kcyb2Jc)
+
+In this example, it’s clear that the `calc3` function is causing a notable bottleneck in our application. 
+
+By clicking on the function name `calc3` in the table, the function will also be highlighted in the flame graph. This will show the call stack with caller functions at the top and callee functions going toward the bottom.
+
+
+
+

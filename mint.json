@@ -194,7 +194,7 @@
             "workflow/synthetic-monitoring/synthetic-monitoring",
             "workflow/synthetic-monitoring/multistep-synthetic-monitoring"
           ]
-        },
+        }, "workflow/profiling",
         {
           "group": "Settings",
           "pages": [
