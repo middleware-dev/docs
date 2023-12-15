@@ -5,88 +5,115 @@ Collects MySQL performance and health metrics from a MySQL database.
 
 # Prerequisites
 
-1.  Middleware Host agent should be already installed on your machine, in order to use MySQL integration.
+<Steps>
+  <Step title="MW Host Agent">
+    Middleware Host Agent (MW Agent). To install the MW Agent please see our <a href="https://docs.middleware.io/docs/agent-installation/overview"> installation guide. </a>
+    
+  </Step>
+  <Step title="MySQL Installed">
+    `MySQL version -------------- ` or above. Check your MySQL version with the following command:
+
+    ```shell Shell
+        mysql --version
+    ```
+  </Step>
+</Steps>
 
 # Setup
 
-1. You will have to create a yaml file in your system containing database collection details, as follows:
+<Accordion title="Step 1: Create Database Credentials">
+  Create a `.yaml` file containing database credentials like the below example. If the database is not password protected, the `username` and `password` fields can be removed.
 
-Ex. `/home/ubuntu/mysql-creds.yaml`
-```
-mysql:
-  endpoint: localhost:3306
-  username: mysql
-  password: mysql
-```
-<Note>You can skip the fields `username` and `password`, if your database doesn't require authentication.</Note>
+  `/home/ubuntu/mysql-creds.yaml`
 
-<Note><strong>For Docker Agent Users</strong>: If you are running the Middleware Docker agent, then we recommend to keep the creds YAML under `/var/log` directory. This is because, the Docker agent might not support dynamic volume binding.</Note>
+  ```yaml .yaml
+  mysql:
+     endpoint: localhost:3306
+     username: mysql  
+     password: mysql 
 
+  ```
+  <Note> For Docker users, create the credentials yaml file in the `/var/log` directory. </Note>
+</Accordion>
 
-2. Go to Store, Enable MySQL Integration, Select a host, and set YAML path to the file created in step 1.
-<img src="/images/integration/mysql-store.png" />
+<Accordion title="Step 2: Access Integrations">
+  Log in to Middleware, navigate to the Installations Page in the bottom left corner, select All Integration and click MySQL
+
+  <img src="/images/integration/mysql-store.png" />
+</Accordion>
+
+<Accordion title="Step 3: Enable Integration">
+  Add a host machine from the dropdown list, input the credential path from Step 1, and Save
+</Accordion>
 
 # Visualize Analytics
-There are 2 possible ways to Visualize MySQL Analytics:
 
-### 1. Middleware's Default MySQL Dashboard
-Once you've setup the MySQL Integration, You will be able to see different Analytics in the default MySQL Dashboard.
+### Default MySQL Dashboard
+
+Once the MySQL integration setup is complete, a new MySQL-specific dashboard will appear in the Dashboard Builder. This default dashboard serves as a jumping off point for visualizing and analyzing MySQL data. 
+
 <img src="/images/integration/mysql-dashboard.png" />
 
-### 2. Create your own dashboard
-<p>You can create your own dashboard from scratch.</p>
-<p>When you add a new widget to an existing dashboard, you'll see a list of available MySQL metrics under the "mysql" Data source.</p>
-<p>These metrics can be visualized in different widget types like Timeseries, Bar Chart, Pie Chart, etc.</p>
+### Create MySQL Widget
+
+MySQL data can be added to dashboards as a custom widget. When adding a new widget, select the `mysql` data source to view a full list of available MySQL data. 
 
 <img src="/images/integration/mysql-custom-graphs.png" />
 
-# Metrics collected
+# Alerts
+
+Alerts can be configured for any MySQL metrics. When creating a new rule select the Database detection method and MySQL database type for available metrics to appear in the Metrics dropdown list. Select the desired metric and continue configuring the alert conditions.
+
+----------IMAGE HERE----------
+
+
+# Metrics Collected
 
 | Metric                               | Description                                                                                        |
 | ------------------------------------ | -------------------------------------------------------------------------------------------------- |
-| mysql.buffer_pool.pages              | The number of pages in the InnoDB buffer pool.                                                     |
-| mysql.buffer_pool.data_pages         | The number of data pages in the InnoDB buffer pool.                                                |
-| mysql.buffer_pool.page_flushes       | The number of requests to flush pages from the InnoDB buffer pool.                                |
-| mysql.buffer_pool.operations         | The number of operations on the InnoDB buffer pool.                                                |
-| mysql.buffer_pool.limit              | The configured size of the InnoDB buffer pool.                                                     |
-| mysql.buffer_pool.usage              | The number of bytes in the InnoDB buffer pool.                                                     |
-| mysql.commands                      | The number of times each type of command has been executed.                                       |
-| mysql.prepared_statements            | The number of times each type of prepared statement command has been issued.                       |
-| mysql.handlers                      | The number of requests to various MySQL handlers.                                                  |
-| mysql.double_writes                 | The number of writes to the InnoDB doublewrite buffer.                                             |
-| mysql.log_operations                | The number of InnoDB log operations.                                                               |
-| mysql.operations                    | The number of InnoDB operations.                                                                   |
-| mysql.page_operations               | The number of InnoDB page operations.                                                              |
-| mysql.table.io.wait.count           | The total count of I/O wait events for a table.                                                    |
-| mysql.table.io.wait.time            | The total time of I/O wait events for a table.                                                     |
-| mysql.index.io.wait.count           | The total count of I/O wait events for an index.                                                   |
-| mysql.index.io.wait.time            | The total time of I/O wait events for an index.                                                    |
-| mysql.row_locks                     | The number of InnoDB row locks.                                                                    |
-| mysql.row_operations                | The number of InnoDB row operations.                                                               |
-| mysql.locks                         | The number of MySQL locks.                                                                         |
-| mysql.sorts                         | The number of MySQL sorts.                                                                         |
-| mysql.threads                       | The state of MySQL threads.                                                                        |
-| mysql.locked_connects               | The number of attempts to connect to locked user accounts.                                         |
-| mysql.opened_resources              | The number of opened resources.                                                                    |
-| mysql.mysqlx_connections            | The number of mysqlx connections.                                                                  |
-| mysql.tmp_resources                 | The number of created temporary resources.                                                         |
-| mysql.table.lock_wait.read.count     | The total table lock wait read events.                                                             |
-| mysql.table.lock_wait.read.time      | The total table lock wait read event times.                                                        |
-| mysql.table.lock_wait.write.count    | The total table lock wait write events.                                                            |
-| mysql.table.lock_wait.write.time     | The total table lock wait write event times.                                                       |
-| mysql.locked_connects               | The number of attempts to connect to locked user accounts.                                         |
-| mysql.connection.count              | The number of connection attempts (successful or not) to the MySQL server.                         |
-| mysql.connection.errors             | Errors that occur during the client connection process.                                            |
-| mysql.mysqlx_connections            | The number of mysqlx connections.                                                                  |
-| mysql.joins                         | The number of joins that perform table scans.                                                       |
-| mysql.replica.time_behind_source     | This field is an indication of how “late” the replica is.                                          |
-| mysql.replica.sql_delay             | The number of seconds that the replica must lag the source.                                        |
-| mysql.statement_event.count         | Summary of current and recent statement events.                                                    |
-| mysql.statement_event.wait.time      | The total wait time of the summarized timed events.                                                |
-| mysql.mysqlx_worker_threads          | The number of worker threads available.                                                            |
-| mysql.table_open_cache              | The number of hits, misses, or overflows for open tables cache lookups.                             |
-| mysql.query.client.count            | The number of statements executed by the server. This includes only statements sent by clients.    |
-| mysql.query.count                   | The number of statements executed by the server.                                                    |
-| mysql.query.slow.count              | The number of slow queries.                                                                         |
+| `mysql.buffer_pool.pages`            | Number of pages in the InnoDB buffer pool                                                     |
+| `mysql.buffer_pool.data_pages`       | Number of data pages in the InnoDB buffer pool                                               |
+| `mysql.buffer_pool.page_flushes`     | Number of requests to flush pages from the InnoDB buffer pool                               |
+| `mysql.buffer_pool.operations`       | Number of operations on the InnoDB buffer pool                                                |
+| `mysql.buffer_pool.limit`            |  Configured size of the InnoDB buffer pool                                                  |
+| `mysql.buffer_pool.usage`            |  Number of bytes in the InnoDB buffer pool                                                   |
+| `mysql.commands`                     |  Count of commands executed, per command type                           |
+| `mysql.prepared_statements`          |  Count of prepared statements executed, per statement type                     |
+| `mysql.handlers`                     |   Number of requests to MySQL handlers                                             |
+| `mysql.double_writes`                |   Number of writes to the InnoDB doublewrite buffer                                          |
+| `mysql.log_operations`               |  Number of InnoDB log operations                                                      |
+| `mysql.operations`                   |  Number of InnoDB operations                                                               |
+| `mysql.page_operations`              |  Number of InnoDB page operations                                  |
+| `mysql.table.io.wait.count`          | Total count of I/O wait events for a table                                       |
+| `mysql.table.io.wait.time`           | Total time of I/O wait events for a table                                       |
+| `mysql.index.io.wait.count`          | Total count of I/O wait events for an index                                     |
+| `mysql.index.io.wait.time`           | Total time of I/O wait events for an index                                      |
+| `mysql.row_locks`                    | Number of InnoDB row blocks                                                 |
+| `mysql.row_operations`               |  Number of InnoDB row operations                                                    |
+| `mysql.locks`                        |  Number of MySQL locks                                                  |
+| `mysql.sorts`                        | Number of MySQL sorts                                                              |
+| `mysql.threads`                      | State of MySQL threads                                                                |
+| `mysql.locked_connects`              | Number of attempts to connect to locked user accounts                                  |
+| `mysql.opened_resources`             | Number of opened resources                                                                 |
+| `mysql.mysqlx_connections`           | Number of mysqlx connections                                   |
+| `mysql.tmp_resources`                | Number of created temporary resources                                       |
+| `mysql.table.lock_wait.read.count`   | Count of lock wait read events                                         |
+| `mysql.table.lock_wait.read.time`    |  Total lock wait read event time                                       |
+| `mysql.table.lock_wait.write.count`  | Count of lock wait write events                            |
+| `mysql.table.lock_wait.write.time`   | Total lock wait write event time                                            |
+| `mysql.locked_connects`              | Number of attempts to connect to locked user accounts                                 |
+| `mysql.connection.count`             | Total number of connection attempts to the MySQL server (includes successful and unsuccessful attempts)                  |
+| `mysql.connection.errors`            | Client connection process errors                     |
+| `mysql.mysqlx_connections`           | Number of mysqlx connections                                                           |
+| `mysql.joins`                        | Number of joins that perform table scans                                                  |
+| `mysql.replica.time_behind_source`   | Actual replica delay, in seconds                                       |
+| `mysql.replica.sql_delay`            | Configured replica delay, in seconds                                     |
+| `mysql.statement_event.count`        | Count of statement events                                          |
+| `mysql.statement_event.wait.time`    | Total wait time of summarized timed events                                           |
+| `mysql.mysqlx_worker_threads`        | Number of worker threads available                                                    |
+| `mysql.table_open_cache`             | Total number of hits, misses, and overflows for open table cache lookups                          |
+| `mysql.query.client.count`           | Number of client statements executed by the server   |
+| `mysql.query.count`                  | Total number of statements executed by the server                                                   |
+| `mysql.query.slow.count`             | Number of slow queries                                                                      |
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>

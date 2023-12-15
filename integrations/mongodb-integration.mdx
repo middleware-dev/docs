@@ -6,80 +6,103 @@ Collects MongoDB performance and health metrics
 
 # Prerequisites
 
-1.  Middleware Host agent should be already installed on your machine, in order to use MongoDB integration.
+<Steps>
+  <Step title="MW Host Agent">
+    Middleware Host Agent (MW Agent). To install the MW Agent please see our <a href="https://docs.middleware.io/docs/agent-installation/overview"> installation guide. </a>
+    
+  </Step>
+  <Step title="MongoDB Installed">
+    `MongoDB version -------------- ` or above. Check your MongoDB version with the following command:
+
+    ```shell Shell
+        mongod --version
+    ```
+  </Step>
+</Steps>
 
 # Setup
 
-1. You will have to create a yaml file in your system containing database collection details, as follows:
+<Accordion title="Step 1: Create Database Credentials">
+  Create a `.yaml` file containing database credentials like the below example. If the database is not password protected, the `username` and `password` fields can be removed.
 
-Ex. `/home/ubuntu/mongodb-creds.yaml`
+  `/home/ubuntu/mongodb-creds.yaml`
 
-```
-mongodb:
-    hosts:
-      - endpoint: localhost:27017
-    username: mongodb
-    password: mongodb
-```
-<Note>You can skip the fields `username` and `password` if database is not password protected.</Note>
+  <Note> For Docker users, create the credentials yaml file in the `/var/log` directory. </Note>
+  
+  ```yaml .yaml
+      mongodb:
+      hosts:
+        - endpoint: localhost:27017
+      username: mongodb
+      password: mongodb
+  ```
+</Accordion>
 
-<Note><strong>For Docker Agent Users</strong>: If you are running the Middleware Docker agent, then we recommend to keep the creds YAML under `/var/log` directory. This is because, the Docker agent might not support dynamic volume binding.</Note>
+<Accordion title="Step 2: Access Integrations">
+  Log in to Middleware, navigate to the Installations Page in the bottom left corner, select All Integration and click MongoDB
 
+  <img src="/images/integration/mongodb-store.png" />
+</Accordion>
 
-
-2. Go to Store, Enable MongoDB Integration, Select a host, and set YAML path to the file created in step 1.
-<img src="/images/integration/mongodb-store.png" />
+<Accordion title="Step 3: Enable Integration">
+  Add a host machine from the dropdown list, input the credential path from Step 1, and Save
+</Accordion>
 
 # Visualize Analytics
 
-There are 2 possible ways to Visualize MongoDB Analytics :
+### Default MongoDB Dashboard
 
-### 1. Middleware's Default MongoDB Dashboard
-Once you setup the MongoDB Integration, You will be able to see different Analytics in the default MongoDB Dashboard.
+Once the MongoDB integration setup is complete, a new MongoDB-specific dashboard will appear in the Dashboard Builder. This default dashboard serves as a jumping off point for visualizing and analyzing MongoDB data. 
+
 <img src="/images/integration/mongodb-dashboard.png" />
 
-### 2. Create your own dashboard
-<p>You can create a dashboard from scratch by yourself.</p>
-<p>If you add a new widget to any existing dashboard, you will be able to see list of available MongoDB metrics under the "mongodb" Data source.</p>
-<p>You can visualize in many different Widget types i.e. Timeseries, Bar Chart, Pie Chart, etc.</p>
+### Create MongoDB Widget
+
+MongoDB data can be added to dashboards as a custom widget. When adding a new widget, select the `mongodb` data source to view a full list of available MongoDB data. 
 
 <img src="/images/integration/mongodb-custom-graphs.png" />
 
 The exhaustive list for MongoDB metrics can be seen [here](#metrics-collected)
 
-# Metrics collected
+# Alerts
+
+Alerts can be configured for any MongoDB metrics. When creating a new rule select the Database detection method and MongoDB database type for available metrics to appear in the Metrics dropdown list. Select the desired metric and continue configuring the alert conditions.
+
+----------IMAGE HERE-----------
+
+# Metrics Collected
 
 | Metric | Description |                                                                                     
 | ------------------------------ | --------------------------------------------------------------------------------------------------- |
-| mongodb.cache.operations       | The number of cache operations of the instance.                                                     |
-| mongodb.collection.count       | The number of collections.                                                                           |
-| mongodb.data.size              | The size of the collection. Data compression does not affect this value.                            |
-| mongodb.connection.count       | The number of connections.                                                                           |
-| mongodb.extent.count           | The number of extents.                                                                               |
-| mongodb.global_lock.time       | The time the global lock has been held.                                                              |
-| mongodb.index.count            | The number of indexes.                                                                               |
-| mongodb.index.size             | Sum of the space allocated to all indexes in the database, including free index space.              |
-| mongodb.memory.usage           | The amount of memory used.                                                                           |
-| mongodb.object.count           | The number of objects.                                                                               |
-| mongodb.operation.latency.time | The latency of operations.                                                                           |
-| mongodb.operation.count        | The number of operations executed.                                                                   |
-| mongodb.operation.repl.count   | The number of replicated operations executed.                                                        |
-| mongodb.storage.size           | The total amount of storage allocated to this collection.                                            |
-| mongodb.database.count         | The number of existing databases.                                                                    |
-| mongodb.index.access.count     | The number of times an index has been accessed.                                                      |
-| mongodb.document.operation.count | The number of document operations executed.                                                          |
-| mongodb.network.io.receive     | The number of bytes received.                                                                        |
-| mongodb.network.io.transmit    | The number of by transmitted.                                                                        |
-| mongodb.network.request.count   | The number of requests received by the server.                                                       |
-| mongodb.operation.time          | The total time spent performing operations.                                                          |
-| mongodb.session.count           | The total number of active sessions.                                                                 |
-| mongodb.cursor.count            | The number of open cursors maintained for clients.                                                   |
-| mongodb.cursor.timeout.count    | The number of cursors that have timed out.                                                           |
-| mongodb.lock.acquire.count      | Number of times the lock was acquired in the specified mode.                                         |
-| mongodb.lock.acquire.wait_count | Number of times the lock acquisitions encountered waits because the locks were held in a conflicting mode. |
-| mongodb.lock.acquire.time       | Cumulative wait time for the lock acquisitions.                                                      |
-| mongodb.lock.deadlock.count     | Number of times the lock acquisitions encountered deadlocks.                                         |
-| mongodb.health                 | The health status of the server.                                                                     |
-| mongodb.uptime                 | The amount of time that the server has been running.                                                 |
+| `mongodb.cache.operations`      | Number of cache operations                                                      |
+| `mongodb.collection.count`       | Number of collections                                                                           |
+| `mongodb.data.size`              | Size of the collection, data compression does not affect this value                            |
+| `mongodb.connection.count`       | Number of connections                                                                           |
+| `mongodb.extent.count`           | Number of extents                                                                               |
+| `mongodb.global_lock.time`       | Total time the global lock has been held                                                              |
+| `mongodb.index.count`            | Number of indexes                                                                               |
+| `mongodb.index.size`             | Total space allocated to all database indexes, including free index space              |
+| `mongodb.memory.usage`           | Amount of memory used                                                                           |
+| `mongodb.object.count`           | Number of objects                                                                               |
+| `mongodb.operation.latency.time` | Total latency of operations                                                                           |
+| `mongodb.operation.count`        | Number of operations executed                                                                   |
+| `mongodb.operation.repl.count`   | Number of replicated operations executed                                                        |
+| `mongodb.storage.size`           | Total amount of storage allocated to this collection                                            |
+| `mongodb.database.count`         | Number of existing databases                                                                    |
+| `mongodb.index.access.count`     | Number of times an index has been accessed                                                      |
+| `mongodb.document.operation.count` | Number of document operations executed                                                          |
+| `mongodb.network.io.receive`     | Number of bytes received                                                                        |
+| `mongodb.network.io.transmit`    | Number of bytes transmitted                                                                        |
+| `mongodb.network.request.count`   | Number of requests received by a server                                                       |
+| `mongodb.operation.time`          | Total time spent performing operations                                                          |
+| `mongodb.session.count`           | Total number of active sessions                                                                 |
+| `mongodb.cursor.count`            | Number of opened cursors maintained for clients                                                   |
+| `mongodb.cursor.timeout.count`    | Number of cursors that have timed out                                                           |
+| `mongodb.lock.acquire.count`      | Number of times a lock was acquired in the specified mode                                         |
+| `mongodb.lock.acquire.wait_count` | Number of times lock acquisitions encountered waits due to locks held in conflicting modes |
+| `mongodb.lock.acquire.time`       | Cumulative wait time for the lock acquisitions.                                                      |
+| `mongodb.lock.deadlock.count`     | Number of times lock acquisitions encountered deadlocks                                         |
+| `mongodb.health`                 | Health status of the server                                                                     |
+| `mongodb.uptime`                 | Amount of time the server has been running                                                 |
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
