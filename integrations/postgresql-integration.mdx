@@ -6,70 +6,80 @@ Collects PostgreSQL performance and health metrics
 
 # Prerequisites
 
-1.  Middleware Host agent should be already installed on your machine, in order to use PostgreSQL integration.
+<Steps>
+  <Step title="MW Host Agent">
+    Middleware Host Agent (MW Agent). To install the MW Agent please see our <a href="https://docs.middleware.io/docs/agent-installation/overview"> installation guide. </a>
+    
+  </Step>
+</Steps>
 
 # Setup
 
-1. You will have to create a yaml file in your system containing database collection details, as follows:
+<Accordion title="Step 1: Create Database Credentials">
 
-Ex. `/home/ubuntu/postgres-creds.yaml`
-```
-postgresql:
-    endpoint: localhost:5432
-    username: postgres
-    password: postgres
-```
-2. Go to Store, Enable PostgreSQL Integration, Select a host, and set YAML path to the file created in step 1.
-<img src="/images/integration/pgdb-store.png" />
+   Create a `.yaml` file containing database credentials like the below example:
 
-# Visualize Analytics
+  `/home/ubuntu/postgres_creds.yaml`
 
-There are 2 possible ways to Visualize PostgreSQL Analytics :
+  ```yaml .yaml
+    postgresql:
+     endpoint: localhost:5423
+     username: postgres
+     password: postgres
+  ```
+</Accordion>
 
-### 1. Middleware's Default PostgreSQL Dashboard
-Once you setup the PostgreSQL Integration, You will be able to see different Analytics in the default PostgreSQL Dashboard.
+<Accordion title="Step 2: Access Integrations">
+    Log in to Middleware, navigate to the Installations Page in the bottom left corner, select All Integration and click PostgreSQL
+
+    <img src="/images/integration/pgdb-store.png" />
+</Accordion>
+
+<Accordion title="Step 3: Enable Integration">
+    Add a host machine from the dropdown list, input the credential path from Step 1, and Save
+</Accordion>
+
+# Visualize Your Data
+
+### Default PostgreSQL Dashboard
+Once the PostgreSQL integration setup is complete, a new PostgreSQL-specific dashboard will appear in the Dashboard Builder. This default dashboard serves as a jumping off point for visualizing and analyzing PostgreSQL data. 
+
 <img src="/images/integration/postgres-dashboard.png" />
 
-### 2. Create your own dashboard
-<p>You can create a dashboard from scratch by yourself.</p>
-<p>If you add a new widget to any existing dashboard, you will be able to see list of available PostgreSQL metrics under the "postgres" Data source.</p>
-<p>You can visualize in many different Widget types i.e. Timeseries, Bar Chart, Pie Chart, etc.</p>
+### Create PostgreSQL Widget
+
+PostgreSQL data can be added to dashboards as a custom widget. When adding a new widget, select the `postgresql` data source to view a full list of available PostgreSQL data. 
 
 <img src="/images/integration/postgres-custom-graphs.png" />
 
-The exhaustive list for PostgreSQL metrics can be seen [here](#metrics-collected)
+# Alerts
 
-# Alerting
-
-You can also setup alerting for your PostgreSQL metrics from the Middleware's UI.
-
-There is a section in alerts dedicated to "Database"
-Opt for the "PostgreSQL" database and select the metrics you want to setup alerting for.
+Alerts can be configured for any PostgreSQL metrics. When creating a new rule select the Database detection method and PostgreSQL database type for available metrics to appear in the Metrics dropdown list. Select the desired metric and continue configuring the alert conditions.
 
 <img src="/images/integration/postgresql-alerts.png" />
 
-# Metrics collected
+# Metrics Collected
 
 | Metric | Description |
 |--------|-------------|
-| postgresql.backends | The number of backends.
-| postgresql.bgwriter.buffers.allocated | Number of buffers allocated.
-| postgresql.bgwriter.buffers.writes | Number of buffers written.
-| postgresql.bgwriter.checkpoint.count | The number of checkpoints performed.
-| postgresql.bgwriter.duration | Total time spent writing and syncing files to disk by checkpoints.
-| postgresql.bgwriter.maxwritten | Number of times the background writer stopped a cleaning scan because it had written too many buffers.
-| postgresql.blocks_read | The number of blocks read.
-| postgresql.commits | The number of commits.
-| postgresql.connection.max | Configured maximum number of client connections allowed
-| postgresql.database.count | Number of user databases.
-| postgresql.db_size | The database disk usage.
-| postgresql.index.scans | The number of index scans on a table.
-| postgresql.index.size | The size of the index on disk.
-| postgresql.operations | The number of db row operations.
-| postgresql.rollbacks | The number of rollbacks.
-| postgresql.rows | The number of rows in the database.
-| postgresql.table.count | Number of user tables in a database.
-| postgresql.table.size | Disk space used by a table.
-| postgresql.table.vacuum.count | Number of times a table has manually been vacuumed.
+| `postgresql.backends` | Number of backends
+| `postgresql.bgwriter.buffers.allocated` | Number of buffers allocated.
+| `postgresql.bgwriter.buffers.writes` | Number of buffers written.
+| `postgresql.bgwriter.checkpoint.count` | Number of checkpoints performed.
+| `postgresql.bgwriter.duration` | Total time spent in checkpoint processing writing and syncing files to disk, in milliseconds
+| `postgresql.bgwriter.maxwritten` | Number of times the background writer stopped a cleaning scan because it had written too many buffers
+| `postgresql.blocks_read` | Number of disk blocks read
+| `postgresql.commits` | Number of transactions that have been committed
+| `postgresql.connection.max` | Configured maximum number of client connections allowed
+| `postgresql.database.count` | Count of databases in a cluster
+| `postgresql.db_size` | Database disk size
+| `postgresql.index.scans` | Number of index scans on a table
+| `postgresql.index.size` | Size of the index on disk
+| `postgresql.operations` | Number of db row operations
+| `postgresql.rollbacks` | Number of rollbacks
+| `postgresql.rows` | Number of rows in the database
+| `postgresql.table.count` | Number of user tables in a database
+| `postgresql.table.size` | Disk space used by a table
+| `postgresql.table.vacuum.count` | Number of times a table has been manually vacuumed
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
