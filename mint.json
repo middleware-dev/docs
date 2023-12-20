@@ -118,7 +118,8 @@
             },
             {
               "group": "Databases",
-              "pages":[                
+              "pages":[        
+                "integrations/clickhouse-integration",        
                 "integrations/mongodb-integration",
                 "integrations/mysql-integration",
                 "integrations/postgresql-integration",
