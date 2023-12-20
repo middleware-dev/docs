@@ -124,7 +124,12 @@
                 "integrations/mongodb-integration",
                 "integrations/mysql-integration",
                 "integrations/postgresql-integration",
-                "integrations/redis-integration",
+                "integrations/redis-integration"
+              ]
+            },
+            {
+              "group": "Streaming Platform",
+              "pages":[                
                 "integrations/redpanda-integration"
               ]
             },
