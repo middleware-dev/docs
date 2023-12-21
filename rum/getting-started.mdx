@@ -58,6 +58,20 @@ if(window.Middleware){
   }
 }
 ```
+If you need to define attributes post initialization of the SDK, utilize the 'Middleware.setAttributes' method, as exemplified in the following example.
+
+```javascript JavaScript
+<script>
+   if(window.Middleware){
+        Middleware.setAttributes({
+             name: 'John Doe',
+             email: 'john@email.com',
+             user_type: 'admin',
+        })
+    }
+</script>
+```
+
 
 Once RUM is configured, metrics should begin appearing on the RUM Dashboard in Middleware within a few minutes. For more information on the RUM Dashboards see [here](https://docs.middleware.io/docs/rum/rum-middleware).
 
