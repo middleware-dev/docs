@@ -14,18 +14,29 @@ title: "Java"
 
 This guide walks you through setting up Application Performance Monitoring (APM) on a Java application. These instructions can also be found on the Installation page in your Middleware Account. View example code <a href="https://github.com/middleware-labs/demo-apm/tree/master/java">  here. </a>
 
-## Prerequisites
-* Middleware Host Agent (MW Agent), to install the MW Agent please see our <a href="https://docs.middleware.io/docs/agent-installation/overview"> installation guide. </a>
-* Java 8+, you can check your Java version with the following command.
-```bash Shell
-java --version
-```
+# Prerequisites
 
-## Step 1: Download JAR
+<Steps>
+
+  <Step title="MW Host Agent">
+   Middleware Host Agent (MW Agent). To install the MW Agent please see our <a href="https://docs.middleware.io/docs/agent-installation/overview"> installation guide. </a>
+  </Step>
+
+  <Step title="Java Version">
+    `Java version 8` or above. Check your Java version with the following command:
+    ```bash Shell
+    java --version
+    ```
+  </Step>
+
+</Steps>
+
+# Install
+<Accordion title="Step 1: Download JAR">
 Download the latest Middleware instrumentation JAR file from the <a href="https://github.com/middleware-labs/opentelemetry-java-instrumentation/releases"> Github release page. </a>
+</Accordion>
 
-
-## Step 2: Container Variables
+<Accordion title="Step 2: Container Variables">
 Applications running in a container require an additional environment variable. If your application is not running in a container, move to Step 5. 
 
 For Docker containers, add the following environment variable to your application.
@@ -43,63 +54,74 @@ Then add the following environment variable to your application deployment YAML 
 ```bash Shell
 MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
 ```
+</Accordion>
 
-## Step 3: Capture Application Data
+<Accordion title="Step 3: Capture Application Data">
+  <AccordionGroup>
+      
+      <Accordion title="Traces">
+      Distributed tracing will be automatically enabled upon completing Step 4: Run Application.
+      </Accordion>
 
-### Traces
-Distributed tracing will be automatically enabled upon completing Step 4: Run Application.
+      <Accordion title="Metrics">
+      Metrics collection will be automatically enabled upon completing Step 4: Run Application.
+      </Accordion>
 
-### Metrics
-Metrics collection will be automatically enabled upon completing Step 4: Run Application.
+      <Accordion title="Application & Custom Logs">
+      Application Logs will be automatically enabled upon completing Step 4: Run Application. 
+      
 
-### Application & Custom Logs
-Application Logs will be automatically enabled upon completing Step 4: Run Application. 
+      To add custom logs, add this dependency in the pom.xml file.
+      ```java Java
+      <dependency>
+        <groupId>io.github.middleware-labs</groupId>
+        <artifactId>agent-apm-java</artifactId>
+        <version>0.0.16</version>
+      </dependency>
+      ```
 
-To add custom logs, add this dependency in the pom.xml file.
-```java Java
-<dependency>
-  <groupId>io.github.middleware-labs</groupId>
-  <artifactId>agent-apm-java</artifactId>
-  <version>0.0.16</version>
-</dependency>
-```
+      Install the package into the local repository.
+      ```java Shell
+      mvn install
+      ```
 
-Install the package into the local repository.
-```java Shell
-mvn install
-```
+      Import the logger package.
+      ```java Java
+      import io.github.middlewarelabs.agentapmjava.Logger;
+      ```
 
-Import the logger package.
-```java Java
-import io.github.middlewarelabs.agentapmjava.Logger;
-```
+      Then utilize the following functions based on desired log severity levels.
+      ```java Java
+      Logger.info("info message");
+      Logger.debug("debug message");
+      Logger.warn("warn message");
+      Logger.error("error message");
+      ```
+      </Accordion>
 
-Then utilize the following functions based on desired log severity levels.
-```java Java
-Logger.info("info message");
-Logger.debug("debug message");
-Logger.warn("warn message");
-Logger.error("error message");
-```
+      <Accordion title="Profiling">    
+      Application Profiling is automatically enabled upon completing Step 4: Run Application.
+      </Accordion>
 
-### Profiling
-Application Profiling is automatically enabled upon completing Step 4: Run Application.
+      
+      <Accordion title="Stack Traces">
+      Use the Logger.recordError(e) method to record a stack trace when an error occurs. See an example of this method below. 
+      ```java Java
+      import io.github.middlewarelabs.agentapmjava.Logger;
+              
+      try {
+            int[] myNumbers = {1, 2, 3};
+            System.out.println(myNumbers[10]);
+          } catch (Throwable  e) {
+            Logger.recordError(e);
+            System.out.println("Something went wrong.");
+          }
+      ```
+      </Accordion>
+  </AccordionGroup>
+</Accordion>
 
-### Stack Traces
-Use the Logger.recordError(e) method to record a stack trace when an error occurs. See an example of this method below. 
-```java Java
-import io.github.middlewarelabs.agentapmjava.Logger;
-        
-try {
-       int[] myNumbers = {1, 2, 3};
-       System.out.println(myNumbers[10]);
-     } catch (Throwable  e) {
-       Logger.recordError(e);
-       System.out.println("Something went wrong.");
-     }
-```
-
-## Step 4: Run Application
+<Accordion title="Step 4: Run Application">
 Run your application with the command given below.
 ```java Java
 MW_API_KEY={MW_API_KEY} java -javaagent:/PATH/TO/middleware-javaagent-{version}.jar \
@@ -107,5 +129,6 @@ MW_API_KEY={MW_API_KEY} java -javaagent:/PATH/TO/middleware-javaagent-{version}.
     -Dotel.resource.attributes=project.name={APM-PROJECT-NAME} \
     -jar <YOUR_APP>.jar
 ```
+</Accordion>
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>

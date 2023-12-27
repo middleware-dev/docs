@@ -2,10 +2,9 @@
 title: "Data Ingestions API"
 ---
 
-# Overview
 This guide provides an overview and setup instructions for Middleware’s OpenTelemetry Data Ingestion API. The OpenTelemetry Ingestion API has two endpoints: [metrics](#metrics-endpoint) and [logs](#logs-endpoint).
 
-## Resource Types
+# Resource Types
 
 For both endpoints, the resource type attribute groups the ingested data under the specified label on Middleware dashboards and reports. The resource type field requires one of the following options.
 
@@ -24,7 +23,7 @@ For both endpoints, the resource type attribute groups the ingested data under t
 | os | os.type |
 | custom | custom |
 
-## Metrics Endpoint
+# Metrics Endpoint
 
 The Metrics endpoint lets you send custom metrics to the Middleware backend. 
 
@@ -132,9 +131,9 @@ The datapoint fields are defined within the data attribute. The datapoint fields
 | time_unix_nano | ✅ | Set to the end time of the aggregation |
 | start_time_unix_nano | ✖️ | Indicates the start time, should be included whenever possible |
 
-## Logs Endpoint
+# Log Endpoint
 
-The Logs endpoint lets you send custom logs to the Middleware backend. 
+The Log Endpoint lets you send custom logs to the Middleware backend. 
 
 To send custom logs to Middleware, POST to the following endpoint.
 

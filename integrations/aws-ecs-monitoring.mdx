@@ -6,7 +6,7 @@ title: "Amazon ECS"
 
 Amazon Elastic Container Service (Amazon ECS) is a fully managed container orchestration service that helps you easily deploy, manage, and scale containerized applications. With the Middleware Agent (MW Agent), you can effectively monitor your ECS containers and tasks running on ECS EC2 instances and ECS Fargate in your cloud, on-prem, and hybrid architectures.
 
-<Note> The Middleware Agent does not currently support the Amazon ECS Anywhere approach </Note>
+<Note> Database Integrations and the Amazon ECS Anywhere approach are not currently supported. </Note> 
 
 # Fargate Setup
 
@@ -19,7 +19,7 @@ For Each ECS Task that you want to monitor, add the following sidecar container 
 ```json JSON
 {
     "name": "mw-agent",
-    "image": "ghcr.io/middleware-labs/mw-host-agent:fargate-solution",
+    "image": "ghcr.io/middleware-labs/mw-host-agent:master",
     "cpu": 256,
     "portMappings": [
         {
@@ -56,14 +56,12 @@ Middleware Agent uses the AWS ECS Task Metadata Endpoint to fetch metrics data.
 
 ### Collect Logs
 
-We offer a few different methods to forward your ECS task logs to Middleware.
+Forward your ECS Task logs to Middleware. The `mw-agent` sidecar, mentioned [above](/integrations/aws-ecs-monitoring#create-a-sidecar), must be running before proceeeding.
 
-#### Forward ECS Task logs to Middleware
-
-Make sure you are already running `mw-agent` sidecar mentioned at the top of this document before running the next steps.
+![](https://lh7-us.googleusercontent.com/Ieu_kZDtD0mIx8QwxaUTLSh1IyQdXfRxjq4UXXtfvaQ4eKxyfda3kMR8NQyocIggLRtkn2BpFDPKfIO54evKojhCoijOJ282d2q-bRgI7GcQV_l8ONxEIbJMvrSbpKpW6RbwXb6VEGd96qDIrxFmt1g)
 
 <AccordionGroup>
-    <Accordion title="Step 1: Add a fluent sidecar in your ECS task">
+    <Accordion title="Step 1: Add a Fluent sidecar in your ECS task">
 
         ```json JSON
         {
@@ -86,7 +84,7 @@ Make sure you are already running `mw-agent` sidecar mentioned at the top of thi
         ```
     </Accordion>
 
-    <Accordion title="Step 2 : Add this log Configuration in your main container">
+    <Accordion title="Step 2 : Add a log Configuration in your main container">
     
         The Middleware Agent sidecar will fetch these logs and send them to Middleware.
 
@@ -103,45 +101,12 @@ Make sure you are already running `mw-agent` sidecar mentioned at the top of thi
     </Accordion>
 </AccordionGroup>
 
-#### Forward ECS Task Logs from CloudWatch 
-
-Fargate apps use `awslogs` as the default logging driver which make them available on AWS Cloudwatch. Adding the sidecar container as mentioned above, will automatically start collecting task logs from CloudWatch. For more information on AWS Cloudwatch, go [here](/integrations/kinesis-streams).
-
-<AccordionGroup>
-    <Accordion title="Step 1: Add Environment Variables">
-
-        Add the following environment variables to collect task specific logs
-
-        ```json JSON
-        "environment": [    
-            {
-                "name": "MW_AWS_CLOUDWATCH_LOG_GROUP_NAME",
-                "value": <Cloudwatch loggroup name>
-            },
-            {
-                "name": "MW_AWS_ECS_TASK_REGION",
-                "value": <Task Region>
-            },
-            
-        ],
-        ```
-    </Accordion>
-    
-    <Accordion title="Step 2: Add Inline Policy">
-
-        ------Fix this --------
-    
-        The Middleware Agent runs `ecsTaskExecutionRole` as an ECS task. By default this role is not permitted to read CloudWatch logs. Add an inline policy to allow `ecsTaskExecutionRole` to read CloudWatch logs. Alternatively, you can create a new IAM role for this usecase and then assign this role to Middleware Agent task. 
-    
-    </Accordion>
-</AccordionGroup>   
-
 # EC2 Setup
 
 <AccordionGroup>
     <Accordion title="Step 1: Create & Configure a MW Agent ECS Task Definition">
 
-    Begin by creating a Task Definition for the MW Agent container. This Task Definition includes essential configurations for running the MW Agent container. You can set up the Task Definition using the AWS CLI tools or the Amazon Web Console.
+    Begin by creating a Task Definition for the MW Agent container.
 
     ```json JSON
     {
@@ -206,7 +171,7 @@ Fargate apps use `awslogs` as the default logging driver which make them availab
     </Accordion>
 
     <Accordion title="Step 2: Register your Task Definition File">
-        You can register your Task Definition File using the the AWS CLI or their web UI.
+        You can register your Task Definition File using the the AWS CLI or the Amazon Web Console.
 
         <Accordion title="AWS CLI">
             Execute the following command to register your Task Definition File in AWS. Learn more about the Amazon ECS CLI [here](https://docs.aws.amazon.com/cli/latest/reference/ecs/).
@@ -227,8 +192,6 @@ Fargate apps use `awslogs` as the default logging driver which make them availab
             6. Click Create to register the Task Definition in AWS 
 
         </Accordion>
-
-        <Note> Database integrations for MW Agent are currently not supported on ECS. </Note>
             </Accordion>
 
     <Accordion title="Step 3: Schedule the MW Agent as a Daemon Service">

@@ -1,73 +1,112 @@
+---
+title: "Linux"
+---
+
 This guide walks you through installing the MW Agent on a Linux machine. These instructions can also be found on the Installation page in the Middleware application. 
 
 We offer two install scripts based on your operating system. Please note that not all Linux machines are supported. A list of supported machines can be found under Prerequisites.
 
-## Overview
-### Prerequisites
+# Prerequisites
 
--   Ubuntu 18.04 or above
+<Steps>
 
--   For AWS EC2 instances Amazon Linux, Ubuntu, or Debian is required. For AWS instances using Red Hat, please install the [Docker MW Agent](https://docs.middleware.io/docs/agent-installation/docker) 
+  <Step title="Ubuntu">
+  Ubuntu `v18.04` or above
+  </Step>
 
--   MacOS Linux is not supported
+  <Step title="AWS Instances">
+  For AWS EC2 instances, Amazon Linux, Ubuntu, or Debian is required. For AWS instances using Red Hat, please install the [Docker MW Agent](https://docs.middleware.io/docs/agent-installation/docker) 
+  </Step>
 
-## Install
+  <Step title="Operating System">
+  MacOS Linux is not supported
+  </Step>
 
-Follow the steps below to install the MW Agent on your Linux machine.
+</Steps>
 
-1.  Log in to Middleware
+# Install
+
+<Accordion title="Step 1: Access One-Step Install">
+    Log in to Middleware, navigate to the Installation Page in the bottom left corner and select Linux-Based from the Infrastructure section
+    
+    !["Agent Installation"](/images/agent-installation/k1.png)
+
+    ![DEB Linux install](/images/agent-installation/k3.jpg)
+</Accordion>
+
+<Accordion title="Step 2: Run Linux Install Command">
+    Copy the appropriate installation command based on your machine’s operating system. Copying the command directly from the Installation page ensures your API key and UID are inserted accurately.
+
+    <Tabs>
+      <Tab title="DEB">
+
+        `DEB`: Compatible with Debian or Debian-based operating systems. For AWS instances this includes Ubuntu and Debian.
+
+        ```bash Shell
+        MW_API_KEY=<xxxxxxxxxx> MW_TARGET=https://<uid>.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/deb-install.sh)"
+        ```
+      </Tab>
+
+      <Tab title="RPM">
+
+        `RPM`: Compatible with Red Hat Package Manager and operating systems like Red Hat or CentOS. Use this for AWS instances using Amazon Linux. 
+        
+        ```bash Shell
+        MW_API_KEY=xxxxxxxxxx MW_TARGET=https://<uid>.middleware.io:443 bash -c "$(curl https://install.middleware.io/scripts/rpm-install.sh)"
+        ```          
+      </Tab>
+    </Tabs>
+
+</Accordion>
+
+<Accordion title="Step 3: Add Tags to Installation [Optional]">
+    Add tags by adding the MW_HOST_TAGS environment variable to the installation command. Include any desired tags as comma-separated key-value pairs, as shown below. Use the tag “name” to create an alias for the host (e.g. production). 
+
+    ```bash Shell
+    MW_HOST_TAGS=<key1>:<value1>,<key2>:<value2>,… MW_API_KEY=…
+    ```
+</Accordion>
 
 
-2.  Navigate to the Installation page, in the bottom left corner.
+<Accordion title="Step 4: Verify Installation">
+    Run the following command to verify the MW Agent status:
 
-!["Install Button Highlight"](/images/agent-installation/k1.png)
+    ```bash Shell
+    sudo systemctl status mwservice
+    ```
+    A successful installation will return the following Agent Status report:
+    
+    ![Linux Agent Status](/images/agent-installation/k5.jpg)
+</Accordion>
 
-3. Copy the appropriate installation command based on your machine’s operating system. An example of each command is shown below. Copying the command directly from the Installation page ensures your API key and UID are inserted accurately.
 
-DEB - compatible with Debian or Debian-based operating systems. For AWS instances this includes Ubuntu and Debian.
-```bash Shell
-MW_API_KEY=<xxxxxxxxxx> MW_TARGET=https://<uid>.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/deb-install.sh)"
-```
-![DEB Linux install](/images/agent-installation/k3.jpg)
 
-RPM - compatible with Red Hat Package Manager and operating systems like Red Hat or CentOS. Use this for AWS instances using Amazon Linux. 
-```bash Shell
-MW_API_KEY=xxxxxxxxxx MW_TARGET=https://<uid>.middleware.io:443 bash -c "$(curl https://install.middleware.io/scripts/rpm-install.sh)"
-```
-![RPM Linux install](/images/agent-installation/k3.jpg)
 
-4. [optional] Add tags by adding the MW_HOST_TAGS environment variable to the installation command. Include any desired tags as comma-separated key-value pairs, as shown below. Use the tag “name” to create an alias for the host (e.g. production). 
-```bash Shell
-MW_HOST_TAGS=<key1>:<value1>,<key2>:<value2>,… MW_API_KEY=…
-```
 
-5. Run the installation command and verify the MW agent’s status with the following. 
-```bash Shell
-sudo systemctl status mwservice
-```
+# Troubleshooting
 
-	A successful installation will return an Agent Status report like the following.
-![Linux Agent Status](/images/agent-installation/k5.jpg)
+<Warning>  Run only one MW Agent per node per host. Multiple agents will cause unexpected behavior.</Warning>
 
-<Warning>  Run only one MW Agent per node. Multiple agents will cause unexpected behavior.</Warning>
-
-## Troubleshooting
 Once the MW Agent is installed metrics should begin appearing in the Middleware application within a few minutes. If metrics do not appear, confirm that the machine has access to the internet, either directly or through a proxy, and that only one MW Agent is running per node. 
 
 For any issues please reach out to our team in your Slack channel or through the help menu in the Middleware Application.
 
 
-## Uninstall
-To uninstall the Middleware agent use the appropriate command from the following.
+# Uninstall
+To uninstall the MW agent, use one of the following commands:
 
-DEB
-```bash Shell
-bash -c "$(curl -L https://install.middleware.io/scripts/apt-uninstall.sh)"
-```
+<Tabs>
+  <Tab title="DEB">
+    ```bash Shell
+    bash -c "$(curl -L https://install.middleware.io/scripts/apt-uninstall.sh)"
+    ```
+  </Tab>
 
-RPM
-```bash Shell
-bash -c "$(curl -L https://install.middleware.io/scripts/apt-uninstall.sh)"
-```
+  <Tab title="RPM">
+    ```bash Shell
+    bash -c "$(curl -L https://install.middleware.io/scripts/apt-uninstall.sh)"
+    ```  
+  </Tab>
+</Tabs>
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>

@@ -3,7 +3,6 @@ title: Installing RUM
 sidebarTitle: "RUM"
 ---
 
-# Overview
 Middleware Real User Monitoring (RUM) provides insights into your application or website through detailed data on user interactions and frontend performance. With real-time data on page load times, errors, and more you can quickly identify and resolve performance issues to improve user experience and engagement. Check out the video below for more information.
 
 <a href="https://www.loom.com/share/ed0f136a6dd7436ba951356c936e0ca3" target="_blank">
@@ -11,7 +10,8 @@ Middleware Real User Monitoring (RUM) provides insights into your application or
 </a>
 
 # Prerequisites
-JavaScript-based web application (mobile apps not currently supported)
+
+1. JavaScript-based web application (mobile apps not currently supported)
 
 # Install
 This guide walks you through setting up Real User Monitoring (RUM) with JavaScript. These instructions can also be found on the Installation page in your Middleware Account.
@@ -58,6 +58,20 @@ if(window.Middleware){
   }
 }
 ```
+If you need to define attributes post initialization of the SDK, utilize the 'Middleware.setAttributes' method, as exemplified in the following example.
+
+```javascript JavaScript
+<script>
+   if(window.Middleware){
+        Middleware.setAttributes({
+             name: 'John Doe',
+             email: 'john@email.com',
+             user_type: 'admin',
+        })
+    }
+</script>
+```
+
 
 Once RUM is configured, metrics should begin appearing on the RUM Dashboard in Middleware within a few minutes. For more information on the RUM Dashboards see [here](https://docs.middleware.io/docs/rum/rum-middleware).
 
@@ -93,8 +107,8 @@ Add `tracePropagationTargets` to your SDK from [Step 3](#step-3-initialize-the-s
 In order to enable Trace Propagation, some languages require the `OTEL_PROPAGATORS=b3` environment variable. Those languages are called out in the table below. All other langugages will work with the standard APM install.
 
 ### Supported APMs
-|       | | |
-| :----:| :--:|:--:|
+|       | | | |
+| :----:| :--:|:--:| :--:|
 | **Language**                                |    **Supported**   | **APM Version** | **Environment Variable** |
 | [Cloudflare](/apm-configuration/cloudflare) |           ✖️        |   ✖️             |        ✖️             |
 | [Go](/apm-configuration/go)           |                ✅        |   `>= 1.1.100`     |        ✖️             |

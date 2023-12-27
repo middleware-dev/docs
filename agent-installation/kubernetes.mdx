@@ -1,54 +1,77 @@
-## Overview
+---
+title: "Kubernetes"
+---
+
 This guide walks you through installing the MW Agent in a Kubernetes environment. These instructions can also be found on the Installation page in the Middleware application. 
 
 The installation will set up a DaemonSet inside your Kubernetes cluster and add necessary components to appropriately permission the DaemonSet pods. A Kubernetes service is also created to allow components to connect to the MW Agent via Cluster IP address & ports (i.e. language-based APMs). 
 
 
-## Prerequisites
+# Prerequisites
 
--   Kubernetes v1.21 or above
+<Steps>
+  <Step title="Kubernetes Version">
+  Kubernetes `v1.21` or above
+  </Step>
 
--   Access to Kubernetes cluster and client (i.e. [kubectl](https://kubernetes.io/docs/reference/kubectl/kubectl/))
+  <Step title="Kubernetes Access">
+  Access to Kubernetes cluster and client (i.e. [kubectl](https://kubernetes.io/docs/reference/kubectl/kubectl/))
+  </Step>
+</Steps>
 
-## Install
-Follow the steps below to install the MW Agent in your Kubernetes environment.
+# Install
 
-1.  Log in to Middleware
-2.  Navigate to the installation page, in the bottom left corner 
+<Accordion title="Step 1: Access One-Step Install">
+    Log in to Middleware, navigate to the Installation Page in the bottom left corner and select Kubernetes from the Infrastructure section
+    
+    !["Agent Installation"](/images/agent-installation/k1.png)
 
-  !["Install page"](/images/agent-installation/k1.png)
-3. Get the current Kubernetes context and ensure that the cluster belonging to this context is the one where you wish to install MW Agent. Use the following command to find out your current Kubernetes context.
-```javascript Shell
-kubectl config get-contexts `kubectl config current-context`
-```
-4. Copy and run the installation command. An example of the command is shown below. Copying the command directly from the Installation page ensures your API key and UID are inserted accurately.
-```javascript Shell
-MW_API_KEY=<xxxxxxxxxx> MW_TARGET=https://<uid>.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/mw-kube-agent-install.sh)"
-```
-  !["kubernetes install"](/images/agent-installation/k2.jpg)
+    !["kubernetes install"](/images/agent-installation/k2.jpg)
+</Accordion>
 
-5. Verify the status of the MW Agent with the following command. 
-```javascript Shell
-kubectl get daemonset/mw-kube-agent -n mw-agent-ns
-```
+<Accordion title="Step 2: Identify Kubernetes Context">
+  Get the current Kubernetes context and ensure that the cluster belonging to this context is where you want to install MW Agent.
+  
+  Use the following command to find out your current Kubernetes context:
 
-6. Navigate to Middleware and ensure metrics are appearing in the <a href="https://docs.middleware.io/docs/unified-dashboard/unified-view"> Unified Dashboard </a>. Depending on the size of your cluster, it can take up to a few minutes for metrics to appear. If metrics do not appear after this time head to our troubleshooting page for some common issues.
+  ```javascript Shell
+  kubectl config get-contexts `kubectl config current-context`
+  ```
+</Accordion>
 
-<Warning>  Run only one MW Agent DaemonSet per cluster. Multiple agents will cause unexpected behavior. </Warning>
+<Accordion title="Step 3: Run Kubernetes Install Command">
+  4. Copy and run the installation command. An example of the command is shown below. Copying the command directly from the Installation page ensures your API key and UID are inserted accurately.
+  ```javascript Shell
+  MW_API_KEY=<xxxxxxxxxx> MW_TARGET=https://<uid>.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/mw-kube-agent-install.sh)"
+  ```
+</Accordion>
 
-## Upgrade
+<Accordion title="Step 4: Verify Installation">
+  5. Verify the status of the MW Agent with the following command. 
+  ```javascript Shell
+  kubectl get daemonset/mw-kube-agent -n mw-agent-ns
+  ```
+</Accordion>
+
+<Accordion title="Step 5: Check Your Dashboard">
+  Navigate to Middleware and ensure metrics are appearing in the <a href="https://docs.middleware.io/docs/unified-dashboard/unified-view"> Unified Dashboard </a>. Depending on the size of your cluster, it can take up to a few minutes for metrics to appear. If metrics do not appear after this time head to our troubleshooting page for some common issues.
+</Accordion>
+
+# Upgrade
 The MW Agent is frequently updated to add new features and improve performance. More information on new features can be found in our <a href="https://newsletters.middleware.io/"> Newsletter </a>. To upgrade MW Agent, use the following command.
 ```javascript Shell
 bash -c "$(curl -L https://install.middleware.io/scripts/mw-kube-agent-upgrade.sh)"
 ```
 
-## Troubleshooting
+# Troubleshooting
+<Warning>  Run only one MW Agent DaemonSet per cluster per host. Multiple agents will cause unexpected behavior. </Warning>
+
 Once the MW Agent is installed on your cluster metrics should begin appearing in the Middleware application within a few minutes. If metrics do not appear, confirm that Kubernetes has access to the internet, either directly or through a proxy, and that only one MW Agent is running per cluster. 
 
 For any issues please reach out to our team in your Slack channel or through the help menu in the Middleware Application.
 
 
-## Uninstall
+# Uninstall
 To uninstall the Middleware Agent use the following command.
 ```javascript Shell
 bash -c "$(curl -L https://install.middleware.io/scripts/mw-kube-agent-uninstall.sh)"
