@@ -84,7 +84,7 @@ Forward your ECS Task logs to Middleware. The `mw-agent` sidecar, mentioned [abo
         ```
     </Accordion>
 
-    <Accordion title="Step 2 : Add a log Configuration in your main container">
+    <Accordion title="Step 2: Add a log Configuration in your main container">
     
         The Middleware Agent sidecar will fetch these logs and send them to Middleware.
 
@@ -95,6 +95,26 @@ Forward your ECS Task logs to Middleware. The `mw-agent` sidecar, mentioned [abo
                 "Host": "127.0.0.1",
                 "Name": "forward",
                 "Port": "8006"
+            }
+        }
+        ```
+    </Accordion>
+
+    <Accordion title="Step 3 [Optional]: Parsing JSON Structured Logs">
+    
+        Firelens by default sends a JSON blob which Middleware displays as the log body. Parsing the JSON logs allows the `Message` of the log being displayed while the attributes will be viewable on expansion. 
+        
+        To change the behavior you will need to add the below options to the `firelensConfiguration` created in Step 1.
+
+        <Warning> the JSON structured logs generated need to have a `Message` field. Otherwise Middleware will not know what should be shown as a body of the log.</Warning>
+
+        ```json JSON
+        "firelensConfiguration": {
+            "type": "fluentbit",
+            "options": {
+                "config-file-type": "file",
+                "config-file-value": "/fluent-bit/configs/parse-json.conf",
+                "enable-ecs-log-metadata": "true"
             }
         }
         ```
