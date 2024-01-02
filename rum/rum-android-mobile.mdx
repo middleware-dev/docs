@@ -148,6 +148,33 @@ Middleware.builder()
   ```
 </Accordion>
 
+### Session Replay [Optional]
+
+<Accordion title="Manage Session Replay">
+
+Control how you capture and replay your users' browsing experience. To start and stop session replay, override the `onResume` and `onPause` methods.
+
+<Note> This feature is only available for `Android Version 8.0 (Android Oreo)` or higher </Note>
+
+  ```java Java
+    final MiddlewareRecorder recorder = Middleware.getInstance().getRecorder();
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    @Override
+    protected void onResume() {
+        super.onResume();
+        recorder.startRecording(this);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    @Override
+    protected void onPause() {
+        super.onPause();
+        recorder.stopRecording();
+    }
+  ```
+</Accordion>
+
 # Attributes
 ### Default Attributes
 
