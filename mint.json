@@ -117,12 +117,12 @@
             },
             {
               "group": "Databases",
-              "pages":[                
+              "pages":[ 
+                "integrations/cassandra-integration",               
                 "integrations/mongodb-integration",
                 "integrations/mysql-integration",
                 "integrations/postgresql-integration",
-                "integrations/redis-integration",
-                "integrations/cassandra-integration"
+                "integrations/redis-integration"
               ]
             },
             {

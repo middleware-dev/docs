@@ -2,8 +2,44 @@
 title: Cassandra
 ---
 
-# Overview
+The Cassandra Database Integration provides seamless access to performance metrics, enabling users to effortlessly visualize crucial insights on our dashboard. Quickly pinpoint bottlenecks and optimize Cassandra's performance with ease.
 
 # Prerequisites
 
+1. Middleware Host agent must be installed on your machine
+
 # Setup
+
+<Accordion title="Step 1: Navigate to Cassandra Integration">
+    Login to your Middleware account, navigate to the Database Monitoring, and connect Cassandra
+    <img src="/images/integration/cassandra-integration-page.png" />
+</Accordion>
+
+<Accordion title="Step 2: Connect Cassandra Instance">
+    To access Cassandra metrics, choose a host to connect to your Cassandra Cluster
+    <img src="/images/integration/cassandra-host.png" />
+</Accordion>
+
+<Accordion title="Step 3: Configure Your Host">
+    Configure your host to connect to the IP address and JMX port of Cassandra Cluster
+    <img src="/images/integration/cassandra-connectivity.png" />
+    <Note> The default port for your Cassandra instance is `7199` </Note>
+</Accordion>
+
+# Visualize Your Data
+
+### Default Cassandra Dashboard
+
+Quickly access your Cassandra data with Middleware’s default Cassandra dashboard. Navigate to the Dashboard Builder and select the ***Cassandra - Metrics*** Dashboard
+
+<img src="/images/integration/cassandra-dashboard.png" />
+
+### Create Cassandra Widgets
+
+Create your own widget from scratch. Navigate to the Dashboard Builder and select the dashboard you would like to create a widget in. Select Add New Widget and choose the ***cassandra*** data source.
+
+<img src="/images/integration/cassandra-widget.png" />
+
+<Note> Learn more about creating your own widgets and dashboards in the [Dashboard Builder](/workflow/custom-dashboard/build-custom-dashboard) section. </Note>
+
+# Metrics Collected
