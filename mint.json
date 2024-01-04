@@ -149,7 +149,7 @@
           "pages": [
             "data-ingestion-apis/opentelemetry-metrics"
           ]
-        },
+        }, "glossary",
         {
           "group": "APM",
           "pages": [    
