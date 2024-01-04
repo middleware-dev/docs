@@ -14,14 +14,14 @@ title: "Node.js"
 | :----: | :-----: | :------: | :---------: | :-------: |
 | ✅ | ✖️ | ✖️ | ✅ | ✅ |
 
-This guide walks you through setting up Application Performance Monitoring (APM) on a Node.js application. These instructions can also be found on the Installation page in your Middleware Account. View <a href="https://github.com/middleware-labs/demo-apm/tree/master/nodejs"> demo project here </a>.
+This guide walks you through setting up Application Performance Monitoring (APM) on a Node.js application. These instructions can also be found on the Installation page in your Middleware Account. View example code <a href="https://github.com/middleware-labs/demo-apm/tree/master/nodejs"> here </a>.
 
 # Prerequisites
 
 <Steps>
 
   <Step title="MW Host Agent">
-   The Middleware Host Agent (MW Agent). To install the MW Agent please see our <a href="https://docs.middleware.io/docs/agent-installation/overview"> installation guides </a>. 
+   Middleware Host Agent (MW Agent). To install the MW Agent, see our <a href="https://docs.middleware.io/docs/agent-installation/overview"> installation guide</a>. 
   
   </Step>
 
@@ -55,7 +55,7 @@ const tracker = require('@middleware.io/node-apm');
 tracker.track({
     projectName: "your-project-name",
     serviceName: "your-service-name",
-    accessToken: “<xxxxxxxxxx>”;
+    accessToken: "<xxxxxxxxxx>";
 });
 ```
 </Accordion>

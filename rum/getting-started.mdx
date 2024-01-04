@@ -79,12 +79,16 @@ Once RUM is configured, metrics should begin appearing on the RUM Dashboard in M
 
 RUM Tracing allows you to gain insight into the specific actions of your users. You can watch time-stamped videos of user's website interactions, pinpoint performance bottlenecks across your platform, and identify the major causes of customer drop off.
 
-The following installation uses OpenTelemetry B3 Propagator heads. You can learn more about B3 Propagation [here](https://github.com/openzipkin/b3-propagation).
+The following installation uses OpenTelemetry B3 Propagator heads. Learn more about B3 Propagation [here](https://github.com/openzipkin/b3-propagation).
+
+<Note> You must have a Middleware APM Agent installed in order to use the tracing feature. Install a Middleware APM [here](/apm-configuration/apm_overview). </Note>
 
 ## Install
 
 ### Step 1: Modify Middleware SDK
-Add `tracePropagationTargets` to your SDK from [Step 3](#step-3-initialize-the-sdk) of the RUM Installation.
+Add `tracePropagationTargets` to your SDK from [Step 3](#step-3-initialize-the-sdk) of the RUM Installation. 
+
+<Note> The `tracePropagationTargets` value must be in regex format. </Note>
 
 ```javascript JavaScript
 <script>
