@@ -86,7 +86,9 @@ The following installation uses OpenTelemetry B3 Propagator heads. Learn more ab
 ## Install
 
 ### Step 1: Modify Middleware SDK
-Add `tracePropagationTargets` to your SDK from [Step 3](#step-3-initialize-the-sdk) of the RUM Installation. Ensure the `tracePropagationTargets` variable must be in regex format
+Add `tracePropagationTargets` to your SDK from [Step 3](#step-3-initialize-the-sdk) of the RUM Installation. 
+
+<Note> The `tracePropagationTargets` value must be in regex format. </Note>
 
 ```javascript JavaScript
 <script>
