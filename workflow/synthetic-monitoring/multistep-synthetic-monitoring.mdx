@@ -1,77 +1,69 @@
-# Overview
+---
+title: Multistep Synthetic monitoring
+---
 
 Multistep Synthetic Monitoring Requests create robust methods for simulating system-wide interactions and transactions. Multistep Requests lets response values from one Step be passed to successive Steps in a single Monitor, creating a chain of requests that can be used to simulate complex behaviors.
 
-## Limitations
+This section builds on top of the Synthetic Monitoring document. For more information on synthetic monitoring, refer to our 
 
-If you have more than one step in your Monitor, all assertions will be applied to every step. 
+<Note>If you have more than one step in your Monitor, all assertions will be applied to every step. </Note>
 
-# Configure Workflow
+# Setup
 
-## Step 1: Create New Monitor
+<Accordion title="Step 1: Create New Monitor">
+    Navigate to Synthetic monitoring and create monitor
 
-1.  Navigate to Synthetic monitoring
+    ![](https://lh3.googleusercontent.com/vy-zrDXraR11AvHwM-mro19edpJ45NtyTemXSsOeHsn_oHqdapv9rfh--Kn98Edwp3JyB2xTrC3z-S8ya2q5d64BH9B53qyYKsNKpx9aE39ja5DfrgFbcQzXPJgWzWodJn9DQKNssnBAfFvsYoQpsDw)
+</Accordion>
 
-2.  Create Monitor
+<Accordion title="Step 2: Click HTTP Request Type">
+    ![](https://lh4.googleusercontent.com/HiTQ530Z3aj1OajtkjXIzXil9YiTX2UgiTqujn7udfqUfZ_S3kYxvP3DtZAveuqpOAam9tOBcRRaJMP7Mh-0fBiYlDFgM702eKyaFtkG6l8CrIChmHh7GOyrwDCzw6maegwYgrs7k8JzWGG3uxstT-g)
+</Accordion>
 
-![](https://lh3.googleusercontent.com/vy-zrDXraR11AvHwM-mro19edpJ45NtyTemXSsOeHsn_oHqdapv9rfh--Kn98Edwp3JyB2xTrC3z-S8ya2q5d64BH9B53qyYKsNKpx9aE39ja5DfrgFbcQzXPJgWzWodJn9DQKNssnBAfFvsYoQpsDw)
+<Accordion title="Step 3: Setup Monitor">
+    1.  Check Multistep API Tests
 
-## Step 2: Click HTTP Request Type
+    2.  Name your Step
 
-![](https://lh4.googleusercontent.com/HiTQ530Z3aj1OajtkjXIzXil9YiTX2UgiTqujn7udfqUfZ_S3kYxvP3DtZAveuqpOAam9tOBcRRaJMP7Mh-0fBiYlDFgM702eKyaFtkG6l8CrIChmHh7GOyrwDCzw6maegwYgrs7k8JzWGG3uxstT-g)
+    3.  Paste your URL
 
-## Step 3: Setup Monitor
+    4.  Click Test URL
 
-1.  Check Multistep API Tests
+    ![](https://lh3.googleusercontent.com/KyDbYRtpErPtoFHQ2JTjlwrN2z71Hn3B5RVj4FG1wzlz9T5Nw_Aac0lqOEM_GVOJJzqdGufSWb-YovBqqBCPNfzRNDzaTfAOKys5nxQ6D3DXXaxwq3QJXRo1zBjMKBIAU2qj-JIIAnGTBYszIVcet_0)
+    ![](https://lh6.googleusercontent.com/kpWk3Q5GxdDWCzvROzXfnT0lwbbkH6Id40jXOZfSAyxOfijOo4sNDX8pejPIF5s5OO6zvWgnv-uFgwQv4qfSMQ4eM_YgOKFd7BAfhHB8s226KbvwpwvGVJh8mByHi6lIohAXuPeBL9KfwgAI1WyE57c)
 
-2.  Name your Step
+    <Note> Select Advanced Options to configure Request Options, Authentications, Query Params and Privacy options </Note>
 
-3.  Paste your URL
+</Accordion>
 
-4.  Click Test URL
+<Accordion title="Step 4: Preview Monitor">
+    1.  Open Request Preview
 
-![](https://lh3.googleusercontent.com/KyDbYRtpErPtoFHQ2JTjlwrN2z71Hn3B5RVj4FG1wzlz9T5Nw_Aac0lqOEM_GVOJJzqdGufSWb-YovBqqBCPNfzRNDzaTfAOKys5nxQ6D3DXXaxwq3QJXRo1zBjMKBIAU2qj-JIIAnGTBYszIVcet_0)![](https://lh6.googleusercontent.com/kpWk3Q5GxdDWCzvROzXfnT0lwbbkH6Id40jXOZfSAyxOfijOo4sNDX8pejPIF5s5OO6zvWgnv-uFgwQv4qfSMQ4eM_YgOKFd7BAfhHB8s226KbvwpwvGVJh8mByHi6lIohAXuPeBL9KfwgAI1WyE57c)
+    2.  Select desired parameter
 
-<Note> Select Advanced Options to configure Request Options, Authentications, Query Params and Privacy options </Note>
+    3.  Copy selected parameter 
 
-## Step 4: Preview Monitor
+    <Note> The number at the front of the parameter indicates the order of steps in the Monitor (e.g. `{{$0.result.cars}}` has a leading 0 because it is the first request in the first step of the Monitor). </Note>
 
-1.  Open Request Preview
+    ![](https://lh4.googleusercontent.com/ZZ5B46px8K889718du4XxKcMfpjX-XyYk5YcSLbrGWH1l_LWczGsLWEoHn5rR1_gncoqsaVGOG3joRDjwrCoth_Hfi5MneWGIn9TqFLhD4jwjIMBHIdSN1VmMLw7vfmaD4btz13e4pLI55jDYyhf3mM)
+</Accordion>
 
-2.  Select desired parameter
+<Accordion title="Step 5: Add more Steps [optional]">
+    1.  Navigate to Advanced Options
 
-3.  Copy selected parameter 
+    2.  Select Query Params
 
-<Note> The number at the front of the parameter indicates the order of steps in the Monitor (e.g. `{{$0.result.cars}}` has a leading 0 because it is the first request in the first step of the Monitor). </Note>
+    3.  Paste parameter from Request Preview into Value
 
-![](https://lh4.googleusercontent.com/ZZ5B46px8K889718du4XxKcMfpjX-XyYk5YcSLbrGWH1l_LWczGsLWEoHn5rR1_gncoqsaVGOG3joRDjwrCoth_Hfi5MneWGIn9TqFLhD4jwjIMBHIdSN1VmMLw7vfmaD4btz13e4pLI55jDYyhf3mM)
+    4.  Name Query Param
 
-## Step 5: Add more Steps [optional]
+    ![](https://lh5.googleusercontent.com/hnq83zgMilvkaVrh59bbAAJNJPMRuVHaSuU2eM0T4jmoFStdGQwiH0IJMTmSBMPawLlDxDg1C9IlqeGuZcKi9XFhl-vv5D62kkUQHFmXplUFiyerWmu4_VE3xTHbmZDs4b2kYaQFU1GxDxqbO30MPYc)
+</Accordion>
 
-1.  Navigate to Advanced Options
-
-2.  Select Query Params
-
-3.  Paste parameter from Request Preview into Value
-
-4.  Name Query Param
-
-![](https://lh5.googleusercontent.com/hnq83zgMilvkaVrh59bbAAJNJPMRuVHaSuU2eM0T4jmoFStdGQwiH0IJMTmSBMPawLlDxDg1C9IlqeGuZcKi9XFhl-vv5D62kkUQHFmXplUFiyerWmu4_VE3xTHbmZDs4b2kYaQFU1GxDxqbO30MPYc)
-
-## Step 6: Define Assertions
-
-<Warning> If you have more than one step in your Monitor, all assertions will be applied to every step. </Warning>
-
-## Step 7: Select Locations
-
-Select the regions from which your Monitor will send from.
-
-## Step 8: Specify Test Frequency
-
-Define the desired frequency by which your Monitor will fire at.
-
-## Step 9: Choose Notification Source
-
-Gmail is the default notification. Middleware also integrates with [Slack](#/slack-integration) as a notification source.
+<Accordion title="Step 6: Follow Synthetic Monitoring Guide">
+    Once you have configured your Multistep Synthetic Monitor, navigate to [Step 4: Define Assertions]() in the Synthetic Monitoring Document to complete your setup.
+    
+    <Warning> If you have more than one step in your Monitor, all assertions will be applied to every step. </Warning>
+</Accordion>
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
