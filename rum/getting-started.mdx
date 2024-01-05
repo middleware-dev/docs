@@ -75,6 +75,22 @@ If you need to define attributes post initialization of the SDK, utilize the 'Mi
 
 Once RUM is configured, metrics should begin appearing on the RUM Dashboard in Middleware within a few minutes. For more information on the RUM Dashboards see [here](https://docs.middleware.io/docs/rum/rum-middleware).
 
+# Custom Logs
+
+Use these functions to keep track of different types of issues in your system, making it easier to monitor and fix problems.
+
+```javascript JavaScript
+<script>
+   if(window.Middleware){
+       Middleware.error("Your error message")
+       Middleware.error(new Error("Your error message"))
+       Middleware.info("info message")
+       Middleware.warn("warn message")
+       Middleware.debug("debug message")
+    }
+</script>
+```
+
 # Connect RUM to Tracing
 
 RUM Tracing allows you to gain insight into the specific actions of your users. You can watch time-stamped videos of user's website interactions, pinpoint performance bottlenecks across your platform, and identify the major causes of customer drop off.
