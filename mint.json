@@ -212,6 +212,11 @@
           ]
         },
         {
+          "group": "Release Notes",
+          "pages": ["admin/release-notes/release-1"
+          ]
+        },
+        {
           "group": "FAQ",
           "pages": [
             "admin/faq/free-forever",
