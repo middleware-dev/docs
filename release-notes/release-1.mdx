@@ -1,0 +1,30 @@
+---
+title: January 3, 2024
+---
+
+# Features
+
+- Option to clone existing dashboard. Users can recreate and edit any existing dashboard
+- [Cassandra Integration](-----link to cassandra docs-----) with default dashboard 
+- [Red Panda Integration](-----link to red panda docs-----) with default dashboard
+- [RUM iOS]()
+
+# Changes
+
+- Changed naming conventions within the Infrastructure, RUM and Monitoring sections
+- Disabled the auto creation of reports after login
+- Query update on counting log size (which counts whole table size including columns which includes log attributes)
+- Added more metrics and data for Kubernetes monitoring
+- Providing Kubernetes events as logs
+
+# Fixes
+
+- RUM SDK innacurate crash count
+- Removed direct object references from all locations within the app
+- Infrastructure monitoring “live” button enabled 
+- Consistency in graph data when modifying the date-time for container list and host list inside infrastructure monitoring
+- Updated graphs as per selected time range for host listing
+- Date and time range will remain constant while navigating throughout the platform (e.g. If user sets the date picker to “last 7 days” in the APM section and moves to logs, the date picker will be auto set to “last 7 days” in logs)
+- Added default metrics (custom dashboards) inside all infrastructure monitoring tabs
+- Stopped blank page issue within reports
+
