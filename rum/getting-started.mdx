@@ -34,7 +34,6 @@ In the example below, env and recording are optional. Recording set to 1 is the 
     if (window.Middleware){
         Middleware.track({
             serviceName: "service_name",
-            projectName: "project_name",
             accountKey: "account_key",
             target:"https://<UID>.middleware.io",
             env: "production",
@@ -102,21 +101,21 @@ The following installation uses OpenTelemetry B3 Propagator heads. Learn more ab
 ## Install
 
 ### Step 1: Modify Middleware SDK
-Add `tracePropagationTargets` to your SDK from [Step 3](#step-3-initialize-the-sdk) of the RUM Installation. 
+Add `tracePropagationTargets` to your SDK from [Step 3](#step-3-initialize-the-sdk) of the RUM Installation. The `tracePropagationTargets` value must be in regex format. 
 
-<Note> The `tracePropagationTargets` value must be in regex format. </Note>
+<Warning> The Middleware JavaScript client is by default configured with `b3` headers. You can change your headers by adding `tracePropagationFormat` to change the headers to `w3c` or `all`. </Warning>
 
 ```javascript JavaScript
 <script>
     if (window.Middleware){
         Middleware.track({
             serviceName: "service_name",
-            projectName: "project_name",
             accountKey: "account_key",
-            target:"https://<UID>.middleware.io",
+            target: "https://<UID>.middleware.io",
             env: "production",
             recording: "1"
-            tracePropagationTargets: [/localhost:3000/i, /api.domain.com/i]
+            tracePropagationTargets: [/localhost:3000/i, /api.domain.com/i],
+            tracePropagationFormat: "w3c" 
         })
     }
 </script>
