@@ -95,6 +95,7 @@
             "apm-configuration/php",
             "apm-configuration/python",                        
             "apm-configuration/ruby",
+            "apm-configuration/scala",
             "apm-configuration/vercel-integration"
           ]
         },
