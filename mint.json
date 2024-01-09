@@ -54,6 +54,10 @@
     {
       "name": "Administration",
       "url": "admin"
+    },
+    {
+      "name": "Release Notes",
+      "url": "release-notes"
     }
   ],
   "primaryTab": {
@@ -228,6 +232,11 @@
             "admin/faq/pricing",
             "admin/faq/data",
             "admin/faq/other"
+          ]
+        },
+        {
+          "group": "Release Notes",
+          "pages": ["release-notes/release-1"
           ]
         }
       ]
