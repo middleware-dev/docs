@@ -91,8 +91,7 @@
             "apm-configuration/php",
             "apm-configuration/python",                        
             "apm-configuration/ruby",
-            "apm-configuration/vercel-integration",            
-            "apm-configuration/apm-agent-communication"
+            "apm-configuration/vercel-integration"
           ]
         },
         {
@@ -106,23 +105,28 @@
                 "integrations/microsoft-team-integration",
                 "integrations/opsgenie-integration",
                 "integrations/pagerduty-integration",
-                "integrations/slack-integration"             
+                "integrations/slack-integration"    
+                
               ]
             },
             {
               "group": "Cloud",
               "pages":[
-                "integrations/kinesis-streams"
+                "integrations/kinesis-streams",
+                "integrations/aws-ecs-monitoring"
               ]
             },
             {
               "group": "Databases",
-              "pages":[ 
-                "integrations/cassandra-integration",               
+
+              "pages":[        
+                "integrations/cassandra-integration",   
+                "integrations/clickhouse-integration",        
                 "integrations/mongodb-integration",
                 "integrations/mysql-integration",
                 "integrations/postgresql-integration",
-                "integrations/redis-integration"
+                "integrations/redis-integration",
+                "integrations/elasticsearch-integration"
               ]
             },
             {
@@ -134,7 +138,14 @@
             }                    
             
           ]
-        },"rum/getting-started",
+        },
+        {
+          "group": "RUM",
+          "pages": [
+            "rum/getting-started",
+            "rum/rum-android-mobile"
+          ]
+        },
         {
           "group": "Data Ingestion APIs",
           "pages": [
@@ -186,7 +197,7 @@
             "workflow/synthetic-monitoring/synthetic-monitoring",
             "workflow/synthetic-monitoring/multistep-synthetic-monitoring"
           ]
-        },
+        }, "workflow/profiling",
         {
           "group": "Settings",
           "pages": [

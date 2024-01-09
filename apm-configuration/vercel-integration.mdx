@@ -14,35 +14,39 @@ title: "Vercel"
 | :----: | :-----: | :------: | :---------: | :-------: |
 | ✅ | ✖️ | ✖️ | ✅ | ✅ |
 
-# Overview
-
-This guide walks you through setting up the Vercel APM integration. 
-
-These instructions can also be found on the Installation page in your Middleware Account. View demo code [here](https://github.com/middleware-labs/demo-apm/tree/master/nextjs).
+This guide walks you through setting up the Vercel APM integration. These instructions can also be found on the Installation page in your Middleware Account. View example code [here](https://github.com/middleware-labs/demo-apm/tree/master/nextjs).
 
 <Note> Refer to our sample [Vercel project](https://github.com/middleware-labs/demo-apm/tree/master/nextjs) to see the  Middleware - Vercel Integration in action. </Note>
 
 # Prerequisites
 
-1. Vercel Pro or Enterprise Account
+<Steps>
 
-2. `Next.js version 13.4` or newer installed. Check your Next.js version with the following command:
+  <Step title="Vercel Account">
+   Vercel Pro or Enterprise Account
+  </Step>
 
-```bash Shell
-npx next --version
-```
-3. `@opentelemetry/api` package installed. If not, run the following command:
+  <Step title="Next.js Version">
+   `Next.js version 13.4` or above. Check your Next.js version with the following command:
+    ```bash Shell
+    npx next --version
+    ```
+  </Step>
 
-```bash Shell
-npm install @opentelemetry/api@">=1.3.0 <1.5.0"
-```
-<Note>You can read detailed prerequisites and essential information about OpenTelemetry in [Vercel's documentation](https://nextjs.org/docs/pages/building-your-application/optimizing/open-telemetry). This information will be helpful when integrating Middleware with Vercel.</Note>
+  <Step title="OpenTelemetry Package">
+    `@opentelemetry/api` package installed. If not, run the following command:
+    ```bash Shell
+    npm install @opentelemetry/api@">=1.3.0 <1.5.0"
+    ```
+    <Note>You can read detailed prerequisites and essential information about OpenTelemetry in [Vercel's documentation](https://nextjs.org/docs/pages/building-your-application/optimizing/open-telemetry). This information will be helpful when integrating Middleware with Vercel.</Note>
+  </Step>
 
+</Steps>
 
 
 # Install
 
-### Step 1: Add Middleware Integration
+<Accordion title="Step 1: Add Middleware Integration">
 
 1. Add the [Middleware integration](https://vercel.com/integrations/middleware/new) from the Vercel marketplace:
 
@@ -74,15 +78,18 @@ npm install @opentelemetry/api@">=1.3.0 <1.5.0"
  <Note> After three seconds you should be redirected back to the Vercel marketplace </Note>
 
 7. In Vercel, enable traces prior to deploying your project
+</Accordion>
 
-### Step 2: Install Next.js APM Package
+<Accordion title="Step 2: Install Next.js APM Package">
 
 Run the following command in your terminal:
 
 ```bash Shell 
 npm install @middleware.io/agent-apm-nextjs
 ```
-### Step 3: Modify Config File
+</Accordion>
+
+<Accordion title="Step 3: Modify Config File">
 
 Add the following code to your next.config.js file:
 ```javascript Next.js
@@ -99,7 +106,9 @@ const nextConfig = {
 }
 module.exports = nextConfig
 ```
-### Step 4: Create Instrumentation File
+</Accordion>
+
+<Accordion title="Step 4: Create Instrumentation File">
 
 1. Create a custom instrumentation.ts (or .js) file in your project root directory or inside the src folder
 
@@ -117,7 +126,6 @@ import tracker from '@middleware.io/agent-apm-nextjs';
 
 export function register() {
     tracker.track({
-        projectName: "<PROJECT-NAME>",
         serviceName: "<SERVICE-NAME>",
         accessToken: "<xxxxxxxxxx>",
         target: "vercel"
@@ -127,8 +135,9 @@ export function register() {
 4. Integrate your APIs or Serverless functions prior to deployment. Vercel will treat your app as a static website during deployment if you have not integrated any APIs or Serverless functions and the `instrumentation.ts` file will not be invoked, resulting in the absence of traces or logs in your Middleware account. 
 
 <Warning> Vercel does not support instrumentation for edge functions. </Warning>
+</Accordion>
 
-### Step 5: Enable Logging
+<Accordion title="Step 5: Enable Logging">
 
 Ingest custom logs by using  the following functions based on desired log severity levels:
 
@@ -151,9 +160,23 @@ export default async function handler(req, res) {
     // Your existing code
 }
 ```
-### Step 6: Deploy on Vercel
+</Accordion>
+
+<Accordion title="Step 6: Deploy on Vercel">
 
 <Note>If you’re looking to set up a sample Next.js project with API routes, you can use the following command in your terminal: `npx create-next-app@latest --example api-routes`</Note>
+</Accordion>
+
+# Continuous Profiling
+
+Continuous profiling captures real-time performance insights from your application to enable rapid identification of resource allocation, bottlenecks, and more. The following table describes the available features offered by the continuous profiler for the Vercel APM.
+
+For more information on Continuous Profiling, navigate to [Workflows](/workflow/profiling) to find out more.
+
+|     |     |     |     |    |      |     |
+| :-: | :-: | :-: | :-: |:-: | :-: | :-: |
+|  __Object Allocation__   |   __Memory Allocation__  |   __Objects in Use__  |  __Memory in Use__   |  __CPU Usage__  | __Wall-clock time__ | __Reference__ |
+|       ✖️                   |     ✖️                     |           ✅          |         ✅           |         ✅      |        ✖️             |            ✖️   |
 
 # Troubleshooting
 

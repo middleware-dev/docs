@@ -12,16 +12,28 @@ title: "Ruby"
 | :----: | :-----: | :------: | :---------: | :-------: |
 | ✅ | ✖️ | ✖️ | ✖️ | ✅ |
 
-This guide walks you through setting up Application Performance Monitoring (APM) on a Ruby application. These instructions can also be found on the Installation page in your Middleware Account. View demo code [here](https://github.com/middleware-labs/demo-apm/tree/master/ruby).
+This guide walks you through setting up Application Performance Monitoring (APM) on a Ruby application. These instructions can also be found on the Installation page in your Middleware Account. View example code [here](https://github.com/middleware-labs/demo-apm/tree/master/ruby).
 
-## Prerequisites
-* Middleware Host Agent (MW Agent), to install the MW Agent please see our [installation guide](https://docs.middleware.io/docs/agent-installation/overview).
-* Ruby version 3.0.0, you can check your Ruby version with the following command.
-```bash Shell
-ruby --version
-```
+# Prerequisites
 
-## Step 1: Add Gems to Your Gemfile
+<Steps>
+
+  <Step title="MW Host Agent">
+   Middleware Host Agent (MW Agent). To install the MW Agent, see our <a href="https://docs.middleware.io/docs/agent-installation/overview"> installation guide</a>. 
+  </Step>
+
+  <Step title="Ruby Version">
+    `Ruby version 3.0.0`. Check your Ruby version with the following command:
+    ```bash Shell
+    ruby --version
+    ```
+  </Step>
+
+</Steps>
+
+# Install
+
+<Accordion title="Step 1: Add Gems to Your Gemfile">
 
 <Tabs>
   <Tab title="Linux Gemfile">
@@ -30,7 +42,7 @@ ruby --version
        gem 'opentelemetry-exporter-otlp'
        gem 'opentelemetry-instrumentation-all'
        gem 'pyroscope'
-       gem 'middleware_apm_linux', '~> 2.0.0'
+       gem 'middleware_apm_linux', '~> 2.1.0'
     ```
   </Tab>
   <Tab title="Windows Gemfile">
@@ -39,15 +51,13 @@ ruby --version
         gem 'opentelemetry-exporter-otlp'
         gem 'opentelemetry-instrumentation-all'
         gem 'pyroscope'
-        gem 'middleware_apm_windows', '~> 2.0.0'
+        gem 'middleware_apm_windows', '~> 2.1.0'
     ```
   </Tab>
 </Tabs>
+</Accordion>
 
-
-
-
-## Step 2: Import Tracker
+<Accordion title="Step 2: Import Tracker">
 
 <Tabs>
   <Tab title="Linux Environment">
@@ -63,18 +73,37 @@ ruby --version
     ```
   </Tab>
 </Tabs>
+</Accordion>
 
-## Step 3: Capture Application Data
+<Accordion title="Step 3: Capture Application Data">
+  <AccordionGroup>
+      <Accordion title="Traces">
+      
+      ```bash Shell
+      OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:9320 \ 
+      OTEL_SERVICE_NAME="<Your Service Name>" \ 
+      OTEL_RESOURCE_ATTRIBUTES=project.name="<Your Project Name>" \ 
+      MW_API_KEY=<Your API Key> \ 
+      <YOUR COMMAND> 
+      ```
+      </Accordion>
 
-### Traces
-```bash Shell
-OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:9320 \ 
-OTEL_SERVICE_NAME="<Your Service Name>" \ 
-OTEL_RESOURCE_ATTRIBUTES=project.name="<Your Project Name>" \ 
-MW_API_KEY=<Your API Key> \ 
-<YOUR COMMAND> 
-```
-### Profiling
-Application Profiling is auto-configured upon completion of Step 2.
+      <Accordion title="Profiling">
+      Application Profiling is auto-configured upon completion of Step 2.
+      </Accordion>
+
+  </AccordionGroup>
+</Accordion>
+
+# Continuous Profiling
+
+Continuous profiling captures real-time performance insights from your application to enable rapid identification of resource allocation, bottlenecks, and more. The following table describes the available features offered by the continuous profiler for the Ruby APM.
+
+For more information on Continuous Profiling, navigate to [Workflows](/workflow/profiling) to find out more.
+
+|     |     |     |     |    |           |
+| :-: | :-: | :-: | :-: |:-: | :-: | 
+|  __Object Allocation__   |   __Memory Allocation__  |   __Objects in Use__  |  __Memory in Use__   |  __CPU Usage__  | __Wall-clock time__ | 
+|        ✖️                  |   ✖️                       |      ✖️                 |          ✖️            |        ✅       |           ✖️          |
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>

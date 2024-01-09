@@ -14,35 +14,48 @@ title: "Next.js"
 | :----: | :-----: | :------: | :---------: | :-------: |
 | ✅ | ✖️ | ✖️ | ✅ | ✅ |
 
-# Overview
-This guide walks you through setting up Application Performance Monitoring (APM) on a Next.js application. 
 
-These instructions can also be found on the Installation page in your Middleware Account. View demo code [here](https://github.com/middleware-labs/demo-apm/tree/master/nextjs).
+This guide walks you through setting up Application Performance Monitoring (APM) on a Next.js application. These instructions can also be found on the Installation page in your Middleware Account. View example code [here](https://github.com/middleware-labs/demo-apm/tree/master/nextjs).
 
 # Prerequisites
 
-1. [Middleware Agent (MW Agent)](/docs/agent-installation/overview) is installed
+<Steps>
 
-<Note> Although the Middleware Agent is not required for the Next.js APM, we recommend installing it for improved performance. </Note>
+  <Step title="MW Host Agent">
+   Middleware Host Agent (MW Agent). To install the MW Agent, see our <a href="https://docs.middleware.io/docs/agent-installation/overview"> installation guide</a>. 
+  
+   <Note> Although the Middleware Agent is not required for the Next.js APM, we recommend installing it for improved performance. </Note>
+  
+  </Step>
 
-2. `Next.js version 13.4` or newer installed. Check your Next.js version with the following command:
-```bash Shell
-npx next --version
-```
-3. `@opentelemetry/api` package version >= 1.3.0 and < 1.5.0:
-```bash Shell
-npm install @opentelemetry/api”>=1.3.0 <1.5.0”
-```
+  <Step title="Next.js Version">
+   `Next.js version 13.4` or above. Check your Next.js version with the following command:
+    ```bash Shell
+    npx next --version
+    ```
+
+  </Step>
+
+  <Step title="OpenTelemetry Version">
+    `@opentelemetry/api` package version >= `v1.3.0` and < `v1.5.0`:
+    ```bash Shell
+    npm install @opentelemetry/api”>=1.3.0 <1.5.0”
+    ```
+  </Step>
+
+</Steps>
 
 # Install
 
-### Step 1: Install Next.js APM Package
+<Accordion title="Step 1: Install Next.js APM Package">
 
 Run the following command in your terminal:
 ```bash Shell 
 npm install @middleware.io/agent-apm-nextjs
 ```
-### Step 2: Modify Config File
+</Accordion>
+
+<Accordion title="Step 2: Modify Config File">
 
 Add the following code to your next.config.js file:
 
@@ -58,8 +71,9 @@ const nextConfig = {
 }
 module.exports = nextConfig
 ```
+</Accordion>
 
-### Step 3: Container Variables
+<Accordion title="Step 3: Container Variables">
 
 <Note>If your application is not running in a container or Kubernetes cluster, move to [Step 4](#step-4-create-instrumentation-file)</Note> 
 
@@ -80,8 +94,9 @@ For Kubernetes clusters, add the following environment variable to your applicat
 ```bash Shell
 kubectl get service --all-namespaces | grep mw-service
 ```
+</Accordion>
 
-### Step 4: Create Instrumentation File
+<Accordion title="Step 4: Create Instrumentation File">
 
 1. Create a custom instrumentation.ts (or .js) file in your project `root` directory or inside the `src` folder
 
@@ -100,7 +115,6 @@ kubectl get service --all-namespaces | grep mw-service
         import tracker from '@middleware.io/agent-apm-nextjs';
         export function register() {
             tracker.track({
-                projectName: "<PROJECT-NAME>",
                 serviceName: "<SERVICE-NAME>",
                 accessToken: "<xxxxxxxxxx>"
             });
@@ -113,7 +127,6 @@ kubectl get service --all-namespaces | grep mw-service
         import tracker from '@middleware.io/agent-apm-nextjs';
         export function register() {
             tracker.track({
-                projectName: "<PROJECT-NAME>",
                 serviceName: "<SERVICE-NAME>",
                 accessToken: "<ACCESS-TOKEN>",
                 target: "https://{ACCOUNT-UID}.middleware.io"
@@ -123,7 +136,10 @@ kubectl get service --all-namespaces | grep mw-service
   </Tab>
 </Tabs>
 
-### Step 5: Enable Logging
+</Accordion>
+
+<Accordion title="Step 5: Enable Logging">
+
 Ingest custom logs by using the following functions based on desired log severity levels:
 
 ```javascript Next.js
@@ -142,10 +158,24 @@ export default async function handler(req, res) {
     // Your existing code
 }
 ```
+</Accordion>
 
-### Step 6: Deploy your Project
+<Accordion title="Step 6: Deploy your Project">
 
 <Note>If you’re looking to set up a sample Next.js project with API routes, you can use the following command in your terminal: `npx create-next-app@latest --example api-routes`</Note>
+
+</Accordion>
+
+# Continuous Profiling
+
+Continuous profiling captures real-time performance insights from your application to enable rapid identification of resource allocation, bottlenecks, and more. The following table describes the available features offered by the continuous profiler for the Next.js APM.
+
+For more information on Continuous Profiling, navigate to [Workflows](/workflow/profiling) to find out more.
+
+|     |     |     |     |    |           |
+| :-: | :-: | :-: | :-: |:-: | :-: | 
+|  __Object Allocation__   |   __Memory Allocation__  |   __Objects in Use__  |  __Memory in Use__   |  __CPU Usage__  | __Wall-clock time__ | 
+|        ✖️                  |     ✖️                     |          ✅           |         ✅           |         ✅      |          ✖️           |            
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
 

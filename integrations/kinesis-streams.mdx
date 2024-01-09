@@ -6,7 +6,9 @@ title: "AWS CloudWatch"
 
 AWS [Metric Streams](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Metric-Streams.html) is a service provided by Amazon Web Services (AWS) that enables real-time streaming of AWS CloudWatch metrics. Configure CloudWatch using the AWS Console.
 
-## Create a new Kinesis Data Firehose Delivery Stream
+# Setup
+
+### Create Kinesis Data Firehose Delivery Stream
 
 1.  Sign in to the [AWS Management Console](https://console.aws.amazon.com/kinesis) and open the Kinesis console.
 2.  Choose **Data Firehose** in the navigation panel.
@@ -18,7 +20,7 @@ AWS [Metric Streams](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitor
 
 <Note> Replace `{ACCOUNT-UID}` with the text in the URL (ex URL is "s05zpimz.middleware.io", here s05zpimz is `{ACCOUNT-UID}`.) </Note>
 
-## Create a new CloudWatch Metric Stream
+### Create CloudWatch Metric Stream
 
 1.  Open the [CloudWatch AWS console](https://console.aws.amazon.com/cloudwatch).
 2.  In the left navigation pane, choose **Metrics → Streams**.
@@ -31,7 +33,7 @@ AWS [Metric Streams](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitor
 
 <Note> To ensure that your request metrics are accurately reported, it is important to [Enable Requests metrics](https://docs.aws.amazon.com/AmazonS3/latest/userguide/cloudwatch-monitoring.html) for your Amazon S3 buckets through the AWS console. </Note>
 
-## Visualize Your Metrics
+# Visualize Your Metrics
 
 Once you have completed the setup mentioned above, you can visualize your data in the 2 difefrent ways.
 
