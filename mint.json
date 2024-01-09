@@ -118,7 +118,9 @@
             },
             {
               "group": "Databases",
+
               "pages":[        
+                "integrations/cassandra-integration",   
                 "integrations/clickhouse-integration",        
                 "integrations/mongodb-integration",
                 "integrations/mysql-integration",
