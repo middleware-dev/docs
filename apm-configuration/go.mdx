@@ -13,7 +13,7 @@ This guide walks you through setting up Application Performance Monitoring (APM)
 <Steps>
 
   <Step title="MW Host Agent">
-   The Middleware Host Agent (MW Agent). To install the MW Agent please see our <a href="https://docs.middleware.io/docs/agent-installation/overview"> installation guides </a>. 
+   Middleware Host Agent (MW Agent). To install the MW Agent, see our <a href="https://docs.middleware.io/docs/agent-installation/overview"> installation guide</a>. 
   </Step>
 
   <Step title="Go Version">
@@ -48,7 +48,6 @@ Add the following snippet to your main function. The access token is your accoun
 ```go Go
 go track.Track(
     track.WithConfigTag("service", {APM-SERVICE-NAME}),
-    track.WithConfigTag("projectName", {APM-PROJECT-NAME}),
     track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
 )
 ```
@@ -78,7 +77,6 @@ If any of the following Go web frameworks are used in your application, addition
                r := gin.Default()
                config, _ := track.Track(
                     track.WithConfigTag("service","<apm-service-name>"),
-                    track.WithConfigTag("projectName","<apm-project-name>"),
                     track.WithConfigTag("accessToken","<xxxxxxxxxx>"),
                )
                r.Use(mwgin.Middleware(config))
@@ -109,7 +107,6 @@ If any of the following Go web frameworks are used in your application, addition
                r := mux.newRouter()
                config, _ := track.Track(
                     track.WithConfigTag("service", "<apm-service-name>"),
-                    track.WithConfigTag("projectName", "<apm-service-name>"),
                     track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
                )
                r.Use(mwmux.Middleware(config))
@@ -135,7 +132,6 @@ If any of the following Go web frameworks are used in your application, addition
                ```go Go
                config, _ := track.Track(
                     track.WithConfigTag("service", "<apm-service-name>"),
-                    track.WithConfigTag("projectName", "<apm-service-name>"),
                     track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
                )
                r := chi.NewRouter()
@@ -162,7 +158,6 @@ If any of the following Go web frameworks are used in your application, addition
                ```go Go
                config, _ := track.Track(
                     track.WithConfigTag("service", "<apm-service-name>"),
-                    track.WithConfigTag("projectName", "<apm-service-name>"),
                     track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
                )
                r := chi.NewRouter()
@@ -189,7 +184,6 @@ If any of the following Go web frameworks are used in your application, addition
                ```go Golang
                config, _ := track.Track(_
                     track.WithConfigTag("service", "<apm-service-name>"),
-                    track.WithConfigTag("projectName", "<apm-service-name>"),
                     track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
                )
                mware := mw_beego.Middleware(config)
@@ -215,7 +209,6 @@ If any of the following Go web frameworks are used in your application, addition
                ```go Go
                config, _ := track.Track(_
                     track.WithConfigTag("service", "<apm-service-name>"),
-                    track.WithConfigTag("projectName", "<apm-service-name>"),
                     track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
                )
                mware := mw_beego.Middleware(config)
@@ -241,7 +234,6 @@ If any of the following Go web frameworks are used in your application, addition
                ```go Go
                config, _ := track.Track(
                     track.WithConfigTag("service", "<apm-service-name>"),
-                    track.WithConfigTag("projectName", "<apm-service-name>"),
                     track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
                )
                db, err := mw_sql.Open("mysql", "uname:password@tcp(127.0.0.1:3306)/todo")
@@ -268,7 +260,6 @@ If any of the following Go web frameworks are used in your application, addition
                ```go Go
                config, _ := track.Track(_
                     track.WithConfigTag("service", "<apm-service-name>"),
-                    track.WithConfigTag("projectName", "<apm-service-name>"),
                     track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
                )
                db := pg.Connect(&pg.Options{
@@ -300,7 +291,6 @@ If any of the following Go web frameworks are used in your application, addition
                ```go Go
                config, _ := track.Track(_
                     track.WithConfigTag("service", "<apm-service-name>"),
-                    track.WithConfigTag("projectName", "<apm-service-name>"),
                     track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
                )
                db, err := mw_sql.Open(driverName, dataSourceName, mw_sql.WithDBName(dbname), mw_sql.WithAttributes(tracker.String("db.system","mysql")))
@@ -328,7 +318,6 @@ If any of the following Go web frameworks are used in your application, addition
                ```go Go
                config, _ := track.Track(_
                     track.WithConfigTag("service", "<apm-service-name>"),
-                    track.WithConfigTag("projectName", "<apm-service-name>"),
                     track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
                )
                db, err := gorm.Open(mysql.Open("username:password@tcp(127.0.0.1:3306)/dbname"), &gorm.Config{})
@@ -370,7 +359,6 @@ If any of the following Go web frameworks are used in your application, addition
                ```go Go
                config, _ := track.Track(_
                     track.WithConfigTag("service", "<apm-service-name>"),
-                    track.WithConfigTag("projectName", "<apm-service-name>"),
                     track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
                )
                opts := options.Client()
@@ -397,7 +385,6 @@ If any of the following Go web frameworks are used in your application, addition
                ```go Go
                config, _ := track.Track(_
                     track.WithConfigTag("service", "<apm-service-name>"),
-                    track.WithConfigTag("projectName", "<apm-service-name>"),
                     track.WithConfigTag("accessToken", "<xxxxxxxxxx>"),
                )
                mware := mwbeego.MiddleWare(config.ServiceName)
@@ -460,5 +447,16 @@ app.get("/hello", (req, res) => {
 })
 ```
 </Accordion>
+
+# Continuous Profiling
+
+Continuous profiling captures real-time performance insights from your application to enable rapid identification of resource allocation, bottlenecks, and more. The following table describes the available features offered by the continuous profiler for the Go APM.
+
+For more information on Continuous Profiling, navigate to [Workflows](/workflow/profiling) to find out more.
+
+|     |     |     |     |    |           |
+| :-: | :-: | :-: | :-: |:-: | :-: | 
+|  __Object Allocation__   |   __Memory Allocation__  |   __Objects in Use__  |  __Memory in Use__   |  __CPU Usage__  | __Wall-clock time__ | 
+|         ✅               |      ✅                  |       ✅              |       ✅             |       ✅        |          ✖️           |        
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
