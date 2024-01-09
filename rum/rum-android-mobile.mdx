@@ -9,14 +9,13 @@ The Mobile RUM SDK provides a customizable suite of tools to analyze and optimiz
 
 # Prerequisites
 
-`Android SDK Version 21` or above
+`Android SDK Version 21` or above. Check your Android SDK version with the following command:
 
 ```shell Shell
 ./sdkmanager --list
 ```
 
-
-# Install
+# Install & Instrument Your Android Application
 
 <AccordionGroup>
   <Accordion title="Step 1: Install Middleware Android SDK">
@@ -80,7 +79,7 @@ The Mobile RUM SDK provides a customizable suite of tools to analyze and optimiz
 
 </AccordionGroup>
 
-# Instrument Your Android Application
+# Custom Configurations
 
 ### Set Global Attributes
 
@@ -96,10 +95,8 @@ Middleware.builder()
                     .put(StandardAttributes.APP_VERSION, BuildConfig.VERSION_NAME)
                     .build());
 ```
-### Custom Events [Optional]
 
-
-<Accordion title="Create Custom Events">
+<Accordion title="Events">
   #### Step 1: Setup Your Custom Event
   Send custom events and workflows using `addEvent` 
     ```java Java
@@ -121,18 +118,14 @@ Middleware.builder()
     ```
 </Accordion>
 
-
-### Error Reporting [Optional]
-
-<Accordion title="Configure Error Reporting">
+<Accordion title="Error Reporting">
   Use `addException(Throwable)` to report exceptions, errors, and display messages on the Middleware dashboard
   ```java Java
   Middleware.getInstance().addException(new RuntimeException("Something went wrong!"), Attributes.empty())
   ```
 </Accordion>
 
-### Custom Logs [Optional]
-<Accordion title="Create Custom Logs">
+<Accordion title="Logs">
   Add custom logs to display on your Middleware dashboard such as debug, error, warning, and info 
   ```java Java
   Middleware logInstance = Middleware.getInstance();
@@ -143,9 +136,7 @@ Middleware.builder()
   ```
 </Accordion>
 
-### Session Replay [Optional]
-
-<Accordion title="Manage Session Replay">
+<Accordion title="Session Replay">
 
 Control how you capture and replay your users' browsing experience. To start and stop session replay, override the `onResume` and `onPause` methods.
 
@@ -170,8 +161,7 @@ Control how you capture and replay your users' browsing experience. To start and
   ```
 </Accordion>
 
-# Attributes
-### Default Attributes
+# Default Attributes
 
   The following Attributes are provided by the Android SDK by default:
 
@@ -184,7 +174,7 @@ Control how you capture and replay your users' browsing experience. To start and
 
 
 
-### Resource Attributes
+# Resource Attributes
 
   The following Resource Attributes are applied to all spans by default:
 
@@ -200,7 +190,7 @@ Control how you capture and replay your users' browsing experience. To start and
   | `os.version`              |      String    |  Operating System version. Example: Android version `11` |
 
 
-### Instrumentation Attributes
+# Instrumentation Attributes
 
   The following Instrumentation Attributes are additional properties the Android SDK provides:
 
