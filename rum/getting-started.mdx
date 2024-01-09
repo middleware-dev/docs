@@ -9,87 +9,87 @@ Middleware Real User Monitoring (RUM) provides insights into your application or
   <img height="200" noZoom src="/images/rum_0.png" />
 </a>
 
-# Prerequisites
-
-1. JavaScript-based web application (mobile apps not currently supported)
-
 # Install
 This guide walks you through setting up Real User Monitoring (RUM) with JavaScript. These instructions can also be found on the Installation page in your Middleware Account.
 
-### Step 1: Create Application Reference
-Navigate to the Installation page in your Middleware Account. In the Real User Monitoring section, select `Create New Application` and provide the application name, origin(s) and Trace Propogation Target(s) to whitelist. Multiple origins can be listed as a comma-separated list.
 
-### Step 2: Import Javascript CDN
-Add the following script tag to the head section of your index.html file. The tag can be copied directly from the Installation page upon completing Step 1.
-```javascript HTML
-<script src="https://cdnjs.middleware.io/browser/libs/0.0.1/middleware-rum.min.js" type="text/javascript"></script>
-```
-### Step 3: Initialize the SDK
-Add the following lines in your index.html file below the script tag entered in Step 2. We recommend copying directly from the Installation page; select the appropriate Application from the list and copy the code snippet. The `window.Middleware` attribute is set in the script from Step 2. 
+<AccordionGroup>
+    <Accordion title="Step 1: Create Application Reference">
+        Navigate to the Installation page in your Middleware Account. In the Real User Monitoring section, select `Create New Application` and provide the application name, origin(s) and Trace Propogation Target(s) to whitelist. Multiple origins can be listed as a comma-separated list.
+    </Accordion>
 
-In the example below, env and recording are optional. Recording set to 1 is the default value and records the entire user session. To track only browser traces and errors set recording to 0.
+    <Accordion title="Step 2: Import Javascript CDN">
+        Add the following script tag to the head section of your index.html file. The tag can be copied directly from the Installation page upon completing Step 1.
+        ```javascript HTML
+        <script src="https://cdnjs.middleware.io/browser/libs/0.0.1/middleware-rum.min.js" type="text/javascript"></script>
+        ```
+    </Accordion>
 
-```javascript JavaScript
-<script>
-    if (window.Middleware){
-        Middleware.track({
-            serviceName: "service_name",
-            projectName: "project_name",
-            accountKey: "account_key",
-            target:"https://<UID>.middleware.io",
-            env: "production",
-            recording: "1"
-        })
-    }
-</script>
-```
+    <Accordion title="Step 3: Initialize the SDK">
+        Add the following lines in your index.html file below the script tag entered in Step 2. We recommend copying directly from the Installation page; select the appropriate Application from the list and copy the code snippet. The `window.Middleware` attribute is set in the script from Step 2. 
 
-### Step 4: Add User Information [optional]
-To gather user details add key-value pairs, as shown below. Any user metadata can be defined as a key-value pair.
+        In the example below, env and recording are optional. Recording set to 1 is the default value and records the entire user session. To track only browser traces and errors set recording to 0.
 
+        ```javascript JavaScript
+        <script>
+            if (window.Middleware){
+                Middleware.track({
+                    serviceName: "service_name",
+                    accountKey: "account_key",
+                    target:"https://<UID>.middleware.io",
+                    env: "production",
+                    recording: "1"
+                })
+            }
+        </script>
+        ```
+    </Accordion>
 
-```javascript JavaScript
-if(window.Middleware){
-...
-  defaultAttributes: { 
-      name: 'John Doe', 
-      email: 'john@email.com', 
-      user_type: 'admin', // it can be key value pairs
-  }
-}
-```
-If you need to define attributes post initialization of the SDK, utilize the 'Middleware.setAttributes' method, as exemplified in the following example.
+    <Accordion title="Step 4: Add User Information [optional]">
+        To gather user details add key-value pairs, as shown below. Any user metadata can be defined as a key-value pair.
 
-```javascript JavaScript
-<script>
-   if(window.Middleware){
-        Middleware.setAttributes({
-             name: 'John Doe',
-             email: 'john@email.com',
-             user_type: 'admin',
-        })
-    }
-</script>
-```
+        ```javascript JavaScript
+        if(window.Middleware){
+        ...
+        defaultAttributes: { 
+            name: 'John Doe', 
+            email: 'john@email.com', 
+            user_type: 'admin', // it can be key value pairs
+        }
+        }
+        ```
+        If you need to define attributes post initialization of the SDK, utilize the 'Middleware.setAttributes' method, as exemplified in the following example.
 
+        ```javascript JavaScript
+        <script>
+        if(window.Middleware){
+                Middleware.setAttributes({
+                    name: 'John Doe',
+                    email: 'john@email.com',
+                    user_type: 'admin',
+                })
+            }
+        </script>
+        ```
+        Once RUM is configured, metrics should begin appearing on the RUM Dashboard in Middleware within a few minutes. For more information on the RUM Dashboards see [here](https://docs.middleware.io/docs/rum/rum-middleware).
+    </Accordion>
 
-Once RUM is configured, metrics should begin appearing on the RUM Dashboard in Middleware within a few minutes. For more information on the RUM Dashboards see [here](https://docs.middleware.io/docs/rum/rum-middleware).
+    <Accordion title="Step 5: Add Custom Logs [optional]">
+        Use these functions to keep track of different types of issues in your system, making it easier to monitor and fix problems.
 
-# Custom Logs
-
-Use these functions to keep track of different types of issues in your system, making it easier to monitor and fix problems. This way you can save it as custom logs and view it under Log section and also create alerts on these logs. 
-
-```javascript JavaScript
-<script>
-   if(window.Middleware){
-       Middleware.error("Your error message")
-       Middleware.error(new Error("Your error message"))
-       Middleware.info("info message")
-       Middleware.warn("warn message")
-       Middleware.debug("debug message")
-    }
-</script>
-```
+        ```javascript JavaScript
+        <script>
+        if(window.Middleware){
+            Middleware.error("Your error message")
+            Middleware.error(new Error("Your error message"))
+            Middleware.info("info message")
+            Middleware.warn("warn message")
+            Middleware.debug("debug message")
+            }
+        </script>
+        ```
+    </Accordion>
+</AccordionGroup>
 
 # Connect RUM to Tracing
 
@@ -99,34 +99,33 @@ The following installation uses OpenTelemetry B3 Propagator heads. Learn more ab
 
 <Note> You must have a Middleware APM Agent installed in order to use the tracing feature. Install a Middleware APM [here](/apm-configuration/apm_overview). </Note>
 
-## Install
+<AccordionGroup>
+    <Accordion title="Step 1: Modify Middleware SDK">
+        Add `tracePropagationTargets` to your SDK from [Step 3](#step-3-initialize-the-sdk) of the RUM Installation. 
 
-### Step 1: Modify Middleware SDK
-Add `tracePropagationTargets` to your SDK from [Step 3](#step-3-initialize-the-sdk) of the RUM Installation. 
+        <Note> The `tracePropagationTargets` value must be in regex format. </Note>
 
-<Note> The `tracePropagationTargets` value must be in regex format. </Note>
+        ```javascript JavaScript
+        <script>
+            if (window.Middleware){
+                Middleware.track({
+                    serviceName: "service_name",
+                    accountKey: "account_key",
+                    target:"https://<UID>.middleware.io",
+                    env: "production",
+                    recording: "1"
+                    tracePropagationTargets: [/localhost:3000/i, /api.domain.com/i]
+                })
+            }
+        </script>
+        ```
+    </Accordion>
 
-```javascript JavaScript
-<script>
-    if (window.Middleware){
-        Middleware.track({
-            serviceName: "service_name",
-            projectName: "project_name",
-            accountKey: "account_key",
-            target:"https://<UID>.middleware.io",
-            env: "production",
-            recording: "1"
-            tracePropagationTargets: [/localhost:3000/i, /api.domain.com/i]
-        })
-    }
-</script>
-```
-
-### Step 2: Modify APM SDK
-
-In order to enable Trace Propagation, some languages require the `OTEL_PROPAGATORS=b3` environment variable. Those languages are called out in the table below. All other langugages will work with the standard APM install.
-
-### Supported APMs
+    <Accordion title="Step 2: Modify APM SDK">
+        In order to enable Trace Propagation, some languages require the `OTEL_PROPAGATORS=b3` environment variable. Those languages are called out in the table below. All other langugages will work with the standard APM install.
+    </Accordion>
+</AccordionGroup>
+# Supported APMs
 |       | | | |
 | :----:| :--:|:--:| :--:|
 | **Language**                                |    **Supported**   | **APM Version** | **Environment Variable** |
@@ -141,7 +140,7 @@ In order to enable Trace Propagation, some languages require the `OTEL_PROPAGATO
 | [Ruby](/apm-configuration/ruby)         |              ✅        | `>= 2.1.0`         |   ✅  |
 | [Vercel](/apm-configuration/vercel-integration)   |     ✅        |    ✖️            |            ✖️             |
 
-## Access RUM From Trace List
+# Access RUM From Trace List
 
 To access your Session Replay data, navigate to the APM section, select the Trace List tab and choose a trace to view your data.
 
