@@ -99,6 +99,13 @@
           "pages": [ 
             "integrations/integrations_overview",
             {
+              "group": "Cloud",
+              "pages":[
+                "integrations/kinesis-streams",
+                "integrations/aws-ecs-monitoring"
+              ]
+            },
+            {
               "group": "Collaboration",
               "pages":[
                 "integrations/jira-integration",
@@ -107,13 +114,6 @@
                 "integrations/pagerduty-integration",
                 "integrations/slack-integration"    
                 
-              ]
-            },
-            {
-              "group": "Cloud",
-              "pages":[
-                "integrations/kinesis-streams",
-                "integrations/aws-ecs-monitoring"
               ]
             },
             {
@@ -128,7 +128,7 @@
               ]
             },
             {
-              "group": "Streaming Platform",
+              "group": "Streaming",
               "pages":[                
                 "integrations/redpanda-integration"
               ]

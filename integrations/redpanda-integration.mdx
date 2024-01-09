@@ -6,11 +6,11 @@ The Redpanda Integration offers effortless access to performance metrics, allowi
 
 # Prerequisites
 
-1. Middleware Host agent must be installed on your machine
+Middleware Host Agent (MW Agent) must be installed on your local machine. To install the MW Agent, see our [installation guide](/agent-installation/overview).
 
 # Setup
 
-<Accordion title="Step 1: Navigate to Redpanda Integration">
+<Accordion title="Step 1: Access Integrations">
     Login to your Middleware account, navigate to the Redpanda integration, and connect Redpanda
     <img src="/images/integration/redpanda-integration-page.png" />
 </Accordion>
@@ -18,7 +18,7 @@ The Redpanda Integration offers effortless access to performance metrics, allowi
 <Accordion title="Step 2: Connect Redpanda Instance">
     To access Redpanda metrics, choose a host to connect to your Redpanda instance
     <img src="/images/integration/redpanda-host.png" />
-    <Warning>Currently, we don't support monitoring multiple brokers with a single host agent.</Warning>
+    <Warning>Monitoring multiple brokers with a single host agent is not currently available.</Warning>
 </Accordion>
 
 <Accordion title="Step 3: Configure Your Host">
@@ -31,13 +31,13 @@ The Redpanda Integration offers effortless access to performance metrics, allowi
 
 ### Default Redpanda Dashboard
 
-Quickly access your Redpanda data with Middleware’s default Redpanda dashboard. Navigate to the Dashboard Builder and select the ***Redpanda - Metrics (Runtime)*** Dashboard
+Quickly access your Redpanda data with Middleware’s default Redpanda dashboard. Navigate to the Dashboard Builder and select the `Redpanda - Metrics (Runtime) Dashboard`
 
 <img src="/images/integration/redpanda-dashboard.png" />
 
 ### Create Redpanda Widgets
 
-Create your own widget from scratch. Navigate to the Dashboard Builder and select the dashboard you would like to create a widget in. Select Add New Widget and choose the ***redpanda*** data source.
+Create your own widget from scratch. Navigate to the Dashboard Builder and select the dashboard you would like to create a widget in. Select Add New Widget and choose the `redpanda` data source.
 
 <img src="/images/integration/redpanda-widget.png" />
 
@@ -52,27 +52,27 @@ Create your own widget from scratch. Navigate to the Dashboard Builder and selec
 | `redpanda_cluster_brokers` | Number of configured, fully commissioned brokers in a cluster |
 | `redpanda_cluster_controller_log_limit_requests_available_rps` | Limit on the available requests per second (RPS) for a cluster controller log |
 | `redpanda_cluster_controller_log_limit_requests_dropped` | Number of requests dropped by a cluster controller log due to exceeding `redpanda_cluster_controller_log_limit_requests_available_rps` |
-| `redpanda_cluster_partition_moving_from_node` | Number of partition replicas in cluster that are currently being removed from a node |
-| `redpanda_cluster_partition_moving_to_node` | Number of partition replicas in cluster that are currently being added or moved to a node|
-| `redpanda_cluster_partition_node_cancelling_movements` | During a partition movement cancellation operation, the number of partition replicas that were being moved that now need to be cancelled |
+| `redpanda_cluster_partition_moving_from_node` | Number of partition replicas in a cluster being removed from a node |
+| `redpanda_cluster_partition_moving_to_node` | Number of partition replicas in cluster being added or moved to a node|
+| `redpanda_cluster_partition_node_cancelling_movements` | Number of partition replicas being moved that now need to be cancelled during a partition movement cancellation operation|
 | `redpanda_cluster_partition_num_with_broken_rack_constraint` | Number of Redpanda partitions violating rack constraints |
 | `redpanda_cluster_partitions` | Number of partitions managed by a cluster. Includes partitions of the controller topic, but not replicas |
 | `redpanda_cluster_topics` | Number of topics in a cluster |
-| `redpanda_cluster_unavailable_partitions` | Number of unavailable partitions (the partitions that lack quorum among their replica group) in the cluster|
+| `redpanda_cluster_unavailable_partitions` | Number of unavailable partitions (that lack quorum among their replica group) in the cluster|
 | `redpanda_cpu_busy_seconds_total` | Total CPU busy time in seconds |
 | `redpanda_io_queue_total_read_ops` | Total read operations passed in the I/O queue |
 | `redpanda_io_queue_total_write_ops` | Total write operations passed in the I/O queue |
 | `redpanda_kafka_handler_latency_seconds` | Average time for Redpanda to handle Kafka requests |
-| `redpanda_kafka_max_offset` | The high watermark offset of a partition. Suitable for calculating consumer group lag |
+| `redpanda_kafka_max_offset` | High watermark offset of a partition (for calculating consumer group lag) |
 | `redpanda_kafka_partitions` | Configured number of partitions for a topic |
 | `redpanda_kafka_records_fetched_total` | Total number of records fetched |
 | `redpanda_kafka_records_produced_total` | Total number of records produced |
 | `redpanda_kafka_replicas` | Total number of configured replicas per topic|
 | `redpanda_kafka_request_bytes_total` | Total number of bytes produced or consumed per topic |
-| `redpanda_kafka_request_latency_seconds` | Latency of produce/consume requests per broker. This duration measures from when a request is initiated on the partition to when the response is fulfilled |
+| `redpanda_kafka_request_latency_seconds` | Latency of produce/consume requests per broker. Measures from when a request is initiated on partition to when response is fulfilled |
 | `redpanda_kafka_under_replicated_replicas` | Number of replicas in the partition that are live but not at the latest offset, `redpanda_kafka_max_offset` |
 | `redpanda_memory_allocated_memory` | Total allocated memory in bytes |
-| `redpanda_memory_available_memory` | Total memory potentially available (free plus reclaimable memory) to a CPU shard (core), in bytes |
+| `redpanda_memory_available_memory` | Total memory potentially available (free plus reclaimable memory) to a CPU shard (core) in bytes |
 | `redpanda_memory_available_memory_low_water_mark` | The low watermark for available memory at process start |
 | `redpanda_memory_free_memory` | Available memory in bytes |
 | `redpanda_node_status_rpcs_received` | Number of node status RPCs received by a node |
@@ -88,5 +88,7 @@ Create your own widget from scratch. Navigate to the Dashboard Builder and selec
 | `redpanda_schema_registry_request_errors_total` | Total number of Schema Registry errors |
 | `redpanda_schema_registry_request_latency_seconds` | Latency of the request indicated by the label in the Schema Registry. The measurement includes the time spent waiting for resources to become available, processing the request, and dispatching the response |
 | `redpanda_storage_disk_free_bytes` | Available disk storage in bytes |
-| `redpanda_storage_disk_free_space_alert` | Alert for low disk storage: `0: OK`, 1: low space, 2: degraded|
+| `redpanda_storage_disk_free_space_alert` | Alert for low disk storage: `0: OK`, `1: low space`, `2: degraded`|
 | `redpanda_storage_disk_total_bytes` | Total size in bytes of attached storage |
+
+<Note>Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io.</Note>
