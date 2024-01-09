@@ -2,7 +2,7 @@
 title: Cassandra
 ---
 
-The Cassandra Database Integration provides seamless access to performance metrics, enabling users to effortlessly visualize crucial insights on our dashboard. Quickly pinpoint bottlenecks and optimize Cassandra's performance with ease.
+The Cassandra Database Integration provides seamless access to performance metrics and enables users to effortlessly visualize crucial insights in a single dashboard. The integration works by pulling metrics from the database through the Middleware Host Agent.
 
 <Note> This integration is only supported for users with the default `AllowAllAuthenticator` authentication permissions. </Note>
 
@@ -19,6 +19,9 @@ Middleware Host Agent (MW Agent) must be installed on your local machine. To ins
 
 <Accordion title="Step 2: Connect Cassandra Instance">
     To access Cassandra metrics, choose a host to connect to your Cassandra Cluster
+    
+    <Note>Hosts will only show up in this list if they have a running Host Agent</Note>
+
     <img src="/images/integration/cassandra-host.png" />
 </Accordion>
 
