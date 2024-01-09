@@ -115,7 +115,6 @@ kubectl get service --all-namespaces | grep mw-service
         import tracker from '@middleware.io/agent-apm-nextjs';
         export function register() {
             tracker.track({
-                projectName: "<PROJECT-NAME>",
                 serviceName: "<SERVICE-NAME>",
                 accessToken: "<xxxxxxxxxx>"
             });
@@ -128,7 +127,6 @@ kubectl get service --all-namespaces | grep mw-service
         import tracker from '@middleware.io/agent-apm-nextjs';
         export function register() {
             tracker.track({
-                projectName: "<PROJECT-NAME>",
                 serviceName: "<SERVICE-NAME>",
                 accessToken: "<ACCESS-TOKEN>",
                 target: "https://{ACCOUNT-UID}.middleware.io"
