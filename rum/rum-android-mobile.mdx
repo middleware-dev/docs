@@ -229,7 +229,7 @@ Control how you capture and replay your users' browsing experience. To start and
     | `event.type`              |      String    | Sets `error`                                                                    |
   </Accordion>
 
-  <Accordion title="Slow Rendering detection">
+  <Accordion title="Slow Rendering Detection">
   Slow Rendering Detection produces spans whenever it identifies a slow or frozen frame render. Rendering is considered slow if its duration surpasses 16 milliseconds and frozen if it exceeds 700 milliseconds.
 
   During each interval, slow rendering detection generates up to two spans: one named `slowRenders` for tallying slow frames, and another named `frozenRenders` for tallying frozen frames. Slow Render Detection is enabled by default.
