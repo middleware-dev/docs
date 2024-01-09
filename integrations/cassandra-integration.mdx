@@ -4,14 +4,16 @@ title: Cassandra
 
 The Cassandra Database Integration provides seamless access to performance metrics, enabling users to effortlessly visualize crucial insights on our dashboard. Quickly pinpoint bottlenecks and optimize Cassandra's performance with ease.
 
+<Note> This integration is only supported for users with the default `AllowAllAuthenticator` authentication permissions. </Note>
+
 # Prerequisites
 
-1. Middleware Host agent must be installed on your machine
+Middleware Host Agent (MW Agent) must be installed on your local machine. To install the MW Agent please see our [installation guide](/agent-installation/overview).
 
 # Setup
 
-<Accordion title="Step 1: Navigate to Cassandra Integration">
-    Login to your Middleware account, navigate to the Database Monitoring, and connect Cassandra
+<Accordion title="Step 1: Access Integrations">
+    Login to your Middleware account, navigate to the Installations page in the bottom left corner, select All Integrations and click Cassandra
     <img src="/images/integration/cassandra-integration-page.png" />
 </Accordion>
 
@@ -23,7 +25,6 @@ The Cassandra Database Integration provides seamless access to performance metri
 <Accordion title="Step 3: Configure Your Host">
     Configure your host to connect to the IP address and JMX port of Cassandra Cluster
     <img src="/images/integration/cassandra-connectivity.png" />
-    <Warning> As of now, we exclusively support setups that do not involve authentication. </Warning>
     <Info> The default port for your Cassandra instance is `7199` </Info>
 </Accordion>
 
