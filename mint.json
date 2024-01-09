@@ -99,6 +99,13 @@
           "pages": [ 
             "integrations/integrations_overview",
             {
+              "group": "Cloud",
+              "pages":[
+                "integrations/kinesis-streams",
+                "integrations/aws-ecs-monitoring"
+              ]
+            },
+            {
               "group": "Collaboration",
               "pages":[
                 "integrations/jira-integration",
@@ -110,23 +117,21 @@
               ]
             },
             {
-              "group": "Cloud",
-              "pages":[
-                "integrations/kinesis-streams",
-                "integrations/aws-ecs-monitoring"
-              ]
-            },
-            {
               "group": "Databases",
-
-              "pages":[        
+              "pages":[                    
                 "integrations/cassandra-integration",   
-                "integrations/clickhouse-integration",        
+                "integrations/clickhouse-integration", 
+                "integrations/elasticsearch-integration",            
                 "integrations/mongodb-integration",
                 "integrations/mysql-integration",
                 "integrations/postgresql-integration",
-                "integrations/redis-integration",
-                "integrations/elasticsearch-integration"
+                "integrations/redis-integration"
+              ]
+            },
+            {
+              "group": "Streaming",
+              "pages":[                
+                "integrations/redpanda-integration"
               ]
             },
             {
