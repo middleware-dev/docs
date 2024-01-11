@@ -12,7 +12,6 @@ Middleware Real User Monitoring (RUM) provides insights into your application or
 # Install
 This guide walks you through setting up Real User Monitoring (RUM) with JavaScript. These instructions can also be found on the Installation page in your Middleware Account.
 
-
 <AccordionGroup>
     <Accordion title="Step 1: Create Application Reference">
         Navigate to the Installation page in your Middleware Account. In the Real User Monitoring section, select `Create New Application` and provide the application name, origin(s) and Trace Propogation Target(s) to whitelist. Multiple origins can be listed as a comma-separated list.
@@ -101,9 +100,9 @@ The following installation uses OpenTelemetry B3 Propagator heads. Learn more ab
 
 <AccordionGroup>
     <Accordion title="Step 1: Modify Middleware SDK">
-        Add `tracePropagationTargets` to your SDK from [Step 3](#step-3-initialize-the-sdk) of the RUM Installation. 
+        Add `tracePropagationTargets` to your SDK from [Step 3](#step-3-initialize-the-sdk) of the RUM Installation. The `tracePropagationTargets` value must be in regex format.
 
-        <Note> The `tracePropagationTargets` value must be in regex format. </Note>
+        <Warning> The Middleware JavaScript client is by default configured with `b3` headers. You can change your headers by adding `tracePropagationFormat` to change the headers to `w3c` or `all`. </Warning>
 
         ```javascript JavaScript
         <script>
@@ -111,10 +110,11 @@ The following installation uses OpenTelemetry B3 Propagator heads. Learn more ab
                 Middleware.track({
                     serviceName: "service_name",
                     accountKey: "account_key",
-                    target:"https://<UID>.middleware.io",
+                    target: "https://<UID>.middleware.io",
                     env: "production",
-                    recording: "1"
-                    tracePropagationTargets: [/localhost:3000/i, /api.domain.com/i]
+                    recording: "1",
+                    tracePropagationTargets: [/localhost:3000/i, /api.domain.com/i],
+                    tracePropagationFormat: "w3c"
                 })
             }
         </script>
@@ -125,6 +125,7 @@ The following installation uses OpenTelemetry B3 Propagator heads. Learn more ab
         In order to enable Trace Propagation, some languages require the `OTEL_PROPAGATORS=b3` environment variable. Those languages are called out in the table below. All other langugages will work with the standard APM install.
     </Accordion>
 </AccordionGroup>
+  
 # Supported APMs
 |       | | | |
 | :----:| :--:|:--:| :--:|
