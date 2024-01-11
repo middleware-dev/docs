@@ -44,14 +44,14 @@ The installation will set up a DaemonSet inside your Kubernetes cluster and add 
 </Accordion>
 
 <Accordion title="Step 3: Run Kubernetes Install Command">
-  4. Copy and run the installation command. An example of the command is shown below. Copying the command directly from the Installation page ensures your API key and UID are inserted accurately.
+  Copy and run the installation command. An example of the command is shown below. Copying the command directly from the Installation page ensures your API key and UID are inserted accurately.
   ```javascript Shell
   MW_API_KEY=<xxxxxxxxxx> MW_TARGET=https://<uid>.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/mw-kube-agent-install.sh)"
   ```
 </Accordion>
 
 <Accordion title="Step 4: Verify Installation">
-  5. Verify the status of the MW Agent with the following command. 
+  Verify the status of the MW Agent with the following command. 
   ```javascript Shell
   kubectl get daemonset/mw-kube-agent -n mw-agent-ns
   ```
