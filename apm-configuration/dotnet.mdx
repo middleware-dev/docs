@@ -69,7 +69,6 @@ chmod +x $HOME/.mw-dotnet-auto/instrument.sh
   MW_API_KEY={MW_API_KEY} \
     . $HOME/.mw-dotnet-auto/instrument.sh && \
     OTEL_SERVICE_NAME="{APM-SERVICE-NAME}" \
-    OTEL_RESOURCE_ATTRIBUTES=project.name="{APM-PROJECT-NAME}" \
     dotnet path/to/YourApplication.dll
   ```
 </Accordion>

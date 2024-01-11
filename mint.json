@@ -54,6 +54,10 @@
     {
       "name": "Administration",
       "url": "admin"
+    },
+    {
+      "name": "Release Notes",
+      "url": "release-notes"
     }
   ],
   "primaryTab": {
@@ -91,6 +95,7 @@
             "apm-configuration/php",
             "apm-configuration/python",                        
             "apm-configuration/ruby",
+            "apm-configuration/scala",
             "apm-configuration/vercel-integration"
           ]
         },
@@ -98,6 +103,13 @@
           "group": "Integrations",
           "pages": [ 
             "integrations/integrations_overview",
+            {
+              "group": "Cloud",
+              "pages":[
+                "integrations/kinesis-streams",
+                "integrations/aws-ecs-monitoring"
+              ]
+            },
             {
               "group": "Collaboration",
               "pages":[
@@ -110,21 +122,21 @@
               ]
             },
             {
-              "group": "Cloud",
-              "pages":[
-                "integrations/kinesis-streams",
-                "integrations/aws-ecs-monitoring"
-              ]
-            },
-            {
               "group": "Databases",
-              "pages":[        
-                "integrations/clickhouse-integration",        
+              "pages":[                    
+                "integrations/cassandra-integration",   
+                "integrations/clickhouse-integration", 
+                "integrations/elasticsearch-integration",            
                 "integrations/mongodb-integration",
                 "integrations/mysql-integration",
                 "integrations/postgresql-integration",
-                "integrations/redis-integration",
-                "integrations/elasticsearch-integration"
+                "integrations/redis-integration"
+              ]
+            },
+            {
+              "group": "Streaming",
+              "pages":[                
+                "integrations/redpanda-integration"
               ]
             },
             {
@@ -141,7 +153,8 @@
           "group": "RUM",
           "pages": [
             "rum/getting-started",
-            "rum/rum-android-mobile"
+            "rum/rum-android-mobile",
+            "rum/rum-ios"
           ]
         },
         {
@@ -220,6 +233,11 @@
             "admin/faq/pricing",
             "admin/faq/data",
             "admin/faq/other"
+          ]
+        },
+        {
+          "group": "Release Notes",
+          "pages": ["release-notes/release-1"
           ]
         }
       ]
