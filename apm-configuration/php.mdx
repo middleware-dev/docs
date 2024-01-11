@@ -31,80 +31,96 @@ This guide walks you through setting up Application Performance Monitoring (APM)
     php -v
     ```
   </Step>
-
-  <Step title="PHP Extensions">
-    <a href="https://pecl.php.net/"> Pecl </a> and <a href="https://getcomposer.org/"> Composer </a> and the otel-instrumentation PHP extension (see below)
-
-
-<Accordion title="PHP Extension">
-
-Follow these steps to install the required otel-instrumentation PHP extension. 
-
-Install the extension.
-```bash Shell
-sudo pecl install channel://pecl.php.net/opentelemetry-1.0.0beta3
-```
-Mention the extension as extension=opentelemetry.so in your php.ini file. The php.ini file can be found using the following commands based on your Linux distribution.
-
-Ubuntu/Debian
-```bash Shell
-sudo nano /etc/php/<php_version>/cli/php.ini
-```
-CentOS/RHEL
-```bash Shell
-sudo nano /etc/php.ini
-```
-Arch Linux
-```bash Shell
-sudo nano /etc/php/php.ini
-```
-Specific to Web-Serve
-```bash Shell
-sudo nano /etc/php/<php_version>/apache2/php.ini
-```
-Verify the extension is installed and enabled.
-```bash Shell
-php -m | grep opentelemetry
-```
-    <Accordion title="Troubleshooting">        
-        Below we cover a few common errors and their solutions. 
-
-        If you receive a pecl: command not found error, run the following command.
-        ```bash Shell
-        sudo apt-get update
-        apt-get install php-pear php8.1-dev
-        ```
-        If you receive any broken dependency issues, including errors like libpcre2-dev : Depends: libpcre2-8-0 / libpcre2-16-0 / libpcre2-32-0, run the following command.
-        ```bash Shell
-        sudo apt --fix-broken install
-        ```
-        If you receive an ERROR: ‘phpize’ failed error, run the following commands.
-        ```bash Shell
-        sudo apt-get update 
-        sudo apt-get install php8.1-dev
-
-        sudo apt-get update
-        sudo pecl channel-update pecl.php.net
-        ```
-    </Accordion>
-</Accordion>
-
-  </Step>
-
 </Steps>
 
 # Install
 
-<Accordion title="Step 1: Install APM-PHP Package"> 
+<Accordion title="Step 1: Install PHP Extensions">
 
-Ensure you have a PHP project set up and a composer.json file in your project’s root directory. If you do not have one, create it using composer init. Then run the following to install Middleware’s APM-PHP package.
+  <Accordion title="Step 1a: Install Pecl & Composer">
+    - [Pecl](https://pecl.php.net/) Installation
+    - [Composer Installation](https://getcomposer.org/)
+  </Accordion>
+
+  <Accordion title="Step 1b: Install otel-instrumentation">
+
+    Install the extension:
+    ```bash Shell
+    sudo pecl install channel://pecl.php.net/opentelemetry-1.0.0beta3
+    ```
+  </Accordion>
+
+  <Accordion title="Step 1c: Add Extension to php.ini">
+
+    Add the extension to your `php.ini` file:
+
+    ```php php
+    [opentelemetry]
+    extension=opentelemetry.so
+    ```
+
+    The `php.ini` file can be found using the following commands based on your Linux distribution:
+
+    <CodeGroup>
+
+    ```bash Ubuntu/Debian
+    sudo nano /etc/php/<php_version>/cli/php.ini
+    ```
+
+    ```bash CentOS/RHEL
+    sudo nano /etc/php.ini
+    ```
+
+    ```bash Arch Linux
+    sudo nano /etc/php/php.ini
+    ```
+
+    ```bash Web-Serve
+    sudo nano /etc/php/<php_version>/apache2/php.ini
+    ```
+    </CodeGroup>
+  </Accordion>
+  <Accordion title="Step 1d: Verify Installation">
+
+    Verify the extension is installed and enabled.
+    ```bash Shell
+    php -m | grep opentelemetry
+    ```
+  </Accordion>
+  <Accordion title="Troubleshooting">        
+      Below we cover a few common errors and their solutions. 
+
+      If you receive a pecl: command not found error, run the following command.
+      ```bash Shell
+      sudo apt-get update
+      apt-get install php-pear php8.1-dev
+      ```
+      If you receive any broken dependency issues, including errors like libpcre2-dev : Depends: libpcre2-8-0 / libpcre2-16-0 / libpcre2-32-0, run the following command.
+      ```bash Shell
+      sudo apt --fix-broken install
+      ```
+      If you receive an ERROR: ‘phpize’ failed error, run the following commands.
+      ```bash Shell
+      sudo apt-get update 
+      sudo apt-get install php8.1-dev
+
+      sudo apt-get update
+      sudo pecl channel-update pecl.php.net
+      ```
+  </Accordion>
+</Accordion>
+
+
+<Accordion title="Step 2: Install APM-PHP Package"> 
+
+Ensure you have a PHP project set up and a `composer.json` file in your project’s root directory. If you do not have one, create it using composer init. Then run the following to install Middleware’s APM-PHP package.
 ```bash Shell
 composer update
 composer require middleware/agent-apm-php
 ```
 </Accordion>
 
-<Accordion title="Step 2: Import Tracker"> 
+<Accordion title="Step 3: Import Tracker"> 
 Add these lines to the beginning of your project. 
 ```php PHP
 require 'vendor/autoload.php';
@@ -112,27 +128,31 @@ use Middleware\AgentApmPhp\MwTracker;
 ```
 </Accordion>
 
-<Accordion title="Step 3: Container Variables"> 
-Applications running in a container require an additional environment variable. If your application is not running in a container, move to Step 5. 
+<Accordion title="Step 4: Container Variables"> 
+  <Accordion title="Docker Containers">
+    Applications running in a container require an additional environment variable. If your application is not running in a container, move to Step 6. 
 
-For Docker containers, add the following environment variable to your application.
-```bash Shell
-MW_AGENT_SERVICE=<DOCKER_BRIDGE_GATEWAY_ADDRESS>
-```
-<Note> docker bridge gateway address is the IP address of the gateway between the Docker host and the bridge network, which is 172.17.0.1 by default. 
-Refer more about Docker bridge networking [here](https://docs.docker.com/network/network-tutorial-standalone/) </Note>
+    For Docker containers, add the following environment variable to your application.
+    ```bash Shell
+    MW_AGENT_SERVICE=<DOCKER_BRIDGE_GATEWAY_ADDRESS>
+    ```
+    <Note> docker bridge gateway address is the IP address of the gateway between the Docker host and the bridge network, which is 172.17.0.1 by default. 
+    Refer more about Docker bridge networking [here](https://docs.docker.com/network/network-tutorial-standalone/) </Note>
+  </Accordion>
 
-```bash Shell
-kubectl get service --all-namespaces | grep mw-service
-```
+  <Accordion title="Kubernetes Containers">
+    ```bash Shell
+    kubectl get service --all-namespaces | grep mw-service
+    ```
 
-Then add the following environment variable to your application deployment YAML file. 
-```bash Shell
-MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
-```
+    Then add the following environment variable to your application deployment YAML file. 
+    ```bash Shell
+    MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
+    ```
+  </Accordion>
 </Accordion>
 
-<Accordion title="Step 4: Implement APM Collector"> 
+<Accordion title="Step 5: Implement APM Collector"> 
 Start a tracing scope at the beginning of your code. 
 
 ```php PHP
@@ -155,7 +175,7 @@ $tracker->postTrack();
 ```
 </Accordion>
 
-<Accordion title="Step 5: Enable Logging"> 
+<Accordion title="Step 6: Enable Logging"> 
 To ingest custom logs, utilize the following functions based on desired log severity levels.
  ```php PHP
    $tracker->warn("this is warning log.");
