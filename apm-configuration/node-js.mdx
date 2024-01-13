@@ -14,14 +14,14 @@ title: "Node.js"
 | :----: | :-----: | :------: | :---------: | :-------: |
 | ✅ | ✖️ | ✖️ | ✅ | ✅ |
 
-This guide walks you through setting up Application Performance Monitoring (APM) on a Node.js application. These instructions can also be found on the Installation page in your Middleware Account. View example code <a href="https://github.com/middleware-labs/demo-apm/tree/master/nodejs"> here </a>.
+This guide walks you through setting up Application Performance Monitoring (APM) on a Node.js application. These instructions can also be found on the Installation page in your Middleware Account. View example code [here](https://github.com/middleware-labs/demo-apm/tree/master/nodejs).
 
 # Prerequisites
 
 <Steps>
 
   <Step title="MW Host Agent">
-   Middleware Host Agent (MW Agent). To install the MW Agent, see our <a href="https://docs.middleware.io/docs/agent-installation/overview"> installation guide</a>. 
+   Middleware Host Agent (MW Agent). To install the MW Agent, see our [Installation Guide](https://docs.middleware.io/docs/agent-installation/overview).
   
   </Step>
 
@@ -39,7 +39,7 @@ This guide walks you through setting up Application Performance Monitoring (APM)
 
 <Accordion title="Step 1: Install NPM Package">
 
-Run the following command in your terminal. 
+Run the following command in your terminal: 
 
 ```javascript bash
 npm install @middleware.io/node-apm --save
@@ -60,34 +60,39 @@ tracker.track({
 </Accordion>
 
 <Accordion title="Step 3: Container Variables">
+    
+    Applications running in a container require an additional environment variable. If your application is not running in a container, move to Step 4. 
 
-Applications running in a container require an additional environment variable. If your application is not running in a container, move to Step 4. 
+    <Accordion title="Docker">
+        For Docker containers, add the following environment variable to your application.
+        ```javascript bash
+        MW_AGENT_SERVICE=<DOCKER_BRIDGE_GATEWAY_ADDRESS>
+        ```
+        <Note> Docker bridge gateway address is the IP address of the gateway between the Docker host and the bridge network, which is 172.17.0.1 by default. 
+        Refer more about Docker bridge networking [here](https://docs.docker.com/network/network-tutorial-standalone/) </Note>
+    </Accordion>
 
-For Docker containers, add the following environment variable to your application.
-```javascript bash
-MW_AGENT_SERVICE=<DOCKER_BRIDGE_GATEWAY_ADDRESS>
-```
-<Note> docker bridge gateway address is the IP address of the gateway between the Docker host and the bridge network, which is 172.17.0.1 by default. 
-Refer more about Docker bridge networking [here](https://docs.docker.com/network/network-tutorial-standalone/) </Note>
+    <Accordion title="Kubernetes">
+        ```javascript bash
+        kubectl get service --all-namespaces | grep mw-service
+        ```
+    </Accordion>
 
-```javascript bash
-kubectl get service --all-namespaces | grep mw-service
-```
-
-Then add the following environment variable to your application deployment YAML file. 
-```javascript bash
-MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
-```
+    Add the following environment variable to your application deployment YAML file: 
+    ```javascript bash
+    MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
+    ```
+    
 </Accordion>
 
 <Accordion title="Step 4: Capture Application Data">
     <AccordionGroup>
-        <Accordion title="Traces">
+        <Accordion title="Step 4a: Traces">
             
             Distributed tracing is automatically enabled upon completion of Step 2.
         </Accordion>
 
-        <Accordion title="Custom Logs">
+        <Accordion title="Step 4b: Custom Logs">
             
             To ingest custom logs into Middleware, utilize the following functions inside your logging method based on desired log severity levels.
             ```javascript Node.js
@@ -103,11 +108,11 @@ MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
             ```
         </Accordion>
 
-        <Accordion title="Profiling">            
+        <Accordion title="Step 4c: Profiling">            
             Application Profiling is auto-configured upon completing Step 2.
         </Accordion>
 
-        <Accordion title="Stack Traces ">  
+        <Accordion title="Step 4d: Stack Traces ">  
             
             Use the errorRecord method to record a stack trace when an error occurs. See an example of this method below. 
             ```javascript Node.js 
@@ -128,7 +133,7 @@ MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
 
 Continuous profiling captures real-time performance insights from your application to enable rapid identification of resource allocation, bottlenecks, and more. The following table describes the available features offered by the continuous profiler for the Node.js APM.
 
-For more information on Continuous Profiling, navigate to [Workflows](/workflow/profiling) to find out more.
+Learn more about Continuous Profiling [here](https://docs.middleware.io/workflow/profiling).
 
 |     |     |     |     |    |           |
 | :-: | :-: | :-: | :-: |:-: | :-: | 

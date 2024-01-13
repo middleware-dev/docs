@@ -12,14 +12,14 @@ title: "Java"
 | :----: | :-----: | :------: | :---------: | :-------: |
 | ✅ | ✅ | ✅ | ✅ | ✅ |
 
-This guide walks you through setting up Application Performance Monitoring (APM) on a Java application. These instructions can also be found on the Installation page in your Middleware Account. View example code <a href="https://github.com/middleware-labs/demo-apm/tree/master/java">  here. </a>
+This guide walks you through setting up Application Performance Monitoring (APM) on a Java application. These instructions can also be found on the Installation page in your Middleware Account. View example code [here](https://github.com/middleware-labs/demo-apm/tree/master/java).
 
 # Prerequisites
 
 <Steps>
 
   <Step title="MW Host Agent">
-   Middleware Host Agent (MW Agent). To install the MW Agent, see our <a href="https://docs.middleware.io/docs/agent-installation/overview"> installation guide</a>. 
+   Middleware Host Agent (MW Agent). To install the MW Agent, see our [Installation Guide](https://docs.middleware.io/docs/agent-installation/overview).
   </Step>
 
   <Step title="Java Version">
@@ -33,24 +33,30 @@ This guide walks you through setting up Application Performance Monitoring (APM)
 
 # Install
 <Accordion title="Step 1: Download JAR">
-Download the latest Middleware instrumentation JAR file from the <a href="https://github.com/middleware-labs/opentelemetry-java-instrumentation/releases"> Github release page. </a>
+Download the latest Middleware instrumentation JAR file from the [Github Release Page](https://github.com/middleware-labs/opentelemetry-java-instrumentation/releases).
 </Accordion>
 
 <Accordion title="Step 2: Container Variables">
 Applications running in a container require an additional environment variable. If your application is not running in a container, move to Step 5. 
+  
+  <Accordion title="Docker">
+    For Docker containers, add the following environment variable to your application:
+    ```bash Shell
+    MW_AGENT_SERVICE=<DOCKER_BRIDGE_GATEWAY_ADDRESS>
+    ```
+    <Note> docker bridge gateway address is the IP address of the gateway between the Docker host and the bridge network, which is 172.17.0.1 by default. 
+    Refer more about Docker bridge networking [here](https://docs.docker.com/network/network-tutorial-standalone/) </Note>
+  
+  </Accordion>
 
-For Docker containers, add the following environment variable to your application.
-```bash Shell
-MW_AGENT_SERVICE=<DOCKER_BRIDGE_GATEWAY_ADDRESS>
-```
-<Note> docker bridge gateway address is the IP address of the gateway between the Docker host and the bridge network, which is 172.17.0.1 by default. 
-Refer more about Docker bridge networking [here](https://docs.docker.com/network/network-tutorial-standalone/) </Note>
+  <Accordion title="Kubernetes">
 
-```bash Shell
-kubectl get service --all-namespaces | grep mw-service
-```
+    ```bash Shell
+    kubectl get service --all-namespaces | grep mw-service
+    ```
+  </Accordion>
 
-Then add the following environment variable to your application deployment YAML file. 
+Add the following environment variable to your application deployment YAML file:
 ```bash Shell
 MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
 ```
@@ -59,19 +65,19 @@ MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
 <Accordion title="Step 3: Capture Application Data">
   <AccordionGroup>
       
-      <Accordion title="Traces">
+      <Accordion title="Step 3a: Traces">
       Distributed tracing will be automatically enabled upon completing Step 4: Run Application.
       </Accordion>
 
-      <Accordion title="Metrics">
+      <Accordion title="Step 3b: Metrics">
       Metrics collection will be automatically enabled upon completing Step 4: Run Application.
       </Accordion>
 
-      <Accordion title="Application & Custom Logs">
+      <Accordion title="Step 3c: Application & Custom Logs">
       Application Logs will be automatically enabled upon completing Step 4: Run Application. 
       
 
-      To add custom logs, add this dependency in the pom.xml file.
+      To add custom logs, add the following dependency in the `pom.xml` file:
       ```java Java
       <dependency>
         <groupId>io.github.middleware-labs</groupId>
@@ -80,17 +86,17 @@ MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
       </dependency>
       ```
 
-      Install the package into the local repository.
+      Install the package in your local repository:
       ```java Shell
       mvn install
       ```
 
-      Import the logger package.
+      Import the logger package:
       ```java Java
       import io.github.middlewarelabs.agentapmjava.Logger;
       ```
 
-      Then utilize the following functions based on desired log severity levels.
+      Utilize the following functions for various log severity levels:
       ```java Java
       Logger.info("info message");
       Logger.debug("debug message");
@@ -99,13 +105,13 @@ MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
       ```
       </Accordion>
 
-      <Accordion title="Profiling">    
+      <Accordion title="Step 3d: Profiling">    
       Application Profiling is automatically enabled upon completing Step 4: Run Application.
       </Accordion>
 
       
-      <Accordion title="Stack Traces">
-      Use the Logger.recordError(e) method to record a stack trace when an error occurs. See an example of this method below. 
+      <Accordion title="Step 3e: Stack Traces">
+      Use the `Logger.recordError(e)` method to record a stack trace when an error occurs. See an example of this method below:
       ```java Java
       import io.github.middlewarelabs.agentapmjava.Logger;
               
@@ -122,7 +128,7 @@ MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
 </Accordion>
 
 <Accordion title="Step 4: Run Application">
-Run your application with the command given below.
+Run your application with the command given below:
 ```java Java
 MW_API_KEY={MW_API_KEY} java -javaagent:/PATH/TO/middleware-javaagent-{version}.jar \
     -Dotel.service.name={APM-SERVICE-NAME} \
@@ -133,9 +139,7 @@ MW_API_KEY={MW_API_KEY} java -javaagent:/PATH/TO/middleware-javaagent-{version}.
 
 # Continuous Profiling
 
-Continuous profiling captures real-time performance insights from your application to enable rapid identification of resource allocation, bottlenecks, and more. The following table describes the available features offered by the continuous profiler for the Java APM.
-
-For more information on Continuous Profiling, navigate to [Workflows](/workflow/profiling) to find out more.
+Continuous profiling captures real-time performance insights from your application to enable rapid identification of resource allocation, bottlenecks, and more. The following table describes the available features offered by the continuous profiler for the Java APM. Learn more about Continuous Profiling [here](https://docs.middleware.io/workflow/profiling).
 
 |     |     |     |     |    |           |
 | :-: | :-: | :-: | :-: |:-: | :-: | 
