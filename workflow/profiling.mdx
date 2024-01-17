@@ -23,19 +23,19 @@ Continuous Profiling can be set up easily using any of our [APMs](https://docs.m
 
 The following table shows what Continuous Profiling features are available per each APM:
 
-|     |     |     |     |    |           |
-| :- | :- | :-: | :-: |:-: | :-: | 
-|                             | __Profiling Query Type__                        |__Node.js__ | __Go__ | __Java__ | __Ruby__ | __.NET__ | __PHP__ | __Python__ | __Next.js__ | __Vercel__ | __Cloudflare__ | 
-| __Object Allocation__       | `memory:alloc_objects:count::`                  |       ✖️    |    ✅  |     ✖️    |    ✖️     |     ✖️    |    ✖️    |     ✖️      |    ✖️        |      ✖️     |         ✖️      |
-| __Memory Allocation__       | `memory:alloc_space:bytes::`                    |       ✖️    |    ✅  |    ✖️     |    ✖️     |     ✖️    |    ✖️    |     ✖️      |    ✖️        |      ✖️     |         ✖️      |
-| __Objects in Use__          | `memory:inuse_objects:count`                    |   ✅       |    ✅  |    ✖️     |    ✖️     |     ✖️    |    ✖️    |     ✖️      |    ✅       |      ✅    |        ✖️      |
-| __Memory in Use__           | `memory:inuse_space:bytes`                      |   ✅       |    ✅  |    ✖️     |    ✖️     |     ✖️    |    ✖️    |     ✖️      |    ✅       |      ✅    |      ✖️        |
-| __CPU Usage__               | `process_cpu:cpu:nanoseconds:cpu:nanoseconds`   |    ✖️       |✅      |✅        |✅        |     ✖️    |    ✖️    |          ✅|           ✅|          ✅|        ✖️       |
-| __Wall-clock time__         | `wall:wall:nanoseconds:cpu:nanoseconds`         |       ✖️    |   ✖️    |     ✖️    |    ✖️     |    ✅    |    ✖️    |     ✖️      |    ✖️        |      ✖️     |         ✖️      |
-| __Blocking Contentions__    | `block:contentions:count::`                     |  ✖️         |   ✖️    |    ✅    |    ✖️     |     ✖️    |    ✖️    |     ✖️      |    ✖️        |      ✖️     |         ✖️      |
-| __Blocking Delays__         | `block:delay:nanoseconds::`                     |  ✖️         |   ✖️    |✅        |    ✖️     |     ✖️    |    ✖️    |     ✖️      |    ✖️        |      ✖️     |         ✖️      |
-| __Bytes Allocated(TLAB)__   | `memory:alloc_in_new_tlab_bytes:bytes::`        |  ✖️         |   ✖️    |✅        |    ✖️     |     ✖️    |    ✖️    |     ✖️      |    ✖️        |      ✖️     |         ✖️      |
-| __Objects Allocated(TLAB)__ | `memory:alloc_in_new_tlab_objects:count::`      |  ✖️         |   ✖️    |✅        |    ✖️     |     ✖️    |    ✖️    |     ✖️      |    ✖️        |      ✖️     |         ✖️      |
+|     |     |     |     |    |           | |
+| :- | :- | :-: | :-: |:-: | :-: | :-: |
+|                             | __Profiling Query Type__                        |__Node.js__ | __Go__ | __Java__ | __Ruby__ | __.NET__ | __PHP__ | __Python__ | __Next.js__ | __Vercel__ | __Cloudflare__ | __Scala__ |
+| __Object Allocation__       | `memory:alloc_objects:count::`                  |       ✖️    |    ✅  |     ✖️    |    ✖️     |     ✖️    |    ✖️    |     ✖️      |    ✖️        |      ✖️     |         ✖️      |     ✖️    |
+| __Memory Allocation__       | `memory:alloc_space:bytes::`                    |       ✖️    |    ✅  |    ✖️     |    ✖️     |     ✖️    |    ✖️    |     ✖️      |    ✖️        |      ✖️     |         ✖️      |     ✖️    |
+| __Objects in Use__          | `memory:inuse_objects:count`                    |   ✅       |    ✅  |    ✖️     |    ✖️     |     ✖️    |    ✖️    |     ✖️      |    ✅       |      ✅    |         ✖️      |     ✖️    |
+| __Memory in Use__           | `memory:inuse_space:bytes`                      |   ✅       |    ✅  |    ✖️     |    ✖️     |     ✖️    |    ✖️    |     ✖️      |    ✅       |      ✅    |         ✖️      |     ✖️    |
+| __CPU Usage__               | `process_cpu:cpu:nanoseconds:cpu:nanoseconds`   |    ✖️       |✅      |✅        |✅        |     ✖️    |    ✖️    |          ✅|           ✅|          ✅|         ✖️      |✅        |
+| __Wall-clock time__         | `wall:wall:nanoseconds:cpu:nanoseconds`         |       ✖️    |   ✖️    |     ✖️    |    ✖️     |    ✅    |    ✖️    |     ✖️      |    ✖️        |      ✖️     |         ✖️      |      ✖️   | 
+| __Blocking Contentions__    | `block:contentions:count::`                     |  ✖️         |   ✖️    |    ✅    |    ✖️     |     ✖️    |    ✖️    |     ✖️      |    ✖️        |      ✖️     |         ✖️      |✅        |
+| __Blocking Delays__         | `block:delay:nanoseconds::`                     |  ✖️         |   ✖️    |✅        |    ✖️     |     ✖️    |    ✖️    |     ✖️      |    ✖️        |      ✖️     |         ✖️      |✅        |
+| __Bytes Allocated(TLAB)__   | `memory:alloc_in_new_tlab_bytes:bytes::`        |  ✖️         |   ✖️    |✅        |    ✖️     |     ✖️    |    ✖️    |     ✖️      |    ✖️        |      ✖️     |         ✖️      |✅        |
+| __Objects Allocated(TLAB)__ | `memory:alloc_in_new_tlab_objects:count::`      |  ✖️         |   ✖️    |✅        |    ✖️     |     ✖️    |    ✖️    |     ✖️      |    ✖️        |      ✖️     |         ✖️      |✅        |
 
 
 # Profiling A Flask Web Application
