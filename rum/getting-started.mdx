@@ -125,7 +125,15 @@ The following installation uses OpenTelemetry B3 Propagator heads. Learn more ab
         In order to enable Trace Propagation, some languages require the `OTEL_PROPAGATORS=b3` environment variable. Those languages are called out in the table below. All other langugages will work with the standard APM install.
     </Accordion>
 </AccordionGroup>
-  
+
+# Access RUM From Trace List
+
+To access your Session Replay data, navigate to the APM section, select the Trace List tab and choose a trace to view your data.
+
+<Note> For more information about using RUM, head to the [RUM Workflow page](/workflow/using-rum). </Note>
+
+<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNnRxNzFmajVnYXZpZW8xbGR6OHF3NjZ6aWozYXRjZmZ5OHlnc3c4eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/AQhJ5ezOms5ncTNH7a/giphy.gif" width="900" height="900" />
+
 # Supported APMs
 |       | | | |
 | :----:| :--:|:--:| :--:|
@@ -141,13 +149,45 @@ The following installation uses OpenTelemetry B3 Propagator heads. Learn more ab
 | [Ruby](/apm-configuration/ruby)         |              ✅        | `>= 2.1.0`         |   ✅  |
 | [Vercel](/apm-configuration/vercel-integration)   |     ✅        |    ✖️            |            ✖️             |
 
-# Access RUM From Trace List
+# Troubleshooting
 
-To access your Session Replay data, navigate to the APM section, select the Trace List tab and choose a trace to view your data.
+<Accordion title="Browser Cookies">
+    The RUM Browser SDK uses cookies to remember a single user session across different pages on your website. These are first-party cookies and stay within your domain; they won't be used to track users across different sites.
 
-<Note> For more information about using RUM, head to the [RUM Workflow page](/workflow/using-rum). </Note>
+    |   |   |
+    |:-:|:-|
+    |__Cookie Name__     | __Details__ |
+    |`_mwRumSessionId_x` | This cookie collects all the actions from a user's visit across different pages. This cookie includes the current session ID, whether the session has been excluded as a result of sampling, and the session expiration date. Each time a user interacts with the website, an extra 15 minutes is added to the cookie's timer, ensuring the session remains active, with a maximum duration of 4 hours.
 
-<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNnRxNzFmajVnYXZpZW8xbGR6OHF3NjZ6aWozYXRjZmZ5OHlnc3c4eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/AQhJ5ezOms5ncTNH7a/giphy.gif" width="900" height="900" />
+</Accordion>
 
+<Accordion title="Script Integration Issues">
+    If you are experiencing exceptions and errors while integrating the RUM browser SDK, consider moving Middleware packages and scripts earlier in the execution of your application code to avoid collisions with your website's existing code.
+    
+    Make sure you have added the following Middleware script with the `setTimeout` function:
+
+    ```javascript JavaScript
+    setTimeout(() => {
+        if(window.Middleware) {
+            Middleware.track({
+                serviceName: "sample-service",
+                projectName: "sample-project",
+                accountKey: "REDACTED",
+                target: "<target-url>"
+            })
+        }
+    }, 10000)
+    ```
+</Accordion>
+
+<Accordion title="Unable to See Session Recording">
+    Check if the origin URL (from where the session recording takes place) is correct. 
+
+    Check your network tab in your developer console if any adblockers or extensions are stopping Middleware requests.
+</Accordion>
+
+<Accordion title="Unhandled Promise Rejection: TypeError: Failed to fetch">
+    This error can be ignored, as it does not impact the Middleware RUM Browser SDK. This issues commonly occurs when an API call is being executed and a user refreshes the page. 
+</Accordion>
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
