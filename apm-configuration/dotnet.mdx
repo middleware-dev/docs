@@ -42,7 +42,7 @@ curl -sSfL https://install.middleware.io/apm/dotnet/v1.0.0-rc.1/scripts/mw-dotne
 Install core files.
 ```bash Shell
 sh ./mw-dotnet-auto-install.sh
-rm -rf mw-dotnet-auto-install.sh
+rm -f mw-dotnet-auto-install.sh
 ```
 Enable execution for the instrumentation script.
 ```bash Shell
@@ -83,7 +83,7 @@ chmod +x $HOME/.mw-dotnet-auto/instrument.sh
     ```
     <Note> The default value for `DOCKER_BRIDGE_GATEWAY_ADDRESS` is typically `172.17.0.1`.</Note>
   </Accordion>
-  
+
 </Accordion>
 
 <Accordion title="Step 4: Build and Run .NET Application">
