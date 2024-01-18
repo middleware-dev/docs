@@ -3,17 +3,23 @@ title: Using RUM
 sidebarTitle: "RUM"
 ---
 
-# Overview
-
 Real User Monitoring (RUM) provides direct feedback into the user experience. We track and transmit real-time user interactions and performance metrics directly from your web pages. Learn how RUM empowers us to track user behavior, identify bottlenecks, and continuously improve our digital services.
 
-## Performance Summary
+# Session Recordings
+
+The maximum session and session recording duration is 4 hours. If a user does not interact on the web page being recorded for more than 15 minutes, the session will timeout. Each time a user interacts with the website, an extra 15 minutes is added to the cookie's timer, ensuring the session remains active. 
+
+A new session is created when the user interacts with the web page after the 15 minute timer expires or when the session recording time surpasses 4 hours.
+
+Middleware masks user passwords by default. Other text can be masked using the `mw-mask` css class. Masked text will appear as `*******` in the session recording.
+
+# Performance Summary
 
 The Performance Summary provides insight into your top-level RUM performance data. This section provides information about your Core Web Vitals, total errors incurred, unique user sessions and pages visits within a certain period of time. Quickly drill into your error stack to isolate and block recurring issues.
 
 ![](https://lh7-us.googleusercontent.com/3rCLzylMXJmvOzRn4t2xPTDgb80Bcq0uIqHChn03Jaa305hf_38LVBXVakiGjlIXSTX8p5t7PLDbeDu2wcENUxJ0GQUoHEW5v_nVmjiHqC_CEtoXzOnuV-bZAw-7GnVpKAinwKVOA0-D4hlUC_rZgsY)
 
-## Session Replay
+# Session Replay
 
 The Session Replay section provides insight into your top-level RUM Session data. From here you can drill into specific session details to easily diagnose issues and understand user behavior.
 
@@ -21,7 +27,7 @@ Select from the Sessions table to drill into a RUM Session. Get time stamped rec
 
 <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdzJkaXR2cWI2Y2J1czJ5bjZ6MzI2cDgzNGo3MXl3dnhwdTl6aGlrbyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/9Sr3zTyxN1mIeiduXA/giphy.gif" width="900" height="900" />
 
-## Browser Errors
+# Browser Errors
 
 The Browser Errors section provides insight into when and where your application throws Errors. Drill into a single error to identify the traces, browser type, high level infrastructure data and other key data that could be causing errors.
 
