@@ -52,6 +52,14 @@ Use the OpenTelemetry Collector Contrib to build your own custom distributions w
 
 <Accordion title="Step 2: Use otelcol-contrib">
     Ensure the container image refers to the `opentelemetry-collector-contrib` and not core `opentelemetry-collector`.
+
+    Check your container image with the following commands:
+    
+    ```Shell Shell
+    otelcol --version
+    # and
+    opentelemetry-collector-contrib --version
+    ```
 </Accordion>
 
 <Accordion title="Step 3: Follow OTel Config">
