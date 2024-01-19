@@ -1,5 +1,5 @@
 ---
-title: "Continuous Profiling with Python"
+title: "Continuous Profiling with Middleware"
 sidebarTitle: "Continuous Profiling"
 ---
 
@@ -7,17 +7,36 @@ When software applications are first built, they may initially meet our requirem
 
 <Note> Although this guide focuses on a Python-specific implementation, Middleware supports all major programming languages. You can find instructions for your language of choice in our [APM Documentation](https://docs.middleware.io/apm-configuration/apm_overview). </Note>
 
-# Profiling
+# What is Profiling?
 
 Profiling, in the context of software development, refers to the process of analyzing and measuring the performance characteristics of a program or system. 
 
 It involves using specialized tools known as application profiling tools to gather metrics like CPU usage, memory allocation, and execution time.
 
-# Continuous Profiling
+# What is Continuous Profiling?
 
 Continuous profiling takes things a step further by enabling real-time monitoring and detection of performance regressions. It allows developers to proactively address any emerging issues before they impact users. 
 
-Continuous Profiling can be done by setting up an Application Performance Monitoring (APM) tool like the one available from [Middleware](https://middleware.io/).
+Continuous Profiling can be set up easily using any of our [APMs](https://docs.middleware.io/apm-configuration/apm_overview). 
+
+# Continuous Profiling Support Matrix
+
+The following table shows what Continuous Profiling features are available per each APM:
+
+|     |     |     |     |    |           | |
+| :- | :- | :-: | :-: |:-: | :-: | :-: |
+|                             | __Profiling Query Type__                        |__Node.js__ | __Go__ | __Java__ | __Ruby__ | __.NET__ | __PHP__ | __Python__ | __Next.js__ | __Vercel__ | __Cloudflare__ | __Scala__ |
+| __Object Allocation__       | `memory:alloc_objects:count::`                  |       ✖️    |    ✅  |     ✖️    |    ✖️     |     ✖️    |    ✖️    |     ✖️      |    ✖️        |      ✖️     |         ✖️      |     ✖️    |
+| __Memory Allocation__       | `memory:alloc_space:bytes::`                    |       ✖️    |    ✅  |    ✖️     |    ✖️     |     ✖️    |    ✖️    |     ✖️      |    ✖️        |      ✖️     |         ✖️      |     ✖️    |
+| __Objects in Use__          | `memory:inuse_objects:count`                    |   ✅       |    ✅  |    ✖️     |    ✖️     |     ✖️    |    ✖️    |     ✖️      |    ✅       |      ✅    |         ✖️      |     ✖️    |
+| __Memory in Use__           | `memory:inuse_space:bytes`                      |   ✅       |    ✅  |    ✖️     |    ✖️     |     ✖️    |    ✖️    |     ✖️      |    ✅       |      ✅    |         ✖️      |     ✖️    |
+| __CPU Usage__               | `process_cpu:cpu:nanoseconds:cpu:nanoseconds`   |    ✖️       |✅      |✅        |✅        |     ✖️    |    ✖️    |          ✅|           ✅|          ✅|         ✖️      |✅        |
+| __Wall-clock time__         | `wall:wall:nanoseconds:cpu:nanoseconds`         |       ✖️    |   ✖️    |     ✖️    |    ✖️     |    ✅    |    ✖️    |     ✖️      |    ✖️        |      ✖️     |         ✖️      |      ✖️   | 
+| __Blocking Contentions__    | `block:contentions:count::`                     |  ✖️         |   ✖️    |    ✅    |    ✖️     |     ✖️    |    ✖️    |     ✖️      |    ✖️        |      ✖️     |         ✖️      |✅        |
+| __Blocking Delays__         | `block:delay:nanoseconds::`                     |  ✖️         |   ✖️    |✅        |    ✖️     |     ✖️    |    ✖️    |     ✖️      |    ✖️        |      ✖️     |         ✖️      |✅        |
+| __Bytes Allocated(TLAB)__   | `memory:alloc_in_new_tlab_bytes:bytes::`        |  ✖️         |   ✖️    |✅        |    ✖️     |     ✖️    |    ✖️    |     ✖️      |    ✖️        |      ✖️     |         ✖️      |✅        |
+| __Objects Allocated(TLAB)__ | `memory:alloc_in_new_tlab_objects:count::`      |  ✖️         |   ✖️    |✅        |    ✖️     |     ✖️    |    ✖️    |     ✖️      |    ✖️        |      ✖️     |         ✖️      |✅        |
+
 
 # Profiling A Flask Web Application
 

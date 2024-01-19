@@ -34,7 +34,7 @@ The installation will set up a DaemonSet inside your Kubernetes cluster and add 
 </Accordion>
 
 <Accordion title="Step 2: Identify Kubernetes Context">
-  Get the current Kubernetes context and ensure that the cluster belonging to this context is where you want to install MW Agent.
+  Get the current Kubernetes Context and ensure the cluster belonging to this Context is where you want to install the MW Agent.
   
   Use the following command to find out your current Kubernetes context:
 
@@ -74,11 +74,54 @@ Once the MW Agent is installed on your cluster metrics should begin appearing in
 
 For any issues please reach out to our team in your Slack channel or through the help menu in the Middleware Application.
 
-
 # Uninstall
-To uninstall the Middleware Agent use the following command.
+To uninstall the Middleware Agent use the following command:
 ```javascript Shell
 bash -c "$(curl -L https://install.middleware.io/scripts/mw-kube-agent-uninstall.sh)"
 ```
+
+# Install with Microsoft Powershell
+
+The following section describes how to install and uninstall the Kubernetes Agent with Microsoft Powershell scripts. This method provides you the ability to install the MW Kubernetes Agent using `helm` instead of manifest files. 
+
+<Note> The following steps assume that you have already installed `kubectl` on your machine </Note>
+
+<Accordion title="Step 1: Open Powershell Terminal">
+  Set the `MW_API_KEY` and `MW_TARGET` environment variables:
+
+  ```Powershell Powershell
+  $env:MW_API_KEY= '<your-mw-api-key>'
+
+  $env:MW_TARGET = '<your-mw-target>'
+  ```
+</Accordion>
+
+<Accordion title="Step 2: Install with Helm [Optional]">
+  You have the option to install the MW Agent with `helm` instead of using manifest files. 
+  
+  Set the following environment variable to use `helm`:
+
+  <Note> Make sure [helm](https://helm.sh/docs/intro/install/) is already installed on your machine prior to adding the following environment variable. </Note>
+
+  ```Powershell Powershell
+  $env:MW_KUBE_AGENT_INSTALL_METHOD='helm'
+  ```
+</Accordion>
+
+<Accordion title="Step 3: Install MW Kubernetes Agent">
+  Download the [MW Kubernetes Install script](https://github.com/middleware-labs/install.middleware.io/blob/master/scripts/mw-kube-agent-install-powershell.ps1) and execute the following command:
+
+  ```Powershell Powershell
+  .\mw-kube-agent-install-powershell.ps1 
+  ```
+</Accordion>
+
+<Accordion title="Uninstall">
+  Download the [MW Kubernetes Uninstall script](https://github.com/middleware-labs/install.middleware.io/blob/master/scripts/mw-kube-agent-uninstall-powershell.ps1) and execute the following command:
+
+  ```Powershell Powershell
+  .\mw-kube-agent-uninstall-powershell.ps1 
+  ``` 
+</Accordion>
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>

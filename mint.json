@@ -164,6 +164,13 @@
           ]
         },
         {
+          "group": "OpenTelemetry",
+          "pages": [
+            "open-telemetry/otel-collector"
+          ]
+
+        },
+        {
           "group": "APM",
           "pages": [    
             "workflow/apm/apm-dashboard",
