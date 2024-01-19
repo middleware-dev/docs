@@ -5,14 +5,14 @@ sidebarTitle: "RUM"
 
 Middleware Real User Monitoring (RUM) provides insights into your application or website through detailed data on user interactions and frontend performance. With real-time data on page load times, errors, and more you can quickly identify and resolve performance issues to improve user experience and engagement. Check out the video below for more information.
 
-<Warning> If you are installing RUM in `Next.js`, you will not have a template HTML file. Once you have completed the Installation steps, move to the [Troubleshooting](/rum/getting-started#troubleshooting) section and click on __Next.js - Installing Without an index.html File__ </Warning>
-
 <a href="https://www.loom.com/share/ed0f136a6dd7436ba951356c936e0ca3" target="_blank">
   <img height="200" noZoom src="/images/rum_0.png" />
 </a>
 
 # Install
 This guide walks you through setting up Real User Monitoring (RUM) with JavaScript. These instructions can also be found on the Installation page in your Middleware Account.
+
+<Warning> If you are installing RUM with `Next.js`, you will not have a template HTML file. Once you have completed Installation Steps 1-3, move to the  __Next.js - Installing Without an index.html File__ section. </Warning>
 
 <AccordionGroup>
     <Accordion title="Step 1: Create Application Reference">
@@ -91,67 +91,6 @@ This guide walks you through setting up Real User Monitoring (RUM) with JavaScri
         ```
     </Accordion>
 </AccordionGroup>
-
-# Connect RUM to Tracing
-
-RUM Tracing allows you to gain insight into the specific actions of your users. You can watch time-stamped videos of user's website interactions, pinpoint performance bottlenecks across your platform, and identify the major causes of customer drop off.
-
-The following installation uses OpenTelemetry B3 Propagator heads. Learn more about B3 Propagation [here](https://github.com/openzipkin/b3-propagation).
-
-<Note> You must have a Middleware APM Agent installed in order to use the tracing feature. Install a Middleware APM [here](/apm-configuration/apm_overview). </Note>
-
-<AccordionGroup>
-    <Accordion title="Step 1: Modify Middleware SDK">
-        Add `tracePropagationTargets` to your SDK from [Step 3](#step-3-initialize-the-sdk) of the RUM Installation. The `tracePropagationTargets` value must be in regex format.
-
-        <Warning> The Middleware JavaScript client is by default configured with `b3` headers. You can change your headers by adding `tracePropagationFormat` to change the headers to `w3c` or `all`. </Warning>
-
-        ```javascript JavaScript
-        <script>
-            if (window.Middleware){
-                Middleware.track({
-                    serviceName: "service_name",
-                    accountKey: "account_key",
-                    target: "https://<UID>.middleware.io",
-                    env: "production",
-                    recording: "1",
-                    tracePropagationTargets: [/localhost:3000/i, /api.domain.com/i],
-                    tracePropagationFormat: "w3c"
-                })
-            }
-        </script>
-        ```
-    </Accordion>
-
-    <Accordion title="Step 2: Modify APM SDK">
-        In order to enable Trace Propagation, some languages require the `OTEL_PROPAGATORS=b3` environment variable. Those languages are called out in the table below. All other langugages will work with the standard APM install.
-    </Accordion>
-</AccordionGroup>
-
-# Access RUM From Trace List
-
-To access your Session Replay data, navigate to the APM section, select the Trace List tab and choose a trace to view your data.
-
-<Note> For more information about using RUM, head to the [RUM Workflow page](/workflow/using-rum). </Note>
-
-<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNnRxNzFmajVnYXZpZW8xbGR6OHF3NjZ6aWozYXRjZmZ5OHlnc3c4eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/AQhJ5ezOms5ncTNH7a/giphy.gif" width="900" height="900" />
-
-# Supported APMs
-|       | | | |
-| :----:| :--:|:--:| :--:|
-| **Language**                                |    **Supported**   | **APM Version** | **Environment Variable** |
-| [Cloudflare](/apm-configuration/cloudflare) |           ✖️        |   ✖️             |        ✖️             |
-| [Go](/apm-configuration/go)           |                ✅        |   `>= 1.1.100`     |        ✖️             |
-| [Java](/apm-configuration/java)         |              ✅        |    ✖️            |         ✅               | 
-| [.NET](/apm-configuration/dotnet)       |              ✅        |     ✖️           |       ✅                 |
-| [Next.js](/apm-configuration/next-js)      |           ✅        |     ✖️           |            ✖️             |
-| [Node.js](/apm-configuration/node-js)      |           ✅        | `>= 1.2.5`         |            ✖️             |
-| [PHP](/apm-configuration/php)          |                ✖️        |    ✖️            |            ✖️             |
-| [Python](/apm-configuration/python)       |            ✅        | `>= 0.3.2`         |            ✖️             |
-| [Ruby](/apm-configuration/ruby)         |              ✅        | `>= 2.1.0`         |   ✅  |
-| [Vercel](/apm-configuration/vercel-integration)   |     ✅        |    ✖️            |            ✖️             |
-
-# Troubleshooting
 
 <Accordion title="Next.js - Installing Without an index.html File">
     When using Next.js, you do not have direct access to the `index.html` or template HTML file. You must define the structure of your RUM application with one of the following methods:
@@ -251,6 +190,67 @@ To access your Session Replay data, navigate to the APM section, select the Trac
 
     </Accordion>    
 </Accordion>
+
+# Connect RUM to Tracing
+
+RUM Tracing allows you to gain insight into the specific actions of your users. You can watch time-stamped videos of user's website interactions, pinpoint performance bottlenecks across your platform, and identify the major causes of customer drop off.
+
+The following installation uses OpenTelemetry B3 Propagator heads. Learn more about B3 Propagation [here](https://github.com/openzipkin/b3-propagation).
+
+<Note> You must have a Middleware APM Agent installed in order to use the tracing feature. Install a Middleware APM [here](/apm-configuration/apm_overview). </Note>
+
+<AccordionGroup>
+    <Accordion title="Step 1: Modify Middleware SDK">
+        Add `tracePropagationTargets` to your SDK from [Step 3](#step-3-initialize-the-sdk) of the RUM Installation. The `tracePropagationTargets` value must be in regex format.
+
+        <Warning> The Middleware JavaScript client is by default configured with `b3` headers. You can change your headers by adding `tracePropagationFormat` to change the headers to `w3c` or `all`. </Warning>
+
+        ```javascript JavaScript
+        <script>
+            if (window.Middleware){
+                Middleware.track({
+                    serviceName: "service_name",
+                    accountKey: "account_key",
+                    target: "https://<UID>.middleware.io",
+                    env: "production",
+                    recording: "1",
+                    tracePropagationTargets: [/localhost:3000/i, /api.domain.com/i],
+                    tracePropagationFormat: "w3c"
+                })
+            }
+        </script>
+        ```
+    </Accordion>
+
+    <Accordion title="Step 2: Modify APM SDK">
+        In order to enable Trace Propagation, some languages require the `OTEL_PROPAGATORS=b3` environment variable. Those languages are called out in the table below. All other langugages will work with the standard APM install.
+    </Accordion>
+</AccordionGroup>
+
+# Access RUM From Trace List
+
+To access your Session Replay data, navigate to the APM section, select the Trace List tab and choose a trace to view your data.
+
+<Note> For more information about using RUM, head to the [RUM Workflow page](/workflow/using-rum). </Note>
+
+<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNnRxNzFmajVnYXZpZW8xbGR6OHF3NjZ6aWozYXRjZmZ5OHlnc3c4eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/AQhJ5ezOms5ncTNH7a/giphy.gif" width="900" height="900" />
+
+# Supported APMs
+|       | | | |
+| :----:| :--:|:--:| :--:|
+| **Language**                                |    **Supported**   | **APM Version** | **Environment Variable** |
+| [Cloudflare](/apm-configuration/cloudflare) |           ✖️        |   ✖️             |        ✖️             |
+| [Go](/apm-configuration/go)           |                ✅        |   `>= 1.1.100`     |        ✖️             |
+| [Java](/apm-configuration/java)         |              ✅        |    ✖️            |         ✅               | 
+| [.NET](/apm-configuration/dotnet)       |              ✅        |     ✖️           |       ✅                 |
+| [Next.js](/apm-configuration/next-js)      |           ✅        |     ✖️           |            ✖️             |
+| [Node.js](/apm-configuration/node-js)      |           ✅        | `>= 1.2.5`         |            ✖️             |
+| [PHP](/apm-configuration/php)          |                ✖️        |    ✖️            |            ✖️             |
+| [Python](/apm-configuration/python)       |            ✅        | `>= 0.3.2`         |            ✖️             |
+| [Ruby](/apm-configuration/ruby)         |              ✅        | `>= 2.1.0`         |   ✅  |
+| [Vercel](/apm-configuration/vercel-integration)   |     ✅        |    ✖️            |            ✖️             |
+
+# Troubleshooting
 
 <Accordion title="Browser Cookies">
     The RUM Browser SDK uses cookies to remember a single user session across different pages on your website. These are first-party cookies and stay within your domain; they won't be used to track users across different sites.
