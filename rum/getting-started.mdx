@@ -12,7 +12,7 @@ Middleware Real User Monitoring (RUM) provides insights into your application or
 # Install
 This guide walks you through setting up Real User Monitoring (RUM) with JavaScript. These instructions can also be found on the Installation page in your Middleware Account.
 
-<Warning> If you are installing RUM with `Next.js`, you will not have a template HTML file. Once you have completed Installation Steps 1-3, move to the  __Next.js - Installing Without an index.html File__ section. </Warning>
+<Warning> If you are installing RUM with `Next.js`, skip to the following __[Next.js](#installing-on-next-js)__ section. </Warning>
 
 <AccordionGroup>
     <Accordion title="Step 1: Create Application Reference">
@@ -92,8 +92,9 @@ This guide walks you through setting up Real User Monitoring (RUM) with JavaScri
     </Accordion>
 </AccordionGroup>
 
-<Accordion title="Next.js - Installing Without an index.html File">
-    When using Next.js, you do not have direct access to the `index.html` or template HTML file. You must define the structure of your RUM application with one of the following methods:
+# Installing on Next.js
+
+When using Next.js, you do not have direct access to the `index.html` or template HTML file. You must define the structure of your RUM application with one of the following methods:
 
     <Accordion title="App Router">
         Define the structure of your application with app routers.
@@ -163,7 +164,7 @@ This guide walks you through setting up Real User Monitoring (RUM) with JavaScri
             <Script
                 strategy="beforeInteractive"
                 id="middleware-lib-init"
-                src="https://cdnjs.middleware.io/browser/libs/0.0.1/middleware-rum.min.js"
+                src="https://cdnjs.middleware.io/browser/libs/0.0.1/stage/middleware-rum.min.js"
                 type="text/javascript"
                 />
                 <Script
@@ -189,7 +190,6 @@ This guide walks you through setting up Real User Monitoring (RUM) with JavaScri
         ```
 
     </Accordion>    
-</Accordion>
 
 # Connect RUM to Tracing
 
