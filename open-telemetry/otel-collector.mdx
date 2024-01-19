@@ -70,19 +70,19 @@ The following document describes how to natively configure the OpenTelemetry Col
 
     ```YAML YAML
     processors:
-    resourcedetection:
+      resourcedetection:
         detectors: [ env, system ]
         timeout: 2s
         system:
-        hostname_sources: [ os ]
-    resource/middleware:
+          hostname_sources: [ os ]
+      resource/middleware:
         attributes:
         - action: upsert
-        key: mw.account_key
-        value: "<your-mw-api-key>"
+          key: mw.account_key
+          value: <your-mw-api-key>
         - action: upsert
-        from_attribute: host.name
-        key: host.id
+          from_attribute: host.name
+          key: host.id
     ```
 </Accordion>
 
@@ -92,14 +92,14 @@ The following document describes how to natively configure the OpenTelemetry Col
 
     ```YAML YAML
     exporters:
-    otlp/middleware:
+      otlp/middleware:
         endpoint: "your-endpoint.middleware.io:443"
         headers:
-        authorization: "<your-mw-api-key>"
+          authorization: "<your-mw-api-key>"
         sending_queue:
-        enabled: true
-        num_consumers: 100
-        queue_size: 10000
+          enabled: true
+          num_consumers: 100
+          queue_size: 10000
     ```
 </Accordion>
 
@@ -108,26 +108,26 @@ The following document describes how to natively configure the OpenTelemetry Col
 
     ```YAML YAML
     service:
-    pipelines:
+      pipelines:
         traces:
-        receivers: [ <your-receivers-list-for-traces> ]
-        processors: [ resourcedetection, resource/middleware, 
+          receivers: [ <your-receivers-list-for-traces> ]
+          processors: [ resourcedetection, resource/middleware, 
                         <your-processor-list-for-traces> ]
-        exporters: [ otlp/middleware, <your-exporters-list-for-traces> ]
+          exporters: [ otlp/middleware, <your-exporters-list-for-traces> ]
         metrics:
-        receivers: [ <your-receivers-list-for-metrics> ]
-        processors: [ resourcedetection, resource/middleware ]
-        exporters: [ otlp/middleware, <your-exporters-list-for-metrics> ]
-        logs
-        receivers: [ <your-receivers-list-for-logs> ]
-        processors: [ resourcedetection, resource/middleware, 
-    <your-processors-list-for-logs> ]
-        exporters: [otlp/middleware, <your-exporters-list-for-logs>]
+          receivers: [ <your-receivers-list-for-metrics> ]
+          processors: [ resourcedetection, resource/middleware ]
+          exporters: [ otlp/middleware, <your-exporters-list-for-metrics> ]
+        logs:
+          receivers: [ <your-receivers-list-for-logs> ]
+          processors: [ resourcedetection, resource/middleware, 
+                        <your-processors-list-for-logs> ]
+          exporters: [otlp/middleware, <your-exporters-list-for-logs>]
     ```
 </Accordion>
 
 # Limitations
 
-Metrics such as bandwidth and disk speed are not currently collected by the OpenTelemetry Collector and will contain `0` in those fields.
+Metrics such as bandwidth and disk speed are not currently collected by the OpenTelemetry Collector and will contain `0` in those fields. This will impact the Infrastructure page as well as any custom dashboard containing these metrics.
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
