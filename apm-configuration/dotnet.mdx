@@ -52,7 +52,7 @@ chmod +x $HOME/.mw-dotnet-auto/instrument.sh
 
 <Accordion title="Step 2: Setup Middleware .NET Project">
 
-* Download Latest [Middleware.dll](https://github.com/middleware-labs/dotnet-plugin/releases) and add the following code in the .csproj file..
+Download the latest [Middleware.dll](https://github.com/middleware-labs/dotnet-plugin/releases) and add the following code in the `.csproj` file.
 
 ```xml XML
 <ItemGroup>
@@ -76,17 +76,26 @@ chmod +x $HOME/.mw-dotnet-auto/instrument.sh
   </Accordion>
   
   <Accordion title="Docker">
-    Add the following environment variable to your container:
+    Add the following environment variables to your container:
 
-    ```Shell Shell
+    ```dockerfile dockerfile
     MW_AGENT_SERVICE=172.17.0.1
+    MW_API_KEY=<MW_KEY>
     ```
     <Note> The default value for `DOCKER_BRIDGE_GATEWAY_ADDRESS` is typically `172.17.0.1`.</Note>
+    
+    Specify your HTTP ports and URL with the following:
+
+    ```dockerfile dockerfile
+    ASPNETCORE_HTTP_PORTS=5000
+    ASPNETCORE_URLS=http://0.0.0.0:5000
+    ```
   </Accordion>
 
 </Accordion>
 
 <Accordion title="Step 4: Build and Run .NET Application">
+  Execute the following command to build and run your .NET application:
 
   ```bash Shell
   MW_API_KEY={MW_API_KEY} \
