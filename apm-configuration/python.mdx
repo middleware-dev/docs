@@ -144,7 +144,14 @@ MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
     </AccordionGroup>
 </Accordion>
 
-<Accordion title="Step 5: Start Your Project">
+<Accordion title="Step 5: Configure Docker File">
+    Add the following command to your Dockerfile after the `pip install` command:
+    ```Dockerfile Dockerfile
+    RUN middleware-bootstrap -a install
+    ```
+</Accordion>
+
+<Accordion title="Step 6: Start Your Project">
 
 After deploying your application, run the following command to start your project:
 ```shell Shell
