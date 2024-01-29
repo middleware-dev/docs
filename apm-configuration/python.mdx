@@ -51,6 +51,11 @@ Run the following command in your terminal:
 ```python Shell
 pip install middleware-apm
 ```
+
+Check if the `middleware-apm` has been installed with the following command:
+```python Shell
+pip list
+```
 </Accordion>
 
 <Accordion title="Step 2: Import Middleware Tracker"> 
@@ -68,10 +73,16 @@ tracker=MwTracker()
 <Accordion title="Step 3: Container Variables (Optional)"> 
 Applications running in a container require an additional environment variable. If your application is not running in a container, move to Step 4. 
 
-For Docker containers, add the following environment variable to your application:
+Add the following environment variable to your application:
 ```bash Shell
 MW_AGENT_SERVICE=<DOCKER_BRIDGE_GATEWAY_ADDRESS>
 ```
+
+Add the following command to your `Dockerfile` after the `pip install` command:
+```Dockerfile Dockerfile
+RUN middleware-bootstrap -a install
+```
+
 <Note> docker bridge gateway address is the IP address of the gateway between the Docker host and the bridge network, which is 172.17.0.1 by default. 
 Refer more about Docker bridge networking [here](https://docs.docker.com/network/network-tutorial-standalone/) </Note>
 
@@ -142,13 +153,6 @@ MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
             ```
         </Accordion>
     </AccordionGroup>
-</Accordion>
-
-<Accordion title="Step 5: Configure Docker File">
-    Add the following command to your Dockerfile after the `pip install` command:
-    ```Dockerfile Dockerfile
-    RUN middleware-bootstrap -a install
-    ```
 </Accordion>
 
 <Accordion title="Step 6: Start Your Project">
