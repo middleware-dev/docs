@@ -111,9 +111,9 @@ Once the MW Agent is installed on your cluster metrics should begin appearing in
 For any issues please reach out to our team in your Slack channel or through the help menu in the Middleware Application.
 
 <Accordion title="Switching Between Contexts">
-If you are using another thirdy-party resource for mananging your Kubernetes Infrastructure (e.g. Lens), you must create cluster names that match the names of the contexts used by that third party resource. 
+If you are using another thirdy-party resource for managing your Kubernetes Infrastructure (e.g. Lens) it's possible your cluster names are similar across clusters. This will make it hard to delineate between the clusters inside of Middleware.
 
-Change the `cluster.name` attribute by renaming the `MW_KUBE_CLUSTER_NAME` environment variable to the name(s) you are using in your thrid party resource. Once the cluster is renamed, it will automatically reset and start to catch the appropriately labeled environment variables.
+To fix this, you can force a speicific `cluster.name` by setting the `MW_KUBE_CLUSTER_NAME` environment variable to the name(s) you are using in your thrid party resource. Once the cluster is renamed, it will automatically reset and start to catch the appropriately labeled environment variables.
 </Accordion>
 
 # Uninstall
