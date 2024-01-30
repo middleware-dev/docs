@@ -44,6 +44,7 @@ Use the following command to find out your current Kubernetes context:
 kubectl config get-contexts `kubectl config current-context`
 ```
 
+
 ### Step 3: Run Kubernetes Install Command
 
 Copy and run the installation command. An example of the command is shown below. Copying the command directly from the Installation page ensures your API key and UID are inserted accurately.
@@ -73,12 +74,16 @@ bash -c "$(curl -L https://install.middleware.io/scripts/mw-kube-agent-upgrade.s
 ```
 
 # Troubleshooting
-
 <Warning>  Run only one MW Agent DaemonSet per cluster per host. Multiple agents will cause unexpected behavior. </Warning>
 
 Once the MW Agent is installed on your cluster metrics should begin appearing in the Middleware application within a few minutes. If metrics do not appear, confirm that Kubernetes has access to the internet, either directly or through a proxy, and that only one MW Agent is running per cluster. 
 
 For any issues please reach out to our team in your Slack channel or through the help menu in the Middleware Application.
+
+### Switching Between Contexts
+If you are using another thirdy-party resource for managing your Kubernetes Infrastructure (e.g. Lens) it's possible your cluster names are similar across clusters. This will make it hard to delineate between the clusters inside of Middleware.
+
+To fix this, you can force a speicific `cluster.name` by setting the `MW_KUBE_CLUSTER_NAME` environment variable to the name(s) you are using in your thrid party resource. Once the cluster is renamed, it will automatically reset and start to catch the appropriately labeled environment variables.
 
 # Uninstall
 
