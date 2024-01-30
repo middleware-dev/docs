@@ -10,29 +10,28 @@ Collects PostgreSQL performance and health metrics
 
 # Setup
 
-<Accordion title="Step 1: Create Database Credentials">
+### Step 1: Create Database Credentials
 
-   Create a `.yaml` file containing database credentials like the below example:
+Create a `.yaml` file containing database credentials like the below example:
 
-  `/home/ubuntu/postgres_creds.yaml`
+`/home/ubuntu/postgres_creds.yaml`
 
-  ```yaml .yaml
-    postgresql:
-     endpoint: localhost:5423
-     username: postgres
-     password: postgres
-  ```
-</Accordion>
+```yaml .yaml
+postgresql:
+  endpoint: localhost:5423
+  username: postgres
+  password: postgres
+```
 
-<Accordion title="Step 2: Access Integrations">
-    Log in to Middleware, navigate to the Installations Page in the bottom left corner, select All Integration and click PostgreSQL
+### Step 2: Access Integrations
 
-    <img src="/images/integration/pgdb-store.png" />
-</Accordion>
+Log in to Middleware, navigate to the Installations Page in the bottom left corner, select All Integration and click PostgreSQL
 
-<Accordion title="Step 3: Enable Integration">
-    Add a host machine from the dropdown list, input the credential path from Step 1, and Save
-</Accordion>
+<img src="/images/integration/pgdb-store.png" />
+
+### Step 3: Enable Integration
+
+Add a host machine from the dropdown list, input the credential path from Step 1, and Save
 
 # Visualize Your Data
 

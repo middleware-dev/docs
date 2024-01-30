@@ -30,52 +30,49 @@ This guide walks you through installing the MW Agent on a Microsoft Windows mach
  Follow the steps below to install the MW Agent on your Windows machine.
 
 
-<Accordion title="Step 1: Download MW Agent Installer">
-    Log in to Middleware, navigate to the Installation Page in the bottom left corner and select Windows from the Infrastructure section
+### Step 1: Download MW Agent Installer
 
-    Download the MW Agent [Installer](https://github.com/middleware-labs/mw-agent/releases/latest/download/mw-windows-agent-setup.exe)
-    
-    !["Agent Installation"](/images/agent-installation/k1.png)
+Log in to Middleware, navigate to the Installation Page in the bottom left corner and select Windows from the Infrastructure section
 
-    ![](https://lh7-us.googleusercontent.com/8mT0-q_qLvM-UU7KJsIP3wzqBpRfhmzE8gLndfDFeodSBUqz5utp4RM-wTCNcXcZdTQQ5YmBLxR7T77nyoSWWmgNOrHHOjIgFTmUS-EHNSaIBvjw-AWaSlpuOOyz_UZBNJUlnbE8udphd1qui5G-4so)
+Download the MW Agent [Installer](https://github.com/middleware-labs/mw-agent/releases/latest/download/mw-windows-agent-setup.exe)
 
-</Accordion>
+!["Agent Installation"](/images/agent-installation/k1.png)
 
-<Accordion title="Step 2: Run & Complete Install Wizard">
-   Right-click the Installer, select `Run as administrator`, and complete the Install Wizard.
-
-   <Note> Ensure you have your MW API Key & MW Target URL. Access them in your [MW Account](https://app.middleware.io/installation#infrastructures/windows) </Note>
-
-   !["Windows Install CredentialInterface"](/images/agent-installation/windows.png)
-
-</Accordion>
+![](https://lh7-us.googleusercontent.com/8mT0-q_qLvM-UU7KJsIP3wzqBpRfhmzE8gLndfDFeodSBUqz5utp4RM-wTCNcXcZdTQQ5YmBLxR7T77nyoSWWmgNOrHHOjIgFTmUS-EHNSaIBvjw-AWaSlpuOOyz_UZBNJUlnbE8udphd1qui5G-4so)
 
 
-<Accordion title="Step 3: Verify Installation">
-    Verify the MW Agent has been successfully installed with one of the following methods:
+### Step 2: Run & Complete Install Wizard
 
-   <Accordion title="Windows Service Manager">
-   
-      Search for the `Middleware Agent` in your Windows Service Manager. 
-      
-      The `Middleware Agent` should be in `Running` status.
+Right-click the Installer, select `Run as administrator`, and complete the Install Wizard.
 
-      !["Windows Service Manager"](/images/agent-installation/windows_verify.png) 
-   </Accordion>
+<Note> Ensure you have your MW API Key & MW Target URL. Access them in your [MW Account](https://app.middleware.io/installation#infrastructures/windows) </Note>
 
-   <Accordion title="Powershell">
-      
-      Verify the MW Agent has been successfully installed with the following command:
+!["Windows Install CredentialInterface"](/images/agent-installation/windows.png)
 
-      ```shell Shell
-      Get-Service -Name mw-windows-agent
-      ```
 
-      The `mw-windows-agent` should be in `Running` status
+### Step 3: Verify Installation
 
-      !["Verify Windows Present Code"](/images/agent-installation/windows_correct.jpg)
-   </Accordion>
-</Accordion>
+Verify the MW Agent has been successfully installed with one of the following methods:
+
+#### Windows Service Manager
+
+Search for the `Middleware Agent` in your Windows Service Manager. 
+
+The `Middleware Agent` should be in `Running` status.
+
+!["Windows Service Manager"](/images/agent-installation/windows_verify.png) 
+
+#### Powershell
+
+Verify the MW Agent has been successfully installed with the following command:
+
+```shell Shell
+Get-Service -Name mw-windows-agent
+```
+
+The `mw-windows-agent` should be in `Running` status
+
+!["Verify Windows Present Code"](/images/agent-installation/windows_correct.jpg)
 
 # Troubleshooting
 <Warning>  Run only one MW Agent per host. Multiple agents will cause unexpected behavior. </Warning>

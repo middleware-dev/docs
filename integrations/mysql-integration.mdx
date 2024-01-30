@@ -9,30 +9,30 @@ Middleware Host Agent (MW Agent) must be installed on your local machine. To ins
 
 # Setup
 
-<Accordion title="Step 1: Create Database Credentials">
-  Create a `.yaml` file containing database credentials like the below example. If the database is not password protected, the `username` and `password` fields can be removed.
+### Step 1: Create Database Credentials
 
-  `/home/ubuntu/mysql-creds.yaml`
+Create a `.yaml` file containing database credentials like the below example. If the database is not password protected, the `username` and `password` fields can be removed.
 
-  ```yaml .yaml
-  mysql:
-     endpoint: localhost:3306
-     username: mysql  
-     password: mysql 
+`/home/ubuntu/mysql-creds.yaml`
 
-  ```
-  <Note> For Docker users, create the credentials yaml file in the `/var/log` directory. </Note>
-</Accordion>
+```yaml .yaml
+mysql:
+    endpoint: localhost:3306
+    username: mysql  
+    password: mysql 
 
-<Accordion title="Step 2: Access Integrations">
-  Log in to Middleware, navigate to the Installations Page in the bottom left corner, select All Integration and click MySQL
+```
+<Note> For Docker users, create the credentials yaml file in the `/var/log` directory. </Note>
 
-  <img src="/images/integration/mysql-store.png" />
-</Accordion>
+### Step 2: Access Integrations
 
-<Accordion title="Step 3: Enable Integration">
-  Add a host machine from the dropdown list, input the credential path from Step 1, and Save
-</Accordion>
+Log in to Middleware, navigate to the Installations Page in the bottom left corner, select All Integration and click MySQL
+
+<img src="/images/integration/mysql-store.png" />
+
+### Step 3: Enable Integration
+
+Add a host machine from the dropdown list, input the credential path from Step 1, and Save
 
 # Visualize Analytics
 

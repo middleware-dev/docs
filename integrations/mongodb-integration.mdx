@@ -10,31 +10,31 @@ Middleware Host Agent (MW Agent) must be installed on your local machine. To ins
 
 # Setup
 
-<Accordion title="Step 1: Create Database Credentials">
-  Create a `.yaml` file containing database credentials like the below example. If the database is not password protected, the `username` and `password` fields can be removed.
+### Step 1: Create Database Credentials
 
-  `/home/ubuntu/mongodb-creds.yaml`
+Create a `.yaml` file containing database credentials like the below example. If the database is not password protected, the `username` and `password` fields can be removed.
 
-  <Note> For Docker users, create the credentials yaml file in the `/var/log` directory. </Note>
-  
-  ```yaml .yaml
-      mongodb:
-      hosts:
-        - endpoint: localhost:27017
-      username: mongodb
-      password: mongodb
-  ```
-</Accordion>
+`/home/ubuntu/mongodb-creds.yaml`
 
-<Accordion title="Step 2: Access Integrations">
-  Log in to Middleware, navigate to the Installations Page in the bottom left corner, select All Integration and click MongoDB
+<Note> For Docker users, create the credentials yaml file in the `/var/log` directory. </Note>
 
-  <img src="/images/integration/mongodb-store.png" />
-</Accordion>
+```yaml .yaml
+    mongodb:
+    hosts:
+      - endpoint: localhost:27017
+    username: mongodb
+    password: mongodb
+```
 
-<Accordion title="Step 3: Enable Integration">
-  Add a host machine from the dropdown list, input the credential path from Step 1, and Save
-</Accordion>
+### Step 2: Access Integrations
+
+Log in to Middleware, navigate to the Installations Page in the bottom left corner, select All Integration and click MongoDB
+
+<img src="/images/integration/mongodb-store.png" />
+
+### Step 3: Enable Integration
+
+Add a host machine from the dropdown list, input the credential path from Step 1, and Save
 
 # Visualize Analytics
 

@@ -1,0 +1,103 @@
+---
+title: RUM - Next.js
+sidebarTitle: RUM for Next.js
+---
+
+# Install
+
+When using Next.js, you do not have direct access to the `index.html` or template HTML file. You must define the structure of your RUM application with one of the following methods:
+
+### App Router
+        
+Define the structure of your application with app routers.
+
+<Note> Click [here](https://nextjs.org/docs/app/building-your-application/optimizing/third-party-libraries) for more information on integrating third party libraries with Next.js using app structure. </Note>
+
+Apply the following script to your application code:
+
+```javascript Next.js
+import Script from "next/script"
+
+export default function RootLayout({
+children,
+}: {
+children: React.ReactNode
+}) {
+
+return (
+    <html lang="en">
+    <head>
+        <Script
+        strategy="beforeInteractive"
+        id="middleware-lib-init"
+        src="https://cdnjs.middleware.io/browser/libs/0.0.1/middleware-rum.min.js"
+        type="text/javascript"
+        />
+        <Script
+        strategy="beforeInteractive"
+        id="middleware-script-init">
+        {
+            `
+            if (window.Middleware){
+                window.Middleware.track({
+                serviceName: "nextjs-service-name",
+                projectName: "nextjs-project-name",
+                accountKey: "<REDACTED>",
+                target: "https://name.middleware.io",
+                tracePropagationTargets: [/localhost:3000/i]
+                });
+            }
+            `
+        }
+        </Script>
+    </head>
+    <body>
+        {children}
+    </body>
+    </html>
+)
+}
+```
+
+### Page Router
+        
+Define the structure of your application with page structure.
+
+<Note> Click [here](https://nextjs.org/docs/pages/building-your-application/optimizing/scripts) for more information on integrating third party libraries with Next.js using page structure. </Note>
+
+Apply the following script to your application code:
+```javascript Next.js
+import Script from 'next/script'
+
+export default function MyApp({ Component, pageProps }) {
+return (
+    <>
+    <Component {...pageProps} />
+    <Script
+        strategy="beforeInteractive"
+        id="middleware-lib-init"
+        src="https://cdnjs.middleware.io/browser/libs/0.0.1/middleware-rum.min.js" 
+        type="text/javascript"
+        />
+        <Script
+        strategy="beforeInteractive"
+        id="middleware-script-init">
+        {
+            `
+            if (window.Middleware){
+                window.Middleware.track({
+                serviceName: "nextjs-service-name",
+                projectName: "nextjs-project-name",
+                accountKey: "<REDACTED>",
+                target: "https://name.middleware.io",
+                tracePropagationTargets: [/localhost:3000/i]
+                });
+            }
+            `
+        }
+        </Script>
+    </>
+)
+}
+```
+

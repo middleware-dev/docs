@@ -46,14 +46,15 @@ This guide walks you through setting up Application Performance Monitoring (APM)
 
 # Install
 
-<Accordion title="Step 1: Install Middleware Python APM Package"> 
+### Step 1: Install Middleware Python APM Package
+
 Run the following command in your terminal:
+
 ```python Shell
 pip install middleware-apm
 ```
-</Accordion>
 
-<Accordion title="Step 2: Import Middleware Tracker"> 
+### Step 2: Import Middleware Tracker
 
 Add the following lines to the beginning of your application:
 
@@ -63,9 +64,11 @@ import logging
 from middleware import MwTracker
 tracker=MwTracker()
 ```
-</Accordion>
 
-<Accordion title="Step 3: Container Variables (Optional)"> 
+### Step 3: Container Variables [Optional]
+
+#### Docker
+
 Applications running in a container require an additional environment variable. If your application is not running in a container, move to Step 4. 
 
 For Docker containers, add the following environment variable to your application:
@@ -75,7 +78,8 @@ MW_AGENT_SERVICE=<DOCKER_BRIDGE_GATEWAY_ADDRESS>
 <Note> docker bridge gateway address is the IP address of the gateway between the Docker host and the bridge network, which is 172.17.0.1 by default. 
 Refer more about Docker bridge networking [here](https://docs.docker.com/network/network-tutorial-standalone/) </Note>
 
-For Kubernetes, first identify the namespace where the MW Agent is running:
+#### Kubernetes
+Identify the namespace where the MW Agent is running:
 
 ```bash Shell
 kubectl get service --all-namespaces | grep mw-service
@@ -85,79 +89,75 @@ Then add the following environment variable to your application deployment YAML 
 ```bash Shell
 MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
 ```
-</Accordion>
 
-<Accordion title="Step 4: Capture Application Data"> 
-    <AccordionGroup>
-        <Accordion title="Setup .ini File"> 
 
-            Create a `.ini` file based on the features you want to observe. `service_name` and `access_token` are required for the tracker to send data to Middleware.
+### Step 4: Capture Application Data
 
-            ```python .ini
-            [middleware.common]
+#### Step 4a: Setup `middleware.ini` File
 
-            # The name of your application as service-name, as it will appear in the UI to filter out your data.
-            service_name = {APM-SERVICE-NAME}
+Create a `middleware.ini` file based on the features you want to observe. `service_name` and `access_token` are required for the tracker to send data to Middleware.
 
-            # This Token binds the Python Agent's data and profiling data to your account.
-            access_token = {YOUR-ACCESS-TOKEN}
+```python .ini
+[middleware.common]
 
-            # The service name, where Middleware Agent is running, in case of K8s.
-            mw_agent_service = mw-service.mw-agent-ns.svc.cluster.local
+# The name of your application as service-name, as it will appear in the UI to filter out your data.
+service_name = {APM-SERVICE-NAME}
 
-            # Distributed traces for your application (false = disabled).
-            collect_traces = true
+# This Token binds the Python Agent's data and profiling data to your account.
+access_token = {YOUR-ACCESS-TOKEN}
 
-            # Collection of metrics for your application (false = disabled).
-            collect_metrics = true
+# The service name, where Middleware Agent is running, in case of K8s.
+mw_agent_service = mw-service.mw-agent-ns.svc.cluster.local
 
-            # Collection of logs for your application (false = disabled).
-            collect_logs = true
+# Distributed traces for your application (false = disabled).
+collect_traces = true
 
-            # Collection of profiling data for your application (false = disabled).
-            collect_profiling = true
-            ```
-        </Accordion>
+# Collection of metrics for your application (false = disabled).
+collect_metrics = true
 
-        <Accordion title="Enable Custom Logs"> 
+# Collection of logs for your application (false = disabled).
+collect_logs = true
 
-            To ingest custom logs, utilize the following functions based on desired log severity levels:
+# Collection of profiling data for your application (false = disabled).
+collect_profiling = true
+```
 
-            ```python Python 3
-            logging.info("info sample")
-            logging.warning("Sample Warning Log") 
-            logging.error("Sample Error Log.", extra={'tester': 'Alex'})
-            ```
-        </Accordion>
+#### Step 4b: Enable Custom Logs
 
-        <Accordion title="Stack Errors"> 
+To ingest custom logs, utilize the following functions based on desired log severity levels:
+
+```python Python 3
+logging.info("info sample")
+logging.warning("Sample Warning Log") 
+logging.error("Sample Error Log.", extra={'tester': 'Alex'})
+```
+
+#### Step 4c: Stack Errors
             
-            Use `tracker.record_error()` method to record a stack trace when an error occurs:
+Use `tracker.record_error()` method to record a stack trace when an error occurs:
 
-            ```python Python 3
-            try:
-                not_possible = 12/0
-            except ZeroDivisionError as e:
-                tracker.record_error(e)
-            ```
-        </Accordion>
-    </AccordionGroup>
-</Accordion>
+```python Python 3
+try:
+    not_possible = 12/0
+except ZeroDivisionError as e:
+    tracker.record_error(e)
+```
 
-<Accordion title="Step 5: Configure Docker File">
-    Add the following command to your Dockerfile after the `pip install` command:
-    ```Dockerfile Dockerfile
-    RUN middleware-bootstrap -a install
-    ```
-</Accordion>
+### Step 5: Configure Docker File
 
-<Accordion title="Step 6: Start Your Project">
+Add the following command to your Dockerfile after the `pip install` command:
+
+```Dockerfile Dockerfile
+RUN middleware-bootstrap -a install
+```
+
+### Step 6: Start Your Project
 
 After deploying your application, run the following command to start your project:
+
 ```shell Shell
 MIDDLEWARE_CONFIG_FILE=./middleware.ini middleware-apm run python app.py
 ```
-</Accordion>
 
 # Continuous Profiling
 
