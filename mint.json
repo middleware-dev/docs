@@ -153,8 +153,14 @@
           "group": "RUM",
           "pages": [
             "rum/getting-started",
-            "rum/rum-android-mobile",
-            "rum/rum-ios"
+            {
+              "group": "Mobile RUM",
+              "pages": [
+                "rum/rum-android-mobile",
+                "rum/rum-ios",
+                "rum/rum-react"
+              ]
+            }
           ]
         },
         {
