@@ -3,7 +3,7 @@ title: Mobile RUM - React Native SDK
 sidebarTitle: RUM for React Native
 ---
 
-The Mobile RUM SDK provides a customizable suite of tools to analyze and optimize the performance of React Native applications. This guide ensures the SDK is initialized and configured for real-time monitoring and custom OpenTelemetry data transmission to the Middleware platform throughout the app’s lifecycle. Seamlessly track user sessions and auto-instrument HTTP monitoring, JS errors, navigation tracking for `react-navigation` and native crash errors. 
+The Mobile RUM SDK provides a customizable suite of tools to analyze and optimize the performance of React Native applications. This guide ensures the SDK is initialized and configured for real-time monitoring and custom OpenTelemetry data transmission to the Middleware platform throughout the app’s lifecycle. Seamlessly track user sessions and auto-instrument HTTP monitoring, JS errors, navigation tracking for `react-navigation`, and native crash errors. 
 
 # Prerequisites
 
@@ -12,7 +12,7 @@ The Mobile RUM SDK provides a customizable suite of tools to analyze and optimiz
 npx npm view react-native version
 ```
 
-<Note>[React Navigation 5 & 6](https://reactnavigation.org/docs/getting-started#installation) and [Expo](https://docs.expo.dev/) are both supported React Native frameworks</Note>
+<Note>[React Navigation 5 & 6](https://reactnavigation.org/docs/getting-started#installation) and [Expo](https://docs.expo.dev/) are both supported by the Middleware React Native SDK </Note>
 
 # Install & Instrument Your React Application
 
@@ -51,7 +51,7 @@ export default function App() {
 
 ### Logs
 
-Create Custom logs using the Middleware API:
+Create custom logs using the Middleware API:
 
 ```javascript JavaScript
 MiddlewareRum.debug("I am debug");
