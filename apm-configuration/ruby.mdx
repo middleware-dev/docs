@@ -33,7 +33,7 @@ This guide walks you through setting up Application Performance Monitoring (APM)
 
 # Install
 
-<Accordion title="Step 1: Add Gems to Your Gemfile">
+### Step 1: Add Gems to Your Gemfile
 
 <Tabs>
   <Tab title="Linux Gemfile">
@@ -55,9 +55,8 @@ This guide walks you through setting up Application Performance Monitoring (APM)
     ```
   </Tab>
 </Tabs>
-</Accordion>
 
-<Accordion title="Step 2: Import Tracker">
+### Step 2: Import Tracker
 
 <Tabs>
   <Tab title="Linux Environment">
@@ -73,27 +72,22 @@ This guide walks you through setting up Application Performance Monitoring (APM)
     ```
   </Tab>
 </Tabs>
-</Accordion>
 
-<Accordion title="Step 3: Capture Application Data">
-  <AccordionGroup>
-      <Accordion title="Traces">
+### Step 3: Capture Application Data
+
+#### Traces
       
-      ```bash Shell
-      OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:9320 \ 
-      OTEL_SERVICE_NAME="<Your Service Name>" \ 
-      OTEL_RESOURCE_ATTRIBUTES=project.name="<Your Project Name>" \ 
-      MW_API_KEY=<Your API Key> \ 
-      <YOUR COMMAND> 
-      ```
-      </Accordion>
+```bash Shell
+OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:9320 \ 
+OTEL_SERVICE_NAME="<Your Service Name>" \ 
+OTEL_RESOURCE_ATTRIBUTES=project.name="<Your Project Name>" \ 
+MW_API_KEY=<Your API Key> \ 
+<YOUR COMMAND> 
+```
 
-      <Accordion title="Profiling">
-      Application Profiling is auto-configured upon completion of Step 2.
-      </Accordion>
+#### Profiling
 
-  </AccordionGroup>
-</Accordion>
+Application Profiling is auto-configured upon completion of Step 2.
 
 # Continuous Profiling
 
