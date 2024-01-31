@@ -25,13 +25,12 @@ Copy and run the installation command. Copy the command directly from the Instal
 MW_API_KEY=<xxxxxxxxxx> MW_TARGET=https://<uid>.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/docker-install.sh)"
 ```
 
+### Step 3: Add Tags to Installation [Optional]
 
-### Step 3: Add Tags to installation [Optional]
-
-Add tags by adding the `MW_HOST_TAGS` environment variable to the installation command. Include any desired tags as comma-separated key-value pairs, as shown below. Use the tag “name” to create an alias for the host (e.g. production). 
+Add tags by adding the `MW_HOST_TAGS` environment variable to the installation command. Include any desired tags as comma-separated key-value pairs, as shown below. Use the tag `name` to create an alias for the host (e.g. production). 
 
 ```bash Shell
-MW_HOST_TAGS=<key1>:<value1>,<key2>:<value2>,… MW_API_KEY=…
+MW_HOST_TAGS=<key1>:<value1>,<key2>:<value2>,... MW_API_KEY=...
 ```
 
 

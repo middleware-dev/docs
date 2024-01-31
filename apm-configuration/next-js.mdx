@@ -47,7 +47,7 @@ This guide walks you through setting up Application Performance Monitoring (APM)
 
 # Install
 
-### Step 1: Install Next.js APM Package
+### Step 1: Install `Next.js` APM Package
 
 Run the following command in your terminal:
 ```bash Shell 
@@ -82,8 +82,8 @@ Add the following environment variable to your application:
 ```bash Shell
 MW_AGENT_SERVICE=<DOCKER_BRIDGE_GATEWAY_ADDRESS>
 ```
-<Note> Docker bridge gateway address is the IP address of the gateway between the Docker host and the bridge network, which is 172.17.0.1 by default. 
-Refer more about Docker bridge networking [here](https://docs.docker.com/network/network-tutorial-standalone/) </Note>
+<Note> The `DOCKER_BRIDGE_GATEWAY_ADDRESS` is the IP address of the gateway between the Docker host and bridge network. This is `172.17.0.1` by default. 
+Learn more about Docker bridge networking [here](https://docs.docker.com/network/network-tutorial-standalone/) </Note>
 
 #### Kubernetes
 

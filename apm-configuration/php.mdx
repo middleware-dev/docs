@@ -35,23 +35,20 @@ This guide walks you through setting up Application Performance Monitoring (APM)
 
 # Install
 
-### Step 1: Install PHP Extensions
+### Step 1: Install `PHP` Extensions
 
 #### Step 1a: Install Pecl & Composer
 - [Pecl](https://pecl.php.net/) Installation
 - [Composer](https://getcomposer.org/) Installation
 
 
-#### Step 1b: Install otel-instrumentation
+#### Step 1b: Install `otel-instrumentation`
 
-Install the extension:
 ```bash Shell
 sudo pecl install channel://pecl.php.net/opentelemetry-1.0.0beta3
 ```
 
-#### Step 1c: Add Extension to php.ini
-
-Add the extension to your `php.ini` file:
+#### Step 1c: Add Extension to `php.ini` File
 
 ```php php
 [opentelemetry]
@@ -87,31 +84,13 @@ Verify the extension is installed and enabled.
 php -m | grep opentelemetry
 ```
 
-#### Troubleshooting
+### Step 2: Install `PHP` APM Package
 
-Below we cover a few common errors and their solutions. 
+Ensure you have a PHP project set up and a `composer.json` file in your project’s root directory. 
 
-If you receive a pecl: command not found error, run the following command.
-```bash Shell
-sudo apt-get update
-apt-get install php-pear php8.1-dev
-```
-If you receive any broken dependency issues, including errors like libpcre2-dev : Depends: libpcre2-8-0 / libpcre2-16-0 / libpcre2-32-0, run the following command.
-```bash Shell
-sudo apt --fix-broken install
-```
-If you receive an ERROR: ‘phpize’ failed error, run the following commands.
-```bash Shell
-sudo apt-get update 
-sudo apt-get install php8.1-dev
+<Note> If you do not have a `composer.json` file already created, create one using using the `composer init` command.</Note>
 
-sudo apt-get update
-sudo pecl channel-update pecl.php.net
-```
-
-### Step 2: Install APM-PHP Package
-
-Ensure you have a PHP project set up and a `composer.json` file in your project’s root directory. If you do not have one, create it using composer init. Then run the following to install Middleware’s APM-PHP package.
+To install the Middleware APM package, run the following command:
 
 ```bash Shell
 composer update
@@ -120,7 +99,7 @@ composer require middleware/agent-apm-php
 
 ### Step 3: Import Tracker
 
-Add these lines to the beginning of your project. 
+Add following code to the beginning of your project:
 
 ```php PHP
 require 'vendor/autoload.php';
@@ -131,14 +110,14 @@ use Middleware\AgentApmPhp\MwTracker;
 
 #### Docker 
 
-Applications running in a container require an additional environment variable. If your application is not running in a container, move to Step 6. 
+<Note> Applications running in a container require an additional environment variable. If your application is not running in a container, move to Step 5. </Note>
 
 For Docker containers, add the following environment variable to your application.
 ```bash Shell
 MW_AGENT_SERVICE=<DOCKER_BRIDGE_GATEWAY_ADDRESS>
 ```
-<Note> docker bridge gateway address is the IP address of the gateway between the Docker host and the bridge network, which is 172.17.0.1 by default. 
-Refer more about Docker bridge networking [here](https://docs.docker.com/network/network-tutorial-standalone/) </Note>
+<Note> The `DOCKER_BRIDGE_GATEWAY_ADDRESS` is the IP address of the gateway between the Docker host and bridge network. This is `172.17.0.1` by default. 
+Learn more about Docker bridge networking [here](https://docs.docker.com/network/network-tutorial-standalone/) </Note>
 
 #### Kubernetes 
 
@@ -182,6 +161,36 @@ To ingest custom logs, utilize the following functions based on desired log seve
    $tracker->error("this is error log.");
    $tracker->info("this is info log.");
    $tracker->debug("this is debug log.");
+```
+
+# Troubleshooting
+
+Below we cover a few common errors and their solutions. 
+
+### `pecl: command not found error`
+
+If you receive a `pecl: command not found error`, run the following command:
+```bash Shell
+sudo apt-get update
+apt-get install php-pear php8.1-dev
+```
+
+### Broken Dependency Issue
+
+If you receive any broken dependency issues, including errors like `libpcre2-dev : Depends: libpcre2-8-0 / libpcre2-16-0 / libpcre2-32-0`, run the following command:
+```bash Shell
+sudo apt --fix-broken install
+```
+
+### `ERROR: ‘phpize’ failed error`
+
+If you receive an `ERROR: ‘phpize’ failed error`, run the following commands:
+```bash Shell
+sudo apt-get update 
+sudo apt-get install php8.1-dev
+
+sudo apt-get update
+sudo pecl channel-update pecl.php.net
 ```
 
 # Continuous Profiling

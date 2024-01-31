@@ -33,9 +33,10 @@ This guide walks you through setting up Application Performance Monitoring (APM)
 
 # Install
 
-### Step 1: .NET Binary Installation
+### Step 1: Install `.NET` APM Package
 
-Download the bash script.
+Run the following command in your terminal:
+
 ```bash Shell
 curl -sSfL https://install.middleware.io/apm/dotnet/v1.0.0-rc.1/scripts/mw-dotnet-auto-install.sh -O
 ```
@@ -80,10 +81,11 @@ MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
 Add the following environment variables to your container:
 
 ```dockerfile dockerfile
-MW_AGENT_SERVICE=172.17.0.1
+MW_AGENT_SERVICE=DOCKER_BRIDGE_GATEWAY_ADDRESS
 MW_API_KEY=<MW_KEY>
 ```
-<Note> The default value for `DOCKER_BRIDGE_GATEWAY_ADDRESS` is typically `172.17.0.1`.</Note>
+<Note> The `DOCKER_BRIDGE_GATEWAY_ADDRESS` is the IP address of the gateway between the Docker host and bridge network. This is `172.17.0.1` by default. 
+Learn more about Docker bridge networking [here](https://docs.docker.com/network/network-tutorial-standalone/) </Note>
 
 Specify your HTTP ports and URL with the following:
 

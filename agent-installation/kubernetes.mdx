@@ -4,7 +4,7 @@ title: "Kubernetes"
 
 This guide walks you through installing the MW Agent in a Kubernetes environment. These instructions can also be found on the Installation page in the Middleware application. 
 
-The installation will set up a DaemonSet inside your Kubernetes cluster and add necessary components to appropriately permission the DaemonSet pods. A Kubernetes service is also created to allow components to connect to the MW Agent via Cluster IP address & ports (i.e. language-based APMs). 
+The installation will set up a DaemonSet inside your Kubernetes cluster and add necessary components to appropriately permission the DaemonSet pods. A Kubernetes service is also created to allow components to connect to the MW Agent via Cluster IP address and ports (i.e. language-based APMs). 
 
 
 # Prerequisites
@@ -44,7 +44,6 @@ Use the following command to find out your current Kubernetes context:
 kubectl config get-contexts `kubectl config current-context`
 ```
 
-
 ### Step 3: Run Kubernetes Install Command
 
 Copy and run the installation command. An example of the command is shown below. Copying the command directly from the Installation page ensures your API key and UID are inserted accurately.
@@ -55,7 +54,7 @@ MW_API_KEY=<xxxxxxxxxx> MW_TARGET=https://<uid>.middleware.io:443 bash -c "$(cur
 
 ### Step 4: Verify Installation
   
-Verify the status of the MW Agent with the following command. 
+Verify the status of the MW Agent with the following command:
 
 ```javascript Shell
 kubectl get daemonset/mw-kube-agent -n mw-agent-ns
@@ -67,7 +66,9 @@ Navigate to Middleware and ensure metrics are appearing in the <a href="https://
 
 # Upgrade
 
-The MW Agent is frequently updated to add new features and improve performance. More information on new features can be found in our <a href="https://newsletters.middleware.io/"> Newsletter </a>. To upgrade MW Agent, use the following command.
+The MW Agent is frequently updated to add new features and improve performance. More information on new features can be found in our <a href="https://newsletters.middleware.io/"> Newsletter </a>. 
+
+To upgrade MW Agent, use the following command:
 
 ```javascript Shell
 bash -c "$(curl -L https://install.middleware.io/scripts/mw-kube-agent-upgrade.sh)"
