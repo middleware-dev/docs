@@ -12,14 +12,14 @@ title: "Java"
 | :----: | :-----: | :------: | :---------: | :-------: |
 | ✅ | ✅ | ✅ | ✅ | ✅ |
 
-This guide walks you through setting up Application Performance Monitoring (APM) on a Java application. These instructions can also be found on the Installation page in your Middleware Account. View example code <a href="https://github.com/middleware-labs/demo-apm/tree/master/java">  here. </a>
+This guide walks you through setting up Application Performance Monitoring (APM) on a Java application. These instructions can also be found on the Installation page in your Middleware Account. View example code [here](https://github.com/middleware-labs/demo-apm/tree/master/java).
 
 # Prerequisites
 
 <Steps>
 
   <Step title="MW Host Agent">
-   Middleware Host Agent (MW Agent). To install the MW Agent, see our <a href="https://docs.middleware.io/docs/agent-installation/overview"> installation guide</a>. 
+   Middleware Host Agent (MW Agent). To install the MW Agent, see our [Installation Guide](https://docs.middleware.io/docs/agent-installation/overview).
   </Step>
 
   <Step title="Java Version">
@@ -33,7 +33,7 @@ This guide walks you through setting up Application Performance Monitoring (APM)
 
 # Install
 
-### Step 1: Download JAR
+### Step 1: Download JAR File
 
 Download the latest Middleware instrumentation JAR file from the [Github Release Page](https://github.com/middleware-labs/opentelemetry-java-instrumentation/releases).
 
@@ -66,6 +66,7 @@ MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
 
 ### Step 3: Capture Application Data
       
+
 #### Traces
 
 Distributed tracing will be automatically enabled upon completing Step 4: Run Application.
@@ -128,6 +129,7 @@ try {
 ### Step 4: Run Application
 
 Run your application with the command given below.
+
 ```java Java
 MW_API_KEY={MW_API_KEY} java -javaagent:/PATH/TO/middleware-javaagent-{version}.jar \
     -Dotel.service.name={APM-SERVICE-NAME} \
@@ -138,6 +140,5 @@ MW_API_KEY={MW_API_KEY} java -javaagent:/PATH/TO/middleware-javaagent-{version}.
 # Continuous Profiling
 
 Continuous profiling captures real-time performance insights from your application to enable rapid identification of resource allocation, bottlenecks, and more. Navigate to the [Continuous Profiling](https://docs.middleware.io/workflow/profiling#continuous-profiling) section to learn more about using Continuous Profiling with the Java APM.
-
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>

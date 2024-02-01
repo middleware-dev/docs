@@ -22,7 +22,7 @@ This guide walks you through setting up Application Performance Monitoring (APM)
 <Steps>
 
   <Step title="MW Host Agent">
-   Middleware Host Agent (MW Agent). To install the MW Agent, see our <a href="https://docs.middleware.io/docs/agent-installation/overview"> installation guide</a>. 
+   Middleware Host Agent (MW Agent). To install the MW Agent, see our [Installation Guide](https://docs.middleware.io/docs/agent-installation/overview).
   
    <Note> Although the Middleware Agent is not required for the Next.js APM, we recommend installing it for improved performance. </Note>
   
@@ -57,7 +57,7 @@ npm install @middleware.io/agent-apm-nextjs
 
 <Accordion title="Step 2: Modify Config File">
 
-Add the following code to your next.config.js file:
+Add the following code to your `next.config.js` file:
 
 ```javascript Next.js
 const nextConfig = {
@@ -75,66 +75,75 @@ module.exports = nextConfig
 
 <Accordion title="Step 3: Container Variables">
 
-<Note>If your application is not running in a container or Kubernetes cluster, move to [Step 4](#step-4-create-instrumentation-file)</Note> 
+<Note>If your application is not running in a container or Kubernetes cluster, move to Step 4</Note> 
 
+    <Accordion title="Docker">
+        For Docker containers, add the following environment variable to your application:
+
+        ```bash Shell
+        MW_AGENT_SERVICE=<DOCKER_BRIDGE_GATEWAY_ADDRESS>
+        ```
+        <Note> Docker bridge gateway address is the IP address of the gateway between the Docker host and the bridge network, which is 172.17.0.1 by default. 
+        Refer more about Docker bridge networking [here](https://docs.docker.com/network/network-tutorial-standalone/) </Note>
+    </Accordion>
+
+    <Accordion title="Docker">
+        For Kubernetes clusters, add the following environment variable to your application:
+        ```bash Shell
+        kubectl get service --all-namespaces | grep mw-service
+        ```
+    </Accordion>
 Add the following environment variable to your application deployment YAML file:
 
 ```bash Shell
 MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
 ```
-
-For Docker containers, add the following environment variable to your application:
-
-```bash Shell
-MW_AGENT_SERVICE=<DOCKER_BRIDGE_GATEWAY_ADDRESS>
-```
-<Note> Docker bridge gateway address is the IP address of the gateway between the Docker host and the bridge network, which is 172.17.0.1 by default. 
-Refer more about Docker bridge networking [here](https://docs.docker.com/network/network-tutorial-standalone/) </Note>
-For Kubernetes clusters, add the following environment variable to your application:
-```bash Shell
-kubectl get service --all-namespaces | grep mw-service
-```
 </Accordion>
 
 <Accordion title="Step 4: Create Instrumentation File">
+    <Accordion title="Step 4a: Custom Instrumentation">
+        Create a custom `instrumentation.ts` (or `.js`) file in your project `root` directory or inside the `src` folder
 
-1. Create a custom instrumentation.ts (or .js) file in your project `root` directory or inside the `src` folder
+        <Warning>The `instrumentation.ts` file must be located at the `root` of your project unless you are using the `src` directory. If you are using the `src` directory, ensure the `instrumentation.ts` file is placed within the `src` directory, alongside the pages and app directories.</Warning>
+    </Accordion>
 
-<Warning>The `instrumentation.ts` file must be located at the `root` of your project unless you are using the `src` directory. If you are using the `src` directory, ensure the `instrumentation.ts` file is placed within the `src` directory, alongside the pages and app directories.</Warning>
+    <Accordion title="Step 4b: Synchronize Instrumentation">
+        Synchronize your instrumentation filename if you are using the `pagesExtension` config option to add suffixes
 
-2. Synchronize your instrumentation filename if you are using the `pagesExtension` config option to add suffixes
+        <Note> Example: If you use pagesExtension: ['ts'], the instrumentation file should be named `instrumentation.ts`. </Note>
+    </Accordion>
 
-<Note> Example: If you use pagesExtension: ['ts'], the instrumentation file should be named `instrumentation.ts`. </Note>
+    <Accordion title="Step 4c: Add Code Snippet">
+        Add the below code snippet depending on your current setup:
 
-3. Add the below code snippet depending on your current setup:
-
-<Tabs>
-  <Tab title="MW Agent Installed">
-    ```javascript Next.js
-        // @ts-ignore
-        import tracker from '@middleware.io/agent-apm-nextjs';
-        export function register() {
-            tracker.track({
-                serviceName: "<SERVICE-NAME>",
-                accessToken: "<xxxxxxxxxx>"
-            });
-        }
-    ```
-  </Tab>
-  <Tab title="MW Agent NOT Installed">
-    ```javascript Next.js
-        // @ts-ignore
-        import tracker from '@middleware.io/agent-apm-nextjs';
-        export function register() {
-            tracker.track({
-                serviceName: "<SERVICE-NAME>",
-                accessToken: "<ACCESS-TOKEN>",
-                target: "https://{ACCOUNT-UID}.middleware.io"
-            });
-        }
-    ```
-  </Tab>
-</Tabs>
+        <Tabs>
+        <Tab title="MW Agent Installed">
+            ```javascript Next.js
+                // @ts-ignore
+                import tracker from '@middleware.io/agent-apm-nextjs';
+                export function register() {
+                    tracker.track({
+                        serviceName: "<SERVICE-NAME>",
+                        accessToken: "<xxxxxxxxxx>"
+                    });
+                }
+            ```
+        </Tab>
+        <Tab title="MW Agent NOT Installed">
+            ```javascript Next.js
+                // @ts-ignore
+                import tracker from '@middleware.io/agent-apm-nextjs';
+                export function register() {
+                    tracker.track({
+                        serviceName: "<SERVICE-NAME>",
+                        accessToken: "<ACCESS-TOKEN>",
+                        target: "https://{ACCOUNT-UID}.middleware.io"
+                    });
+                }
+            ```
+        </Tab>
+        </Tabs>
+    </Accordion>
 
 </Accordion>
 

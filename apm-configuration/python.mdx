@@ -14,7 +14,7 @@ title: "Python"
 | :----: | :-----: | :------: | :---------: | :-------: |
 | ✅ | ✅ | ✅ | ✅ | ✅ |
 
-This guide walks you through setting up Application Performance Monitoring (APM) on a Python application. These instructions can also be found on the Installation page in your Middleware Account. View example code <a href="https://github.com/middleware-labs/demo-apm/tree/master/python"> here </a>.
+This guide walks you through setting up Application Performance Monitoring (APM) on a Python application. These instructions can also be found on the Installation page in your Middleware Account. View example code [here](https://github.com/middleware-labs/demo-apm/tree/master/python).
 
 
 # Prerequisites
@@ -22,7 +22,7 @@ This guide walks you through setting up Application Performance Monitoring (APM)
 <Steps>
 
   <Step title="MW Host Agent">
-   Middleware Host Agent (MW Agent). To install the MW Agent, see our <a href="https://docs.middleware.io/docs/agent-installation/overview"> installation guide</a>. 
+   Middleware Host Agent (MW Agent). To install the MW Agent, see our [Installation Guide](https://docs.middleware.io/docs/agent-installation/overview). 
   
   </Step>
 
@@ -73,6 +73,7 @@ tracker=MwTracker()
 <Accordion title="Step 3: Container Variables (Optional)"> 
 Applications running in a container require an additional environment variable. If your application is not running in a container, move to Step 4. 
 
+
 Add the following environment variable to your application:
 ```bash Shell
 MW_AGENT_SERVICE=<DOCKER_BRIDGE_GATEWAY_ADDRESS>
@@ -96,11 +97,12 @@ Then add the following environment variable to your application deployment YAML 
 ```bash Shell
 MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
 ```
+
 </Accordion>
 
 <Accordion title="Step 4: Capture Application Data"> 
     <AccordionGroup>
-        <Accordion title="Setup .ini File"> 
+        <Accordion title="Step 4a: Setup .ini File"> 
 
             Create a `.ini` file based on the features you want to observe. `service_name` and `access_token` are required for the tracker to send data to Middleware.
 
@@ -130,7 +132,7 @@ MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
             ```
         </Accordion>
 
-        <Accordion title="Enable Custom Logs"> 
+        <Accordion title="Step 4b: Enable Custom Logs"> 
 
             To ingest custom logs, utilize the following functions based on desired log severity levels:
 
@@ -141,7 +143,7 @@ MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
             ```
         </Accordion>
 
-        <Accordion title="Stack Errors"> 
+        <Accordion title="Step 4c: Stack Errors"> 
             
             Use `tracker.record_error()` method to record a stack trace when an error occurs:
 

@@ -5,7 +5,7 @@ Collects MySQL performance and health metrics from a MySQL database.
 
 # Prerequisites
 
-Middleware Host Agent (MW Agent) must be installed on your local machine. To install the MW Agent, see our [installation guide](/agent-installation/overview).
+Middleware Host Agent (MW Agent) must be installed on your local machine. To install the MW Agent, see our [Installation Guide](https://docs.middleware.io/agent-installation/overview).
 
 # Setup
 
@@ -100,5 +100,11 @@ Alerts can be configured for any MySQL metrics. When creating a new rule select 
 | `mysql.query.client.count`           | Number of client statements executed by the server   |
 | `mysql.query.count`                  | Total number of statements executed by the server                                                   |
 | `mysql.query.slow.count`             | Number of slow queries                                                                      |
+
+# Troubleshooting
+
+<Accordion title="Missing Integrations Menu">
+  If you do not see the Integrations Menu in Middlware, that means your account has not been granted `Installation` permissions. Contact your system administrator to add the `Installation` permission to your user role in Settings.
+</Accordion>
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>

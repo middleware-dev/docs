@@ -6,7 +6,7 @@ Collects MongoDB performance and health metrics
 
 # Prerequisites
 
-Middleware Host Agent (MW Agent) must be installed on your local machine. To install the MW Agent, see our [installation guide](/agent-installation/overview).
+Middleware Host Agent (MW Agent) must be installed on your local machine. To install the MW Agent, see our [Installation Guide](https://docs.middleware.io/agent-installation/overview).
 
 # Setup
 
@@ -92,5 +92,11 @@ Alerts can be configured for any MongoDB metrics. When creating a new rule selec
 | `mongodb.lock.deadlock.count`     | Number of times lock acquisitions encountered deadlocks                                         |
 | `mongodb.health`                 | Health status of the server                                                                     |
 | `mongodb.uptime`                 | Amount of time the server has been running                                                 |
+
+# Troubleshooting
+
+<Accordion title="Missing Integrations Menu">
+  If you do not see the Integrations Menu in Middlware, that means your account has not been granted `Installation` permissions. Contact your system administrator to add the `Installation` permission to your user role in Settings.
+</Accordion>
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>

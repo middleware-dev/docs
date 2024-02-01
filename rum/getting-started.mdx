@@ -15,7 +15,7 @@ This guide walks you through setting up Real User Monitoring (RUM) with JavaScri
     </Accordion>
 
     <Accordion title="Step 2: Import Javascript CDN">
-        Add the following script tag to the head section of your index.html file. The tag can be copied directly from the Installation page upon completing Step 1.
+        Add the following script tag to the head section of your `index.html` file. The tag can be copied directly from the Installation page upon completing Step 1.
         ```javascript HTML
         <script src="https://cdnjs.middleware.io/browser/libs/0.0.1/middleware-rum.min.js" type="text/javascript"></script>
         ```
@@ -54,7 +54,7 @@ This guide walks you through setting up Real User Monitoring (RUM) with JavaScri
         }
         }
         ```
-        If you need to define attributes post initialization of the SDK, utilize the 'Middleware.setAttributes' method, as exemplified in the following example.
+        If you need to define attributes post initialization of the SDK, utilize the `Middleware.setAttributes` method, as exemplified in the following example.
 
         ```javascript JavaScript
         <script>
@@ -192,7 +192,7 @@ RUM Tracing allows you to gain insight into the specific actions of your users. 
 
 The following installation uses OpenTelemetry B3 Propagator heads. Learn more about B3 Propagation [here](https://github.com/openzipkin/b3-propagation).
 
-<Note> You must have a Middleware APM Agent installed in order to use the tracing feature. Install a Middleware APM [here](/apm-configuration/apm_overview). </Note>
+<Note> You must have a Middleware APM Agent installed in order to use the tracing feature. Install a Middleware APM [here](https://docs.middleware.io/apm-configuration/apm_overview). </Note>
 
 <AccordionGroup>
     <Accordion title="Step 1: Modify Middleware SDK">
@@ -234,16 +234,16 @@ To access your Session Replay data, navigate to the APM section, select the Trac
 |       | | | |
 | :----:| :--:|:--:| :--:|
 | **Language**                                |    **Supported**   | **APM Version** | **Environment Variable** |
-| [Cloudflare](/apm-configuration/cloudflare) |           ✖️        |   ✖️             |        ✖️             |
-| [Go](/apm-configuration/go)           |                ✅        |   `>= 1.1.100`     |        ✖️             |
-| [Java](/apm-configuration/java)         |              ✅        |    ✖️            |         ✅               | 
-| [.NET](/apm-configuration/dotnet)       |              ✅        |     ✖️           |       ✅                 |
-| [Next.js](/apm-configuration/next-js)      |           ✅        |     ✖️           |            ✖️             |
-| [Node.js](/apm-configuration/node-js)      |           ✅        | `>= 1.2.5`         |            ✖️             |
-| [PHP](/apm-configuration/php)          |                ✖️        |    ✖️            |            ✖️             |
-| [Python](/apm-configuration/python)       |            ✅        | `>= 0.3.2`         |            ✖️             |
-| [Ruby](/apm-configuration/ruby)         |              ✅        | `>= 2.1.0`         |   ✅  |
-| [Vercel](/apm-configuration/vercel-integration)   |     ✅        |    ✖️            |            ✖️             |
+| [Cloudflare](https://docs.middleware.io/apm-configuration/cloudflare) |           ✖️        |   ✖️             |        ✖️             |
+| [Go](https://docs.middleware.io/apm-configuration/go)           |                ✅        |   `>= 1.1.100`     |        ✖️             |
+| [Java](https://docs.middleware.io/apm-configuration/java)         |              ✅        |    ✖️            |         ✅               | 
+| [.NET](https://docs.middleware.io/apm-configuration/dotnet)       |              ✅        |     ✖️           |       ✅                 |
+| [Next.js](https://docs.middleware.io/apm-configuration/next-js)      |           ✅        |     ✖️           |            ✖️             |
+| [Node.js](https://docs.middleware.io/apm-configuration/node-js)      |           ✅        | `>= 1.2.5`         |            ✖️             |
+| [PHP](https://docs.middleware.io/apm-configuration/php)          |                ✖️        |    ✖️            |            ✖️             |
+| [Python](https://docs.middleware.io/apm-configuration/python)       |            ✅        | `>= 0.3.2`         |            ✖️             |
+| [Ruby](https://docs.middleware.io/apm-configuration/ruby)         |              ✅        | `>= 2.1.0`         |   ✅  |
+| [Vercel](https://docs.middleware.io/apm-configuration/vercel-integration)   |     ✅        |    ✖️            |            ✖️             |
 
 # Troubleshooting
 
