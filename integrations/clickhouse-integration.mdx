@@ -6,7 +6,7 @@ The ClickHouse Integration allows users to effortlessly ingest and monitor their
 
 # Prerequisites
 
-Middleware Host Agent (MW Agent) must be installed on your local machine. To install the MW Agent, see our [installation guide](/agent-installation/overview).
+Middleware Host Agent (MW Agent) must be installed on your local machine. To install the MW Agent, see our [Installation Guide](https://docs.middleware.io/agent-installation/overview).
 
 # Setup
 
@@ -58,7 +58,7 @@ Create your own widget from scratch. Navigate to the Dashboard Builder and selec
 
 <img src="/images/integration/clickhouse-widget.png" />
 
-<Note> Learn more about creating your own widgets and dashboards in the [Dashboard Builder](/workflow/custom-dashboard/build-custom-dashboard) section. </Note>
+<Note> Learn more about creating your own widgets and dashboards in the [Dashboard Builder](https://docs.middleware.io/workflow/custom-dashboard/build-custom-dashboard) section. </Note>
 
 
 # Metrics Collected
@@ -241,5 +241,11 @@ Create your own widget from scratch. Navigate to the Dashboard Builder and selec
 |` ZooKeeperRequest `| Number of requests to ZooKeeper in fly. |
 |` ZooKeeperSession `| Number of sessions (connections) to ZooKeeper. Should be no more than one, because using more than one connection to ZooKeeper may lead to bugs due to lack of linearizability (stale reads) that ZooKeeper consistency model allows. |
 |` ZooKeeperWatch `| Number of watches (event subscriptions) in ZooKeeper. |
+
+# Troubleshooting
+
+<Accordion title="Missing Integrations Menu">
+  If you do not see the Integrations Menu in Middlware, that means your account has not been granted `Installation` permissions. Contact your system administrator to add the `Installation` permission to your user role in Settings.
+</Accordion>
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>

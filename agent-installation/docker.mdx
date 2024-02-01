@@ -31,7 +31,6 @@ Add tags by adding the `MW_HOST_TAGS` environment variable to the installation c
 MW_HOST_TAGS=<key1>:<value1>,<key2>:<value2>,... MW_API_KEY=...
 ```
 
-
 ### Step 4: Verify Installation
     
 Verify the status of the MW Agent. If status is `UP` or `Exited`, the installation was successful. If status is blank, installation was unsiccessful. Run the following command to verify the MW Agent status:
@@ -39,7 +38,6 @@ Verify the status of the MW Agent. If status is `UP` or `Exited`, the installati
 ```bash Shell
 docker ps -a --filter ancestor=ghcr.io/middleware-labs/mw-host-agent:master
 ```
-
 
 ### Step 5: Check Your Dashboard
 

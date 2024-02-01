@@ -22,7 +22,7 @@ This guide walks you through setting up Application Performance Monitoring (APM)
 <Steps>
 
   <Step title="MW Host Agent">
-   Middleware Host Agent (MW Agent). To install the MW Agent, see our <a href="https://docs.middleware.io/docs/agent-installation/overview"> installation guide</a>. 
+   Middleware Host Agent (MW Agent). To install the MW Agent, see our [Installation Guide](https://docs.middleware.io/docs/agent-installation/overview).
   
    <Note> Although the Middleware Agent is not required for the Next.js APM, we recommend installing it for improved performance. </Note>
   
@@ -91,6 +91,7 @@ Add the following environment variable to your application deployment YAML file:
 
 ```bash Shell
 MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
+
 ```
 
 For Kubernetes clusters, add the following environment variable to your application:
