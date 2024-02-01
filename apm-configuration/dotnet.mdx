@@ -12,14 +12,14 @@ title: ".NET"
 | :----: | :-----: | :------: | :---------: | :-------: |
 | ✅ | ✅ | ✖️ | ✅ | ✅ |
 
-This guide walks you through setting up Application Performance Monitoring (APM) on a .NET application. These instructions can also be found on the Installation page in your Middleware Account. View example code [here](https://github.com/middleware-labs/demo-apm/tree/master/dotnet).
+This guide walks you through setting up Application Performance Monitoring (APM) on a .NET application. These instructions can also be found on the Installation page in your Middleware Account. View example code <a href="https://github.com/middleware-labs/demo-apm/tree/master/dotnet"> here. </a>
 
 # Prerequisites
 
 <Steps>
 
   <Step title="MW Host Agent">
-   Middleware Host Agent (MW Agent). To install the MW Agent, see our [Installation Guide](https://docs.middleware.io/docs/agent-installation/overview). 
+   Middleware Host Agent (MW Agent). To install the MW Agent, see our <a href="https://docs.middleware.io/docs/agent-installation/overview"> installation guide</a>. 
   </Step>
 
   <Step title=".NET Version">
@@ -33,34 +33,24 @@ This guide walks you through setting up Application Performance Monitoring (APM)
 
 # Install
 
-<Accordion title="Step 1: .NET Binary Installation">
+### Step 1: Install `.NET` APM Package
 
-  <Accordion title="Step 1a: Download Bash Script">
+Run the following command in your terminal:
 
-    ```bash Shell
-    curl -sSfL https://install.middleware.io/apm/dotnet/v1.0.0-rc.1/scripts/mw-dotnet-auto-install.sh -O
-    ```
-  </Accordion>
+```bash Shell
+curl -sSfL https://install.middleware.io/apm/dotnet/v1.0.0-rc.1/scripts/mw-dotnet-auto-install.sh -O
+```
+Install core files.
+```bash Shell
+sh ./mw-dotnet-auto-install.sh
+rm -f mw-dotnet-auto-install.sh
+```
+Enable execution for the instrumentation script.
+```bash Shell
+chmod +x $HOME/.mw-dotnet-auto/instrument.sh
+```
 
-  <Accordion title="Step 1b: Install Core Files">
-    
-    ```bash Shell
-    sh ./mw-dotnet-auto-install.sh
-    rm -rf mw-dotnet-auto-install.sh
-    ```
-  </Accordion>
-
-  <Accordion title="Step 1c: Enable Instrumentation">
-
-    Enable execution for the instrumentation script:
-    ```bash Shell
-    chmod +x $HOME/.mw-dotnet-auto/instrument.sh
-    ```
-  </Accordion>
-
-</Accordion>
-
-<Accordion title="Step 2: Setup Middleware .NET Project">
+### Step 2: Setup Middleware .NET Project
 
 Download the latest [Middleware.dll](https://github.com/middleware-labs/dotnet-plugin/releases) and add the following code in the `.csproj` file.
 
@@ -71,40 +61,51 @@ Download the latest [Middleware.dll](https://github.com/middleware-labs/dotnet-p
   </Reference>
 </ItemGroup>
 ```
-</Accordion>
 
-<Accordion title="Step 3: Container Variables">
+### Step 3: Container Variables
 
-  <Accordion title="Kubernetes">
-    Add the following environment variable to your container:
+Applications running in a container require an additional environment variable. If your application is not running in a container, move to [Step 4](/apm-configuration/dotnet#step-4-build-and-run-net-application). 
 
-    ```Shell Shell
-    MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
-    ```
-    <Note> The default namespace for running the Middleware agent is `mw-service.mw-agent-ns.svc.cluster.local`. </Note>
+#### Kubernetes
 
-  </Accordion>
-  
-  <Accordion title="Docker">
-    Add the following environment variable to your container:
+Add the following environment variable to your container:
 
-    ```Shell Shell
-    MW_AGENT_SERVICE=172.17.0.1
-    ```
-    <Note> The default value for `DOCKER_BRIDGE_GATEWAY_ADDRESS` is typically `172.17.0.1`.</Note>
-  </Accordion>
+```Shell Shell
+MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
+```
 
-</Accordion>
+<Note> The default namespace for running the Middleware agent is `mw-service.mw-agent-ns.svc.cluster.local`. </Note>
 
-<Accordion title="Step 4: Build and Run .NET Application">
+#### Docker
 
-  ```bash Shell
-  MW_API_KEY={MW_API_KEY} \
-    . $HOME/.mw-dotnet-auto/instrument.sh && \
-    OTEL_SERVICE_NAME="{APM-SERVICE-NAME}" \
-    dotnet path/to/YourApplication.dll
-  ```
-</Accordion>
+Add the following environment variables to your container:
+
+```dockerfile dockerfile
+MW_AGENT_SERVICE=DOCKER_BRIDGE_GATEWAY_ADDRESS
+MW_API_KEY=<MW_KEY>
+```
+<Note> The `DOCKER_BRIDGE_GATEWAY_ADDRESS` is the IP address of the gateway between the Docker host and bridge network. This is `172.17.0.1` by default. 
+Learn more about Docker bridge networking [here](https://docs.docker.com/network/network-tutorial-standalone/) </Note>
+
+Specify your HTTP ports and URL with the following:
+
+<Warning> This only applies to .NET projects using the ASP framework. </Warning>
+
+```dockerfile dockerfile
+ASPNETCORE_HTTP_PORTS=5000
+ASPNETCORE_URLS=http://0.0.0.0:5000
+```
+
+### Step 4: Build and Run .NET Application
+
+Execute the following command to build and run your .NET application:
+
+```bash Shell
+MW_API_KEY={MW_API_KEY} \
+  . $HOME/.mw-dotnet-auto/instrument.sh && \
+  OTEL_SERVICE_NAME="{APM-SERVICE-NAME}" \
+  dotnet path/to/YourApplication.dll
+```
 
 # Continuous Profiling
 
