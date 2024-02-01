@@ -35,11 +35,11 @@ This guide walks you through setting up Application Performance Monitoring (APM)
 
 ### Step 1: Download JAR
 
-Download the latest Middleware instrumentation JAR file from the <a href="https://github.com/middleware-labs/opentelemetry-java-instrumentation/releases"> Github release page. </a>
+Download the latest Middleware instrumentation JAR file from the [Github Release Page](https://github.com/middleware-labs/opentelemetry-java-instrumentation/releases).
 
 ### Step 2: Container Variables
 
-Applications running in a container require an additional environment variable. If your application is not running in a container, move to Step 5. 
+Applications running in a container require an additional environment variable. If your application is not running in a container, move to Step 3. 
 
 #### Docker
 
@@ -49,6 +49,10 @@ MW_AGENT_SERVICE=<DOCKER_BRIDGE_GATEWAY_ADDRESS>
 ```
 <Note> The `DOCKER_BRIDGE_GATEWAY_ADDRESS` is the IP address of the gateway between the Docker host and bridge network. This is `172.17.0.1` by default. 
 Learn more about Docker bridge networking [here](https://docs.docker.com/network/network-tutorial-standalone/) </Note>
+
+#### Kubernetes
+
+Run the following command to find the `mw-service` in Kubernetes:
 
 #### Kubernetes
 
