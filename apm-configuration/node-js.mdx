@@ -133,5 +133,17 @@ tracker.track({
 
 Continuous profiling captures real-time performance insights from your application to enable rapid identification of resource allocation, bottlenecks, and more. Navigate to the [Continuous Profiling](https://docs.middleware.io/workflow/profiling#continuous-profiling) section to learn more about using Continuous Profiling with the Node.js APM.   
 
+# Troubleshooting
+
+<Accordion title="node-gyp Failing/Missing Dependencies">
+    If `node-gyp` fails to build or your infrastructure is missing dependencies, run the following command:
+
+    ```Shell Shell
+    sudo apt-get build-dep build-essential
+    sudo apt-get install gcc
+    sudo apt-get install g++
+    sudo apt-get install make
+    ```
+</Accordion>
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>

@@ -11,7 +11,10 @@ The installation will set up a DaemonSet inside your Kubernetes cluster and add 
 
 <Steps>
   <Step title="Kubernetes Version">
-  Kubernetes `v1.21` or above
+  Kubernetes version `21.0.0` or above. Check with the following command:
+  ```Shell Shell
+  kubectl version
+  ```
   </Step>
 
   <Step title="Kubernetes Access">
@@ -67,19 +70,6 @@ The MW Agent is frequently updated to add new features and improve performance. 
 bash -c "$(curl -L https://install.middleware.io/scripts/mw-kube-agent-upgrade.sh)"
 ```
 
-# Troubleshooting
-<Warning>  Run only one MW Agent DaemonSet per cluster per host. Multiple agents will cause unexpected behavior. </Warning>
-
-Once the MW Agent is installed on your cluster metrics should begin appearing in the Middleware application within a few minutes. If metrics do not appear, confirm that Kubernetes has access to the internet, either directly or through a proxy, and that only one MW Agent is running per cluster. 
-
-For any issues please reach out to our team in your Slack channel or through the help menu in the Middleware Application.
-
-# Uninstall
-To uninstall the Middleware Agent use the following command:
-```javascript Shell
-bash -c "$(curl -L https://install.middleware.io/scripts/mw-kube-agent-uninstall.sh)"
-```
-
 # Install with Microsoft Powershell
 
 The following section describes how to install and uninstall the Kubernetes Agent with Microsoft Powershell scripts. This method provides you the ability to install the MW Kubernetes Agent using `helm` instead of manifest files. 
@@ -116,7 +106,27 @@ The following section describes how to install and uninstall the Kubernetes Agen
   ```
 </Accordion>
 
-<Accordion title="Uninstall">
+# Troubleshooting
+<Warning>  Run only one MW Agent DaemonSet per cluster per host. Multiple agents will cause unexpected behavior. </Warning>
+
+Once the MW Agent is installed on your cluster metrics should begin appearing in the Middleware application within a few minutes. If metrics do not appear, confirm that Kubernetes has access to the internet, either directly or through a proxy, and that only one MW Agent is running per cluster. 
+
+For any issues please reach out to our team in your Slack channel or through the help menu in the Middleware Application.
+
+<Accordion title="Switching Between Contexts">
+If you are using another thirdy-party resource for managing your Kubernetes Infrastructure (e.g. Lens) it's possible your cluster names are similar across clusters. This will make it hard to delineate between the clusters inside of Middleware.
+
+To fix this, you can force a speicific `cluster.name` by setting the `MW_KUBE_CLUSTER_NAME` environment variable to the name(s) you are using in your thrid party resource. Once the cluster is renamed, it will automatically reset and start to catch the appropriately labeled environment variables.
+</Accordion>
+
+# Uninstall
+
+To uninstall the Middleware Agent use the following command:
+```javascript Shell
+bash -c "$(curl -L https://install.middleware.io/scripts/mw-kube-agent-uninstall.sh)"
+```
+
+<Accordion title="Uninstall with Microsoft Powershell">
   Download the [MW Kubernetes Uninstall script](https://github.com/middleware-labs/install.middleware.io/blob/master/scripts/mw-kube-agent-uninstall-powershell.ps1) and execute the following command:
 
   ```Powershell Powershell

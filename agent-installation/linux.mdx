@@ -59,11 +59,11 @@ We offer two install scripts based on your operating system. Please note that no
 
 </Accordion>
 
-<Accordion title="Step 3: Add Tags to Installation [Optional]">
-    Add tags by adding the MW_HOST_TAGS environment variable to the installation command. Include any desired tags as comma-separated key-value pairs, as shown below. Use the tag “name” to create an alias for the host (e.g. production). 
+<Accordion title="Step 3: Customize Your Hostname [Optional]">
+    Customize your hostname by adding the `MW_HOST_TAGS` environment variable to the beginning of the installation command. Use the `name` tag to create an alias for the hostname (e.g. production). 
 
     ```bash Shell
-    MW_HOST_TAGS=<key1>:<value1>,<key2>:<value2>,… MW_API_KEY=…
+    MW_HOST_TAGS=name:mymachine MW_API_KEY= ...
     ```
 </Accordion>
 
@@ -98,13 +98,13 @@ To uninstall the MW agent, use one of the following commands:
 <Tabs>
   <Tab title="DEB">
     ```bash Shell
-    bash -c "$(curl -L https://install.middleware.io/scripts/apt-uninstall.sh)"
+    bash -c "$(curl -L https://install.middleware.io/scripts/deb-uninstall.sh)"
     ```
   </Tab>
 
   <Tab title="RPM">
     ```bash Shell
-    bash -c "$(curl -L https://install.middleware.io/scripts/apt-uninstall.sh)"
+    bash -c "$(curl -L https://install.middleware.io/scripts/rpm-uninstall.sh)"
     ```  
   </Tab>
 </Tabs>

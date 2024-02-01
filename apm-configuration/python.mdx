@@ -51,6 +51,11 @@ Run the following command in your terminal:
 ```python Shell
 pip install middleware-apm
 ```
+
+Check if the `middleware-apm` has been installed with the following command:
+```python Shell
+pip list
+```
 </Accordion>
 
 <Accordion title="Step 2: Import Middleware Tracker"> 
@@ -67,27 +72,32 @@ tracker=MwTracker()
 
 <Accordion title="Step 3: Container Variables (Optional)"> 
 Applications running in a container require an additional environment variable. If your application is not running in a container, move to Step 4. 
-    
-    <Accordion title="Docker> 
-        For Docker containers, add the following environment variable to your application:
-        ```bash Shell
-        MW_AGENT_SERVICE=<DOCKER_BRIDGE_GATEWAY_ADDRESS>
-        ```
-        <Note> Docker bridge gateway address is the IP address of the gateway between the Docker host and the bridge network, which is 172.17.0.1 by default. 
-        Refer more about Docker bridge networking [here](https://docs.docker.com/network/network-tutorial-standalone/) </Note>
-    </Accordion>
 
-    Accordion title="Kubernetes> 
-        For Kubernetes, first identify the namespace where the MW Agent is running:
 
-        ```bash Shell
-        kubectl get service --all-namespaces | grep mw-service
-        ```
-    </Accordion>
-        Then add the following environment variable to your application deployment YAML file:
-        ```bash Shell
-        MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
-        ```
+Add the following environment variable to your application:
+```bash Shell
+MW_AGENT_SERVICE=<DOCKER_BRIDGE_GATEWAY_ADDRESS>
+```
+
+Add the following command to your `Dockerfile` after the `pip install` command:
+```Dockerfile Dockerfile
+RUN middleware-bootstrap -a install
+```
+
+<Note> docker bridge gateway address is the IP address of the gateway between the Docker host and the bridge network, which is 172.17.0.1 by default. 
+Refer more about Docker bridge networking [here](https://docs.docker.com/network/network-tutorial-standalone/) </Note>
+
+For Kubernetes, first identify the namespace where the MW Agent is running:
+
+```bash Shell
+kubectl get service --all-namespaces | grep mw-service
+```
+
+Then add the following environment variable to your application deployment YAML file:
+```bash Shell
+MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
+```
+
 </Accordion>
 
 <Accordion title="Step 4: Capture Application Data"> 
@@ -147,7 +157,7 @@ Applications running in a container require an additional environment variable. 
     </AccordionGroup>
 </Accordion>
 
-<Accordion title="Step 5: Start Your Project">
+<Accordion title="Step 6: Start Your Project">
 
 After deploying your application, run the following command to start your project:
 ```shell Shell

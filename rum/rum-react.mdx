@@ -1,0 +1,93 @@
+---
+title: Mobile RUM - React Native SDK
+sidebarTitle: React Native
+---
+
+The Mobile RUM SDK provides a customizable suite of tools to analyze and optimize the performance of React Native applications. Seamlessly track user sessions and auto-instrument HTTP monitoring, JS errors, navigation tracking for `react-navigation`, and native crash errors.
+
+# Prerequisites
+
+`React Native version 0.68` or above. Check your React Native version with the following command:
+```shell Shell
+npx npm view react-native version
+```
+
+<Note>[React Navigation 5 & 6](https://reactnavigation.org/docs/getting-started#installation) and [Expo](https://docs.expo.dev/) are both supported by the Middleware React Native SDK </Note>
+
+# Install & Instrument Your React Application
+
+### Step 1: Install Middleware React Native SDK
+
+```Shell Shell
+yarn add @middleware.io/middleware-react-native
+```
+
+### Step 2: Initialize Middleware React Native SDK 
+
+```javascript JavaScript
+import { MiddlewareWrapper, type ReactNativeConfiguration } from '@middleware.io/middleware-react-native';
+        
+const MiddlewareConfig: ReactNativeConfiguration = {
+    serviceName: 'Mobile-SDK-ReactNative',
+    projectName: 'Mobile-SDK-ReactNative',
+    accountKey: '<middleware-account-key>',
+    target: '<target-url>',
+    deploymentEnvironment: 'PROD',
+    globalAttributes: {
+        name: '<your-name>',
+    },
+};
+
+export default function App() { 
+    return (
+      <MiddlewareWrapper configuration={MiddlewareConfig}>
+        // Application Components
+      </MiddlewareWrapper>
+    );
+  }
+```
+
+# Custom Configurations
+
+### Logs
+
+Create custom logs using the Middleware API:
+
+```javascript JavaScript
+MiddlewareRum.debug("I am debug");
+MiddlewareRum.error("I am error");
+MiddlewareRum.info("I am info");
+MiddlewareRum.warn("I am warn");
+```
+
+### Global Attributes
+
+Set global attributes with the `setGlobalAttributes` function:
+
+```javascript JavaScript
+MiddlewareRum.setGlobalAttributes({
+    "name": "Middleware",
+    "app.version": "1.0.0",
+    "custom_key": "some value"
+});
+```
+
+### Custom Errors
+
+Report Custom errors with the following try and catch statment:
+
+```javascript JavaScript
+try{
+    throw new Error("I am error")
+} catch (err) {
+    MiddlewareRum.reportError(err);
+}
+```
+
+### Updating Location Information
+
+Set the latitude and longitude as global attributes:
+
+```javascript JavaScript
+MiddlewareRum.updateLocation(latitude: number, longitude: number)
+```

@@ -32,110 +32,110 @@ This guide walks you through setting up Application Performance Monitoring (APM)
 </Steps>
 
 # Install
-<Accordion title="Step 1: Download JAR">
+
+### Step 1: Download JAR File
+
 Download the latest Middleware instrumentation JAR file from the [Github Release Page](https://github.com/middleware-labs/opentelemetry-java-instrumentation/releases).
-</Accordion>
 
-<Accordion title="Step 2: Container Variables">
-Applications running in a container require an additional environment variable. If your application is not running in a container, move to Step 5. 
-  
-  <Accordion title="Docker">
-    For Docker containers, add the following environment variable to your application:
-    ```bash Shell
-    MW_AGENT_SERVICE=<DOCKER_BRIDGE_GATEWAY_ADDRESS>
-    ```
-    <Note> docker bridge gateway address is the IP address of the gateway between the Docker host and the bridge network, which is 172.17.0.1 by default. 
-    Refer more about Docker bridge networking [here](https://docs.docker.com/network/network-tutorial-standalone/) </Note>
-  
-  </Accordion>
+### Step 2: Container Variables
 
-  <Accordion title="Kubernetes">
+Applications running in a container require an additional environment variable. If your application is not running in a container, move to Step 3. 
 
-    ```bash Shell
-    kubectl get service --all-namespaces | grep mw-service
-    ```
-  </Accordion>
+#### Docker
+
+Add the following environment variable to your application:
+```bash Shell
+MW_AGENT_SERVICE=<DOCKER_BRIDGE_GATEWAY_ADDRESS>
+```
+<Note> docker bridge gateway address is the IP address of the gateway between the Docker host and the bridge network, which is 172.17.0.1 by default. 
+Refer more about Docker bridge networking [here](https://docs.docker.com/network/network-tutorial-standalone/) </Note>
+
+#### Kubernetes
+
+Run the following command to find the `mw-service` in Kubernetes:
+
+```bash Shell
+kubectl get service --all-namespaces | grep mw-service
+```
 
 Add the following environment variable to your application deployment YAML file:
+
 ```bash Shell
 MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
 ```
-</Accordion>
 
-<Accordion title="Step 3: Capture Application Data">
-  <AccordionGroup>
-      
-      <Accordion title="Step 3a: Traces">
-      Distributed tracing will be automatically enabled upon completing Step 4: Run Application.
-      </Accordion>
-
-      <Accordion title="Step 3b: Metrics">
-      Metrics collection will be automatically enabled upon completing Step 4: Run Application.
-      </Accordion>
-
-      <Accordion title="Step 3c: Application & Custom Logs">
-      Application Logs will be automatically enabled upon completing Step 4: Run Application. 
+### Step 3: Capture Application Data
       
 
-      To add custom logs, add the following dependency in the `pom.xml` file:
-      ```java Java
-      <dependency>
-        <groupId>io.github.middleware-labs</groupId>
-        <artifactId>agent-apm-java</artifactId>
-        <version>0.0.16</version>
-      </dependency>
-      ```
+#### Traces
 
-      Install the package in your local repository:
-      ```java Shell
-      mvn install
-      ```
+Distributed tracing will be automatically enabled upon completing Step 4: Run Application.
 
-      Import the logger package:
-      ```java Java
-      import io.github.middlewarelabs.agentapmjava.Logger;
-      ```
+#### Metrics
 
-      Utilize the following functions for various log severity levels:
-      ```java Java
-      Logger.info("info message");
-      Logger.debug("debug message");
-      Logger.warn("warn message");
-      Logger.error("error message");
-      ```
-      </Accordion>
+Metrics collection will be automatically enabled upon completing Step 4: Run Application.
 
-      <Accordion title="Step 3d: Profiling">    
-      Application Profiling is automatically enabled upon completing Step 4: Run Application.
-      </Accordion>
+#### Application & Custom Logs
 
-      
-      <Accordion title="Step 3e: Stack Traces">
-      Use the `Logger.recordError(e)` method to record a stack trace when an error occurs. See an example of this method below:
-      ```java Java
-      import io.github.middlewarelabs.agentapmjava.Logger;
-              
-      try {
-            int[] myNumbers = {1, 2, 3};
-            System.out.println(myNumbers[10]);
-          } catch (Throwable  e) {
-            Logger.recordError(e);
-            System.out.println("Something went wrong.");
-          }
-      ```
-      </Accordion>
-  </AccordionGroup>
-</Accordion>
+Application Logs will be automatically enabled upon completing Step 4: Run Application. 
 
-<Accordion title="Step 4: Run Application">
-Run your application with the command given below:
+To add custom logs, add this dependency in the `pom.xml` file:
+
+```java Java
+<dependency>
+  <groupId>io.github.middleware-labs</groupId>
+  <artifactId>agent-apm-java</artifactId>
+  <version>0.0.16</version>
+</dependency>
+```
+
+Run the following command to download the above dependencies:
+```java Shell
+mvn install
+```
+
+Import the logger package:
+```java Java
+import io.github.middlewarelabs.agentapmjava.Logger;
+```
+
+Then utilize the following functions based on desired log severity levels.
+```java Java
+Logger.info("info message");
+Logger.debug("debug message");
+Logger.warn("warn message");
+Logger.error("error message");
+```
+
+#### Profiling
+
+Application Profiling is automatically enabled upon completing Step 4: Run Application.
+
+#### Stack Traces
+
+Use the Logger.recordError(e) method to record a stack trace when an error occurs. See an example of this method below. 
+```java Java
+import io.github.middlewarelabs.agentapmjava.Logger;
+        
+try {
+      int[] myNumbers = {1, 2, 3};
+      System.out.println(myNumbers[10]);
+    } catch (Throwable  e) {
+      Logger.recordError(e);
+      System.out.println("Something went wrong.");
+    }
+```
+
+### Step 4: Run Application
+
+Run your application with the command given below.
+
 ```java Java
 MW_API_KEY={MW_API_KEY} java -javaagent:/PATH/TO/middleware-javaagent-{version}.jar \
     -Dotel.service.name={APM-SERVICE-NAME} \
     -Dotel.resource.attributes=project.name={APM-PROJECT-NAME} \
     -jar <YOUR_APP>.jar
 ```
-</Accordion>
 
 # Continuous Profiling
 
