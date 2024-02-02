@@ -8,49 +8,47 @@ The Docker MW Agent is a containerized version of the MW Agent. Upon installatio
 
 # Install
 
-<Accordion title="Step 1: Access One-Step Install">
-    Log in to Middleware, navigate to the Installation Page in the bottom left corner and select Docker from the Infrastructure section
+### Step 1: Access Docker Installation
+
+Log in to Middleware, navigate to the Installation Page in the bottom left corner and select Docker from the Infrastructure section
+
+!["Agent Installation"](/images/agent-installation/k1.png)
+
+
+### Step 2: Run Docker Install Command 
+
+Copy and run the installation command. Copy the command directly from the Installation page to ensure your API key and UID are correct 
+
+```bash Shell
+MW_API_KEY=<xxxxxxxxxx> MW_TARGET=https://<uid>.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/docker-install.sh)"
+```
+
+### Step 3: Add Tags to Installation [Optional]
+
+Add tags by adding the `MW_HOST_TAGS` environment variable to the installation command. Include any desired tags as comma-separated key-value pairs, as shown below. Use the tag `name` to create an alias for the host (e.g. production). 
+
+```bash Shell
+MW_HOST_TAGS=<key1>:<value1>,<key2>:<value2>,... MW_API_KEY=...
+```
+
+### Step 4: Verify Installation
     
-    !["Agent Installation"](/images/agent-installation/k1.png)
+Verify the status of the MW Agent. If status is `UP` or `Exited`, the installation was successful. If status is blank, installation was unsiccessful. Run the following command to verify the MW Agent status:
 
-    !["Docker install page"](/images/agent-installation/k6.jpg)
-</Accordion>
+```bash Shell
+docker ps -a --filter ancestor=ghcr.io/middleware-labs/mw-host-agent:master
+```
 
-<Accordion title="Step 2: Run Docker Install Command">
-    Copy and run the installation command. Copy the command directly from the Installation page to ensure your API key and UID are correct 
-    
-    ```bash Shell
-    MW_API_KEY=<xxxxxxxxxx> MW_TARGET=https://<uid>.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/docker-install.sh)"
-    ```
-</Accordion>
+### Step 5: Check Your Dashboard
 
-<Accordion title="Step 3: Add Tags to installation [Optional]">
-    Add tags by adding the `MW_HOST_TAGS` environment variable to the installation command. Include any desired tags as comma-separated key-value pairs, as shown below. Use the tag “name” to create an alias for the host (e.g. production). 
-    
-    ```bash Shell
-    MW_HOST_TAGS=<key1>:<value1>,<key2>:<value2>,… MW_API_KEY=…
-    ```
-</Accordion>
+Navigate to Middleware and ensure metrics are appearing in the <a href="https://docs.middleware.io/docs/unified-dashboard/unified-view"> Unified Dashboard </a>. It can take up to a few minutes for metrics to appear. If metrics do not appear after this time head to our troubleshooting page for some common issues.
 
-<Accordion title="Step 4: Verify Installation">
-    Verify the status of the MW Agent. If status is `UP` or `Exited`, the installation was successful. If status is blank, installation was unsiccessful. Run the following command to verify the MW Agent status:
-
-    ```bash Shell
-    docker ps -a --filter ancestor=ghcr.io/middleware-labs/mw-host-agent:master
-    ```
-</Accordion>
-
-<Accordion title="Step 5: Check Your Dashboard">
-    Navigate to Middleware and ensure metrics are appearing in the [Unified Dashboard]("https://docs.middleware.io/docs/unified-dashboard/unified-view"). It can take up to a few minutes for metrics to appear. If metrics do not appear after this time head to our troubleshooting page for some common issues.
-</Accordion>
 
 # Troubleshooting
 
 <Warning>  Run only one MW Agent per host. Multiple agents will cause unexpected behavior. </Warning>
 
 Once the MW Agent is installed metrics should appear in the Middleware Application within a few minutes. If metrics do not appear, confirm that the machine has access to the internet, either directly or through a proxy, and that only one MW Agent per container is running. 
-
-For any issues please reach out to our team in your Slack channel or through the help menu in the Middleware Application.
 
 # Uninstall
 To uninstall the Middleware Agent use the following commands:

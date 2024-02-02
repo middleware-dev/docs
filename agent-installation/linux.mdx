@@ -26,70 +26,60 @@ We offer two install scripts based on your operating system. Please note that no
 
 # Install
 
-<Accordion title="Step 1: Access One-Step Install">
-    Log in to Middleware, navigate to the Installation Page in the bottom left corner and select Linux-Based from the Infrastructure section
-    
-    !["Agent Installation"](/images/agent-installation/k1.png)
+### Step 1: Access Linux Installation
 
-    ![DEB Linux install](/images/agent-installation/k3.jpg)
-</Accordion>
+Log in to Middleware, navigate to the Installation Page in the bottom left corner and select Linux-Based from the Infrastructure section
 
-<Accordion title="Step 2: Run Linux Install Command">
-    Copy the appropriate installation command based on your machine’s operating system. Copying the command directly from the Installation page ensures your API key and UID are inserted accurately.
+!["Agent Installation"](/images/agent-installation/k1.png)
 
-    <Tabs>
-      <Tab title="DEB">
+### Step 2: Run Linux Install Command
 
-        `DEB`: Compatible with Debian or Debian-based operating systems. For AWS instances this includes Ubuntu and Debian.
+Copy the appropriate installation command based on your machine’s operating system. Copying the command directly from the Installation page ensures your API key and UID are inserted accurately.
 
-        ```bash Shell
-        MW_API_KEY=<xxxxxxxxxx> MW_TARGET=https://<uid>.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/deb-install.sh)"
-        ```
-      </Tab>
+<Tabs>
+  <Tab title="DEB">
 
-      <Tab title="RPM">
-
-        `RPM`: Compatible with Red Hat Package Manager and operating systems like Red Hat or CentOS. Use this for AWS instances using Amazon Linux. 
-        
-        ```bash Shell
-        MW_API_KEY=xxxxxxxxxx MW_TARGET=https://<uid>.middleware.io:443 bash -c "$(curl https://install.middleware.io/scripts/rpm-install.sh)"
-        ```          
-      </Tab>
-    </Tabs>
-
-</Accordion>
-
-<Accordion title="Step 3: Customize Your Hostname [Optional]">
-    Customize your hostname by adding the `MW_HOST_TAGS` environment variable to the beginning of the installation command. Use the `name` tag to create an alias for the hostname (e.g. production). 
+    `DEB`: Compatible with Debian or Debian-based operating systems. For AWS instances this includes Ubuntu and Debian.
 
     ```bash Shell
-    MW_HOST_TAGS=name:mymachine MW_API_KEY= ...
+    MW_API_KEY=<xxxxxxxxxx> MW_TARGET=https://<uid>.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/deb-install.sh)"
     ```
-</Accordion>
+  </Tab>
 
+  <Tab title="RPM">
 
-<Accordion title="Step 4: Verify Installation">
-    Run the following command to verify the MW Agent status:
-
-    ```bash Shell
-    sudo systemctl status mwservice
-    ```
-    A successful installation will return the following Agent Status report:
+    `RPM`: Compatible with Red Hat Package Manager and operating systems like Red Hat or CentOS. Use this for AWS instances using Amazon Linux. 
     
-    ![Linux Agent Status](/images/agent-installation/k5.jpg)
-</Accordion>
+    ```bash Shell
+    MW_API_KEY=xxxxxxxxxx MW_TARGET=https://<uid>.middleware.io:443 bash -c "$(curl https://install.middleware.io/scripts/rpm-install.sh)"
+    ```          
+  </Tab>
+</Tabs>
 
+### Step 3: Customize Your Hostname [Optional]
 
+Customize your hostname by adding the `MW_HOST_TAGS` environment variable to the beginning of the installation command. Use the `name` tag to create an alias for the hostname (e.g. production). 
+    
+```bash Shell
+MW_HOST_TAGS=name:mymachine MW_API_KEY= ...
+```
 
+### Step 4: Verify Installation
 
+Run the following command to verify the MW Agent status:
+
+```bash Shell
+sudo systemctl status mwservice
+```
+A successful installation will return the following Agent Status report:
+
+![Linux Agent Status](/images/agent-installation/k5.jpg)
 
 # Troubleshooting
 
 <Warning>  Run only one MW Agent per node per host. Multiple agents will cause unexpected behavior.</Warning>
 
 Once the MW Agent is installed metrics should begin appearing in the Middleware application within a few minutes. If metrics do not appear, confirm that the machine has access to the internet, either directly or through a proxy, and that only one MW Agent is running per node. 
-
-For any issues please reach out to our team in your Slack channel or through the help menu in the Middleware Application.
 
 
 # Uninstall

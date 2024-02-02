@@ -48,7 +48,7 @@
   },
   "tabs": [
     {
-      "name": "Workflows",
+      "name": "Guides",
       "url": "workflow"
     },
     {
@@ -77,6 +77,7 @@
             "agent-installation/overview",
             "agent-installation/docker",
             "agent-installation/kubernetes",
+            "agent-installation/kubernetes-ms-powershell",
             "agent-installation/linux",            
             "agent-installation/windows"
             
@@ -154,12 +155,13 @@
           "pages": [
             "rum/rum-overview",
             "rum/getting-started",
+            "rum/rum-nextjs",
             {
               "group": "Mobile",
               "pages": [
                 "rum/rum-android-mobile",
                 "rum/rum-ios",
-                "rum/rum-react"
+                "rum/rum-react"                
               ]
             }
           ]

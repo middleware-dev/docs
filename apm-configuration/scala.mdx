@@ -16,34 +16,31 @@ This guide walks you through setting up Application Performance Monitoring (APM)
 
 # Install
 
-<Accordion title="Step 1: Download Jar File ">
-  Download the most recent [Middleware Java Agent jar file](https://github.com/middleware-labs/opentelemetry-java-instrumentation/releases).
+### Step 1: Download Jar File 
 
-</Accordion>
+Download the most recent [Middleware Java Agent jar file](https://github.com/middleware-labs/opentelemetry-java-instrumentation/releases).
 
-<Accordion title="Step 2: Update Your build.sbt file">
+### Step 2: Update Your `build.sbt` File
  
- ```java Java
- lazy val root = (project in file("."))
-  .settings(
-    ...
-    (run / javaOptions) ++= Seq(
-      "-javaagent:middleware-javaagent-{VERSION}.jar",
-      "-Dotel.service.name={SCALA-APP-NAME}"
-    )
-    ...
+```java Java
+lazy val root = (project in file("."))
+.settings(
+  ...
+  (run / javaOptions) ++= Seq(
+    "-javaagent:middleware-javaagent-{VERSION}.jar",
+    "-Dotel.service.name={SCALA-APP-NAME}"
   )
- ```
+  ...
+)
+```
 
-</Accordion>
+### Step 3: Run Your App
 
-<Accordion title="Step 3: Run Your App">
-Run the following command in your terminal to start your application:
+Run the following command in your terminal to start your application
 
 ```shell Shell
 MW_API_KEY=<YOUR_API_KEY> sbt run
 ```
-</Accordion>
 
 # Continuous Profiling
 

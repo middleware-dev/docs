@@ -37,16 +37,15 @@ This guide walks you through setting up Application Performance Monitoring (APM)
 
 # Install
 
-<Accordion title="Step 1: Install NPM Package">
+### Step 1: Install `Node.js` APM Package
 
 Run the following command in your terminal: 
 
 ```javascript bash
 npm install @middleware.io/node-apm --save
 ```
-</Accordion>
 
-<Accordion title="Step 2:  Initialize Tracker">
+### Step 2:  Initialize Tracker
 
 Add the following lines to the beginning of your application code base. The access token is your account key, which can be found on the Installation page.
 
@@ -57,77 +56,71 @@ tracker.track({
     accessToken: "<xxxxxxxxxx>"
 });
 ```
-</Accordion>
 
-<Accordion title="Step 3: Container Variables">
-    
-    Applications running in a container require an additional environment variable. If your application is not running in a container, move to Step 4. 
+### Step 3: Container Variables
 
-    <Accordion title="Docker">
-        For Docker containers, add the following environment variable to your application.
-        ```javascript bash
-        MW_AGENT_SERVICE=<DOCKER_BRIDGE_GATEWAY_ADDRESS>
-        ```
-        <Note> Docker bridge gateway address is the IP address of the gateway between the Docker host and the bridge network, which is 172.17.0.1 by default. 
-        Refer more about Docker bridge networking [here](https://docs.docker.com/network/network-tutorial-standalone/) </Note>
-    </Accordion>
+#### Docker
 
-    <Accordion title="Kubernetes">
-        ```javascript bash
-        kubectl get service --all-namespaces | grep mw-service
-        ```
-    </Accordion>
+Applications running in a container require an additional environment variable. If your application is not running in a container, move to Step 4. 
 
-    Add the following environment variable to your application deployment YAML file: 
-    ```javascript bash
-    MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
-    ```
-    
-</Accordion>
+For Docker containers, add the following environment variable to your application.
+```javascript bash
+MW_AGENT_SERVICE=<DOCKER_BRIDGE_GATEWAY_ADDRESS>
+```
+<Note> The `DOCKER_BRIDGE_GATEWAY_ADDRESS` is the IP address of the gateway between the Docker host and bridge network. This is `172.17.0.1` by default. 
+Learn more about Docker bridge networking [here](https://docs.docker.com/network/network-tutorial-standalone/) </Note>
 
-<Accordion title="Step 4: Capture Application Data">
-    <AccordionGroup>
-        <Accordion title="Step 4a: Traces">
+#### Kubernetes
+
+```javascript bash
+kubectl get service --all-namespaces | grep mw-service
+```
+
+Then add the following environment variable to your application deployment YAML file. 
+```javascript bash
+MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
+```
+
+### Step 4: Capture Application Data
+
+#### Traces
             
-            Distributed tracing is automatically enabled upon completion of Step 2.
-        </Accordion>
+Distributed tracing is automatically enabled upon completion of Step 2.
 
-        <Accordion title="Step 4b: Custom Logs">
+#### Custom Logs
+
+To ingest custom logs into Middleware, utilize the following functions inside your logging method based on desired log severity levels.
+
+```javascript Node.js
+tracker.info('Info sample');
+tracker.warn('Warning sample');
+tracker.debug('Debugging Sample');
+tracker.error('Error Sample');
+```
+
+To add stack traces along with the error log, use the following error tracking function.
+```javascript Node.js
+tracker.error(new Error('Error sample with stack trace'));
+```
+
+
+#### Profiling
+
+Application Profiling is auto-configured upon completing Step 2.
+
+#### Stack Traces
             
-            To ingest custom logs into Middleware, utilize the following functions inside your logging method based on desired log severity levels.
-            ```javascript Node.js
-            tracker.info('Info sample');
-            tracker.warn('Warning sample');
-            tracker.debug('Debugging Sample');
-            tracker.error('Error Sample');
-            ```
-
-            To add stack traces along with the error log, use the following error tracking function.
-            ```javascript Node.js
-            tracker.error(new Error('Error sample with stack trace'));
-            ```
-        </Accordion>
-
-        <Accordion title="Step 4c: Profiling">            
-            Application Profiling is auto-configured upon completing Step 2.
-        </Accordion>
-
-        <Accordion title="Step 4d: Stack Traces ">  
-            
-            Use the errorRecord method to record a stack trace when an error occurs. See an example of this method below. 
-            ```javascript Node.js 
-            app.get('/error', function (req, res) {
-                try{
-                    throw new Error('oh error!');
-                }catch (e) {
-                track.errorRecord(e)
-                }
-                res.status(500).send("wrong");
-            }); 
-            ```
-        </Accordion>
-    </AccordionGroup>
-</Accordion>
+Use the errorRecord method to record a stack trace when an error occurs. See an example of this method below. 
+```javascript Node.js 
+app.get('/error', function (req, res) {
+    try{
+        throw new Error('oh error!');
+    }catch (e) {
+    track.errorRecord(e)
+    }
+    res.status(500).send("wrong");
+}); 
+```
 
 # Continuous Profiling
 
@@ -135,15 +128,15 @@ Continuous profiling captures real-time performance insights from your applicati
 
 # Troubleshooting
 
-<Accordion title="node-gyp Failing/Missing Dependencies">
-    If `node-gyp` fails to build or your infrastructure is missing dependencies, run the following command:
+### `node-gyp` Failing/Missing Dependencies
 
-    ```Shell Shell
-    sudo apt-get build-dep build-essential
-    sudo apt-get install gcc
-    sudo apt-get install g++
-    sudo apt-get install make
-    ```
-</Accordion>
+If `node-gyp` fails to build or your infrastructure is missing dependencies, run the following command:
+
+```Shell Shell
+sudo apt-get build-dep build-essential
+sudo apt-get install gcc
+sudo apt-get install g++
+sudo apt-get install make
+```
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>

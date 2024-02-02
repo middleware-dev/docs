@@ -10,39 +10,40 @@ Middleware Host Agent (MW Agent) must be installed on your local machine. To ins
 
 # Setup
 
-<Accordion title="Step 1: Update ClickHouse Configuration">
-    Add the following lines to your ClickHouse configuration (`/etc/clickhouse-server/config.xml`) to expose metrics on port `9126`
+### Step 1: Update ClickHouse Configuration
 
-    ```xml
-    <prometheus>
-        <endpoint>/metrics</endpoint>
-        <port>9126</port>
-        <metrics>true</metrics>
-        <events>true</events>
-        <asynchronous_metrics>true</asynchronous_metrics>
-    </prometheus>
-    ```
-    
-</Accordion>
+Add the following lines to your ClickHouse configuration (`/etc/clickhouse-server/config.xml`) to expose metrics on port `9126`
 
-<Accordion title="Step 2: Navigate to ClickHouse Integration">
-    Login to your Middleware account, navigate to the ClickHouse integration, and connect ClickHouse
+```xml XML
+<prometheus>
+    <endpoint>/metrics</endpoint>
+    <port>9126</port>
+    <metrics>true</metrics>
+    <events>true</events>
+    <asynchronous_metrics>true</asynchronous_metrics>
+</prometheus>
+```
 
-    <img src="/images/integration/clickhouse-integration-page.png" />
-</Accordion>
+### Step 2: Navigate to ClickHouse Integration
 
-<Accordion title="Step 3: Connect ClickHouse Instance">
-    To access ClickHouse metrics, choose a host to connect to your ClickHouse instance
-    <img src="/images/integration/clickhouse-host.png" />
-</Accordion>
+Login to your Middleware account, navigate to the ClickHouse integration, and connect ClickHouse
 
-<Accordion title="Step 4: Configure ClickHouse Instance">
-    Configure your host to connect to the IP address and port that ClickHouse stores its metrics
+<img src="/images/integration/clickhouse-integration-page.png" />
 
-    <img src="/images/integration/clickhouse-connectivity.png" />
+### Step 3: Connect ClickHouse Instance
 
-    <Note> The default port for your ClickHouse instance is `9126` </Note>
-</Accordion>
+To access ClickHouse metrics, choose a host to connect to your ClickHouse instance
+
+<img src="/images/integration/clickhouse-host.png" />
+
+### Step 4: Configure ClickHouse Instance
+
+Configure your host to connect to the IP address and port that ClickHouse stores its metrics
+
+<img src="/images/integration/clickhouse-connectivity.png" />
+
+<Note> The default port for your ClickHouse instance is `9126` </Note>
+
 # Visualize Your Data
 
 ### Default ClickHouse Dashboard

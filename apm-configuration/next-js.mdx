@@ -47,15 +47,14 @@ This guide walks you through setting up Application Performance Monitoring (APM)
 
 # Install
 
-<Accordion title="Step 1: Install Next.js APM Package">
+### Step 1: Install `Next.js` APM Package
 
 Run the following command in your terminal:
 ```bash Shell 
 npm install @middleware.io/agent-apm-nextjs
 ```
-</Accordion>
 
-<Accordion title="Step 2: Modify Config File">
+### Step 2: Modify Config File
 
 Add the following code to your `next.config.js` file:
 
@@ -71,83 +70,77 @@ const nextConfig = {
 }
 module.exports = nextConfig
 ```
-</Accordion>
 
-<Accordion title="Step 3: Container Variables">
+### Step 3: Container Variables
 
-<Note>If your application is not running in a container or Kubernetes cluster, move to Step 4</Note> 
+Applications running in a container require an additional environment variable. If your application is not running in a container, move to [Step 4](/apm-configuration/next-js#step-4-create-instrumentation-file).
 
-    <Accordion title="Docker">
-        For Docker containers, add the following environment variable to your application:
+#### Docker
 
-        ```bash Shell
-        MW_AGENT_SERVICE=<DOCKER_BRIDGE_GATEWAY_ADDRESS>
-        ```
-        <Note> Docker bridge gateway address is the IP address of the gateway between the Docker host and the bridge network, which is 172.17.0.1 by default. 
-        Refer more about Docker bridge networking [here](https://docs.docker.com/network/network-tutorial-standalone/) </Note>
-    </Accordion>
+Add the following environment variable to your application:
 
-    <Accordion title="Docker">
-        For Kubernetes clusters, add the following environment variable to your application:
-        ```bash Shell
-        kubectl get service --all-namespaces | grep mw-service
-        ```
-    </Accordion>
+```bash Shell
+MW_AGENT_SERVICE=<DOCKER_BRIDGE_GATEWAY_ADDRESS>
+```
+<Note> The `DOCKER_BRIDGE_GATEWAY_ADDRESS` is the IP address of the gateway between the Docker host and bridge network. This is `172.17.0.1` by default. 
+Learn more about Docker bridge networking [here](https://docs.docker.com/network/network-tutorial-standalone/) </Note>
+
+#### Kubernetes
+
 Add the following environment variable to your application deployment YAML file:
 
 ```bash Shell
 MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
+
 ```
-</Accordion>
 
-<Accordion title="Step 4: Create Instrumentation File">
-    <Accordion title="Step 4a: Custom Instrumentation">
-        Create a custom `instrumentation.ts` (or `.js`) file in your project `root` directory or inside the `src` folder
+For Kubernetes clusters, add the following environment variable to your application:
 
-        <Warning>The `instrumentation.ts` file must be located at the `root` of your project unless you are using the `src` directory. If you are using the `src` directory, ensure the `instrumentation.ts` file is placed within the `src` directory, alongside the pages and app directories.</Warning>
-    </Accordion>
+```bash Shell
+kubectl get service --all-namespaces | grep mw-service
+```
 
-    <Accordion title="Step 4b: Synchronize Instrumentation">
-        Synchronize your instrumentation filename if you are using the `pagesExtension` config option to add suffixes
+### Step 4: Create Instrumentation File
 
-        <Note> Example: If you use pagesExtension: ['ts'], the instrumentation file should be named `instrumentation.ts`. </Note>
-    </Accordion>
+1. Create a custom `instrumentation.ts (or .js)` file in your project `root` directory or inside the `src` folder
 
-    <Accordion title="Step 4c: Add Code Snippet">
-        Add the below code snippet depending on your current setup:
+<Warning>The `instrumentation.ts` file must be located at the `root` of your project unless you are using the `src` directory. If you are using the `src` directory, ensure the `instrumentation.ts` file is placed within the `src` directory, alongside the pages and app directories.</Warning>
 
-        <Tabs>
-        <Tab title="MW Agent Installed">
-            ```javascript Next.js
-                // @ts-ignore
-                import tracker from '@middleware.io/agent-apm-nextjs';
-                export function register() {
-                    tracker.track({
-                        serviceName: "<SERVICE-NAME>",
-                        accessToken: "<xxxxxxxxxx>"
-                    });
-                }
-            ```
-        </Tab>
-        <Tab title="MW Agent NOT Installed">
-            ```javascript Next.js
-                // @ts-ignore
-                import tracker from '@middleware.io/agent-apm-nextjs';
-                export function register() {
-                    tracker.track({
-                        serviceName: "<SERVICE-NAME>",
-                        accessToken: "<ACCESS-TOKEN>",
-                        target: "https://{ACCOUNT-UID}.middleware.io"
-                    });
-                }
-            ```
-        </Tab>
-        </Tabs>
-    </Accordion>
+2. Synchronize your instrumentation filename if you are using the `pagesExtension` config option to add suffixes
 
-</Accordion>
+<Note> Example: If you use `pagesExtension: ['ts']`, the instrumentation file should be named `instrumentation.ts`. </Note>
 
-<Accordion title="Step 5: Enable Logging">
+3. Add the below code snippet depending on your current setup:
+
+<Tabs>
+  <Tab title="MW Agent Installed">
+    ```javascript Next.js
+        // @ts-ignore
+        import tracker from '@middleware.io/agent-apm-nextjs';
+        export function register() {
+            tracker.track({
+                serviceName: "<SERVICE-NAME>",
+                accessToken: "<xxxxxxxxxx>"
+            });
+        }
+    ```
+  </Tab>
+  <Tab title="MW Agent NOT Installed">
+    ```javascript Next.js
+        // @ts-ignore
+        import tracker from '@middleware.io/agent-apm-nextjs';
+        export function register() {
+            tracker.track({
+                serviceName: "<SERVICE-NAME>",
+                accessToken: "<ACCESS-TOKEN>",
+                target: "https://{ACCOUNT-UID}.middleware.io"
+            });
+        }
+    ```
+  </Tab>
+</Tabs>
+
+### Step 5: Enable Logging
 
 Ingest custom logs by using the following functions based on desired log severity levels:
 
@@ -167,13 +160,10 @@ export default async function handler(req, res) {
     // Your existing code
 }
 ```
-</Accordion>
 
-<Accordion title="Step 6: Deploy your Project">
+### Step 6: Deploy your Project
 
 <Note>If you’re looking to set up a sample Next.js project with API routes, you can use the following command in your terminal: `npx create-next-app@latest --example api-routes`</Note>
-
-</Accordion>
 
 # Continuous Profiling
 

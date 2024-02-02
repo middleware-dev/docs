@@ -11,130 +11,126 @@ Use the OpenTelemetry Collector Contrib to build your own custom distributions w
 
 # Linux Installation
 
-<Accordion title="Step 1: Install DEB or RPM">
+### Step 1: Install DEB or RPM
 
-    [Download](https://opentelemetry.io/docs/collector/installation/#linux) the `opentelemetry-collector` with the same package manager you used to install the MW Agent.
-</Accordion>
+[Download](https://opentelemetry.io/docs/collector/installation/#linux) the `opentelemetry-collector` with the same package manager you used to install the MW Agent.
 
-<Accordion title="Step 2: Use otelcol-contrib">
-    Use the `otelcol-contrib (opentelemetry-collector-contrib)` distribution instead of the `otelcol (opentelemetry-collector)` for the OpenTelemetry Collector.
+### Step 2: Use `otelcol-contrib`
 
-    When prompted to download `otelcol`, download one of the following instead:
+Use the `otelcol-contrib (opentelemetry-collector-contrib)` distribution instead of the `otelcol (opentelemetry-collector)` for the OpenTelemetry Collector.
 
-    <CodeGroup>
+When prompted to download `otelcol`, download one of the following instead:
 
-    ```powershell DEB
-    # AMD64
-    otelcol-contrib_0.92.0_linux_amd64.deb
-    # ARM64
-    otelcol-contrib_0.92.0_linux_arm64.deb
-    ```
+<CodeGroup>
 
-    ```powershell RPM
-    # AMD64
-    otelcol-contrib_0.92.0_linux_amd64.rpm 
-    # ARM64
-    otelcol-contrib_0.92.0_linux_arm64.rpm
-    ```
+```powershell DEB
+# AMD64
+otelcol-contrib_0.92.0_linux_amd64.deb
+# ARM64
+otelcol-contrib_0.92.0_linux_arm64.deb
+```
 
-    </CodeGroup>  
-</Accordion>
+```powershell RPM
+# AMD64
+otelcol-contrib_0.92.0_linux_amd64.rpm 
+# ARM64
+otelcol-contrib_0.92.0_linux_arm64.rpm
+```
 
-<Accordion title="Step 3: Follow OTel Config">
-    Once you have installed Linux, proceed to the [Configuration Section](/open-telemetry/otel-collector#configuration).
-</Accordion>
+</CodeGroup>  
+
+### Step 3: Follow OTel Config
+
+Once you have installed Linux, proceed to the [Configuration Section](/open-telemetry/otel-collector#configuration).
 
 # Docker Installation
 
-<Accordion title="Step 1: Install DockerHub or ghcr.io">
-    [Download](https://opentelemetry.io/docs/collector/installation/) the opentelemetry-collector with the same container registry you used to install the MW Agent.
-</Accordion>
+### Step 1: Install DockerHub or `ghcr.io`
 
-<Accordion title="Step 2: Use otelcol-contrib">
-    Ensure the container image refers to the `opentelemetry-collector-contrib` and not core `opentelemetry-collector`.
+[Download](https://opentelemetry.io/docs/collector/installation/) the opentelemetry-collector with the same container registry you used to install the MW Agent.
 
-    Check your container image with the following commands:
+### Step 2: Use `otelcol-contrib`
 
-    ```Shell Shell
-    otelcol --version
-    # and
-    opentelemetry-collector-contrib --version
-    ```
-</Accordion>
+Ensure the container image refers to the `opentelemetry-collector-contrib` and not core `opentelemetry-collector`.
 
-<Accordion title="Step 3: Follow OTel Config">
-    Once you have installed Docker, proceed to the [Configuration Section](/open-telemetry/otel-collector#configuration).
-</Accordion>
+Check your container image with the following commands:
+
+```Shell Shell
+otelcol --version
+# and
+opentelemetry-collector-contrib --version
+```
+
+### Step 3: Follow OTel Config
+
+Once you have installed Docker, proceed to the [Configuration Section](/open-telemetry/otel-collector#configuration).
 
 # Configuration
 
-<Accordion title="Step 1: Configure Collector">
-    Follow the [OTel Configuration Instructions](https://opentelemetry.io/docs/collector/configuration/) to configure the `opentelemetry-collector-contrib`
+### Step 1: Configure Collector
+Follow the [OTel Configuration Instructions](https://opentelemetry.io/docs/collector/configuration/) to configure the `opentelemetry-collector-contrib`
 
-    <Note> You must fully configure the OTel Collector before adding more code to the `processors`, `exporters` and `service` section. </Note>
-</Accordion>
+<Note> You must fully configure the OTel Collector before adding more code to the `processors`, `exporters` and `service` section. </Note>
 
-<Accordion title="Step 2: Add to Processors">
+### Step 2: Add to Processors
 
-    Add the following code to the `processors` section:
+Add the following code to the `processors` section:
 
-    ```YAML YAML
-    processors:
-      resourcedetection:
-        detectors: [ env, system ]
-        timeout: 2s
-        system:
-          hostname_sources: [ os ]
-      resource/middleware:
-        attributes:
-        - action: upsert
-          key: mw.account_key
-          value: <your-mw-api-key>
-        - action: upsert
-          from_attribute: host.name
-          key: host.id
-    ```
-</Accordion>
+```YAML YAML
+processors:
+  resourcedetection:
+    detectors: [ env, system ]
+    timeout: 2s
+    system:
+      hostname_sources: [ os ]
+  resource/middleware:
+    attributes:
+    - action: upsert
+      key: mw.account_key
+      value: <your-mw-api-key>
+    - action: upsert
+      from_attribute: host.name
+      key: host.id
+```
 
-<Accordion title="Step 3: Add to Exporters">
+### Step 3: Add to Exporters
 
-    Add the following code to the `exporters` section:
+Add the following code to the `exporters` section:
 
-    ```YAML YAML
-    exporters:
-      otlp/middleware:
-        endpoint: "your-endpoint.middleware.io:443"
-        headers:
-          authorization: "<your-mw-api-key>"
-        sending_queue:
-          enabled: true
-          num_consumers: 100
-          queue_size: 10000
-    ```
-</Accordion>
+```YAML YAML
+exporters:
+  otlp/middleware:
+    endpoint: "your-endpoint.middleware.io:443"
+    headers:
+      authorization: "<your-mw-api-key>"
+    sending_queue:
+      enabled: true
+      num_consumers: 100
+      queue_size: 10000
+```
 
-<Accordion title="Step 4: Add to Service">
-    Add the following code within the pipelines section:
+### Step 4: Add to Service
 
-    ```YAML YAML
-    service:
-      pipelines:
-        traces:
-          receivers: [ <your-receivers-list-for-traces> ]
-          processors: [ resourcedetection, resource/middleware, 
-                        <your-processor-list-for-traces> ]
-          exporters: [ otlp/middleware, <your-exporters-list-for-traces> ]
-        metrics:
-          receivers: [ <your-receivers-list-for-metrics> ]
-          processors: [ resourcedetection, resource/middleware ]
-          exporters: [ otlp/middleware, <your-exporters-list-for-metrics> ]
-        logs:
-          receivers: [ <your-receivers-list-for-logs> ]
-          processors: [ resourcedetection, resource/middleware, 
-                        <your-processors-list-for-logs> ]
-          exporters: [otlp/middleware, <your-exporters-list-for-logs>]
-    ```
-</Accordion>
+Add the following code within the pipelines section:
+
+```YAML YAML
+service:
+  pipelines:
+    traces:
+      receivers: [ <your-receivers-list-for-traces> ]
+      processors: [ resourcedetection, resource/middleware, 
+                    <your-processor-list-for-traces> ]
+      exporters: [ otlp/middleware, <your-exporters-list-for-traces> ]
+    metrics:
+      receivers: [ <your-receivers-list-for-metrics> ]
+      processors: [ resourcedetection, resource/middleware ]
+      exporters: [ otlp/middleware, <your-exporters-list-for-metrics> ]
+    logs:
+      receivers: [ <your-receivers-list-for-logs> ]
+      processors: [ resourcedetection, resource/middleware, 
+                    <your-processors-list-for-logs> ]
+      exporters: [otlp/middleware, <your-exporters-list-for-logs>]
+```
 
 # Limitations
 

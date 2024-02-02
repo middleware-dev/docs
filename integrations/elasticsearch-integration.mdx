@@ -22,32 +22,30 @@ The Elasticsearch Integration allows users to track their Elasticsearch performa
 
 # Setup
 
-<Accordion title="Step 1: Create Database Credentials">
-  Create a `.yaml` file containing database credentials like the below example. If the database is not password protected, the `username` and `password` fields can be removed.
+### Step 1: Create Database Credentials
 
-  `/home/ubuntu/elasticsearch-creds.yaml`
+Create a `.yaml` file containing database credentials like the below example. If the database is not password protected, the `username` and `password` fields can be removed.
 
-  ```yaml .yaml
-      elasticsearch:
-        endpoint: http://localhost:9200
-        username: YOUR_USERNAME
-        password: YOUR_PASSWORD
-  ```
+`/home/ubuntu/elasticsearch-creds.yaml`
 
-  <Note> If you are running the Middleware Docker Agent, keep the YAML file within the `/var/log` directory. Docker Agents might not support dynamic volume binding.</Note>
+```yaml .yaml
+    elasticsearch:
+      endpoint: http://localhost:9200
+      username: YOUR_USERNAME
+      password: YOUR_PASSWORD
+```
 
-</Accordion>
+<Note> If you are running the Middleware Docker Agent, keep the YAML file within the `/var/log` directory. Docker Agents might not support dynamic volume binding.</Note>
 
-<Accordion title="Step 2: Access Integrations">
-  Log in to Middleware, navigate to the Installations Page in the bottom left corner, select All Integration and click MySQL
+### Step 2: Access Integrations
 
-  <img src="/images/integration/elasticsearch-store.png" /> 
+Log in to Middleware, navigate to the Installations Page in the bottom left corner, select All Integration and click MySQL
 
-</Accordion>
+<img src="/images/integration/elasticsearch-store.png" /> 
 
-<Accordion title="Step 3: Enable Integration">
-  Add a host machine from the dropdown list, input the credential path from Step 1, and Save
-</Accordion>
+### Step 3: Enable Integration
+
+Add a host machine from the dropdown list, input the credential path from Step 1, and Save
 
 # Visualize Your Data
 

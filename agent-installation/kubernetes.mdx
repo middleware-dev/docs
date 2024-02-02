@@ -4,7 +4,7 @@ title: "Kubernetes"
 
 This guide walks you through installing the MW Agent in a Kubernetes environment. These instructions can also be found on the Installation page in the Middleware application. 
 
-The installation will set up a DaemonSet inside your Kubernetes cluster and add necessary components to appropriately permission the DaemonSet pods. A Kubernetes service is also created to allow components to connect to the MW Agent via Cluster IP address & ports (i.e. language-based APMs). 
+The installation will set up a DaemonSet inside your Kubernetes cluster and add necessary components to appropriately permission the DaemonSet pods. A Kubernetes service is also created to allow components to connect to the MW Agent via Cluster IP address and ports (i.e. language-based APMs). 
 
 
 # Prerequisites
@@ -28,110 +28,69 @@ The installation will set up a DaemonSet inside your Kubernetes cluster and add 
 
 # Install
 
-<Accordion title="Step 1: Access One-Step Install">
-    Log in to Middleware, navigate to the Installation Page in the bottom left corner and select Kubernetes from the Infrastructure section
-    
-    !["Agent Installation"](/images/agent-installation/k1.png)
+### Step 1: Access Kubernetes Installation
 
-    !["kubernetes install"](/images/agent-installation/k2.jpg)
-</Accordion>
+Log in to Middleware, navigate to the Installation Page in the bottom left corner and select Kubernetes from the Infrastructure section
 
-<Accordion title="Step 2: Identify Kubernetes Context">
-  Get the current Kubernetes Context and ensure the cluster belonging to this Context is where you want to install the MW Agent.
+!["Agent Installation"](/images/agent-installation/k1.png)
+
+
+### Step 2: Identify Kubernetes Context
+
+Get the current Kubernetes Context and ensure the cluster belonging to this Context is where you want to install the MW Agent.
+
+Use the following command to find out your current Kubernetes context:
+
+```javascript Shell
+kubectl config get-contexts `kubectl config current-context`
+```
+
+### Step 3: Run Kubernetes Install Command
+
+Copy and run the installation command. An example of the command is shown below. Copying the command directly from the Installation page ensures your API key and UID are inserted accurately.
+
+```javascript Shell
+MW_API_KEY=<xxxxxxxxxx> MW_TARGET=https://<uid>.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/mw-kube-agent-install.sh)"
+```
+
+### Step 4: Verify Installation
   
-  Use the following command to find out your current Kubernetes context:
+Verify the status of the MW Agent with the following command:
 
-  ```javascript Shell
-  kubectl config get-contexts `kubectl config current-context`
-  ```
-</Accordion>
+```javascript Shell
+kubectl get daemonset/mw-kube-agent -n mw-agent-ns
+```
 
-<Accordion title="Step 3: Run Kubernetes Install Command">
-  Copy and run the installation command. An example of the command is shown below. Copying the command directly from the Installation page ensures your API key and UID are inserted accurately.
-  ```javascript Shell
-  MW_API_KEY=<xxxxxxxxxx> MW_TARGET=https://<uid>.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/mw-kube-agent-install.sh)"
-  ```
-</Accordion>
+### Step 5: Check Your Dashboard
 
-<Accordion title="Step 4: Verify Installation">
-  Verify the status of the MW Agent with the following command. 
-  ```javascript Shell
-  kubectl get daemonset/mw-kube-agent -n mw-agent-ns
-  ```
-</Accordion>
-
-<Accordion title="Step 5: Check Your Dashboard">
-  Navigate to Middleware and ensure metrics are appearing in the [Unified Dashboard](https://docs.middleware.io/docs/unified-dashboard/unified-view). Depending on the size of your cluster, it can take up to a few minutes for metrics to appear. If metrics do not appear after this time head to our troubleshooting page for some common issues.
-</Accordion>
+Navigate to Middleware and ensure metrics are appearing in the <a href="https://docs.middleware.io/docs/unified-dashboard/unified-view"> Unified Dashboard </a>. Depending on the size of your cluster, it can take up to a few minutes for metrics to appear. If metrics do not appear after this time head to our troubleshooting page for some common issues.
 
 # Upgrade
-The MW Agent is frequently updated to add new features and improve performance. More information on new features can be found in our [Newsletter](https://newsletters.middleware.io/). To upgrade MW Agent, use the following command.
+
+The MW Agent is frequently updated to add new features and improve performance. More information on new features can be found in our <a href="https://newsletters.middleware.io/"> Newsletter </a>. 
+
+To upgrade MW Agent, use the following command:
+
 ```javascript Shell
 bash -c "$(curl -L https://install.middleware.io/scripts/mw-kube-agent-upgrade.sh)"
 ```
-
-# Install with Microsoft Powershell
-
-The following section describes how to install and uninstall the Kubernetes Agent with Microsoft Powershell scripts. This method provides you the ability to install the MW Kubernetes Agent using `helm` instead of manifest files. 
-
-<Note> The following steps assume that you have already installed `kubectl` on your machine </Note>
-
-<Accordion title="Step 1: Open Powershell Terminal">
-  Set the `MW_API_KEY` and `MW_TARGET` environment variables:
-
-  ```Powershell Powershell
-  $env:MW_API_KEY= '<your-mw-api-key>'
-
-  $env:MW_TARGET = '<your-mw-target>'
-  ```
-</Accordion>
-
-<Accordion title="Step 2: Install with Helm [Optional]">
-  You have the option to install the MW Agent with `helm` instead of using manifest files. 
-  
-  Set the following environment variable to use `helm`:
-
-  <Note> Make sure [helm](https://helm.sh/docs/intro/install/) is already installed on your machine prior to adding the following environment variable. </Note>
-
-  ```Powershell Powershell
-  $env:MW_KUBE_AGENT_INSTALL_METHOD='helm'
-  ```
-</Accordion>
-
-<Accordion title="Step 3: Install MW Kubernetes Agent">
-  Download the [MW Kubernetes Install script](https://github.com/middleware-labs/install.middleware.io/blob/master/scripts/mw-kube-agent-install-powershell.ps1) and execute the following command:
-
-  ```Powershell Powershell
-  .\mw-kube-agent-install-powershell.ps1 
-  ```
-</Accordion>
 
 # Troubleshooting
 <Warning>  Run only one MW Agent DaemonSet per cluster per host. Multiple agents will cause unexpected behavior. </Warning>
 
 Once the MW Agent is installed on your cluster metrics should begin appearing in the Middleware application within a few minutes. If metrics do not appear, confirm that Kubernetes has access to the internet, either directly or through a proxy, and that only one MW Agent is running per cluster. 
 
-For any issues please reach out to our team in your Slack channel or through the help menu in the Middleware Application.
-
-<Accordion title="Switching Between Contexts">
+### Switching Between Contexts
 If you are using another thirdy-party resource for managing your Kubernetes Infrastructure (e.g. Lens) it's possible your cluster names are similar across clusters. This will make it hard to delineate between the clusters inside of Middleware.
 
 To fix this, you can force a speicific `cluster.name` by setting the `MW_KUBE_CLUSTER_NAME` environment variable to the name(s) you are using in your thrid party resource. Once the cluster is renamed, it will automatically reset and start to catch the appropriately labeled environment variables.
-</Accordion>
 
 # Uninstall
 
 To uninstall the Middleware Agent use the following command:
+
 ```javascript Shell
 bash -c "$(curl -L https://install.middleware.io/scripts/mw-kube-agent-uninstall.sh)"
 ```
-
-<Accordion title="Uninstall with Microsoft Powershell">
-  Download the [MW Kubernetes Uninstall script](https://github.com/middleware-labs/install.middleware.io/blob/master/scripts/mw-kube-agent-uninstall-powershell.ps1) and execute the following command:
-
-  ```Powershell Powershell
-  .\mw-kube-agent-uninstall-powershell.ps1 
-  ``` 
-</Accordion>
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>

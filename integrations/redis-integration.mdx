@@ -10,35 +10,35 @@ Middleware Host Agent (MW Agent) must be installed on your local machine. To ins
 
 # Setup
 
-<Accordion title="Step 1: Create Database Credentials">
-  Create a `.yaml` file containing database credentials like the below example. If the database is not password protected, the `username` and `password` fields can be removed.
+### Step 1: Create Database Credentials
 
-  `/home/ubuntu/redis-creds.yaml`
+Create a `.yaml` file containing database credentials like the below example. If the database is not password protected, the `username` and `password` fields can be removed.
 
-  ```yaml .yaml
-      redis:
-          endpoint: localhost:7379
-      ## all fields below are optional ##
-          password: redis
-          transport: tcp    ## tcp or Unix
-          tls:
-                - insecure: true 
-                - ca_file: <path_to_certificate>
-                - cert_file: <path_to_certificate>
-                - key_file: <path_to_file>   
-  ```
-  <Note> For Docker users, create the credentials yaml file in the `/var/log` directory. </Note>
-</Accordion>
+`/home/ubuntu/redis-creds.yaml`
 
-<Accordion title="Step 2: Access Integrations">
-  Log in to Middleware, navigate to the Installations Page in the bottom left corner, select All Integration and click Redis
-  
-  <img src="/images/integration/redis-integration-store.png" />
-</Accordion>
+```yaml .yaml
+redis:
+    endpoint: localhost:7379
+    ## all fields below are optional ##
+    password: redis
+    transport: tcp    ## tcp or Unix
+    tls:
+          - insecure: true 
+          - ca_file: <path_to_certificate>
+          - cert_file: <path_to_certificate>
+          - key_file: <path_to_file>   
+```
+<Note> For Docker users, create the credentials yaml file in the `/var/log` directory. </Note>
 
-<Accordion title="Step 3: Enable Integration">
-  Add a host machine from the dropdown list, input the credential path from Step 1, and Save
-</Accordion>
+### Step 2: Access Integrations
+
+Log in to Middleware, navigate to the Installations Page in the bottom left corner, select All Integration and click Redis
+
+<img src="/images/integration/redis-integration-store.png" />
+
+### Step 3: Enable Integration
+
+Add a host machine from the dropdown list, input the credential path from Step 1, and Save
 
 # Visualize Analytics
 

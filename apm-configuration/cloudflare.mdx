@@ -17,21 +17,23 @@ wrangler version
 
 # Install
 
-<Accordion title="Step 1: Install Middleware Package">
-Run the following command in your terminal.
+### Step 1: Install `Cloudflare` APM Package
+
+Run the following command in your terminal:
 ```bash Shell
 npm i @middleware.io/agent-apm-worker 
 ```
-</Accordion>
 
-<Accordion title="Step 2: Import Tracker">
+### Step 2: Import Tracker
+
 ```javascript JavaScript
 import { init,track } from '@middleware.io/agent-apm-worker';
 ```
-</Accordion>
 
-<Accordion title="Step 3: Initialize Tracker">
-The access token is your account key, which can be found on the Installation page. To watch instrumented logs in the terminal, set consoleLogEnabled: true.
+### Step 3: Initialize Tracker
+
+The access token is your account key, which can be found on the Installation page. To watch instrumented logs in the terminal, set `consoleLogEnabled: true`:
+
 ```javascript JavaScript
 init({
    serviceName:"{APM-SERVICE-NAME}",
@@ -40,16 +42,16 @@ init({
    consoleLogEnabled:false,
 });
 ```
-</Accordion>
 
-<Accordion title="Step 4: Track Requests with the Middleware SDK">
+### Step 4: Track Requests with MW SDK
+
 ```javascript JavaScript
 const sdk = track(request, ctx);
 sdk.sendResponse(response);
 ```  
-</Accordion>
 
-<Accordion title="Step 5: Enable Logging">
+### Step 5: Enable Logging
+
 ```javascript JavaScript
 // sdk.logger.SEVERITY( MESSAGE, KEY-VALUE PAIRS )
 
@@ -59,7 +61,6 @@ sdk.logger.info("info test")
 sdk.logger.debug("debug test")
 sdk.logger.warn("warn test")
 ```
-</Accordion>
 
 # Continuous Profiling
 

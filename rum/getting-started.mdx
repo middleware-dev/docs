@@ -9,182 +9,80 @@ This guide walks you through setting up Real User Monitoring (RUM) with JavaScri
 
 <Warning> If you are installing RUM with `Next.js`, skip to the following __[Next.js](#installing-on-next-js)__ section. </Warning>
 
-<AccordionGroup>
-    <Accordion title="Step 1: Create Application Reference">
-        Navigate to the Installation page in your Middleware Account. In the Real User Monitoring section, select `Create New Application` and provide the application name, origin(s) and Trace Propogation Target(s) to whitelist. Multiple origins can be listed as a comma-separated list.
-    </Accordion>
+### Step 1: Create Application Reference
 
-    <Accordion title="Step 2: Import Javascript CDN">
-        Add the following script tag to the head section of your `index.html` file. The tag can be copied directly from the Installation page upon completing Step 1.
-        ```javascript HTML
-        <script src="https://cdnjs.middleware.io/browser/libs/0.0.1/middleware-rum.min.js" type="text/javascript"></script>
-        ```
-    </Accordion>
+Navigate to the Installation page in your Middleware Account. In the Real User Monitoring section, select `Create New Application` and provide the application name, origin(s) and Trace Propogation Target(s) to whitelist. Multiple origins can be listed as a comma-separated list.
 
-    <Accordion title="Step 3: Initialize the SDK">
-        Add the following lines in your index.html file below the script tag entered in Step 2. We recommend copying directly from the Installation page; select the appropriate Application from the list and copy the code snippet. The `window.Middleware` attribute is set in the script from Step 2. 
-
-        In the example below, env and recording are optional. Recording set to 1 is the default value and records the entire user session. To track only browser traces and errors set recording to 0.
-
-        ```javascript JavaScript
-        <script>
-            if (window.Middleware){
-                Middleware.track({
-                    serviceName: "service_name",
-                    accountKey: "account_key",
-                    target:"https://<UID>.middleware.io",
-                    env: "production",
-                    recording: "1"
-                })
-            }
-        </script>
-        ```
-    </Accordion>
-
-    <Accordion title="Step 4: Add User Information [optional]">
-        To gather user details add key-value pairs, as shown below. Any user metadata can be defined as a key-value pair.
-
-        ```javascript JavaScript
-        if(window.Middleware){
-        ...
-        defaultAttributes: { 
-            name: 'John Doe', 
-            email: 'john@email.com', 
-            user_type: 'admin', // it can be key value pairs
-        }
-        }
-        ```
-        If you need to define attributes post initialization of the SDK, utilize the `Middleware.setAttributes` method, as exemplified in the following example.
-
-        ```javascript JavaScript
-        <script>
-        if(window.Middleware){
-                Middleware.setAttributes({
-                    name: 'John Doe',
-                    email: 'john@email.com',
-                    user_type: 'admin',
-                })
-            }
-        </script>
-        ```
-        Once RUM is configured, metrics should begin appearing on the RUM Dashboard in Middleware within a few minutes. For more information on the RUM Dashboards see [here](https://docs.middleware.io/docs/rum/rum-middleware).
-    </Accordion>
-
-    <Accordion title="Step 5: Add Custom Logs [optional]">
-        Use these functions to keep track of different types of issues in your system, making it easier to monitor and fix problems.
-
-        ```javascript JavaScript
-        <script>
-        if(window.Middleware){
-            Middleware.error("Your error message")
-            Middleware.error(new Error("Your error message"))
-            Middleware.info("info message")
-            Middleware.warn("warn message")
-            Middleware.debug("debug message")
-            }
-        </script>
-        ```
-    </Accordion>
-</AccordionGroup>
-
-# Installing on Next.js
-
-When using Next.js, you do not have direct access to the `index.html` or template HTML file. You must define the structure of your RUM application with one of the following methods:
-
-    <Accordion title="App Router">
-        Define the structure of your application with app routers.
-
-        <Note> Click [here](https://nextjs.org/docs/app/building-your-application/optimizing/third-party-libraries) for more information on integrating third party libraries with Next.js using app structure. </Note>
+### Step 2: Import Javascript CDN
         
-        Apply the following script to your application code:
+Add the following script tag to the head section of your index.html file. The tag can be copied directly from the Installation page upon completing Step 1.
 
-        ```javascript Next.js
-        import Script from "next/script"
+```javascript HTML
+<script src="https://cdnjs.middleware.io/browser/libs/0.0.1/middleware-rum.min.js" type="text/javascript"></script>
+```
 
-        export default function RootLayout({
-        children,
-        }: {
-        children: React.ReactNode
-        }) {
-        
-        return (
-            <html lang="en">
-            <head>
-                <Script
-                strategy="beforeInteractive"
-                id="middleware-lib-init"
-                src="https://cdnjs.middleware.io/browser/libs/0.0.1/middleware-rum.min.js"
-                type="text/javascript"
-                />
-                <Script
-                strategy="beforeInteractive"
-                id="middleware-script-init">
-                {
-                    `
-                    if (window.Middleware){
-                        window.Middleware.track({
-                        serviceName: "nextjs-service-name",
-                        projectName: "nextjs-project-name",
-                        accountKey: "<REDACTED>",
-                        target: "https://name.middleware.io",
-                        tracePropagationTargets: [/localhost:3000/i]
-                        });
-                    }
-                    `
-                }
-                </Script>
-            </head>
-            <body>
-                {children}
-            </body>
-            </html>
-        )
-        }
-        ```
-    </Accordion>
+### Step 3: Initialize the SDK
 
-    <Accordion title="Page Router">
-        Define the structure of your application with page structure.
+Add the following lines in your index.html file below the script tag entered in Step 2. We recommend copying directly from the Installation page; select the appropriate Application from the list and copy the code snippet. The `window.Middleware` attribute is set in the script from Step 2. 
 
-        <Note> Click [here](https://nextjs.org/docs/pages/building-your-application/optimizing/scripts) for more information on integrating third party libraries with Next.js using page structure. </Note>
-    
-        Apply the following script to your application code:
-        ```javascript Next.js
-        import Script from 'next/script'
-        
-        export default function MyApp({ Component, pageProps }) {
-        return (
-            <>
-            <Component {...pageProps} />
-            <Script
-                strategy="beforeInteractive"
-                id="middleware-lib-init"
-                src="https://cdnjs.middleware.io/browser/libs/0.0.1/middleware-rum.min.js" 
-                type="text/javascript"
-                />
-                <Script
-                strategy="beforeInteractive"
-                id="middleware-script-init">
-                {
-                    `
-                    if (window.Middleware){
-                        window.Middleware.track({
-                        serviceName: "nextjs-service-name",
-                        projectName: "nextjs-project-name",
-                        accountKey: "<REDACTED>",
-                        target: "https://name.middleware.io",
-                        tracePropagationTargets: [/localhost:3000/i]
-                        });
-                    }
-                    `
-                }
-                </Script>
-            </>
-        )
-        }
-        ```
+In the example below, env and recording are optional. Recording set to 1 is the default value and records the entire user session. To track only browser traces and errors set recording to 0.
 
-    </Accordion>    
+```javascript JavaScript
+<script>
+    if (window.Middleware){
+        Middleware.track({
+            serviceName: "service_name",
+            accountKey: "account_key",
+            target:"https://<UID>.middleware.io",
+            env: "production",
+            recording: "1"
+        })
+    }
+</script>
+```
+
+### Step 4: Add User Information [Optional]
+To gather user details add key-value pairs, as shown below. Any user metadata can be defined as a key-value pair.
+
+```javascript JavaScript
+if(window.Middleware){
+...
+defaultAttributes: { 
+    name: 'John Doe', 
+    email: 'john@email.com', 
+    user_type: 'admin', // it can be key value pairs
+}
+}
+```
+If you need to define attributes post initialization of the SDK, utilize the `Middleware.setAttributes` method, as exemplified in the following example.
+
+```javascript JavaScript
+<script>
+if(window.Middleware){
+        Middleware.setAttributes({
+            name: 'John Doe',
+            email: 'john@email.com',
+            user_type: 'admin',
+        })
+    }
+</script>
+```
+Once RUM is configured, metrics should begin appearing on the RUM Dashboard in Middleware within a few minutes. For more information on the RUM Dashboards see [here](https://docs.middleware.io/docs/rum/rum-middleware).
+
+### Step 5: Add Custom Logs [Optional]
+Use these functions to keep track of different types of issues in your system, making it easier to monitor and fix problems.
+
+```javascript JavaScript
+<script>
+if(window.Middleware){
+    Middleware.error("Your error message")
+    Middleware.error(new Error("Your error message"))
+    Middleware.info("info message")
+    Middleware.warn("warn message")
+    Middleware.debug("debug message")
+    }
+</script>
+``` 
 
 # Connect RUM to Tracing
 

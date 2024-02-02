@@ -11,17 +11,17 @@ For both endpoints, the resource type attribute groups the ingested data under t
 
 | **Group** | **Resource Type** |
 | :---------: | :---------------: |
-| host | host.id |
-| k8s.node | k8s.node.uid |
-|k8s.pod | k8s.pod.uid |
-| k8s.deployment | k8s.deployment.uid |
-| k8s.daemonset | k8s.daemonset.uid |
-| k8s.replicaset| k8s.replicaset.uid |
-| k8s.statefulset | k8s.statefulset.uid |
-| k8s.namespace | k8s.namespace.uid |
-| service | service.name |
-| os | os.type |
-| custom | custom |
+| `host` | `host.id` |
+| `k8s.node` | `k8s.node.uid` |
+| `k8s.pod` | `k8s.pod.uid`|
+| `k8s.deployment` | `k8s.deployment.uid` |
+| `k8s.daemonset` | `k8s.daemonset.uid` |
+| `k8s.replicaset` | `k8s.replicaset.uid` |
+| `k8s.statefulset` | `k8s.statefulset.uid` |
+| `k8s.namespace` | `k8s.namespace.uid` |
+| `service` | `service.name` |
+| `os` | `os.type` |
+| `custom` | `custom` |
 
 # Metrics Endpoint
 
@@ -99,8 +99,8 @@ EOF
 
 | **Field** | **Required** | **Description** |
 | :-------: | :----------: | :------------- |
-| mw.account_key | ✅ | Authenticates into your Middleware Account |
-| mw.resource_type | ✅ | Groups and labels the metric, see [Resource Types](#resource-types) for allowed values |
+| `mw.account_key` | ✅ | Authenticates into your Middleware Account |
+| `mw.resource_type` | ✅ | Groups and labels the metric, see [Resource Types](#resource-types) for allowed values |
 
 ### Metrics
 
@@ -112,9 +112,9 @@ The metadata fields are the request body attributes that define the metric and d
 
 | **Metadata Field** | **Required** | **Description** |
 | :-------: | :----------: | :------------- |
-| name | ✅ | Defines the metric name |
-| description | ✖️ | Additional details about the metric |
-| unit | ✖️ | Identifies the measurement type |
+| `name` | ✅ | Defines the metric name |
+| `description` | ✖️ | Additional details about the metric |
+| `unit` | ✖️ | Identifies the measurement type |
 
 #### Datapoint
 
@@ -127,9 +127,9 @@ The datapoint fields are defined within the data attribute. The datapoint fields
 
 | **Datapoint Field** | **Required** | **Description** |
 | :-------: | :----------: | :------------- |
-| attributes | ✅ | Key-value pairs associated with the data point |
-| time_unix_nano | ✅ | Set to the end time of the aggregation |
-| start_time_unix_nano | ✖️ | Indicates the start time, should be included whenever possible |
+| `attributes` | ✅ | Key-value pairs associated with the data point |
+| `time_unix_nano` | ✅ | Set to the end time of the aggregation |
+| `start_time_unix_nano` | ✖️ | Indicates the start time, should be included whenever possible |
 
 # Log Endpoint
 
@@ -204,27 +204,29 @@ EOF
 
 | **Field** | **Required** | **Description** |
 | :-------: | :----------: | :------------- |
-| mw.account_key | ✅ | Authenticates into your Middleware Account |
-| mw.resource_type | ✅ | Groups and labels the log source, see [Resource Types](#resource-types) for allowed values |
-| service_name | ✖️ | Additional parameter to identify and filter logs |
+| `mw.account_key` | ✅ | Authenticates into your Middleware Account |
+| `mw.resource_type` | ✅ | Groups and labels the log source, see [Resource Types](#resource-types) for allowed values |
+| `service_name` | ✖️ | Additional parameter to identify and filter logs |
 
 ### Log Records
 
 | **Field** | **Required** | **Description** |
 | :-------: | :----------: | :------------- |
-| severity_text |  ✖️ | Labels log severity (string), requires one of FATAL, ERROR, WARN, INFO, DEBUG, TRACE |
-| [severity_number](#severity-number) |  ✖️ | Labels log severity (integer), number must be between 1 and 24 |
-| body | ✅ | The actual log body to ingest |
-| time_unix_nano | ✅ | Sets a timestamp for the log |
+| `severity_text` |  ✖️ | Labels log severity (string), requires one of FATAL, ERROR, WARN, INFO, DEBUG, TRACE |
+| [`severity_number`](/data-ingestion-apis/opentelemetry-metrics#severity-number) |  ✖️ | Labels log severity (integer), number must be between 1 and 24 |
+| `body` | ✅ | The actual log body to ingest |
+| `time_unix_nano` | ✅ | Sets a timestamp for the log |
 
-#### severity_number
+
+#### `severity_number`
 |||
 | :-------------: | :--------: |
-| 1-4 | TRACE |
-| 5-8 | DEBUG |
-| 9-12 | INFO |
-| 13-16 | WARN |
-| 17-20 | ERROR |
-| 21-24 | FATAL |
+| __Severity__ | __Message__ |
+| `1-4` | __TRACE__ |
+| `5-8` | __DEBUG__ |
+| `9-12` | __INFO__ |
+| `13-16` | __WARN__ |
+| `17-20` | __ERROR__|
+| `21-24` | __FATAL__| 
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>

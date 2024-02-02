@@ -46,67 +46,59 @@ This guide walks you through setting up the Vercel APM integration. These instru
 
 # Install
 
-<Accordion title="Step 1: Add Middleware Integration">
-    <Accordion title="Step 1a: Add Integration">
-        Add the [Middleware Integration](https://vercel.com/integrations/middleware/new) from the Vercel marketplace:
-    
-        ![](https://lh6.googleusercontent.com/1oYfrKH324Ojsbcxj612gNec9azJZOkdjsxT8QZpEuG1CH4-SdmFkeGT9Q3jZYzXFT4cmdEz3OXsfbwDzvfRxL3XVrG38N1A2wpbRByFsGex2V8qYqdAOtPTulBI6Fwz935sw0xBCPLVLP-ZH2QWazY)
-    </Accordion>
 
-    <Accordion title="Step 1b: Add Vercel Account">   
-        Select a Vercel Account to add the Integration to:
+### Step 1: Add Middleware Integration
 
-        ![](https://lh3.googleusercontent.com/vQvKh3h7128YThaH39wPphOjIbHd4DAxXq6ZHXn-NPYHtZUsIRehaSLwD-ENWgsfCppAM5rN8kDGrQZNjGSKEoba767Bfonz-71INX4dKkOUvyVrrsP6pRvZZlyxRcmj0dFGRpZPB-Vm1w0TRrIp3BY)
+#### Step 1a: Access Vercel Marketplace
 
-    </Accordion>
+Add [Middleware integration](https://vercel.com/integrations/middleware/new) from Vercel Marketplace
 
-    <Accordion title="Step 1c: Select Your Project">     
-        Select the Project you want to track:
+![](https://lh3.googleusercontent.com/vQvKh3h7128YThaH39wPphOjIbHd4DAxXq6ZHXn-NPYHtZUsIRehaSLwD-ENWgsfCppAM5rN8kDGrQZNjGSKEoba767Bfonz-71INX4dKkOUvyVrrsP6pRvZZlyxRcmj0dFGRpZPB-Vm1w0TRrIp3BY)
 
-        ![](https://lh5.googleusercontent.com/i_wi-gLSNxwyMucTmX-78wQoUEqS8OniVJTNyRts6imj9X3WeQ-JPa1a_O0Hji-hy25r_GQPGizmVRQzQxS217Le7hmh9BGfE6r_DLbR3f3xv03xtoutmH4x2PjWXjjsRZpKSBrF3sf2yYhVs1TouAI)
-    </Accordion>
+#### Step 1b: Add Vercel Account
 
-    <Accordion title="Step 1d: Add Integration">
-        Allow Permissions and Add Integration:
+Select a Vercel Account to add the Integration to
 
-        <Note> You must accept the below permissions in order to proceed with the rest of the integration </Note>
 
-        ![](https://lh5.googleusercontent.com/9dILl_Q_7leNlhi-wyx21c6D03ZusQyRI8MzZVurc0cObbZTMVur9CaKQFbu-W2u9I7tjk13KSsvZeoQbpuf5baf_rLi8PoEap7Xunsm9xAZ4hO-FlFW7eswz3CVlwdbmMZo-0EstXUMwxBro2uCbdc)
-    </Accordion>
+#### Step 1c: Track Your Project
 
-    <Accordion title="Step 1e: Login to Your MW Account">
-        Login to your Middleware Account:
+Select the Project you want to track
 
-        ![](https://lh6.googleusercontent.com/a9lxfYAYMHeEX1R6YUbkLsJ22KxP3j-ux3bnPmVlFhzC2IBIW3vDFWdjEYq8YlqIFAJLx8fq3HYB9UR_XDBTFQOYCcbE1EZeDJMXtNtb7mXmMIm1rU0jEQmYXSRcgsXZLRViFr48dmMtKsZ62IUQDg8)
+<Note> You must accept the below permissions in order to proceed with the rest of the integration </Note>
 
-    </Accordion>
 
-    <Accordion title="Step 1f: Check Integration Status">
-        The below screen indicates you have successfully integrated Vercel and Middleware:
+#### Step 1d: Allow Permissions and Add Integration
 
-        ![](https://mintlify.s3-us-west-1.amazonaws.com/middlewareio/images/agent-installation/vercel-6.png)
+![](https://lh5.googleusercontent.com/9dILl_Q_7leNlhi-wyx21c6D03ZusQyRI8MzZVurc0cObbZTMVur9CaKQFbu-W2u9I7tjk13KSsvZeoQbpuf5baf_rLi8PoEap7Xunsm9xAZ4hO-FlFW7eswz3CVlwdbmMZo-0EstXUMwxBro2uCbdc)
 
-        <Note> After three seconds you should be redirected back to the Vercel marketplace </Note>
-    </Accordion>
+#### Step 1e: Login to Your Middleware Account
+   
+![](https://lh6.googleusercontent.com/a9lxfYAYMHeEX1R6YUbkLsJ22KxP3j-ux3bnPmVlFhzC2IBIW3vDFWdjEYq8YlqIFAJLx8fq3HYB9UR_XDBTFQOYCcbE1EZeDJMXtNtb7mXmMIm1rU0jEQmYXSRcgsXZLRViFr48dmMtKsZ62IUQDg8)
 
-    <Accordion title="Step 1g: Enable Traces">
-        In Vercel, enable traces prior to deploying your project
-    </Accordion>
+#### Step 1f: Check Your Integration
 
-</Accordion>
+The below screen indicates you have successfully integrated Vercel and Middleware
 
-<Accordion title="Step 2: Install Next.js APM Package">
+![](https://mintlify.s3-us-west-1.amazonaws.com/middlewareio/images/agent-installation/vercel-6.png)
+
+<Note> After three seconds you should be redirected back to the Vercel marketplace </Note>
+
+#### Step 1g: Enable Traces
+
+In Vercel, enable traces prior to deploying your project
+
+### Step 2: Install `Next.js` APM Package
 
 Run the following command in your terminal:
 
 ```bash Shell 
 npm install @middleware.io/agent-apm-nextjs
 ```
-</Accordion>
 
-<Accordion title="Step 3: Modify Config File">
+### Step 3: Modify Config File
 
 Add the following code to your `next.config.js` file:
+
 ```javascript Next.js
 const nextConfig = {
     // ...
@@ -121,46 +113,44 @@ const nextConfig = {
 }
 module.exports = nextConfig
 ```
-</Accordion>
 
-<Accordion title="Step 4: Create Instrumentation File">
-    <Accordion title="Step 4a: Create instrumentation.ts file">
-        Create a custom `instrumentation.ts` (or `.js`) file in your project root directory or inside the `src` folder
-    
-        <Warning>The `instrumentation.ts` file must be located at the `root` of your project unless you are using the `src` directory. If you are using the `src` directory, ensure the `instrumentation.ts` file is placed within the `src` directory, alongside the pages and app directories.</Warning>
-    </Accordion>
+### Step 4: Create Instrumentation File
 
-    <Accordion title="Step 4b: Synchronize Instrumentation File">
-        Synchronize your instrumentation filename if you are using the `pagesExtension` config option to add suffixes
+#### Step 4a: Create `instrumentation.ts (or .js)` File
 
-        <Note> Example: If you use pagesExtension: ['ts'], the instrumentation file should be named `instrumentation.ts`</Note>
-    </Accordion>
+Create a custom `instrumentation.ts (or .js)` file in your project root directory or inside the src folder
 
-    <Accordion title="Step 4c: Add Code Snippet">
-        Add the below code snippet. The access token is your account key, which can be found on the [Installation page](https://app.middleware.io/installation#apm/nextjs):
+<Warning>The `instrumentation.ts` file must be located at the `root` of your project unless you are using the `src` directory. If you are using the `src` directory, ensure the `instrumentation.ts` file is placed within the `src` directory, alongside the pages and app directories.</Warning>
 
-        ```javascript Next.js
-        // @ts-ignore
-        import tracker from '@middleware.io/agent-apm-nextjs';
+#### Step 4b: Synchronize Instrumentation Filename
 
-        export function register() {
-            tracker.track({
-                serviceName: "<SERVICE-NAME>",
-                accessToken: "<xxxxxxxxxx>",
-                target: "vercel"
-            });
-        }
-        ```
-    </Accordion>
+Synchronize your instrumentation filename if you are using the `pagesExtension` config option to add suffixes
 
-    <Accordion title="Step 4d: Integrate APIs & Serverless Functions">
-        4. Integrate your APIs or Serverless functions prior to deployment. Vercel will treat your app as a static website during deployment if you have not integrated any APIs or Serverless functions and the `instrumentation.ts` file will not be invoked, resulting in the absence of traces or logs in your Middleware account. 
+<Note> Example: If you use pagesExtension: ['ts'], the instrumentation file should be named `instrumentation.ts`</Note>
 
-        <Warning> Vercel does not support instrumentation for edge functions. </Warning>
-    </Accordion>
-</Accordion>
+#### Step 4c: Add Code Snippet
 
-<Accordion title="Step 5: Enable Logging">
+Add the below code snippet. The access token is your account key, which can be found on the [Installation page](https://app.middleware.io/installation#apm/nextjs):
+
+```javascript Next.js
+// @ts-ignore
+import tracker from '@middleware.io/agent-apm-nextjs';
+
+export function register() {
+    tracker.track({
+        serviceName: "<SERVICE-NAME>",
+        accessToken: "<xxxxxxxxxx>",
+        target: "vercel"
+    });
+}
+```
+#### Step 4d: Integrate Before You Deploy
+
+Integrate your APIs or Serverless functions prior to deployment. Vercel will treat your app as a static website during deployment if you have not integrated any APIs or Serverless functions and the `instrumentation.ts` file will not be invoked, resulting in the absence of traces or logs in your Middleware account. 
+
+<Warning> Vercel does not support instrumentation for edge functions. </Warning>
+
+### Step 5: Enable Logging
 
 Ingest custom logs by using  the following functions based on desired log severity levels:
 
@@ -183,12 +173,10 @@ export default async function handler(req, res) {
     // Your existing code
 }
 ```
-</Accordion>
 
-<Accordion title="Step 6: Deploy on Vercel">
+### Step 6: Deploy on Vercel
 
 <Note>If you’re looking to set up a sample Next.js project with API routes, you can use the following command in your terminal: `npx create-next-app@latest --example api-routes`</Note>
-</Accordion>
 
 # Continuous Profiling
 
