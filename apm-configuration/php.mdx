@@ -187,24 +187,46 @@ To ingest custom logs, utilize the following functions based on desired log seve
 
 # Azure Pipelines
 
-### Step 1: Configure `PHP.ini` File
+The Azure Pipelines continuous integration and continuous delivery (CI/CD) infrastructure helps you build, deploy, and test your PHP projects.
 
-### Step 2: Create Your Build Pipelines
+<Note> For information on setting up your PHP project with Azure Pipelines and Azure DevOps Services, learn more [here](https://learn.microsoft.com/en-us/azure/devops/pipelines/ecosystems/php?view=azure-devops). </Note>
+
+### Step 1: Configure the OpenTelemetry Extension
+
+Add the following code to your `.ini` file located in the `/home/html/ini` directory of your Azure account:
+
+<Note> If you do not already have a `.ini` file created in your project, create one labeled `php.ini` and place it in the `/home/html/ini` directory of your Azure account. </Note>
+
+```otel OpenTelemetry Extension
+extension=opentelemetry.so
+```
+
+### Step 2: Add New Configuration to Azure
+
+Navigate to the Application Settings in your Azure PHP project account and select `New application setting`. Add the following Name and Value to the `New application setting`:
+
+```
+Name: PHP_INI_SCAN_DIR
+Value: /home/html/ini
+```
+
+Your configuration should look like the following:
+
+![](https://lh7-us.googleusercontent.com/dPJ5S4x26QIrBzJ73X_Sp_b12Pip18EDE-hBidQK9CKQ32chvK0NFYEFYSjiexN0dOGqrq6XnhfEmZwKvl282FHNDxxppSDuLO5UhNgFU1qACw0Yaqp1phHHKvpyxNS3JmMSEXAGX64cQrs2kZbaKlU)
+
+### Step 3: Create Your Build Pipelines
 
 Update your build pipeline by adding the following code to the `azure-pipelines.yml` file:
 
-```
-# PHP as Linux Web App on Azure
-# Build, package and deploy your PHP project to Azure Linux Web App.
-# Add steps that run tests and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/php
+<Note> The below build pipeline includes installation steps for `Opentelemetry` and the `middleware/agent-apm-php` </Note>
 
+```yaml YAML
 trigger:
 - master
 
 variables:
   # Azure Resource Manager connection created during pipeline creation
-  azureSubscription: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+  azureSubscription: 'XXXXXXXXXXXXXXXXXXXX'
 
   # Web app name
   webAppName: 'php-apm-test'
@@ -241,7 +263,7 @@ stages:
 
     - script: composer install --no-interaction --prefer-dist --ignore-platform-reqs
       workingDirectory: $(rootFolder)
-      displayName: 'Composer install'
+      displayName: 'composer install'
 
     - script: |
         # Check if the Opentelemetry package is already installed
@@ -293,6 +315,12 @@ stages:
         ArtifactName: 'drop'
         publishLocation: 'Container'
 ```
+
+The PHP Agent is now set up to execute a CI/CD approach, following the build pipeline configuration, whenever new code is pushed to the production environment. 
+
+Your output should look like the following:
+
+![](https://lh7-us.googleusercontent.com/MNixKv-zAkW6n0rQHhzuAKg8dfDM4U9jf46BwZH-ekiBptjJeL7eynZREp3PeZnPEgGQWNoSWCeJvlsxGYrqX1WOntbq5H2i7raDVO7aHyOAk3PbW_xSZt5UlwmusFoaoljqgpGT2X_LpKL0tbhFvCI)
 
 # Continuous Profiling
 
