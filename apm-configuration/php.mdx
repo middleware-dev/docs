@@ -185,6 +185,115 @@ To ingest custom logs, utilize the following functions based on desired log seve
 ```
 </Accordion>
 
+# Azure Pipelines
+
+### Step 1: Configure `PHP.ini` File
+
+### Step 2: Create Your Build Pipelines
+
+Update your build pipeline by adding the following code to the `azure-pipelines.yml` file:
+
+```
+# PHP as Linux Web App on Azure
+# Build, package and deploy your PHP project to Azure Linux Web App.
+# Add steps that run tests and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/php
+
+trigger:
+- master
+
+variables:
+  # Azure Resource Manager connection created during pipeline creation
+  azureSubscription: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+
+  # Web app name
+  webAppName: 'php-apm-test'
+
+  # Agent VM image name
+  vmImageName: 'ubuntu-latest'
+
+  # Environment name
+  environmentName: 'php-apm-test'
+
+  # Root folder under which your composer.json file is available.
+  rootFolder: $(System.DefaultWorkingDirectory)
+
+stages:
+- stage: Build
+  displayName: Build stage
+  variables:
+    phpVersion: '8.2'
+  jobs:
+  - job: BuildJob
+    pool:
+      name: Default
+      vmImage: $(vmImageName)
+    steps:
+    - script: |
+        sudo update-alternatives --set php /usr/bin/php$(phpVersion)
+        sudo update-alternatives --set phar /usr/bin/phar$(phpVersion)
+        sudo update-alternatives --set phpdbg /usr/bin/phpdbg$(phpVersion)
+        sudo update-alternatives --set php-cgi /usr/bin/php-cgi$(phpVersion)
+        sudo update-alternatives --set phar.phar /usr/bin/phar.phar$(phpVersion)
+        php -version
+      workingDirectory: $(rootFolder)
+      displayName: 'Use PHP version $(phpVersion)'
+
+    - script: composer install --no-interaction --prefer-dist --ignore-platform-reqs
+      workingDirectory: $(rootFolder)
+      displayName: 'Composer install'
+
+    - script: |
+        # Check if the Opentelemetry package is already installed
+        if [ "$(pecl list | grep opentelemetry)" ]; then
+          echo "Opentelemetry package is already installed. Skipping this installation."
+        else
+          sudo pecl install channel://pecl.php.net/opentelemetry-1.0.0beta3
+        fi
+      workingDirectory: $(rootFolder)
+      displayName: 'Install Opentelemetry Extension'
+
+    - script: |
+        # Check if the Opentelemetry package is enabled
+        if php -m | grep opentelemetry; then
+          echo "Opentelemetry extension is enabled."
+        else
+          echo "Opentelemetry extension is not enabled. Please add it to your php.ini file: extension=opentelemetry.so"
+          exit 1
+        fi
+      workingDirectory: $(rootFolder)
+      displayName: 'Verify Opentelemetry Extension'
+
+    - script: composer update
+      workingDirectory: $(rootFolder)
+      displayName: 'Update Composer'
+
+    - script: |
+        # Check if the Middleware PHP APM-Package is already listed in the composer
+        if composer show | grep middleware/agent-apm-php; then
+          echo "Middleware APM-Package is already listed in the composer file. Skipping this installation."
+        else
+          composer require middleware/agent-apm-php
+        fi
+      workingDirectory: $(rootFolder)
+      displayName: 'Install Middleware PHP APM-Package'
+
+    - task: ArchiveFiles@2
+      displayName: 'Archive files'
+      inputs:
+        rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+        includeRootFolder: false
+        archiveType: zip
+        archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+        replaceExistingArchive: true
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop'
+        publishLocation: 'Container'
+```
+
 # Continuous Profiling
 
 Continuous profiling captures real-time performance insights from your application to enable rapid identification of resource allocation, bottlenecks, and more. 
