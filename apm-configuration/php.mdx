@@ -26,7 +26,7 @@ This guide walks you through setting up Application Performance Monitoring (APM)
   </Step>
 
   <Step title="PHP Version">
-    `PHP version 8` or above. Check your PHP version with the following command:
+    `PHP version 8.2` or above. Check your PHP version with the following command:
     ```shell Shell
     php -v
     ```
@@ -187,23 +187,19 @@ To ingest custom logs, utilize the following functions based on desired log seve
 
 # Azure Pipelines
 
-The Azure Pipelines continuous integration and continuous delivery (CI/CD) infrastructure helps you build, deploy, and test your PHP projects.
+The Azure Pipelines continuous integration and continuous delivery (CI/CD) infrastructure helps you build, deploy, and test your PHP projects. For information on setting up your PHP project with Azure Pipelines and Azure DevOps Services, learn more [here](https://learn.microsoft.com/en-us/azure/devops/pipelines/ecosystems/php?view=azure-devops). 
 
-<Note> For information on setting up your PHP project with Azure Pipelines and Azure DevOps Services, learn more [here](https://learn.microsoft.com/en-us/azure/devops/pipelines/ecosystems/php?view=azure-devops). </Note>
-
-### Step 1: Configure the OpenTelemetry Extension
+### Step 1: Configure OpenTelemetry Extension
 
 Add the following code to your `.ini` file located in the `/home/html/ini` directory of your Azure account:
-
-<Note> If you do not already have a `.ini` file created in your project, create one labeled `php.ini` and place it in the `/home/html/ini` directory of your Azure account. </Note>
 
 ```otel OpenTelemetry Extension
 extension=opentelemetry.so
 ```
 
-### Step 2: Add New Configuration to Azure
+### Step 2: Add Configuration to Azure
 
-Navigate to the Application Settings in your Azure PHP project account and select `New application setting`. Add the following Name and Value to the `New application setting`:
+Navigate to Application Settings in your Azure PHP project account and select `New application setting`. Add the following Name and Value to the `New application setting`:
 
 ```
 Name: PHP_INI_SCAN_DIR
@@ -315,6 +311,8 @@ stages:
         ArtifactName: 'drop'
         publishLocation: 'Container'
 ```
+
+### Step 4: Check Your Pipeline
 
 The PHP Agent is now set up to execute a CI/CD approach, following the build pipeline configuration, whenever new code is pushed to the production environment. 
 
