@@ -67,10 +67,17 @@
     {
       "group": "Middleware Docs",
       "pages": [
-        "quickstart",
         "workflow/workflow-welcome", 
         "admin/admin-welcome",
         "workflow/infrastructure-monitoring/container-monitoring",
+        {
+          "group": "Welcome",
+          "pages":[
+            "quickstart",
+            "getting-started",
+            "how-mw-works"
+          ]
+        },
         {
           "group": "Middleware Agent",
           "pages": [
