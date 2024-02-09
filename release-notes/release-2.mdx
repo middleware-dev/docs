@@ -3,20 +3,32 @@ title: February 13, 2024
 ---
 
 # Features
-- PHP Azure Build Pipelines
-- [RUM Mobile - React Native](https://docs.middleware.io/rum/rum-react)
+- Support for deploying PHP APM using [Azure Build Pipeline](https://docs.middleware.io/apm-configuration/php#azure-pipelines)
+- [React Native Mobile RUM integration](https://docs.middleware.io/rum/rum-react)
 - Spend Analysis charts
-- Trace correlation drill down from specific log messages
-- Price calculator that analyzes your bill based on the usage of different products
-- Sort and group attributes of log-collected data
+- Added a pricing calculator that helps predict spend to the `Settings` -> `Billing` page
+- Ability to sort and group by any attribute on the `Logs` page __(add GIF)__
+- Updated usage and spend analysis in `Admin` -> `Usage` page
+- Pod overview using a honeycomb style visualization 
+![](https://lh7-us.googleusercontent.com/Tpy7SZ4YIE1mSLuQ8VnS_b0Fld22Bz6QHDD9Dj63ebRdc0RNUvajTG7_V1i0Cf8uSlTGQ5PpXdRr_ngrtk00M1zmWtHBaEvP-Llmp-KlNMnkA3pRoCn5vLpwgo4FWY_C3XuvyLSjIGCOughoIv9234I)
+- Sort logs based on timestamp
+- Enable/disable metric and trace collection at the host level
 
 # Changes
-- Billing tab now displays information about plan name, billing date, billing address, payment details and option to update billing information
-- Invoice tab now displays all past invoices with invoice date, paid date, and the option to download invoices
-- New default dashboard for Kubernetes with pod and cluster overview metrics
+- Redesigned search and filter component which is available on the APM screen and will soon be used across the app
+- Revamped the `Settings` -> `Billing` page to simplify the creation and editing of all billing related information
+- New default dashboard for Kubernetes __(add image)__
+- Website home page redesign
+- Revamped spanlist sidepanel and flamegraph components
 
 # Fixes
 - Fixed column sorting issue in log listing
-- Sort logs based on timestamp
-- Enable/disable metric and trace collection at the host level
+- Fixed Synthetic Monitoring selection and deselection of locations
+- Fixed slow service list queries when indexing farther than 7 days into the past
+- Fixed live collection of Python APM trace data
+- Fixed blank page issue in continuous profiling section
+- Fixed redundant filter issue in Infrastructure section
+- Fixed date range filter in mobile RUM dashboard
+- Fixed non-persistent `tracePropogationTargets` in RUM application section
+
 
