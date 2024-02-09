@@ -47,11 +47,35 @@ kubectl config get-contexts `kubectl config current-context`
 
 ### Step 3: Run Kubernetes Install Command
 
-Copy and run the installation command. An example of the command is shown below. Copying the command directly from the Installation page ensures your API key and UID are inserted accurately.
+Install the Kubernetes Agent with [Bash](/agent-installation/kubernetes#step-3a-install-with-bash) or [`.bat`](/agent-installation/kubernetes#step-3b-install-with-bat). Copying the command directly from the Installation page ensures your API key and Target is inserted correctly.
 
-```javascript Shell
+<Note> If you are installing the Kubernetes Agent with Microsoft PowerShell, proceed to the [Kubernetes with MS PowerShell](https://docs.middleware.io/agent-installation/kubernetes-ms-powershell) document. </Note>
+
+#### Step 3a: Install with Bash
+
+```bash bash 
 MW_API_KEY=<xxxxxxxxxx> MW_TARGET=https://<uid>.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/mw-kube-agent-install.sh)"
 ```
+
+#### Step 3b: Install with `.bat`
+
+Download the Kubernetes Agent batch file [here](https://install.middleware.io/scripts/mw-kube-agent-install-windows.bat). Open PowerShell, change the directory to the location of the download, and execute the following commands:
+
+```bat .bat
+set MW_API_KEY=<YOUR_API_KEY>
+
+set MW_TARGET=<YOUR_MW_TARGET>
+
+mw-kube-agent-install-windows.bat
+```
+
+
+
+
+
+
+
+
 
 ### Step 4: Verify Installation
   
