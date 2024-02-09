@@ -26,7 +26,7 @@ This guide walks you through setting up Application Performance Monitoring (APM)
   </Step>
 
   <Step title="PHP Version">
-    `PHP version 8` or above. Check your PHP version with the following command:
+    `PHP version 8.2` or above. Check your PHP version with the following command:
     ```shell Shell
     php -v
     ```
@@ -192,6 +192,141 @@ sudo apt-get install php8.1-dev
 sudo apt-get update
 sudo pecl channel-update pecl.php.net
 ```
+
+# Azure Pipelines
+
+The Azure Pipelines continuous integration and continuous delivery (CI/CD) infrastructure helps you build, deploy, and test your PHP projects. For information on setting up your PHP project with Azure Pipelines and Azure DevOps Services, learn more [here](https://learn.microsoft.com/en-us/azure/devops/pipelines/ecosystems/php?view=azure-devops). 
+
+### Step 1: Configure OpenTelemetry Extension
+
+Add the following code to your `.ini` file located in the `/home/html/ini` directory of your Azure account:
+
+```otel OpenTelemetry Extension
+extension=opentelemetry.so
+```
+
+### Step 2: Add Configuration to Azure
+
+Navigate to Application Settings in your Azure PHP project account and select `New application setting`. Add the following Name and Value to the `New application setting`:
+
+```
+Name: PHP_INI_SCAN_DIR
+Value: /home/html/ini
+```
+
+Your configuration should look like the following:
+
+![](https://lh7-us.googleusercontent.com/dPJ5S4x26QIrBzJ73X_Sp_b12Pip18EDE-hBidQK9CKQ32chvK0NFYEFYSjiexN0dOGqrq6XnhfEmZwKvl282FHNDxxppSDuLO5UhNgFU1qACw0Yaqp1phHHKvpyxNS3JmMSEXAGX64cQrs2kZbaKlU)
+
+### Step 3: Create Your Build Pipelines
+
+Update your build pipeline by adding the following code to the `azure-pipelines.yml` file:
+
+<Note> The below build pipeline includes installation steps for `Opentelemetry` and the `middleware/agent-apm-php` </Note>
+
+```yaml YAML
+trigger:
+- master
+
+variables:
+  # Azure Resource Manager connection created during pipeline creation
+  azureSubscription: 'XXXXXXXXXXXXXXXXXXXX'
+
+  # Web app name
+  webAppName: 'php-apm-test'
+
+  # Agent VM image name
+  vmImageName: 'ubuntu-latest'
+
+  # Environment name
+  environmentName: 'php-apm-test'
+
+  # Root folder under which your composer.json file is available.
+  rootFolder: $(System.DefaultWorkingDirectory)
+
+stages:
+- stage: Build
+  displayName: Build stage
+  variables:
+    phpVersion: '8.2'
+  jobs:
+  - job: BuildJob
+    pool:
+      name: Default
+      vmImage: $(vmImageName)
+    steps:
+    - script: |
+        sudo update-alternatives --set php /usr/bin/php$(phpVersion)
+        sudo update-alternatives --set phar /usr/bin/phar$(phpVersion)
+        sudo update-alternatives --set phpdbg /usr/bin/phpdbg$(phpVersion)
+        sudo update-alternatives --set php-cgi /usr/bin/php-cgi$(phpVersion)
+        sudo update-alternatives --set phar.phar /usr/bin/phar.phar$(phpVersion)
+        php -version
+      workingDirectory: $(rootFolder)
+      displayName: 'Use PHP version $(phpVersion)'
+
+    - script: composer install --no-interaction --prefer-dist --ignore-platform-reqs
+      workingDirectory: $(rootFolder)
+      displayName: 'composer install'
+
+    - script: |
+        # Check if the Opentelemetry package is already installed
+        if [ "$(pecl list | grep opentelemetry)" ]; then
+          echo "Opentelemetry package is already installed. Skipping this installation."
+        else
+          sudo pecl install channel://pecl.php.net/opentelemetry-1.0.0beta3
+        fi
+      workingDirectory: $(rootFolder)
+      displayName: 'Install Opentelemetry Extension'
+
+    - script: |
+        # Check if the Opentelemetry package is enabled
+        if php -m | grep opentelemetry; then
+          echo "Opentelemetry extension is enabled."
+        else
+          echo "Opentelemetry extension is not enabled. Please add it to your php.ini file: extension=opentelemetry.so"
+          exit 1
+        fi
+      workingDirectory: $(rootFolder)
+      displayName: 'Verify Opentelemetry Extension'
+
+    - script: composer update
+      workingDirectory: $(rootFolder)
+      displayName: 'Update Composer'
+
+    - script: |
+        # Check if the Middleware PHP APM-Package is already listed in the composer
+        if composer show | grep middleware/agent-apm-php; then
+          echo "Middleware APM-Package is already listed in the composer file. Skipping this installation."
+        else
+          composer require middleware/agent-apm-php
+        fi
+      workingDirectory: $(rootFolder)
+      displayName: 'Install Middleware PHP APM-Package'
+
+    - task: ArchiveFiles@2
+      displayName: 'Archive files'
+      inputs:
+        rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+        includeRootFolder: false
+        archiveType: zip
+        archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+        replaceExistingArchive: true
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop'
+        publishLocation: 'Container'
+```
+
+### Step 4: Check Your Pipeline
+
+The PHP Agent is now set up to execute a CI/CD approach, following the build pipeline configuration, whenever new code is pushed to the production environment. 
+
+Your output should look like the following:
+
+![](https://lh7-us.googleusercontent.com/MNixKv-zAkW6n0rQHhzuAKg8dfDM4U9jf46BwZH-ekiBptjJeL7eynZREp3PeZnPEgGQWNoSWCeJvlsxGYrqX1WOntbq5H2i7raDVO7aHyOAk3PbW_xSZt5UlwmusFoaoljqgpGT2X_LpKL0tbhFvCI)
 
 # Continuous Profiling
 
