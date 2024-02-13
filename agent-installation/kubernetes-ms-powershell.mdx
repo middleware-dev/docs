@@ -54,6 +54,11 @@ Download the [MW Kubernetes Install script](https://github.com/middleware-labs/i
 .\mw-kube-agent-install-powershell.ps1 
 ```
 
+# Troubleshooting
+
+<Warning>  Run only one MW Agent DaemonSet per cluster per host. Multiple agents will cause unexpected behavior. </Warning>
+
+Once the MW Agent is installed on your cluster metrics should begin appearing in the Middleware application within a few minutes. If metrics do not appear, confirm that Kubernetes has access to the internet, either directly or through a proxy, and that only one MW Agent is running per cluster. 
 
 # Uninstall
 
@@ -62,11 +67,5 @@ Download the [MW Kubernetes Uninstall script](https://github.com/middleware-labs
 ```Powershell Powershell
 .\mw-kube-agent-uninstall-powershell.ps1 
 ``` 
-
-# Troubleshooting
-
-<Warning>  Run only one MW Agent DaemonSet per cluster per host. Multiple agents will cause unexpected behavior. </Warning>
-
-Once the MW Agent is installed on your cluster metrics should begin appearing in the Middleware application within a few minutes. If metrics do not appear, confirm that Kubernetes has access to the internet, either directly or through a proxy, and that only one MW Agent is running per cluster. 
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
