@@ -103,6 +103,53 @@ To add stack traces along with the error log, use the following error tracking f
 tracker.error(new Error('Error sample with stack trace'));
 ```
 
+#### Custom Metrics and Spans
+
+Create custom instruments and spans by exposing the meter and tracer with the following pattern:
+
+```javascript Node.js
+const express = require("express");
+const app = express();
+const tracker = require("@middleware.io/node-apm");
+
+const serviceName = "express-api";
+tracker.track({
+    serviceName: serviceName,
+    accessToken: "<your_key_here>",
+    target: "<your_mw_url_here>",
+});
+
+const tracer = tracker.getTracer();
+
+const meter = tracker.getMeter()
+let counter = meter.createCounter("express-counter").add(1);
+
+
+function randInt(range) {
+    // Create a span. A span must be closed.
+    return tracer.startActiveSpan("randInt", (span) => {
+        // Generate a random integer between 0 and the range provided.
+        const randomInt = Math.floor(Math.random() * range);
+        // Be sure to end the span!
+        span.end();
+        return randomInt;
+    });
+}
+
+app.get("/randInt", (req, res) => {
+    const randomInt = randInt(100);
+    res.json({ number: randomInt });
+});
+
+app.get("/health", (req, res) => {
+    res.json({ status: "ok" });
+});
+
+
+app.listen(5051, () => {
+    console.log("Server is running on port 5051");
+});
+```
 
 #### Profiling
 
@@ -110,7 +157,7 @@ Application Profiling is auto-configured upon completing Step 2.
 
 #### Stack Traces
             
-Use the errorRecord method to record a stack trace when an error occurs. See an example of this method below. 
+Use the `errorRecord` method to record a stack trace when an error occurs. See an example of this method below. 
 ```javascript Node.js 
 app.get('/error', function (req, res) {
     try{
