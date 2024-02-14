@@ -25,7 +25,7 @@ Add the following script tag to the head section of your index.html file. The ta
 
 Add the following lines in your index.html file below the script tag entered in Step 2. We recommend copying directly from the Installation page; select the appropriate Application from the list and copy the code snippet. The `window.Middleware` attribute is set in the script from Step 2. 
 
-In the example below, env and recording are optional. Recording set to 1 is the default value and records the entire user session. To track only browser traces and errors set recording to 0.
+In the example below, `env` and `recording` are optional. `recording: "1"` is the default value and records the entire user session. To track only browser traces and errors set `recording: "0"`.
 
 ```javascript JavaScript
 <script>
@@ -55,6 +55,8 @@ defaultAttributes: {
 }
 ```
 If you need to define attributes post initialization of the SDK, utilize the `Middleware.setAttributes` method, as exemplified in the following example.
+
+<Note> The `.setAttributes` method must be called after the `.track` method in [Step 3](/rum/getting-started#step-3-initialize-the-sdk). </Note>
 
 ```javascript JavaScript
 <script>
