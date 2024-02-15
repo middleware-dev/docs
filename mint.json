@@ -175,6 +175,7 @@
         {
           "group": "OpenTelemetry",
           "pages": [
+            "open-telemetry/otel-getting-started",
             "open-telemetry/otel-collector"
           ]
 
