@@ -112,43 +112,59 @@ const express = require("express");
 const app = express();
 const tracker = require("@middleware.io/node-apm");
 
-const serviceName = "express-api";
+// Initialize the tracker
 tracker.track({
-    serviceName: serviceName,
-    accessToken: "<your_key_here>",
-    target: "<your_mw_url_here>",
+  // Service name differentiates your applications in the APM section of the Middleware platform.
+  serviceName: "<your_service_name_here>",
+  // You can find your access token in the Middleware platform by going to the installation page.
+  accessToken: "<your_key_here>",
+  // The target is your Middleware platform URL.
+  // When you login to the Middleware platform, you can find your target URL in the URL bar.
+  target: "<your_mw_url_here>",
 });
 
+// Create a tracer, used to create spans.
 const tracer = tracker.getTracer();
 
-const meter = tracker.getMeter()
-let counter = meter.createCounter("express-counter").add(1);
+// Create a meter, used to create custom metrics.
+const meter = tracker.getMeter();
 
+// Create a counter metric.
+// For a list of other metric types, see the opentelemetry metrics API
+// documentation. (https://opentelemetry.io/docs/specs/otel/metrics/api/)
+let counter = meter.createCounter("health-check-counter");
 
+/**
+ * Generate a random integer between 0 and the range provided.
+ * @param {Number} range
+ * @returns {Number}
+ */
 function randInt(range) {
-    // Create a span. A span must be closed.
-    return tracer.startActiveSpan("randInt", (span) => {
-        // Generate a random integer between 0 and the range provided.
-        const randomInt = Math.floor(Math.random() * range);
-        // Be sure to end the span!
-        span.end();
-        return randomInt;
-    });
+  // Create a span. A span must be closed.
+  return tracer.startActiveSpan("randInt", (span) => {
+    const randomInt = Math.floor(Math.random() * range);
+    // Be sure to end the span
+    span.end();
+    return randomInt;
+  });
 }
 
 app.get("/randInt", (req, res) => {
-    const randomInt = randInt(100);
-    res.json({ number: randomInt });
+  // Calling the randInt function will generate a span.
+  const randomInt = randInt(100);
+  res.json({ number: randomInt });
 });
 
 app.get("/health", (req, res) => {
-    res.json({ status: "ok" });
+  // Increment the health-check-counter by 1.
+  counter.add(1);
+  res.json({ status: "ok" });
 });
-
 
 app.listen(5051, () => {
-    console.log("Server is running on port 5051");
+  console.log("Server is running on port 5051");
 });
+
 ```
 
 #### Profiling
