@@ -2,48 +2,34 @@
 title: "Projects"
 ---
 
-Projects allow you to easily separate your Observability stack between multiple cloud architectures and applications. They do so by separating modules (Dashboard, Infrastructure Monitoring, APM, Logs, RUM, Synthetic Monitoring, Recommendations) into isolated and controlled environments.
+The Projects section allows you to separate your organizations observability stack between architectures, microservices, and cross-functional teams. Projects are separated into modules (e.g. Dashboards, Infrastructure Monitoring, APM, Logs, RUM, Synthetic Monitoring, etc.) which are isolated and controlled environments that allow project members to easily access their data.
 
-# Limitations
-
-<Accordion title="Usage Dashboard">
-    The [Usage](/admin/settings/usage) section shows data across all Projects and is visible to all Middleware Admins. You can choose to view all Projects usage at once, or per Project.
-</Accordion>
-
-<Accordion title="Plans & Billing">
-    Middleware supports one Credit Card shared for the entire Account, and will bill according to aggregate usage across all Projects. 
-</Accordion>
-
-<Accordion title="Users">
-    Users have access to all Projects for the time being. We will implement per Project user access eventually.
-</Accordion>
+<Note>Users have access to all Projects and can see details in the [Usage](https://docs.middleware.io/admin/settings/usage) section. Per Project user access has not ben released.</Note>
 
 # Create New Project
-<Accordion title="Step 1: Navigate to Settings">
-    ### Step 1a: Select Projects
+### Step 1: Navigate to Settings
 
-    ### Step 1b: Click Create Project
+Navigate to the Projects section in Settings and click Create Project:
 
-    ![](https://lh3.googleusercontent.com/1rqzb8aEA-8btxxDjbP9iTNh3Ph1zWO6SPVoDPk2alwfK1Qi2cMtmmvT6VjhIzjI59fqeuz0jdqyBjsnodlKhXhnrmX7oVvWklJfGHkMMz0Zau9HL0lgppdXnIjY-6EOfTMPAxSHGUAugK1deXPJKSQ)
-</Accordion>
+![](https://lh3.googleusercontent.com/1rqzb8aEA-8btxxDjbP9iTNh3Ph1zWO6SPVoDPk2alwfK1Qi2cMtmmvT6VjhIzjI59fqeuz0jdqyBjsnodlKhXhnrmX7oVvWklJfGHkMMz0Zau9HL0lgppdXnIjY-6EOfTMPAxSHGUAugK1deXPJKSQ)
 
-<Accordion title="Step 2: Enter Project Details">
-    <Note> The name of your Alias will be the default subdomain (e.g., the subdomain & URL of the below account will be dev-env.middleware.io). Subdomains must be unique across all Middleware Accounts and are adjustable at any time.</Note>  
+### Step 2: Enter Project Details
+
+Name your project, provide a description, and create an alias:
+
+<Note> The name of your Alias will be the default subdomain (e.g., the subdomain & URL of the below account will be `new-project.middleware.io`). Subdomains must be unique across all Middleware Accounts and are adjustable at any time.</Note>  
     
-    ![](https://lh5.googleusercontent.com/SHafERVXpo6_tXgXhi3YHWBW-FkjCVzv6qsHcm9jJh0WGCE0Y37jZ7ED1rF9O1sLr1hwQZIWFRcK45_TDYcF1XaeBZOHiM6CC4TQNceWIp89gamZSDqeHGPA7x_25cnPLBjuC9b2Bo8Sd9cCRKryDDY)
-</Accordion>
+![](https://lh5.googleusercontent.com/SHafERVXpo6_tXgXhi3YHWBW-FkjCVzv6qsHcm9jJh0WGCE0Y37jZ7ED1rF9O1sLr1hwQZIWFRcK45_TDYcF1XaeBZOHiM6CC4TQNceWIp89gamZSDqeHGPA7x_25cnPLBjuC9b2Bo8Sd9cCRKryDDY)
 
 # Switch Between Projects
 
-### Step 1: Click Profile
-
-### Step 2: Choose your Project 
+Navigate to your Profile, select Projects, and choose your desired Project:
 
 ![](https://lh6.googleusercontent.com/OJGTRiBr5b6LS_smHDeF9kFzyumsFZfamQ1RIMs_x3ra4ZsEfPilFgfJ8YIAteaYwEWGVB1enD5YqXz1iNNzBNKpr2Sg7MHm8BI9vudnVTelhNHqdx1SM9gY-RfNUoInOSxlDvwWSKSGlhEXcn0Q9kU)
 
 # Install Project Modules
 
-You must install the specific modules for your new Project. See the related [Getting Started](/quickstart) guides to get going.
+You are required to install modules for new Projects on your own machine to access all data within that Project. See the related [Getting Started](https://docs.middleware.io/quickstart) guides to install all necessary modules.
 
 <Warning> Do not run more than one Middleware agent per machine. Multiple agents will cause unexpected behavior. </Warning> 
 
