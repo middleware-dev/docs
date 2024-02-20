@@ -3,16 +3,18 @@ title: "Custom Telemetry Ingestion"
 sidebarTitle: "Custom Ingestion"
 ---
 
-We recommend using Middleware's Agent and associated SDKs to ingest data, however, more advanced users have the option to use OpenTelemetry Protocol Exporters. Each language will have a different approach which can be an adaptation from our relevant Host Agent. Instrument your OpenTelemetry code with languages that are supported by both Middleware and [OpenTelemetry](https://opentelemetry.io/docs/instrumentation/).
+More advanced users have the option to use OpenTelemetry Protocol Exporters instead of Middleware's Agent and associated SDKs to ingest data. Each language will have a different approach which can be an adaptation from our relevant Host Agent.
 
-The example below is using javascript and an abstraction from our [node agent](https://github.com/middleware-labs/agent-apm-nodejs). All other agents can be found in our [middleware-labs repo](https://github.com/middleware-labs). If you need assistance with a specific language we are happy to work with you, however, we do not have every approach documented at this time.
+The example below uses JavaScript and an abstraction from our [Node Agent](https://github.com/middleware-labs/agent-apm-nodejs). All other agents can be found in our [middleware-labs repo](https://github.com/middleware-labs). If you need assistance with a specific language we are happy to work with you, however, we do not have every approach documented at this time.
+
+<Warning>Instrument your OpenTelemetry code with languages that are supported by both Middleware and [OpenTelemetry](https://opentelemetry.io/docs/instrumentation/).</Warning>
 
 # Installation
 
 ### Step 1: Setup Resource Attributes
 
 Embed OpenTelemetry Resource Attributes:
-<Note> Learn more about OpenTelemetry Resources [here](https://opentelemetry.io/docs/concepts/resources/) </Note>
+<Note> Learn more about OpenTelemetry Resources [here](https://opentelemetry.io/docs/concepts/resources/). </Note>
 
 ```javascript JavaScript
 const resource = new Resource({
@@ -35,7 +37,7 @@ const resource = new Resource({
 
 ### Step 2: Configure your Exporter
 
-Configure your exporter(s) to send data to Middleware with OTLP/HTTP or OTLP/gRPC. 
+Configure your exporter(s) to send data to Middleware with `OTLP/HTTP` or `OTLP/gRPC`. 
 
 <Warning> Log ingestion is an experimental feature within Open Telemetry. Proceed with caution. </Warning>
 
@@ -75,7 +77,9 @@ POST https://<UID>.middleware.io/v1/metrics
 
 <Accordion title="Sample OTLP/HTTP Curl Request">
 
-<Note> The following should be used as an example - we do not recommend using this specific curl request for OTLP/HTTP curl requests. Data must be in OTLP/HTTP format. Learn more [here](https://opentelemetry.io/docs/specs/otlp/#otlphttp). </Note>
+The following is an example of sending metrics data via curl request.
+
+<Note> We do not recommend using this specific pattern for OTLP/HTTP curl requests. Data must be in OTLP/HTTP format. Learn more [here](https://opentelemetry.io/docs/specs/otlp/#otlphttp). </Note>
 ```
 curl -X POST "https://demo.middleware.io/v1/metrics" \
 -H "Accept: application.json" \
@@ -136,6 +140,6 @@ EOF
 </Accordion>
 
 ### Step 3: Send Data to Middleware
-Once you have setup your resource attributes, initialize your providers, and configure your exporters, begin sending data to Middleware. 
+Once you have set up your resource attributes, initialize your providers, and configure your exporters, begin sending data to Middleware. 
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
