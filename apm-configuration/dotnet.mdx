@@ -35,17 +35,17 @@ This guide walks you through setting up Application Performance Monitoring (APM)
 
 ### Step 1: Install `.NET` APM Package
 
-Run the following command in your terminal:
+#### Step 1a: Run the following command in your terminal
 
 ```bash Shell
 curl -sSfL https://install.middleware.io/apm/dotnet/v1.0.0-rc.1/scripts/mw-dotnet-auto-install.sh -O
 ```
-Install core files.
+#### Step 1b: Install core files
 ```bash Shell
 sh ./mw-dotnet-auto-install.sh
 rm -f mw-dotnet-auto-install.sh
 ```
-Enable execution for the instrumentation script.
+#### Step 1c: Enable execution for the instrumentation script
 ```bash Shell
 chmod +x $HOME/.mw-dotnet-auto/instrument.sh
 ```
@@ -64,7 +64,7 @@ Download the latest [Middleware.dll](https://github.com/middleware-labs/dotnet-p
 
 ### Step 3: Container Variables
 
-Applications running in a container require an additional environment variable. If your application is not running in a container, move to [Step 4](/apm-configuration/dotnet#step-4-build-and-run-net-application). 
+<Note>Applications running in a container require an additional environment variable. If your application is not running in a container, move to [Step 4](/apm-configuration/dotnet#step-4-build-and-run-net-application). </Note>
 
 #### Kubernetes
 
@@ -96,7 +96,54 @@ ASPNETCORE_HTTP_PORTS=5000
 ASPNETCORE_URLS=http://0.0.0.0:5000
 ```
 
-### Step 4: Build and Run .NET Application
+### Step 4: Enable Custom Logs [Optional]
+
+#### Step 4a: Add the following functions:
+
+```csharp C#
+using Middleware.Logger;
+...
+Logger.Info("This is info log");
+Logger.Warning("This is info log");
+Logger.Debug("This is info log");
+Logger.Error(<Object of Exception>);
+```
+
+#### Step 4b: Add packages to `YourApp.csproj` file
+
+```xml XML
+<Project Sdk="Microsoft.NET.Sdk.Web">    
+    ...
+    <ItemGroup>
+      <PackageReference Include="OpenTelemetry" Version="1.5.1" />
+      <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.5.1" />
+    </ItemGroup>
+    ...
+</Project>
+```
+
+#### Step 4c: Enable Logs in your `project.cs` file
+
+```csharp C#
+using OpenTelemetry.Logs;
+using OpenTelemetry.Resources;
+...
+
+var builder = WebApplication.CreateBuilder(args);
+ 
+builder.Logging.AddOpenTelemetry(options => 
+{
+    options.AddConsoleExporter();
+});
+...
+
+var app = builder.Build();
+...
+
+app.Run();
+```
+
+### Step 5: Build and Run .NET Application
 
 
 Execute the following command to build and run your .NET application:
