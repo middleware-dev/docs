@@ -235,7 +235,6 @@
             "admin/settings/Projects",
             "admin/settings/plans_billing",
             "admin/settings/usage",
-            "admin/settings/api_keys",
             "admin/settings/legal_compliance",
             "admin/settings/advanced"
           ]
