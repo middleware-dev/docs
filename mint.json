@@ -68,6 +68,7 @@
       "group": "Middleware Docs",
       "pages": [
         "quickstart",
+        "getting-started",
         "workflow/workflow-welcome", 
         "admin/admin-welcome",
         "workflow/infrastructure-monitoring/container-monitoring",
