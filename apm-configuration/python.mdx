@@ -166,5 +166,14 @@ MIDDLEWARE_CONFIG_FILE=./middleware.ini middleware-apm run python app.py
 
 Continuous profiling captures real-time performance insights from your application to enable rapid identification of resource allocation, bottlenecks, and more. Navigate to the [Continuous Profiling](https://docs.middleware.io/workflow/profiling#continuous-profiling) section to learn more about using Continuous Profiling with the Python APM.     
 
+# Troubleshooting
+
+### Monitoring Your Django Project
+
+If you are unable to instrument your Django project, you must explicitly define your environment at the beginning of your application with the appropriate settings:
+
+```python Python 3
+DJANGO_SETTINGS_MODULE=helloworld.settings
+```
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
 
