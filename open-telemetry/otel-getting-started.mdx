@@ -1,0 +1,78 @@
+---
+title: "Custom Telemetry Ingestion"
+sidebarTitle: "Custom Ingestion"
+---
+
+More advanced users have the option to use OpenTelemetry Protocol Exporters instead of Middleware's Agent and associated SDKs to ingest data. Each language will have a different approach which can be an adaptation from our relevant Host Agent.
+
+The example below uses JavaScript and an abstraction from our [Node Agent](https://github.com/middleware-labs/agent-apm-nodejs). All other agents can be found in our [middleware-labs repo](https://github.com/middleware-labs). If you need assistance with a specific language we are happy to work with you, however, we do not have every approach documented at this time.
+
+<Warning>Instrument your OpenTelemetry code with languages that are supported by both Middleware and [OpenTelemetry](https://opentelemetry.io/docs/instrumentation/).</Warning>
+
+# Installation
+
+### Step 1: Setup Resource Attributes
+
+Embed OpenTelemetry Resource Attributes:
+<Note> Learn more about OpenTelemetry Resources [here](https://opentelemetry.io/docs/concepts/resources/). </Note>
+
+```javascript JavaScript
+const resource = new Resource({
+  [SemanticResourceAttributes.SERVICE_NAME]: "YOUR_SERVICE-NAME",
+  ["mw_agent"]: true,
+  ["mw.account_key"]: "YOUR-API-KEY",
+  ["mw_target"]: "YOUR-TARGET"
+});
+```
+### Resource Attributes
+
+| Field | Type | Required | Description |
+| :--: |:--:| :---: | :----:| 
+| `mw.account_key` | string | ✅ | API key that authenticates your MW Account |
+| `mw_agent` | boolean |✅ | Required by MW |
+| `SERVICE_NAME` | string | ✅ | Logical name of service requred by OpenTelemetry | 
+
+<Note> For more information on OpenTelemetry JavaScript Resources, head [here](https://opentelemetry.io/docs/instrumentation/js/resources/) </Note>
+
+
+### Step 2: Configure your Exporter
+
+Configure your exporter(s) to send data to Middleware with `OTLP/HTTP` or `OTLP/gRPC`. 
+
+<Warning> Log ingestion is an experimental feature within Open Telemetry. Proceed with caution. </Warning>
+
+<CodeGroup>
+
+```javascript OTLP/gRPC
+// Install gRPC exporter libraries
+const { OTLPLogExporter } = require("@opentelemetry/exporter-logs-otlp-grpc");
+const { OTLPTraceExporter } = require("@opentelemetry/exporter-trace-otlp-grpc");
+const { OTLPMetricExporter } = require("@opentelemetry/exporter-metrics-otlp-grpc");
+
+// Place the following in your global SDK
+// Set exporter to use Middleware gRPC logger endpoint
+const loggerExporter = new OTLPLogExporter({
+  url: "https://sandbox.middleware.io:443",
+});
+
+// Set exporter to use Middleware gRPC metric endpoint
+const metricExporter = new OTLPMetricExporter({
+    url: "https://sandbox.middleware.io:443",
+});
+
+// Set exporter to use Middleware gRPC trace endpoint
+const traceExporter = new OTLPTraceExporter({
+    url: "https://sandbox.middleware.io:443",
+});
+
+```
+
+```javascript OTLP/HTTP
+// Send HTTP POST requests to endpoints:
+POST https://<UID>.middleware.io/v1/logs
+POST https://<UID>.middleware.io/v1/traces
+POST https://<UID>.middleware.io/v1/metrics
+```
+</CodeGroup>
+
+<Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
