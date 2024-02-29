@@ -160,29 +160,19 @@ except ZeroDivisionError as e:
 
 #### Step 5a: Instrument Your App
 
-Add the following to your `main()` function in `manage.py` if you are using Django:
+Add the following to your `main()` function in `manage.py` if you're using Django:
 
 ```python3 Python
 tracker.django_instrument()
 ```
 
-#### Step 5b: Initialize Your Django Project [Optional]
-
-After deploying your application, run the following command:
-
-```python Python
-MIDDLEWARE_CONFIG_FILE=./middleware.ini middleware-apm run python app.py
-```
-
-#### Step 5c: Start Your Django Project [Optional]
+#### Step 5b: Start Your Django Project [Optional]
 
 Initialize your Django project with the following command:
 
 ```python Python
-DJANGO_SETTINGS_MODULE='mysite.settings' MIDDLEWARE_CONFIG_FILE=./ middleware.ini middleware-apm run python manage.py runserver
+DJANGO_SETTINGS_MODULE='mysite.settings' MIDDLEWARE_CONFIG_FILE=./middleware.ini middleware-apm run python manage.py runserver
 ```
-
-
 
 ### Step 6: Start Your Project
 
