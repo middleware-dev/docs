@@ -154,7 +154,37 @@ except ZeroDivisionError as e:
     tracker.record_error(e)
 ```
 
-### Step 5: Start Your Project
+### Step 5: Deploy Your Django App [Optional]
+
+<Note> If you are not using the Django framework in your Python application, proceed to [Step 6](/apm-configuration/python#step-6-start-your-project). </Note>
+
+#### Step 5a: Instrument Your App
+
+Add the following to your `main()` function in `manage.py` if you are using Django:
+
+```python3 Python
+tracker.django_instrument()
+```
+
+#### Step 5b: Initialize Your Django Project [Optional]
+
+After deploying your application, run the following command:
+
+```python Python
+MIDDLEWARE_CONFIG_FILE=./middleware.ini middleware-apm run python app.py
+```
+
+#### Step 5c: Start Your Django Project [Optional]
+
+Initialize your Django project with the following command:
+
+```python Python
+DJANGO_SETTINGS_MODULE='mysite.settings' MIDDLEWARE_CONFIG_FILE=./ middleware.ini middleware-apm run python manage.py runserver
+```
+
+
+
+### Step 6: Start Your Project
 
 After deploying your application, run the following command to start your project:
 
@@ -166,14 +196,5 @@ MIDDLEWARE_CONFIG_FILE=./middleware.ini middleware-apm run python app.py
 
 Continuous profiling captures real-time performance insights from your application to enable rapid identification of resource allocation, bottlenecks, and more. Navigate to the [Continuous Profiling](https://docs.middleware.io/workflow/profiling#continuous-profiling) section to learn more about using Continuous Profiling with the Python APM.     
 
-# Troubleshooting
-
-### Monitoring Your Django Project
-
-If you are unable to instrument your Django project, you must explicitly define your environment at the beginning of your application with the appropriate settings:
-
-```python Python 3
-DJANGO_SETTINGS_MODULE=helloworld.settings
-```
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
 
