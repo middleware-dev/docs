@@ -1,0 +1,25 @@
+---
+title: February 28, 2024
+---
+
+# Features
+- Metrics Explorer in Settings provides users a single location to view all of their collected metrics -  users can search for metrics by resource name, key, or label names
+- Dynamic filters in the alert module for users based on their existing alert configurations
+- Users can mute their already created Alerts in the details screen
+- Alerts are dynamically changed based on the last triggered alert for that rule
+- Data Ingestion Intervals allow users to control the interval on which they ingest data for any new dashboard
+
+# Changes
+- Increased trace ingestion capabilities (200,000 traces/min) to decrease probability of crashes
+- At least one ingestion pipeline will be active from the Ingestion Controls window in Settings to ensure data ingestion
+- Alerts only have two triggers, __Warning__ and __Critical__, with one or both capable of being selected for an alert
+- Users can sort logs by both date and time 
+
+# Fixes
+
+- Fixed APM filters to stop parent spans from breaking
+- Fixed data mismatching between APM graphs and resources
+- Fixed trace latency calculation to ensure accurate latency graph visualization
+- Fixed infinite loading issue in alert graph when saving/updating new rules
+- Fixed Slack channel integration to ensure all channels fetched for alerts
+
