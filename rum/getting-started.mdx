@@ -41,6 +41,19 @@ In the example below, `env` and `recording` are optional. `recording: "1"` is th
 </script>
 ```
 
+#### Configuration Object Properties
+
+| Name                 | Type     | Required                        | Default                | Description                            |
+|----------------------|----------|---------------------------------|------------------------|----------------------------------------|
+| `serviceName`          | String   | ✅                        |                        | The name of the service.               |
+| `projectName`          | String   | ✖️                        | URL of application                       | The name of the project.               |
+| `accountKey`           | String   | ✅                        |                        | The account key for authentication.    |
+| `target`               | String   | ✅                        |                        | The target URL for the service.        |
+| `env`                  | String   | ✖️                        | `"prod"`                       | The environment of the service.        |
+| `recording`            | String   | ✖️                        | `"1"`                    | Indicates if recording is enabled.     |
+| `tracePropagationTargets` | Array  | ✖️                        |                        | Targets for trace propagation.        |
+
+
 ### Step 4: Add User Information [Optional]
 To gather user details add key-value pairs, as shown below. Any user metadata can be defined as a key-value pair.
 
