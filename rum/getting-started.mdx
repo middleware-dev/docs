@@ -43,15 +43,20 @@ In the example below, `env` and `recording` are optional. `recording: "1"` is th
 
 #### Configuration Object Properties
 
-| Name                 | Type     | Required                        | Default                | Description                            |
-|----------------------|----------|---------------------------------|------------------------|----------------------------------------|
-| `serviceName`          | String   | ✅                        |                        | The name of the service.               |
-| `projectName`          | String   | ✖️                        | URL of application                       | The name of the project.               |
-| `accountKey`           | String   | ✅                        |                        | The account key for authentication.    |
-| `target`               | String   | ✅                        |                        | The target URL for the service.        |
-| `env`                  | String   | ✖️                        | `"prod"`                       | The environment of the service.        |
-| `recording`            | String   | ✖️                        | `"1"`                    | Indicates if recording is enabled.     |
-| `tracePropagationTargets` | Array  | ✖️                        |                        | Targets for trace propagation.        |
+
+| Name                      | Type                    | Required | Default            | Description                                                                                                                                                                        |
+| ------------------------- | ----------------------- | -------- | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `projectName`             | String                  | ✅       | URL of the application | Project name is the main identifier for your application, encapsulating application instance like dev, staging, and production.                                                    |
+| `serviceName`             | String                  | ✅       |                    | Service name associates application instances with traces, as a subcategory of the project.                                                                                        |
+| `accountKey`              | String                  | ✅       |                    | Account key generated from `Installation > JavaScript > Create New Application`.                                                                                                   |
+| `target`                  | String                  | ✅       |                    | The target URL for the application using RUM. Must have `http(s)://` prepended.                                                                                                    |
+| `env`                     | String                  | ✖️       | `"prod"`           | Arbitrary string used to filter applications by environment.                                                                                                                             |
+| `recording`               | String                  | ✖️       | `"1"`              | Toggle used to enable/disable video recording. Possible values are `"1"` to enable video recording or `"2"` to disable video recording.                                            |
+| `tracePropagationTargets` | Array\<RegExp\>         | ✖️       |                    | Targets for trace propagation. URL's of back-end services as an array of regular expression literals. `http(s)://` must be omitted.                                                                             |
+| `tracePropagationFormat`  | String                  | ✖️       | `"b3"`             | Trace propogation format.                                                                                                                                                           |
+| `defaultAttributes`       | Object\<string, string> | ✖️       |                    | Key value pairs used to filter sessions/traces in Middleware. Special keys `name` and `email` filter RUM sessions, while all other keys are arbitrary strings used for trace filtering. |
+| `ignoreUrls`              | Array                   | ✖️       |                    | URL's to ignore.                                                                                                                                                                   |
+
 
 
 ### Step 4: Add User Information [Optional]
