@@ -187,3 +187,72 @@ To access your Session Replay data, navigate to the APM section, select the Trac
 </Accordion>
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
+
+## API Reference
+
+### Middleware
+
+#### `debug(log)`
+
+**Parameters:**
+
+- **log** (string): The debug message to be logged.
+
+**Returns:** undefined
+
+#### `info(log)`
+
+**Parameters:**
+
+- **log** (string): The informational message to be logged.
+
+**Returns:** undefined
+
+#### `warn(log)`
+
+**Parameters:**
+
+- **log** (string): The warning message to be logged.
+
+**Returns:** undefined
+
+#### `error(log)`
+
+**Parameters:**
+
+- **log** (Object): An [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/Error) object.
+
+**Returns:** undefined
+
+#### `track(config)`
+
+**Parameters:**
+
+- **config** (object): Configuration object.
+
+**Returns:** undefined
+
+#### `setAttributes(config)`
+
+**Parameters:**
+
+- **config** (object): Configuration object used to set attributes *after* the initial configuration with `.track()`.
+
+**Returns:** undefined
+
+
+### Configuration Object
+
+
+| Property                      | Type                    | Required | Default            | Description                                                                                                                                                                        |
+| ------------------------- | ----------------------- | -------- | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `projectName`             | string                  | ✅       | URL of the application | Project name is the main identifier for your application, encapsulating application instances like dev, staging, and production.                                                    |
+| `serviceName`             | string                  | ✅       |                    | Service name associates application instances with traces, as a subcategory of the project.                                                                                        |
+| `accountKey`              | string                  | ✅       |                    | Account key generated from `Installation > JavaScript > Create New Application`.                                                                                                   |
+| `target`                  | string                  | ✅       |                    | The target URL for the application using RUM. Must have `http(s)://` prepended.                                                                                                    |
+| `env`                     | string                  | ✖️       | `"prod"`           | Arbitrary string used to filter applications.                                                                                                                             |
+| `recording`               | string                  | ✖️       | `"1"`              | Toggle used to enable/disable video recording. Possible values are `"1"` to enable video recording or `"2"` to disable video recording.                                            |
+| `tracePropagationTargets` | Array\<RegExp\>         | ✖️       |                    | Targets for trace propagation. URL's of back-end services as an array of regular expression literals. `http(s)://` must be omitted.                                                                             |
+| `tracePropagationFormat`  | string                  | ✖️       | `"b3"`             | Trace propogation format.                                                                                                                                                           |
+| `defaultAttributes`       | Object\<string, string> | ✖️       |                    | Key value pairs used to filter sessions/traces in Middleware. Special keys `name` and `email` filter RUM sessions, while all other keys are arbitrary strings used for trace filtering. |
+| `ignoreUrls`              | Array                   | ✖️       |                    | URL's to ignore.            
