@@ -5,7 +5,7 @@ sidebarTitle: "Browser"
 
 This guide walks you through setting up Real User Monitoring (RUM) with JavaScript. These instructions can also be found on the Installation page in your Middleware Account.
 
-## Install
+# Install
 
 <Warning> If you are installing RUM with `Next.js`, skip to the following __[Next.js](#installing-on-next-js)__ section. </Warning>
 
@@ -86,7 +86,7 @@ if(window.Middleware){
 </script>
 ``` 
 
-## Connect RUM to Tracing
+# Connect RUM to Tracing
 
 RUM Tracing allows you to gain insight into the specific actions of your users. You can watch time-stamped videos of user's website interactions, pinpoint performance bottlenecks across your platform, and identify the major causes of customer drop off.
 
@@ -122,7 +122,7 @@ The following installation uses OpenTelemetry B3 Propagator heads. Learn more ab
     </Accordion>
 </AccordionGroup>
 
-## Access RUM From Trace List
+# Access RUM From Trace List
 
 To access your Session Replay data, navigate to the APM section, select the Trace List tab and choose a trace to view your data.
 
@@ -130,9 +130,9 @@ To access your Session Replay data, navigate to the APM section, select the Trac
 
 <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNnRxNzFmajVnYXZpZW8xbGR6OHF3NjZ6aWozYXRjZmZ5OHlnc3c4eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/AQhJ5ezOms5ncTNH7a/giphy.gif" width="900" height="900" />
 
-## Supported APMs
+# Supported APMs
 |       | | | |
-| :----:| :--:|:--:| :--:|
+| :----| :--:|:--:| :--:|
 | **Language**                                |    **Supported**   | **APM Version** | **Environment Variable** |
 | [Cloudflare](https://docs.middleware.io/apm-configuration/cloudflare) |           ✖️        |   ✖️             |        ✖️             |
 | [Go](https://docs.middleware.io/apm-configuration/go)           |                ✅        |   `>= 1.1.100`     |        ✖️             |
@@ -145,7 +145,34 @@ To access your Session Replay data, navigate to the APM section, select the Trac
 | [Ruby](https://docs.middleware.io/apm-configuration/ruby)         |              ✅        | `>= 2.1.0`         |   ✅  |
 | [Vercel](https://docs.middleware.io/apm-configuration/vercel-integration)   |     ✅        |    ✖️            |            ✖️             |
 
-## Troubleshooting
+# API Reference
+
+| __Function__                  | __Returns__ | __Parameters__ |
+| :----------------------  | :--------:  | :------------------- |
+| `debug(log)`             |  undefined  | log (string): The debug message to be logged |
+| `info(log)`              |  undefined  | log (string): The informational message to be logged |
+| `warn(log)`              |  undefined  | log (string): The warning message to be logged |
+| `error(log)`             |  undefined  | log (Object): An [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/Error) object |
+| `track(config)`          |  undefined  | config (object): Configuration object |
+| `setAttributes(config)`  |  undefined  | config (object): Configuration object used to set attributes after the initial configuration with `.track()` |
+
+# Configuration Object
+
+| __Property__              | __Type__                | __Required__ | __Default__            | __Description__                                                                                                                                                                        |
+| :------------------------- | ----------------------- | :--------: | :------------------: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `projectName`             | `string`                  | ✅       | URL of the application | Main application identifier, encapsulating application instances like `dev`, `staging`, and `prod`                                                    |
+| `serviceName`             | `string`                  | ✅       |                    | Associates application instances with traces as a subcategory of the project                                                                                        |
+| `accountKey`              | `string`                  | ✅       |                    | Generated from `Installation -> JavaScript -> Create New Application`                                                                                                   |
+| `target`                  | `string`                  | ✅       |                    | Target URL for the application using RUM - Required `http(s)://` prepend                                                                                                    |
+| `env`                     | `string`                  | ✖️       | `"prod"`           | Arbitrary string for filtering applications                                                                                                                             |
+| `recording`               | `string`                  | ✖️       | `"1"`              | Toggle used to enable/disable video recording - `"1"` enables video recording and `"2"` disables video recording                                            |
+| `tracePropagationTargets` | `Array\<RegExp\>`         | ✖️       |                    | Targets for trace propagation - URL's of back-end serve as array of regular expression literals (`http(s)://` must be omitted)                                                                             |
+| `tracePropagationFormat`  | `string`                  | ✖️       | `"b3"`             | Trace propogation format                                                                                                                                                           |
+| `defaultAttributes`       | `Object\<string, string>` | ✖️       |                    | Key value pairs used to filter sessions/traces - `name` and `email` filter RUM sessions, while all other keys are arbitrary strings for trace filtering |
+| `ignoreUrls`              | `Array`                   | ✖️       |                    | URL's that will be ignored     |       
+
+
+# Troubleshooting
 
 <Accordion title="Browser Cookies">
     The RUM Browser SDK uses cookies to remember a single user session across different pages on your website. These are first-party cookies and stay within your domain; they won't be used to track users across different sites.
@@ -187,72 +214,3 @@ To access your Session Replay data, navigate to the APM section, select the Trac
 </Accordion>
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
-
-## API Reference
-
-### Middleware
-
-#### `debug(log)`
-
-**Parameters:**
-
-- **log** (string): The debug message to be logged.
-
-**Returns:** undefined
-
-#### `info(log)`
-
-**Parameters:**
-
-- **log** (string): The informational message to be logged.
-
-**Returns:** undefined
-
-#### `warn(log)`
-
-**Parameters:**
-
-- **log** (string): The warning message to be logged.
-
-**Returns:** undefined
-
-#### `error(log)`
-
-**Parameters:**
-
-- **log** (Object): An [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/Error) object.
-
-**Returns:** undefined
-
-#### `track(config)`
-
-**Parameters:**
-
-- **config** (object): Configuration object.
-
-**Returns:** undefined
-
-#### `setAttributes(config)`
-
-**Parameters:**
-
-- **config** (object): Configuration object used to set attributes *after* the initial configuration with `.track()`.
-
-**Returns:** undefined
-
-
-### Configuration Object
-
-
-| Property                      | Type                    | Required | Default            | Description                                                                                                                                                                        |
-| ------------------------- | ----------------------- | -------- | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `projectName`             | string                  | ✅       | URL of the application | Project name is the main identifier for your application, encapsulating application instances like dev, staging, and production.                                                    |
-| `serviceName`             | string                  | ✅       |                    | Service name associates application instances with traces, as a subcategory of the project.                                                                                        |
-| `accountKey`              | string                  | ✅       |                    | Account key generated from `Installation > JavaScript > Create New Application`.                                                                                                   |
-| `target`                  | string                  | ✅       |                    | The target URL for the application using RUM. Must have `http(s)://` prepended.                                                                                                    |
-| `env`                     | string                  | ✖️       | `"prod"`           | Arbitrary string used to filter applications.                                                                                                                             |
-| `recording`               | string                  | ✖️       | `"1"`              | Toggle used to enable/disable video recording. Possible values are `"1"` to enable video recording or `"2"` to disable video recording.                                            |
-| `tracePropagationTargets` | Array\<RegExp\>         | ✖️       |                    | Targets for trace propagation. URL's of back-end services as an array of regular expression literals. `http(s)://` must be omitted.                                                                             |
-| `tracePropagationFormat`  | string                  | ✖️       | `"b3"`             | Trace propogation format.                                                                                                                                                           |
-| `defaultAttributes`       | Object\<string, string> | ✖️       |                    | Key value pairs used to filter sessions/traces in Middleware. Special keys `name` and `email` filter RUM sessions, while all other keys are arbitrary strings used for trace filtering. |
-| `ignoreUrls`              | Array                   | ✖️       |                    | URL's to ignore.            
