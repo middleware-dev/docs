@@ -1,0 +1,33 @@
+---
+title: February 28, 2024
+---
+
+# Features
+
+- Metrics Explorer in Settings provides users a single location to view all of their collected metrics -  users can search for metrics by resource name, key, or label names
+- Dynamic filters in the alert module for users based on their existing alert configurations
+- Users can mute their already created Alerts in the details screen
+- Alert statuses are now automatically updated based on the most recent computed value
+- Data Ingestion Intervals allow users to adjust the window at which Widgets compute metrics (e.g. 30s or 1 min)
+- Log filter values will update based on other filter values selected (not available when selecting log level as a filter)
+- Mobile RUM Session Replay
+- [Kafka Integration](https://docs.middleware.io/integrations/kafka-integration)
+
+# Changes
+
+- Improvements to our trace ingestion backend allowing for large scale deployments
+- Changed __Advanced__ --> __Ingestion Controls__
+- Expanded Ingestion Controls to include Traces and Metrics
+- Added Kubernetes level ingestion controls
+- Alerts only have two triggers, __Warning__ and __Critical__, with one or both capable of being selected for an alert
+- Users can sort logs by both date and time 
+- Combined __Alerts__ and __Rules__ page for a cleaner user experience
+
+# Fixes
+
+- Fixed an issue where parent spans would sometimes not populate
+- Fixed data mismatching between APM graphs and resources
+- Fixed trace latency calculation to ensure accurate latency graph visualization
+- Fixed infinite loading issue in alert graph when saving/updating new rules
+- Fixed Slack channel integration so the list is updated each time it is requested, rather than pulled from a previous and potentially stale list
+

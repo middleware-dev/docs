@@ -256,6 +256,7 @@
         {
           "group": "Release Notes",
           "pages": [
+            "release-notes/release-3",
             "release-notes/release-2",
             "release-notes/release-1"            
           ]
