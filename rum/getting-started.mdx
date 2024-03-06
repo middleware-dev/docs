@@ -132,7 +132,7 @@ To access your Session Replay data, navigate to the APM section, select the Trac
 
 # Supported APMs
 |       | | | |
-| :----:| :--:|:--:| :--:|
+| :----| :--:|:--:| :--:|
 | **Language**                                |    **Supported**   | **APM Version** | **Environment Variable** |
 | [Cloudflare](https://docs.middleware.io/apm-configuration/cloudflare) |           ✖️        |   ✖️             |        ✖️             |
 | [Go](https://docs.middleware.io/apm-configuration/go)           |                ✅        |   `>= 1.1.100`     |        ✖️             |
@@ -144,6 +144,33 @@ To access your Session Replay data, navigate to the APM section, select the Trac
 | [Python](https://docs.middleware.io/apm-configuration/python)       |            ✅        | `>= 0.3.2`         |            ✖️             |
 | [Ruby](https://docs.middleware.io/apm-configuration/ruby)         |              ✅        | `>= 2.1.0`         |   ✅  |
 | [Vercel](https://docs.middleware.io/apm-configuration/vercel-integration)   |     ✅        |    ✖️            |            ✖️             |
+
+# API Reference
+
+| __Function__                  | __Returns__ | __Parameters__ |
+| :----------------------  | :--------:  | :------------------- |
+| `debug(log)`             |  undefined  | log (string): The debug message to be logged |
+| `info(log)`              |  undefined  | log (string): The informational message to be logged |
+| `warn(log)`              |  undefined  | log (string): The warning message to be logged |
+| `error(log)`             |  undefined  | log (Object): An [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/Error) object |
+| `track(config)`          |  undefined  | config (object): Configuration object |
+| `setAttributes(config)`  |  undefined  | config (object): Configuration object used to set attributes after the initial configuration with `.track()` |
+
+# Configuration Object
+
+| __Property__              | __Type__                | __Required__ | __Default__            | __Description__                                                                                                                                                                        |
+| :------------------------- | ----------------------- | :--------: | :------------------: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `projectName`             | `string`                  | ✅       | URL of the application | Main application identifier, encapsulating application instances like `dev`, `staging`, and `prod`                                                    |
+| `serviceName`             | `string`                  | ✅       |                    | Associates application instances with traces as a subcategory of the project                                                                                        |
+| `accountKey`              | `string`                  | ✅       |                    | Generated from `Installation -> JavaScript -> Create New Application`                                                                                                   |
+| `target`                  | `string`                  | ✅       |                    | Target URL for the application using RUM - Required `http(s)://` prepend                                                                                                    |
+| `env`                     | `string`                  | ✖️       | `"prod"`           | Arbitrary string for filtering applications                                                                                                                             |
+| `recording`               | `string`                  | ✖️       | `"1"`              | Toggle used to enable/disable video recording - `"1"` enables video recording and `"2"` disables video recording                                            |
+| `tracePropagationTargets` | `Array\<RegExp\>`         | ✖️       |                    | Targets for trace propagation - URL's of back-end serve as array of regular expression literals (`http(s)://` must be omitted)                                                                             |
+| `tracePropagationFormat`  | `string`                  | ✖️       | `"b3"`             | Trace propogation format                                                                                                                                                           |
+| `defaultAttributes`       | `Object\<string, string>` | ✖️       |                    | Key value pairs used to filter sessions/traces - `name` and `email` filter RUM sessions, while all other keys are arbitrary strings for trace filtering |
+| `ignoreUrls`              | `Array`                   | ✖️       |                    | URL's that will be ignored     |       
+
 
 # Troubleshooting
 
