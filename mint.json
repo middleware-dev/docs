@@ -138,7 +138,8 @@
             {
               "group": "Streaming",
               "pages":[                
-                "integrations/redpanda-integration"
+              "integrations/kafka-integration",  
+              "integrations/redpanda-integration"
               ]
             },
             {
