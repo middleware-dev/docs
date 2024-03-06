@@ -91,3 +91,31 @@ Set the latitude and longitude as global attributes:
 ```javascript JavaScript
 MiddlewareRum.updateLocation(latitude: number, longitude: number)
 ```
+
+### Session Recordings
+
+Session recording is enabled by default. Disable this feature by passing `sessionRecording: false` in the following configuration:
+
+```javascript JavaScript
+const MiddlewareConfig: ReactNativeConfiguration = {
+    serviceName: 'Mobile-SDK-ReactNative',
+    projectName: '$Mobile-SDK-ReactNative',
+    accountKey: '<middleware-account-key>',
+    target: '<target-url>',
+    sessionRecording: false,
+    deploymentEnvironment: 'PROD',
+    globalAttributes: {
+        name: '<your-name>',
+    },
+};
+```
+
+### Privacy
+
+Blur sensitive information in session recordings by embedding the following JSX component:
+
+```JSX JSX
+<MiddlewareSanitizedView>
+  <Component/>
+</MiddlewareSanitizedView>
+```

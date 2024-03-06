@@ -156,8 +156,13 @@
           "group": "RUM",
           "pages": [
             "rum/rum-overview",
-            "rum/getting-started",
-            "rum/rum-nextjs",
+            {
+              "group": "Browser",
+              "pages":[
+                "rum/getting-started",
+                "rum/rum-nextjs"
+              ]
+            },
             {
               "group": "Mobile",
               "pages": [

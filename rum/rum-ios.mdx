@@ -16,49 +16,48 @@ xcodebuild -showsdks
 
 # Install & Instrument Your iOS Application
 
-<AccordionGroup>
-    <Accordion title="Step 1: Install Swift Package">
-        Add the following line in `Package.swift` in `dependencies`
 
-        ```swift Package.swift
-            .package(url: "https://github.com/middleware-labs/middleware-ios", from: "1.0.0"),
-        ```
-    </Accordion>
+### Step 1: Install Swift Package
 
-    <Accordion title="Step 2: Initialize Middleware iOS SDK">
-        ```swift swift
-            import SwiftUI
-            import MiddlewareRum
-                        
-            @main
-            struct YourApp: App {
-                init() {
-                    do {
-                        try MiddlewareRumBuilder()
-                            .globalAttributes(["customerId" : "123456"])
-                            .target("<target>")
-                            .serviceName("Mobile-SDK-iOS")
-                            .rumAccessToken("<account-key>")
-                            .deploymentEnvironment("PROD")
-                            .build()
-                    } catch {
-                        print("Failed to initialize \(error)")
-                    }
-                    
-                }
-                var body: some Scene {
-                    WindowGroup {
-                        ContentView()
-                    }
-                }
-            }  
-        ```
-    </Accordion>
-</AccordionGroup>
+Add the following line in `Package.swift` in `dependencies`
+
+```swift Package.swift
+.package(url: "https://github.com/middleware-labs/middleware-ios", from: "1.0.0"),
+```
+
+### Step 2: Initialize Middleware iOS SDK
+
+```swift swift
+import SwiftUI
+import MiddlewareRum
+            
+@main
+struct YourApp: App {
+    init() {
+        do {
+            try MiddlewareRumBuilder()
+                .globalAttributes(["customerId" : "123456"])
+                .target("<target>")
+                .serviceName("Mobile-SDK-iOS")
+                .rumAccessToken("<account-key>")
+                .deploymentEnvironment("PROD")
+                .build()
+        } catch {
+            print("Failed to initialize \(error)")
+        }
+        
+    }
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+        }
+    }
+}  
+```
 
 # Custom Configurations
 
-<Accordion title="Logs">
+### Logs
 Create Custom logs using the Middleware API
 
 ```swift swift
@@ -69,41 +68,68 @@ MiddlewareRum.warning("Some information")
 MiddlewareRum.error("Some information")
 MiddlewareRum.critical("Some information")
 ```
-</Accordion>
 
-<Accordion title="Errors to Traces">
+### Errors to Traces
 
 Create Custom logs using the Middleware API
+
 ```swift swift
 MiddlewareRum.addError("Error, unable to process")
 ```
-</Accordion>
 
-<Accordion title="Exceptions">
+### Exceptions
 Create Custom exceptions using the Middleware API
+
 ```swift swift
 MiddlewareRum.addException(e: NSException(name: NSExceptionName(rawValue: "RuntimeException"), reason: "I am custom exception"))
 ```
-</Accordion>
 
-<Accordion title="Set Your Screen Name">
+### Set Your Screen Name
+
 ```swift swift
 MiddlewareRum.setScreenName("WebView")
 ```
-</Accordion>
 
-<Accordion title="Set Global Attributes">
+### Set Global Attributes
+
 ```swift swift
 MiddlewareRum.setGlobalAttributes(["some": "value"])
 ```
-</Accordion>
 
-<Accordion title="WebView Instrumentation">
+### WebView Instrumentation
 Use WebView to run native iOS apps
-    ```swift swift
-    MiddlewareRum.integrateWebViewWithBrowserRum(view: webView)
-    ```
-</Accordion>
+
+```swift swift
+MiddlewareRum.integrateWebViewWithBrowserRum(view: webView)
+```
+
+### Session Recording
+
+Session recording is enabled by default. Disable this feature by passing `.disableRecording()` in the following function:
+
+```swift Swift
+MiddlewareRumBuilder()
+    .globalAttributes(["customerId" : "123456"])
+    .target("<target>")
+    .serviceName("Mobile-SDK-iOS")
+    .projectName("Mobile-SDK-iOS")
+    .rumAccessToken("<account-key>")
+    .deploymentEnvironment("PROD")
+    .disableRecording()
+    .build()
+```
+
+### Privacy
+
+Blur sensitive information in session recordings by embedding the following method:
+
+```swift Swift
+// SwiftUI
+Text("Very important sensitive text").sensitive()
+
+// UIKit
+MiddlewareRum.addIgnoredView(view)
+```
 
 # Instrumentation Attributes
 
