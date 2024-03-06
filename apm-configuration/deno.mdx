@@ -1,4 +1,88 @@
 ---
 title: Deno
-description: Deno APM - Installation & Setup Docs | Middleware
 ---
+
+| Traces | Metrics | App Logs | Custom Logs | Profiling |
+| :----: | :-----: | :------: | :---------: | :-------: |
+| ✅     |      ✖️ |       ✖️  |          ✅ |    ✖️      |
+
+This guide walks you through setting up Application Performance Monitoring (APM) on a Deno application. These instructions can also be found on the Installation page in your Middleware Account. View example code [here](https://github.com/middleware-labs/demo-apm/blob/master/deno/README.md).
+
+# Prerequisites
+
+<Steps>
+
+  <Step title="MW Host Agent">
+   Middleware Host Agent (MW Agent). To install the MW Agent, see our <a href="https://docs.middleware.io/docs/agent-installation/overview"> installation guide</a>. 
+  </Step>
+
+  <Step title="Deno Version">
+     `Deno version ----------` or above. Check your Deno version with the following command:
+     ```javascript Shell
+     deno --version
+     ```
+  </Step>
+</Steps>
+
+# Install
+
+### Step 1: Import dependencies
+
+Import necessary packages into your Deno project from the Deno standard library and middlewareio library:
+
+```typescript TypeScript
+import { serve } from "https://deno.land/std@0.120.0/http/server.ts";
+import { track, httpTracer, info, warn, error, debug } from "https://deno.land/x/middlewareio@v1.0.7/mod.ts";
+```
+
+### Step 2: Configure Tracing
+
+Trace network requests with the following `track()` function:
+
+```typescript TypeScript
+track({
+serviceName: '{SERVICE_NAME}',
+target: 'https://{ACCOUNT-UID}.middleware.io:443',
+accessToken: '{ACCOUNT_KEY}',
+})
+```
+
+### Step 3: Define Request Handler
+
+Define how your server responds to incoming HTTP requests with the following function: 
+
+```typescript TypeScript
+function handler(_req: Request): Response {
+   const data = {
+       message: `Hello world!`,
+   };
+   return new Response(JSON.stringify(data), { headers: { 'Content-Type': 'application/json' } });
+}
+```
+
+### Step 4: Start Your Server
+
+Start an HTTP server with the `serve` function:
+
+```typescript TypeScript
+await serve(httpTracer(handler));
+```
+
+### Step 5: Logging [Optional]
+
+Add additional logging information with the following functions:
+
+```typescript TypeScript
+info("info");
+warn("warn");
+error("error");
+debug("debug");
+```
+
+
+
+
+
+
+
+<Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io.</Note>
