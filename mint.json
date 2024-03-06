@@ -89,6 +89,7 @@
           "pages": [
             "apm-configuration/apm_overview",
             "apm-configuration/cloudflare",
+            "apm-configuration/deno",
             "apm-configuration/go",
             "apm-configuration/java",              
             "apm-configuration/dotnet",
