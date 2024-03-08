@@ -73,32 +73,54 @@
         "admin/admin-welcome",
         "workflow/infrastructure-monitoring/container-monitoring",
         {
-          "group": "Middleware Agent",
+          "group": "Instrumentation",
           "pages": [
-            "agent-installation/overview",
-            "agent-installation/docker",
-            "agent-installation/kubernetes",
-            "agent-installation/kubernetes-ms-powershell",
-            "agent-installation/linux",            
-            "agent-installation/windows"
+            "agent-installation/overview",            
+            {
+              "group": "Bare-Metal",
+              "pages":[
+                "agent-installation/linux",            
+                "agent-installation/windows"
+              ]
+            },
+            {
+              "group": "Container",
+              "pages":[
+                "agent-installation/docker"
+              ]
+            },
+            {
+              "group": "Orchestration",
+              "pages":[
+                "agent-installation/kubernetes",
+                "agent-installation/kubernetes-ms-powershell"               
+              ]
+            },
             
-          ]
-        },
-        {
-          "group": "APM",
-          "pages": [
-            "apm-configuration/apm_overview",
-            "apm-configuration/cloudflare",
-            "apm-configuration/go",
-            "apm-configuration/java",              
-            "apm-configuration/dotnet",
-            "apm-configuration/next-js", 
-            "apm-configuration/node-js",         
-            "apm-configuration/php",
-            "apm-configuration/python",                        
-            "apm-configuration/ruby",
-            "apm-configuration/scala",
-            "apm-configuration/vercel-integration"
+            {
+              "group": "Serverless",
+              "pages": [
+                "serverless/aws-lambda"
+              ]        
+            }
+            ,
+            {
+              "group": "APM",
+              "pages": [
+                "apm-configuration/apm_overview",
+                "apm-configuration/cloudflare",
+                "apm-configuration/go",
+                "apm-configuration/java",              
+                "apm-configuration/dotnet",
+                "apm-configuration/next-js", 
+                "apm-configuration/node-js",         
+                "apm-configuration/php",
+                "apm-configuration/python",                        
+                "apm-configuration/ruby",
+                "apm-configuration/scala",
+                "apm-configuration/vercel-integration"
+              ]
+            }
           ]
         },
         {

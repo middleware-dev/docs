@@ -1,0 +1,131 @@
+---
+title: AWS Lambda
+---
+
+This guide walks you through instrumenting AWS Lambda wtih OpenTelemetry and Middleware. These instructions can also be found on the Installation page in your [Middleware Account](https://app.middleware.io/installation#infrastructures/windows).
+
+# Prerequisites
+
+<Note> The only languages currently supported by this serverless feature are __Python__, __Java__, and __Node.js__. Navigate [here](https://opentelemetry.io/docs/faas/lambda-auto-instrument/) for more information on instrumenting Lambda with OpenTelemetry.</Note>
+
+<Steps>
+
+  <Step title="Python Version">
+   `Python 3.8` and `Python 3.9` 
+  </Step>
+
+  <Step title="Java Version">
+   `Java 8`, `Java 11`, and `Java 17 (Corretto)` 
+  </Step>
+
+  <Step title="Node.js Version">
+   `Node.js v14+`
+  </Step>
+</Steps>
+
+
+# Install
+
+### Step 1: Add OTel Collector Layer
+
+#### Step 1a: Access `layer-collector/`
+
+Navigate to the [opentelemtry-lambda repository](https://github.com/open-telemetry/opentelemetry-lambda/releases) and access the `layer-collector`
+
+#### Step 1b: Match AWS Region and CPU Architecture
+
+Copy the Amazon Resource Name (ARN) and set the configuration to match the AWS region and CPU architecture of your lambda function like the following example: 
+
+```
+arn:aws:lambda:us-east-2:184161586896:layer:opentelemetry-collector-amd64-0_4_0:1
+```
+
+#### Step 1c: Add Layer
+
+Navigate to __Lambda__ -> __Functions__ -> __YOUR_FUNCTION__ -> __Layers__ and click __Add Layer__
+
+#### Step 1d: Specify ARN
+
+Navigate to __Choose Layer__ and specify the ARN you configured earlier
+
+#### Step 1e: Add New Collector
+
+Verify your new OTel Collector Layer and click __Add__
+
+
+### Step 2: Add OTel Instrumentation Layer
+
+#### Step 2a: Access Language-Specific Layer
+
+Navigate to the [opentelemtry-lambda repository](https://github.com/open-telemetry/opentelemetry-lambda/releases) and access the `layer-<PROGRAMMING_LANGUAGE>/`
+
+#### Step 2b: Match AWS Region and CPU Architecture
+
+Copy the Amazon Resource Name (ARN) and set the configuration to match the AWS region and CPU architecture of your lambda function like the following example: 
+
+```
+arn:aws:lambda:us-east-2:184161586896:layer:opentelemetry-python-0_4_0:1
+```
+
+#### Step 2c: Add Layer
+
+Navigate to __Lambda__ -> __Functions__ -> __YOUR_FUNCTION__ -> __Layers__ and click __Add Layer__
+
+#### Step 2d: Specify ARN
+
+Navigate to __Choose Layer__ and specify the ARN you configured earlier
+
+#### Step 2e: Add New Collector
+
+__Verify__ your new OTel Collector Layer and click __Add__
+
+### Step 3: Set Environment Variables
+
+#### Step 3a: Navigate to Environment Variables
+
+Navigate to __Lambda__ -> __Functions__ -> __YOUR_FUNCTION__ -> __Configuration__ > __Environment Variables__
+
+#### Step 3b: Change Your App Entry Point
+
+Change your applications entry point:
+
+<CodeGroup>
+```javascript Node.js
+AWS_LAMBDA_EXEC_WRAPPER=/opt/otel-handler
+```
+
+```javascript Java
+AWS_LAMBDA_EXEC_WRAPPER=/opt/otel-handler
+```
+
+```python Python
+AWS_LAMBDA_EXEC_WRAPPER=/opt/otel-instrument
+```
+</CodeGroup>
+
+### Step 4: Verify OTel Log Collection
+
+Import OpenTelemetry in the Code source editor of your function. Deploy and test your application to ensure OpenTelemetry logs should be visible.
+
+### Step 5: Export Your Telemetry Data 
+
+#### Step 5a: Set Environment Variables
+
+Navigate to __Lambda__ -> __Functions__ -> __YOUR_FUNCTION__ -> __Configuration__ > __Environment Variables__
+
+#### Step 5b: Route Telemetry Data to Middleware
+
+Initialize and save the following variables:
+
+<Note> Access `YOUR_MIDDLEWARE_URL` from the home page of your Middleware account. `YOUR_ACCOUNT_KEY` is your personal Middleware password which can be injected programmatically or as a declaration. </Note>
+
+```
+OTEL_EXPORTER_OTLP_ENDPOINT=<YOUR_MIDDLEWARE_URL> 
+OTEL_RESOURCE_ATTRIBUTES=mw.account_key=<YOUR_ACCOUNT_KEY>
+```
+
+#### Step 5c: Verify Installation
+
+Deploy and Test your application to ensure logs from OpenTelemetry no longer appear. Check your Middleware account for traces by navigating to __APM__ -> __Services__ and finding the name of your function in the services list.
+
+<Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
