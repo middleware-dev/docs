@@ -2,7 +2,7 @@
 title: Kubernetes with MS Powershell
 ---
 
-The following section describes how to install and uninstall the Kubernetes Agent with Microsoft Powershell scripts. This method provides you the ability to install the MW Kubernetes Agent using `helm` instead of manifest files. 
+The following section walks you through installing the Infrastructure Agent (Infra Agent) with Microsoft Powershell scripts. This method provides you the ability to install the Infra Agent using `helm` instead of manifest files. 
 
 <Note> The following steps assume that you have already installed `kubectl` on your machine </Note>
 
@@ -35,7 +35,7 @@ $env:MW_TARGET = '<your-mw-target>'
 
 ## Step 2: Install with Helm [Optional]
 
-You have the option to install the MW Agent with `helm` instead of using manifest files. 
+You have the option to install the Infra Agent with `helm` instead of using manifest files. 
 
 Set the following environment variable to use `helm`:
 
@@ -46,7 +46,7 @@ $env:MW_KUBE_AGENT_INSTALL_METHOD='helm'
 ```
 
 
-### Step 3: Install MW Kubernetes Agent
+### Step 3: Install Infra Agent
 
 Download the [MW Kubernetes Install script](https://github.com/middleware-labs/install.middleware.io/blob/master/scripts/mw-kube-agent-install-powershell.ps1) and execute the following command:
 
@@ -56,9 +56,9 @@ Download the [MW Kubernetes Install script](https://github.com/middleware-labs/i
 
 # Troubleshooting
 
-<Warning>  Run only one MW Agent DaemonSet per cluster per host. Multiple agents will cause unexpected behavior. </Warning>
+<Warning>  Run only one Infra Agent DaemonSet per cluster per host. Multiple agents will cause unexpected behavior. </Warning>
 
-Once the MW Agent is installed on your cluster metrics should begin appearing in the Middleware application within a few minutes. If metrics do not appear, confirm that Kubernetes has access to the internet, either directly or through a proxy, and that only one MW Agent is running per cluster. 
+Once the Infra Agent is installed on your cluster metrics should begin appearing in the Middleware application within a few minutes. If metrics do not appear, confirm that Kubernetes has access to the internet, either directly or through a proxy, and that only one Infra Agent is running per cluster. 
 
 # Uninstall
 

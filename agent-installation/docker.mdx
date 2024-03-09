@@ -2,9 +2,9 @@
 title: "Docker"
 ---
 
-This guide walks you through installing the Middleware Host Agent (MW Agent) on a machine deployed through Docker. These instructions can also be found on the Installation page in the Middleware application. 
+This guide walks you through installing the Infrastructure Agent (Infra Agent) on a machine deployed through Docker. These instructions can also be found on the Installation page in the Middleware application. 
 
-The Docker MW Agent is a containerized version of the MW Agent. Upon installation, the MW Agent collects host level details from host network mode and uses volume binding for reading logs.
+The Docker Infra Agent is a containerized version of the Infra Agent. Upon installation, the Infra Agent collects host level details from host network mode and uses volume binding for reading logs.
 
 # Install
 
@@ -33,7 +33,7 @@ MW_HOST_TAGS=<key1>:<value1>,<key2>:<value2>,... MW_API_KEY=...
 
 ### Step 4: Verify Installation
     
-Verify the status of the MW Agent. If status is `UP` or `Exited`, the installation was successful. If status is blank, installation was unsiccessful. Run the following command to verify the MW Agent status:
+Verify the status of the Infra Agent. If status is `UP` or `Exited`, the installation was successful. If status is blank, installation was unsiccessful. Run the following command to verify the Infra Agent status:
 
 ```bash Shell
 docker ps -a --filter ancestor=ghcr.io/middleware-labs/mw-host-agent:master
@@ -45,12 +45,12 @@ Navigate to Middleware and ensure metrics are appearing in the <a href="https://
 
 # Troubleshooting
 
-<Warning>  Run only one MW Agent per host. Multiple agents will cause unexpected behavior. </Warning>
+<Warning>  Run only one Infra Agent per host. Multiple agents will cause unexpected behavior. </Warning>
 
-Once the MW Agent is installed metrics should appear in the Middleware Application within a few minutes. If metrics do not appear, confirm that the machine has access to the internet, either directly or through a proxy, and that only one MW Agent per container is running. 
+Once the Infra Agent is installed metrics should appear in the Middleware Application within a few minutes. If metrics do not appear, confirm that the machine has access to the internet, either directly or through a proxy, and that only one Infra Agent per container is running. 
 
 # Uninstall
-To uninstall the Middleware Agent use the following commands:
+To uninstall the Infra Agent use the following commands:
 ```bash Shell
 docker stop `docker ps -a -q --filter ancestor=ghcr.io/middleware-labs/mw-host-agent:master`
 docker rm `docker ps -a -q --filter ancestor=ghcr.io/middleware-labs/mw-host-agent:master`

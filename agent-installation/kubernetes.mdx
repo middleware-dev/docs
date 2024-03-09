@@ -2,9 +2,9 @@
 title: "Kubernetes"
 ---
 
-This guide walks you through installing the MW Agent in a Kubernetes environment. These instructions can also be found on the Installation page in the Middleware application. 
+This guide walks you through installing the Infrastructure Agent (Infra Agent) in a Kubernetes environment. These instructions can also be found on the Installation page in the Middleware application. 
 
-The installation will set up a DaemonSet inside your Kubernetes cluster and add necessary components to appropriately permission the DaemonSet pods. A Kubernetes service is also created to allow components to connect to the MW Agent via Cluster IP address and ports (i.e. language-based APMs). 
+The installation will set up a DaemonSet inside your Kubernetes cluster and add necessary components to appropriately permission the DaemonSet pods. A Kubernetes service is also created to allow components to connect to the Infra Agent via Cluster IP address and ports (i.e. language-based APMs). 
 
 
 # Prerequisites
@@ -37,7 +37,7 @@ Log in to Middleware, navigate to the Installation Page in the bottom left corne
 
 ### Step 2: Identify Kubernetes Context
 
-Get the current Kubernetes Context and ensure the cluster belonging to this Context is where you want to install the MW Agent.
+Get the current Kubernetes Context and ensure the cluster belonging to this Context is where you want to install the Infra Agent.
 
 Use the following command to find out your current Kubernetes context:
 
@@ -47,9 +47,9 @@ kubectl config get-contexts `kubectl config current-context`
 
 ### Step 3: Run Kubernetes Install Command
 
-Install the Kubernetes Agent with [Bash](/agent-installation/kubernetes#step-3a-install-with-bash) or [`.bat`](/agent-installation/kubernetes#step-3b-install-with-bat). Copying the command directly from the Installation page ensures your API key and Target is inserted correctly.
+Install the Infra Agent with [Bash](/agent-installation/kubernetes#step-3a-install-with-bash) or [`.bat`](/agent-installation/kubernetes#step-3b-install-with-bat). Copying the command directly from the Installation page ensures your API key and Target is inserted correctly.
 
-<Note> If you are installing the Kubernetes Agent with Microsoft PowerShell, proceed to the [Kubernetes with MS PowerShell](https://docs.middleware.io/agent-installation/kubernetes-ms-powershell) document. </Note>
+<Note> If you are installing the Infra Agent with Microsoft PowerShell, proceed to the [Kubernetes with MS PowerShell](https://docs.middleware.io/agent-installation/kubernetes-ms-powershell) document. </Note>
 
 #### Step 3a: Install with Bash
 
@@ -59,7 +59,7 @@ MW_API_KEY=<xxxxxxxxxx> MW_TARGET=https://<uid>.middleware.io:443 bash -c "$(cur
 
 #### Step 3b: Install with `.bat`
 
-Download the Kubernetes Agent batch file [here](https://install.middleware.io/scripts/mw-kube-agent-install-windows.bat). Open PowerShell, change the directory to the location of the download, and execute the following commands:
+Download the Infra Agent batch file [here](https://install.middleware.io/scripts/mw-kube-agent-install-windows.bat). Open PowerShell, change the directory to the location of the download, and execute the following commands:
 
 ```bat .bat
 set MW_API_KEY=<YOUR_API_KEY>
@@ -79,7 +79,7 @@ mw-kube-agent-install-windows.bat
 
 ### Step 4: Verify Installation
   
-Verify the status of the MW Agent with the following command:
+Verify the status of the Infra Agent with the following command:
 
 ```javascript Shell
 kubectl get daemonset/mw-kube-agent -n mw-agent-ns
@@ -91,18 +91,18 @@ Navigate to Middleware and ensure metrics are appearing in the <a href="https://
 
 # Upgrade
 
-The MW Agent is frequently updated to add new features and improve performance. More information on new features can be found in our <a href="https://newsletters.middleware.io/"> Newsletter </a>. 
+The Infra Agent is frequently updated to add new features and improve performance. More information on new features can be found in our <a href="https://newsletters.middleware.io/"> Newsletter </a>. 
 
-To upgrade MW Agent, use the following command:
+To upgrade Infra Agent, use the following command:
 
 ```javascript Shell
 bash -c "$(curl -L https://install.middleware.io/scripts/mw-kube-agent-upgrade.sh)"
 ```
 
 # Troubleshooting
-<Warning>  Run only one MW Agent DaemonSet per cluster per host. Multiple agents will cause unexpected behavior. </Warning>
+<Warning>  Run only one Infra Agent DaemonSet per cluster per host. Multiple agents will cause unexpected behavior. </Warning>
 
-Once the MW Agent is installed on your cluster metrics should begin appearing in the Middleware application within a few minutes. If metrics do not appear, confirm that Kubernetes has access to the internet, either directly or through a proxy, and that only one MW Agent is running per cluster. 
+Once the Infra Agent is installed on your cluster metrics should begin appearing in the Middleware application within a few minutes. If metrics do not appear, confirm that Kubernetes has access to the internet, either directly or through a proxy, and that only one MW Agent is running per cluster. 
 
 ### Switching Between Contexts
 If you are using another thirdy-party resource for managing your Kubernetes Infrastructure (e.g. Lens) it's possible your cluster names are similar across clusters. This will make it hard to delineate between the clusters inside of Middleware.
@@ -111,7 +111,7 @@ To fix this, you can force a speicific `cluster.name` by setting the `MW_KUBE_CL
 
 # Uninstall
 
-To uninstall the Middleware Agent use the following command:
+To uninstall the Infra Agent use the following command:
 
 ```javascript Shell
 bash -c "$(curl -L https://install.middleware.io/scripts/mw-kube-agent-uninstall.sh)"

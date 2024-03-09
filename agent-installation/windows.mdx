@@ -2,7 +2,7 @@
 title: "Windows"
 ---
 
-This guide walks you through installing the MW Agent on a Microsoft Windows machine. These instructions can also be found on the Installation page in your [Middleware Account](https://app.middleware.io/installation#infrastructures/windows).
+This guide walks you through installing the Infrastructure Agent (Infra Agent) on a Microsoft Windows machine. These instructions can also be found on the Installation page in your [Middleware Account](https://app.middleware.io/installation#infrastructures/windows).
 
 # Prerequisites
 
@@ -28,11 +28,11 @@ This guide walks you through installing the MW Agent on a Microsoft Windows mach
 
 # Install
 
-### Step 1: Download MW Agent Installer
+### Step 1: Download Infra Agent Installer
 
 Log in to Middleware, navigate to the Installation Page in the bottom left corner and select Windows from the Infrastructure section
 
-Download the MW Agent [Installer](https://github.com/middleware-labs/mw-agent/releases)
+Download the Infra Agent [Installer](https://github.com/middleware-labs/mw-agent/releases)
 
 !["Agent Installation"](/images/agent-installation/k1.png)
 
@@ -49,7 +49,7 @@ Right-click the Installer, select `Run as administrator`, and complete the Insta
 
 ### Step 3: Verify Installation
 
-Verify the MW Agent has been successfully installed with one of the following methods:
+Verify the Infra Agent has been successfully installed with one of the following methods:
 
 #### Windows Service Manager
 
@@ -61,7 +61,7 @@ The `Middleware Agent` should be in `Running` status.
 
 #### Powershell
 
-Verify the MW Agent has been successfully installed with the following command:
+Verify the Infra Agent has been successfully installed with the following command:
 
 ```shell Shell
 Get-Service -Name mw-windows-agent
@@ -72,15 +72,15 @@ The `mw-windows-agent` should be in `Running` status
 !["Verify Windows Present Code"](/images/agent-installation/windows_correct.jpg)
 
 # Troubleshooting
-<Warning>  Run only one MW Agent per host. Multiple agents will cause unexpected behavior. </Warning>
+<Warning>  Run only one Infra Agent per host. Multiple agents will cause unexpected behavior. </Warning>
 
-Once the MW Agent is installed, metrics should begin appearing in your Middleware Account within a few minutes. If metrics do not appear, ensure that the machine has access to the internet, either directly or through a proxy, and that only one MW Agent is running per server instance.
+Once the Infra Agent is installed, metrics should begin appearing in your Middleware Account within a few minutes. If metrics do not appear, ensure that the machine has access to the internet, either directly or through a proxy, and that only one MW Agent is running per server instance.
 
 # Uninstall
-To uninstall the MW Agent on a Windows machine, follow these steps.
+To uninstall the Infra Agent on a Windows machine, follow these steps.
 
 1. Access Settings in the Windows Launcher and go to Apps section. 
-2. Under Apps & Features, locate Middleware Agent and Click on Uninstall.
-3. Follow the prompts to uninstall MW Agent.
+2. Under Apps & Features, locate Infra Agent and Click on Uninstall.
+3. Follow the prompts to uninstall Infra Agent.
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
