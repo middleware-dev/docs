@@ -21,8 +21,8 @@ This guide walks you through setting up Application Performance Monitoring (APM)
 
 <Steps>
 
-  <Step title="MW Host Agent">
-   Middleware Host Agent (MW Agent). To install the MW Agent, see our [Installation Guide](https://docs.middleware.io/docs/agent-installation/overview). 
+  <Step title="Infra Agent">
+   Infrastructure Agent (Infra Agent). To install the Infra Agent, see our [Installation Guide](https://docs.middleware.io/docs/agent-installation/overview). 
   
   </Step>
 
@@ -91,7 +91,7 @@ RUN middleware-bootstrap -a install
 ```
 
 #### Kubernetes
-Identify the namespace where the MW Agent is running:
+Identify the namespace where the Infra Agent is running:
 
 ```bash Shell
 kubectl get service --all-namespaces | grep mw-service
@@ -117,7 +117,7 @@ service_name = {APM-SERVICE-NAME}
 # This Token binds the Python Agent's data and profiling data to your account.
 access_token = {YOUR-ACCESS-TOKEN}
 
-# The service name, where Middleware Agent is running, in case of K8s.
+# The service name, where Infra Agent is running, in case of K8s.
 mw_agent_service = mw-service.mw-agent-ns.svc.cluster.local
 
 # Distributed traces for your application (false = disabled).

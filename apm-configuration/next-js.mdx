@@ -21,10 +21,10 @@ This guide walks you through setting up Application Performance Monitoring (APM)
 
 <Steps>
 
-  <Step title="MW Host Agent">
-   Middleware Host Agent (MW Agent). To install the MW Agent, see our [Installation Guide](https://docs.middleware.io/docs/agent-installation/overview).
+  <Step title="Infra Agent">
+   Infrastructure Agent (Infra Agent). To install the Infra Agent, see our [Installation Guide](https://docs.middleware.io/docs/agent-installation/overview).
   
-   <Note> Although the Middleware Agent is not required for the Next.js APM, we recommend installing it for improved performance. </Note>
+   <Note> Although the Infra Agent is not required for the Next.js APM, we recommend installing it for improved performance. </Note>
   
   </Step>
 
@@ -113,7 +113,7 @@ kubectl get service --all-namespaces | grep mw-service
 3. Add the below code snippet depending on your current setup:
 
 <Tabs>
-  <Tab title="MW Agent Installed">
+  <Tab title="Infra Agent Installed">
     ```javascript Next.js
         // @ts-ignore
         import tracker from '@middleware.io/agent-apm-nextjs';
@@ -125,7 +125,7 @@ kubectl get service --all-namespaces | grep mw-service
         }
     ```
   </Tab>
-  <Tab title="MW Agent NOT Installed">
+  <Tab title="Infra Agent NOT Installed">
     ```javascript Next.js
         // @ts-ignore
         import tracker from '@middleware.io/agent-apm-nextjs';
