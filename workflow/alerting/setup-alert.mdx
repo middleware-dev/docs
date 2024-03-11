@@ -2,67 +2,43 @@
 title: Setup Alerts
 ---
 
-# Overview
-Alerts let you set up customizable alert policies for anything that you can monitor. Receive notifications for fluctuations in key performance metrics as data streams in from all of our products, including APM, infrastructure, and Kubernetes.
+The Alerts page is a tool for proactively monitoring and responding to critical events across your entire infrastructure, notifying you of any deviations or anomalies. Configure and manage your alerts to ensure your team is aware of system-wide issues.
 
-Setup alerts
-------------
-Alerts can be configured to notify you when certain conditions are met, such as when a metric value exceeds a certain threshold or when a log event occurs that matches a specific pattern. In addition, alerts can be configured to send notifications to Slack or Gmail, making it easier to stay informed about critical events.
 
--   Navigate to "Alerts" from the left menu
--   Go to the "Rules" tab and click on "Create new"
+# Create an Alert
 
-### Select Monitor type
+### Step 1: Create Rule
 
-Select the Monitor type corresponding to the kind of alert you want to receive,
+Navigate to the Alerts section and select __Create Rule__.
 
-<img src="/images/alert/aa1.png" />
+### Step 2: Configure Rule
 
--   Metrics: to get alerts on service check and query alert
--   APM: query alert or trace-analytics.
--   Logs: To get alerts for specific log
--   Kubernetes: Get alert on kubernetes
+#### Step 2a: Select Your Data Source
 
-### Configure Monitor
-Configure your monitor by defining the threshold and frequency etc. based on your selected monitor type in previous step, you can configure your alert rule. <img src="/images/alert/aa2.png" />
+A Data Source is the fundamental data that your Alert is created around. 
 
--   Threshold:  it will help you to decide on what value you want to get alert and host will help you to get alert only on specific host
--   Frequency: There will be 2 types of frequency.  Single and multiple
--   If you select single then it will send you only one alert on decided time and if you select multiple then it will give multiple alerts you can also decide the number of alerts when you select multiple alerts
--   Time window: This will define how much time you want to alert, you can define your custom time as well
+#### Step 2b: Add Metrics
 
-Select a threshold from the predefined list, you can choose only one threshold at a time. Threshold can help you to define the rule for your alerts.Here's the details of some of the Thresholds.
+Metrics are parts of the Data Source that you are interested in monitoring. 
 
--   CPU % :- CPU % is a metric that measures the percentage of time that a CPU (Central Processing Unit) is busy processing data
--   CPU I/O Wait % :- CPU I/O wait % is a metric that measures the percentage of time that a CPU is idle while waiting for input/output (I/O) operations to complete
--   Disk write utilization MB :- Disk write utilization MB is a metric that measures the amount of data written to a disk over a period of time, typically in megabytes (MB).
--   Disk read utilization MB :- Disk read utilization MB is a metric that measures the amount of data read from a disk over a period of time, typically in megabytes (MB).
--   Load average in one minute :- Load average in one minute is a metric that measures the average number of processes that are running or waiting to run on a system over the last one minute. It is a measure of the workload on the system's CPU.
--   Memory used % :- Memory used % is a metric that measures the percentage of the total available physical memory that is currently being used by the system.
+#### Step 2c: Set Filters
 
-### Set alert condition
-You can specify the threshold value at which you wish to notify, as well as other levels such as Warning, and you can also construct custom thresholds.<img src="/images/alert/aa3.png" />
+The Filters section allows you to consolidate the data that you have collected in the Metrics section.
 
-Notify your team
-----------------
-Here you can define the name of the alert, tags with the alert's state, and where you wish to be notified, such as slack or Gmail.\
-To receive alerts on slack, you must have [integrated slack with Middleware](https://docs.middleware.io/docs/integrations/Slack-integration). 
+<Note> Corresponding letters in the __Metrics__ and __Filters__ section indicate a relationship (e.g. __Metric A__ is filtered by __Filter A__).</Note>
 
-<img src="/images/alert/aa4.png" />
+#### Step 2d: Create Triggers
 
-Default alerts
---------------
-We have created the default alerts for metrics, logs, and K8s so you don't need to create manual alerts and get notified automatically for these alerts. This feature comes with some default rules that you can turn on or off and customize based on your needs. These default alerts will only fire up to 5 times when the condition matching the rule is met.
+A trigger is a __Warning__ or __Critical__ messages that is sent to users when the data source a user has selected exceeds a pre-defined threshold. The window of time indicates the interval by which these trigger conditions are checked. 
 
-<img src="/images/alert/aa5.png" />
+### Step 3: Set Rule Name
 
-Maintenance Window
-------------------
-Maintenance Window allows users to specify a time frame during which alerts will not be fired. If the user sets a maintenance window, the alert will be suppressed during that time period. This feature enables users to perform routine maintenance and updates without being constantly interrupted by alert notifications.
+Create a unique name for your Alert and select additional tags that your team can use to sort and filter alerts with.
 
-### Setup maintenance window
--   Go to "Maintenance" tab from alerts.
--   Click on the "Schedule" button to begin creating a new maintenance window.
--   Enter a name for the maintenance window. ex: "System Updates" or "Database Maintenance." <img src="/images/alert/aa6.png" />
+### Step 4: Select Notification Medium
 
-<Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
+Send your Alerts to specific Slack channels or email them directly to members of your organization.
+
+### Step 5: Save Your Rule
+
+Once you have finished configuring your rule, select __Create__. You have successfully created an Alert when it is visible on the home page in the Alerts table.
