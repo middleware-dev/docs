@@ -4,7 +4,9 @@ title: "Amazon ECS"
 
 # Overview
 
-Amazon Elastic Container Service (Amazon ECS) is a fully managed container orchestration service that helps you easily deploy, manage, and scale containerized applications. With the Middleware Agent (MW Agent), you can effectively monitor your ECS containers and tasks running on ECS EC2 instances and ECS Fargate in your cloud, on-prem, and hybrid architectures.
+Amazon Elastic Container Service (Amazon ECS) is a fully managed container orchestration service that helps you easily deploy, manage, and scale containerized applications. 
+
+With the Infrastructure Agent (Infra Agent), you can effectively monitor your ECS containers and tasks running on ECS EC2 instances and ECS Fargate in your cloud, on-prem, and hybrid architectures.
 
 <Note> Database Integrations and the Amazon ECS Anywhere approach are not currently supported. </Note> 
 
@@ -51,8 +53,7 @@ For Each ECS Task that you want to monitor, add the following sidecar container 
 
 ### Collect Metrics 
 
-Adding the sidecar container mentioned above will automatically collect metrics data from your ECS tasks and containers. The
-Middleware Agent uses the AWS ECS Task Metadata Endpoint to fetch metrics data.
+Adding the sidecar container mentioned above will automatically collect metrics data from your ECS tasks and containers. The Infra Agent uses the AWS ECS Task Metadata Endpoint to fetch metrics data.
 
 ### Collect Logs
 
@@ -86,7 +87,7 @@ Forward your ECS Task logs to Middleware. The `mw-agent` sidecar, mentioned [abo
 
     <Accordion title="Step 2: Add a log Configuration in your main container">
     
-        The Middleware Agent sidecar will fetch these logs and send them to Middleware.
+        The Infra Agent sidecar will fetch these logs and send them to Middleware.
 
         ```json JSON
         "logConfiguration": {
@@ -124,9 +125,9 @@ Forward your ECS Task logs to Middleware. The `mw-agent` sidecar, mentioned [abo
 # EC2 Setup
 
 <AccordionGroup>
-    <Accordion title="Step 1: Create & Configure a MW Agent ECS Task Definition">
+    <Accordion title="Step 1: Create & Configure a Infra Agent ECS Task Definition">
 
-    Begin by creating a Task Definition for the MW Agent container.
+    Begin by creating a Task Definition for the Infra Agent container.
 
     ```json JSON
     {
@@ -214,13 +215,13 @@ Forward your ECS Task logs to Middleware. The `mw-agent` sidecar, mentioned [abo
         </Accordion>
             </Accordion>
 
-    <Accordion title="Step 3: Schedule the MW Agent as a Daemon Service">
+    <Accordion title="Step 3: Schedule the Infra Agent as a Daemon Service">
 
-    Set up the Middleware Agent Task Definition as a Daemon Service to ensure only one MW Agent container is running on each EC2 instance of the ECS cluster
+    Set up the Infra Agent Task Definition as a Daemon Service to ensure only one Infra Agent container is running on each EC2 instance of the ECS cluster
 
     1. Log in to your AWS Management Console and navigate to the Elastic Container Service (ECS) section
 
-    2. Choose the ECS cluster you will run the MW Agent on
+    2. Choose the ECS cluster you will run the Infra Agent on
 
     3. Create a new service within the selected cluster
 
@@ -248,9 +249,9 @@ Forward your ECS Task logs to Middleware. The `mw-agent` sidecar, mentioned [abo
 
 ### Container Trace and Log Collection
 
-Begin collecting container trace and log data in your EC2 instance. The MW Agent will collect ECS container logs emitted to the `stdout` and `stderr` log stream and receive traces from your application and send to your Middleware account.
+Begin collecting container trace and log data in your EC2 instance. The Infra Agent will collect ECS container logs emitted to the `stdout` and `stderr` log stream and receive traces from your application and send to your Middleware account.
 
-<Warning> The MW Agent must be running as an app before setting up collection. If not, attempted trace collection will throw an error while connecting to the agent and logs will not be sent at all.</Warning>
+<Warning> The Infra Agent must be running as an app before setting up collection. If not, attempted trace collection will throw an error while connecting to the agent and logs will not be sent at all.</Warning>
 
 #### Modify your Application Task Definition
 

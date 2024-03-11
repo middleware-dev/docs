@@ -73,16 +73,20 @@
         "admin/admin-welcome",
         "workflow/infrastructure-monitoring/container-monitoring",
         {
-          "group": "Middleware Agent",
+          "group": "Infrastructure",
           "pages": [
             "agent-installation/overview",
             "agent-installation/docker",
             "agent-installation/kubernetes",
             "agent-installation/kubernetes-ms-powershell",
             "agent-installation/linux",            
-            "agent-installation/windows"
-            
+            "agent-installation/windows",
+            "integrations/aws-ecs-monitoring"            
           ]
+        },
+        {
+          "group":"Serverless",
+          "pages":["serverless/aws-lambda"]
         },
         {
           "group": "APM",
@@ -108,8 +112,7 @@
             {
               "group": "Cloud",
               "pages":[
-                "integrations/kinesis-streams",
-                "integrations/aws-ecs-monitoring"
+                "integrations/kinesis-streams"
               ]
             },
             {

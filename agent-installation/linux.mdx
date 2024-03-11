@@ -2,7 +2,7 @@
 title: "Linux"
 ---
 
-This guide walks you through installing the MW Agent on a Linux machine. These instructions can also be found on the Installation page in the Middleware application. 
+This guide walks you through installing the Infrastructure Agent (Infra Agent) on a Linux machine. These instructions can also be found on the Installation page in the Middleware application. 
 
 We offer two install scripts based on your operating system. Please note that not all Linux machines are supported. A list of supported machines can be found under Prerequisites.
 
@@ -15,7 +15,7 @@ We offer two install scripts based on your operating system. Please note that no
   </Step>
 
   <Step title="AWS Instances">
-  For AWS EC2 instances, Amazon Linux, Ubuntu, or Debian is required. For AWS instances using Red Hat, please install the [Docker MW Agent](https://docs.middleware.io/docs/agent-installation/docker) 
+  For AWS EC2 instances, Amazon Linux, Ubuntu, or Debian is required. For AWS instances using Red Hat, please install the [Docker Infra Agent](https://docs.middleware.io/docs/agent-installation/docker) 
   </Step>
 
   <Step title="Operating System">
@@ -66,20 +66,20 @@ MW_HOST_TAGS=name:mymachine MW_API_KEY= ...
 
 ### Step 4: Verify Installation
 
-Run the following command to verify the MW Agent status:
+Run the following command to verify the Infra Agent status:
 
 ```bash Shell
 sudo systemctl status mwservice
 ```
-A successful installation will return the following Agent Status report:
+A successful installation will return the following Infra Agent Status report:
 
 ![Linux Agent Status](/images/agent-installation/k5.jpg)
 
 # Troubleshooting
 
-<Warning>  Run only one MW Agent per node per host. Multiple agents will cause unexpected behavior.</Warning>
+<Warning>  Run only one Infra Agent per node per host. Multiple agents will cause unexpected behavior.</Warning>
 
-Once the MW Agent is installed metrics should begin appearing in the Middleware application within a few minutes. If metrics do not appear, confirm that the machine has access to the internet, either directly or through a proxy, and that only one MW Agent is running per node. 
+Once the Infra Agent is installed metrics should begin appearing in the Middleware application within a few minutes. If metrics do not appear, confirm that the machine has access to the internet, either directly or through a proxy, and that only one Infra Agent is running per node. 
 
 
 # Uninstall
