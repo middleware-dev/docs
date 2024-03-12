@@ -2,28 +2,31 @@
 title: Setup Alerts
 ---
 
-The Alerts page is a tool for proactively monitoring and responding to critical events across your entire infrastructure, notifying you of any deviations or anomalies. Configure and manage your alerts to ensure your team is aware of system-wide issues.
+The Alerts page is a tool for monitoring and responding to critical events across your entire infrastructure, notifying you of any anomalies within your infrastructure. Set up alerts using the OpenTelemetry data your team collects to effectively manage system-wide issues.
 
-
-# Create an Alert
+# Create New Alert
 
 ### Step 1: Create Rule
 
-Navigate to the Alerts section and select __Create Rule__.
+Navigate to the Alerts section and select __Create Rule__:
+
+![](https://lh7-us.googleusercontent.com/R-BlwAPkDb6LovlofANv8_v_vtRw-5lnwLimI2MJzXvYSD70G54bo1eHKmONmUT3l_9Tuj66duyaAE5JSsFAtisyVy7_4hX266HCeCFZQN5SDPseknjI9tr422a7DRYYSZil9Jf0J7mZytG1My45sLA)
 
 ### Step 2: Configure Rule
 
+![](https://lh7-us.googleusercontent.com/RlyZPDQYpsVubHR_g3INFrISc9_qe-ulsc41uEWsVPl29tk6D_ISSpT77LeWTiOpeQQH7NZDDiucKWxGhHvm2hBy9mF1fOPYGWlU3PHDwui4sq6J1Rh8jhFwzDjozxkUI2XgIVJQxFtl-xHxBeNaBQo)
+
 #### Step 2a: Select Your Data Source
 
-A Data Source is the fundamental data that your Alert is created around. 
+A Data Source is the fundamental data that your Alert is created around. Create an alert with any OpenTelemetry metric that your team is currently ingesting.
 
 #### Step 2b: Add Metrics
 
-Metrics are parts of the Data Source that you are interested in monitoring. 
+Metrics are parts of the Data Source that you are interested in monitoring. Perform mathematical operations on selected metrics and group them by their attributes.
 
 #### Step 2c: Set Filters
 
-The Filters section allows you to consolidate the data that you have collected in the Metrics section.
+The Filters section allows you to consolidate the data that you have collected in the Metrics section from any attribute.
 
 <Note> Corresponding letters in the __Metrics__ and __Filters__ section indicate a relationship (e.g. __Metric A__ is filtered by __Filter A__).</Note>
 
@@ -31,14 +34,24 @@ The Filters section allows you to consolidate the data that you have collected i
 
 A trigger is a __Warning__ or __Critical__ messages that is sent to users when the data source a user has selected exceeds a pre-defined threshold. The window of time indicates the interval by which these trigger conditions are checked. 
 
+<Note> Alerts will auto-resolve themselves to `Okay` or `No Data` status from a `Warning` or `Critical` status based on the triggers you set. </Note>
+
 ### Step 3: Set Rule Name
 
-Create a unique name for your Alert and select additional tags that your team can use to sort and filter alerts with.
+Create a unique name for your Alert and select additional tags that your team can use to sort and filter alerts with:
+
+![](https://lh7-us.googleusercontent.com/z_ZddujDSUJCymOzmZ3v70zLAl2_p6L__-LozWtOdDNgmI7DaplHA9grVJT3m8z7eiHBVjeqZIwflKPRcv2XFxXlkEKHA3VUDM7E_k5IyqbLd8m2GUeCVnomOe5Dq3wWx505AcY80umK3MPzXUggsZQ)
 
 ### Step 4: Select Notification Medium
 
-Send your Alerts to specific Slack channels or email them directly to members of your organization.
+Send your Alerts to any Slack channel or email them directly to members of your organization:
 
 ### Step 5: Save Your Rule
 
 Once you have finished configuring your rule, select __Create__. You have successfully created an Alert when it is visible on the home page in the Alerts table.
+
+# Edit Existing Alerts
+
+Edit your existing and Default Alerts from the Alert table. Hover over your desired Alert to edit, pause, or delete the Alert.
+
+<Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>

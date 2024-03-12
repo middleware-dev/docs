@@ -1,0 +1,28 @@
+---
+title: Common Practices - Alerts
+sidebarTitle: Common Practices
+---
+
+The following guide describes how to configure essential alerts to ensure you are effectively monitoring your system-wide infrastructure.
+
+# Resource Monitoring
+
+### CPU Utilization Alert
+
+The following alert tracks the average CPU Utilization for a Kubernetes node. This alert is monitoring a single Kubernetes node, specified by the Filter configuration. A Critical alert is fired every time the average CPU Utilization of the specified Kubernetes node exceeds 5 CPUs at a time. This is checked on a 5 minute interval.
+
+![](https://lh7-us.googleusercontent.com/-IOXG6PBIGm_Ulzp7OS_D4s0TGhLoo_VQTI29xxG6bxHyHVY-F3JCQVXwcO8xn20Klkt6QaVQMTpJtdD461FfMIiScQuUagVs5un5RB_4ce1_vb45RbsxtzOg2U4cNwOQzN1HIBpzcg8tHZCHK-EQNU)
+
+### Memory Consumption Alert
+
+The following alert tracks the average amount of memory used when data is being read and written across your entire system. A Warning is fired when `system.memory.usage` is greater than 50 bytes and a Critical warning when it is greater than 75 bytes.
+
+<Note> The __State__ filter is left blank so that all state metrics (e.g. buffered, cached, free, etc.) are collected.</Note>
+
+![](https://lh7-us.googleusercontent.com/sjU54Mqe3XINAZ7_It_i01xLFQeqFIAdAFMN9t5ElSKz_5lOTYwz8ltjlt5g6g2dfnSeXgUF9PgwNGAXd0fEx2oUP0Cz-SsrFuSMr-_MsqjvGVuDXYB1TBQQm-HvdHx7bEM_v6n6N9b-xqwLg4zOIWE)
+
+### APM Monitoring Alert
+
+
+
+<Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>

@@ -212,7 +212,8 @@
         {
           "group": "Alerts",
           "pages": [
-            "workflow/alerting/setup-alert"
+            "workflow/alerting/setup-alert",
+            "workflow/alerting/alert-practices"
           ]
         },         
         {
