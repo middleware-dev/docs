@@ -3,9 +3,9 @@ title: Common Practices - Alerts
 sidebarTitle: Common Practices
 ---
 
-The following guide describes how to configure essential alerts to ensure you are effectively monitoring your system-wide infrastructure.
+The following guide describes best practices for configuring, maintaining, and managing essential alerts. Let this be the starting point to ensure you are effectively monitoring your system-wide infrastructure.
 
-# Resource Monitoring
+# Resource Monitoring Alerts
 
 ### CPU Utilization Alert
 
@@ -23,6 +23,9 @@ The following alert tracks the average amount of memory used when data is being 
 
 ### APM Monitoring Alert
 
+The following alert tracks the total number of trace requests from a single APM. This alert uses the `IN` operator to monitor a specific `service.name` with the Filter configuration. A Critical message is fired when the total number of trace requests exceeds 5,000 in a 10 minute period.
+
+![](https://lh7-us.googleusercontent.com/JcY5c276b6jpVekZJvWeo6QeM8M6So7CCfbbNDHcTi-VmNGa-crrgNd9MZSfgXTh3JUc6o8L6nkPxv5wNnuP9dVC8OOQVV_uQ-Ccqp7F4v6zpgmGmmH589dT8Y-QIlc0l4oCsoDW4rxuN8xZRA3V3-Q)
 
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>

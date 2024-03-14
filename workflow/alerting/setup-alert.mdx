@@ -1,8 +1,16 @@
 ---
-title: Setup Alerts
+title: Creating Alerts
 ---
 
-The Alerts page is a tool for monitoring and responding to critical events across your entire infrastructure, notifying you of any anomalies within your infrastructure. Set up alerts using the OpenTelemetry data your team collects to effectively manage system-wide issues.
+The Alerts page is a tool for monitoring and responding to critical events across your entire infrastructure. Create high-level alerts to detect system-level anomalies or supervise a single Kubernetes node. Set up alerts using the OpenTelemetry data your team collects to effectively manage system-wide issues.
+
+# How Alerts Work
+
+Alerts can be created with __metric__, __log__, or __trace__ data. Log and trace alerts are triggered when the MW Backend Alerts Server (which has already fetched the pre-defined rules specified by the user) identifies that the total number (count) of logs or traces have fired within the pre-defined time window. 
+
+Metric Alerts are triggered when the pre-defined rules that the user specifies are satisfied at the exact time that the MW Backend Alerts Server checks the metrics endpoint (e.g. If your window is set to five minutes, the MW Backend Alerts Server checks the Metrics endpoint if the conditions are met once every five minutes).
+
+<Warning> The MW Backend Alerts Server is not checking your pre-defined alert conditions in real time. </Warning>
 
 # Create New Alert
 
@@ -18,15 +26,15 @@ Navigate to the Alerts section and select __Create Rule__:
 
 #### Step 2a: Select Your Data Source
 
-A Data Source is the fundamental data that your Alert is created around. Create an alert with any OpenTelemetry metric that your team is currently ingesting.
+The Data Source is the data that your Alert is configured around. Create an alert with any OpenTelemetry metric that your team is currently ingesting.
 
 #### Step 2b: Add Metrics
 
-Metrics are parts of the Data Source that you are interested in monitoring. Perform mathematical operations on selected metrics and group them by their attributes.
+Metrics are parts of the Data Source that you are interested in monitoring. Perform mathematical operations on selected metrics and group them by their corresponding attributes.
 
 #### Step 2c: Set Filters
 
-The Filters section allows you to consolidate the data that you have collected in the Metrics section from any attribute.
+The Filters section allows you to consolidate the data collected in the Metrics section from your specified attribute. Use inequalities and SQL operators to consolidate your search.
 
 <Note> Corresponding letters in the __Metrics__ and __Filters__ section indicate a relationship (e.g. __Metric A__ is filtered by __Filter A__).</Note>
 
@@ -36,6 +44,10 @@ A trigger is a __Warning__ or __Critical__ messages that is sent to users when t
 
 <Note> Alerts will auto-resolve themselves to `Okay` or `No Data` status from a `Warning` or `Critical` status based on the triggers you set. </Note>
 
+#### Step 2e: Average By
+
+The Average By filter computes the mean of your ingested data across the designated time frame within the window section.
+
 ### Step 3: Set Rule Name
 
 Create a unique name for your Alert and select additional tags that your team can use to sort and filter alerts with:
@@ -44,7 +56,7 @@ Create a unique name for your Alert and select additional tags that your team ca
 
 ### Step 4: Select Notification Medium
 
-Send your Alerts to any Slack channel or email them directly to members of your organization:
+Send your Alerts to any Slack channel or email them directly to members of your organization. You can send alerts to multiple Slack channels or emails at a time.
 
 ### Step 5: Save Your Rule
 
