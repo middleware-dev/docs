@@ -3,19 +3,19 @@ title: Common Practices - Alerts
 sidebarTitle: Common Practices
 ---
 
-The following guide describes best practices for configuring, maintaining, and managing essential alerts. Let this be the starting point to ensure you are effectively monitoring your system-wide infrastructure.
+The following guide describes best practices for configuring, maintaining, and managing essential alerts. Let this be the starting point to ensure you are effectively monitoring your system-wide infrastructure data.
 
 # Resource Monitoring Alerts
 
 ### CPU Utilization Alert
 
-The following alert tracks the average CPU Utilization for a Kubernetes node. This alert is monitoring a single Kubernetes node, specified by the Filter configuration. A Critical alert is fired every time the average CPU Utilization of the specified Kubernetes node exceeds 5 CPUs at a time. This is checked on a 5 minute interval.
+The following alert tracks the average CPU Utilization for a Kubernetes node. This alert is monitoring a single Kubernetes node, specified by the Filter configuration. A Warning alert triggers whenever the average CPU Utilization surpasses three CPUs on the specified Kubernetes node, while a Critical alert activates when the average usage reaches five CPUs. This is checked on a five minute interval.
 
 ![](https://lh7-us.googleusercontent.com/-IOXG6PBIGm_Ulzp7OS_D4s0TGhLoo_VQTI29xxG6bxHyHVY-F3JCQVXwcO8xn20Klkt6QaVQMTpJtdD461FfMIiScQuUagVs5un5RB_4ce1_vb45RbsxtzOg2U4cNwOQzN1HIBpzcg8tHZCHK-EQNU)
 
 ### Memory Consumption Alert
 
-The following alert tracks the average amount of memory used when data is being read and written across your entire system. A Warning is fired when `system.memory.usage` is greater than 50 bytes and a Critical warning when it is greater than 75 bytes.
+The following alert tracks the average amount of memory used when data is being read and written across your entire system. A Warning is fired when `system.memory.usage` is greater than 50 bytes and a Critical warning when it is greater than 75 bytes. This is checked on a five minute interval.
 
 <Note> The __State__ filter is left blank so that all state metrics (e.g. buffered, cached, free, etc.) are collected.</Note>
 
