@@ -9,7 +9,7 @@ The following guide describes best practices for configuring, maintaining, and m
 
 ### CPU Utilization Alert
 
-The following alert tracks the average CPU Utilization for a Kubernetes node. This alert is monitoring a single Kubernetes node, specified by the Filter configuration. A Warning alert triggers whenever the average CPU Utilization surpasses three CPUs on the specified Kubernetes node, while a Critical alert activates when the average usage reaches five CPUs. This is checked on a five minute interval.
+The following alert tracks the average CPU Utilization for a Kubernetes node. This alert is monitoring a single Kubernetes node, specified by the Filter configuration. A Warning alert is fired when `k8s.node.cpu.utilization` surpasses an average CPU Utilization of three mCores on the specified Kubernetes node, while a Critical alert is triggered when `k8s.node.cpu.utilization` surpasses an average CPU Utilization of five mCores. This is checked on a five minute interval.
 
 ![](https://lh7-us.googleusercontent.com/-IOXG6PBIGm_Ulzp7OS_D4s0TGhLoo_VQTI29xxG6bxHyHVY-F3JCQVXwcO8xn20Klkt6QaVQMTpJtdD461FfMIiScQuUagVs5un5RB_4ce1_vb45RbsxtzOg2U4cNwOQzN1HIBpzcg8tHZCHK-EQNU)
 
@@ -27,5 +27,10 @@ The following alert tracks the total number of trace requests from a single APM.
 
 ![](https://lh7-us.googleusercontent.com/JcY5c276b6jpVekZJvWeo6QeM8M6So7CCfbbNDHcTi-VmNGa-crrgNd9MZSfgXTh3JUc6o8L6nkPxv5wNnuP9dVC8OOQVV_uQ-Ccqp7F4v6zpgmGmmH589dT8Y-QIlc0l4oCsoDW4rxuN8xZRA3V3-Q)
 
+### Log Error Alerts
+
+The following alert tracks the total number of logs that contain a message indicating a load failure. This alert uses the `IN` operator to monitor `error.message` with the Filter configuration. A critical message is fired when there are more than five `error.message` that contain the string `Load Failed` in a 30 minute window.
+
+![](https://lh7-us.googleusercontent.com/WB5yNsg8pRgUhI5eEbFY4h88w573mBZKA7my73yYxH8ciasR5oPCikwybo4KkQw4mW2uzrgH02BoMSOlohFDLBOD8tv_yze-6Buf7fS-VoGkX7Bjpi-vSD9uqOJ_pGouPvkwnK3XPvQOWXmN-FNWC_8)
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
