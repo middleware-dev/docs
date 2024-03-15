@@ -107,7 +107,9 @@ MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
 
 #### Step 4a: Setup `middleware.ini` File
 
-Create a `middleware.ini` file based on the features you want to observe. `service_name` and `access_token` are required for the tracker to send data to Middleware.
+Create a `middleware.ini` file based on the features you want to observe and place it at the root of your app directory. Specify the location of the `middleware.ini` file with the `MIDDLEWARE_CONFIG_FILE` environment variable.
+
+<Note>`service_name` and `access_token` are required for the tracker to send data to Middleware.</Note>
 
 ```python .ini
 [middleware.common]
@@ -161,18 +163,28 @@ except ZeroDivisionError as e:
 
 #### Step 5a: Instrument Your App
 
-Add the following to your `main()` function in `manage.py` if you're using Django:
+Add the following to your `main()` function in `manage.py`:
 
 ```python3 Python
 tracker.django_instrument()
 ```
 
-#### Step 5b: Start Your Django Project [Optional]
+#### Step 5b: Start Your Django Project
 
 Initialize your Django project with the following command:
 
 ```python Python
 DJANGO_SETTINGS_MODULE='mysite.settings' MIDDLEWARE_CONFIG_FILE=./middleware.ini middleware-apm run python manage.py runserver
+```
+
+#### Step 5c: Start Your Django Project 
+
+After initializing your application, run the following command to start your project:
+
+<Warning> If the `middleware.ini` file is not in your root directory, add `MIDDLEWARE_CONFIG_FILE=./path/to/middleware.ini` to the below command </Warning>
+
+```python Python
+middleware-apm run python app.py
 ```
 
 ### Step 6: Start Your Project
