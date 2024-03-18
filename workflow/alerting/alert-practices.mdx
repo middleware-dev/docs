@@ -1,0 +1,36 @@
+---
+title: Common Practices - Alerts
+sidebarTitle: Common Practices
+---
+
+The following guide describes best practices for configuring, maintaining, and managing essential alerts. Let this be the starting point to ensure you are effectively monitoring your system-wide infrastructure data.
+
+# Resource Monitoring Alerts
+
+### CPU Utilization Alert
+
+The following alert tracks the average CPU Utilization for a Kubernetes node. This alert is monitoring a single Kubernetes node, specified by the Filter configuration. A Warning alert is fired when `k8s.node.cpu.utilization` surpasses an average CPU Utilization of three mCores on the specified Kubernetes node, while a Critical alert is triggered when `k8s.node.cpu.utilization` surpasses an average CPU Utilization of five mCores. This is checked on a five minute interval.
+
+![](https://lh7-us.googleusercontent.com/-IOXG6PBIGm_Ulzp7OS_D4s0TGhLoo_VQTI29xxG6bxHyHVY-F3JCQVXwcO8xn20Klkt6QaVQMTpJtdD461FfMIiScQuUagVs5un5RB_4ce1_vb45RbsxtzOg2U4cNwOQzN1HIBpzcg8tHZCHK-EQNU)
+
+### Memory Consumption Alert
+
+The following alert tracks the average amount of memory used when data is being read and written across your entire system. A Warning is fired when `system.memory.usage` is greater than 50 bytes and a Critical warning when it is greater than 75 bytes. This is checked on a five minute interval.
+
+<Note> The __State__ filter is left blank so that all state metrics (e.g. buffered, cached, free, etc.) are collected.</Note>
+
+![](https://lh7-us.googleusercontent.com/sjU54Mqe3XINAZ7_It_i01xLFQeqFIAdAFMN9t5ElSKz_5lOTYwz8ltjlt5g6g2dfnSeXgUF9PgwNGAXd0fEx2oUP0Cz-SsrFuSMr-_MsqjvGVuDXYB1TBQQm-HvdHx7bEM_v6n6N9b-xqwLg4zOIWE)
+
+### APM Monitoring Alert
+
+The following alert tracks the total number of trace requests from a single APM. This alert uses the `IN` operator to monitor a specific `service.name` with the Filter configuration. A Critical message is fired when the total number of trace requests exceeds 5,000 in a 10 minute period.
+
+![](https://lh7-us.googleusercontent.com/JcY5c276b6jpVekZJvWeo6QeM8M6So7CCfbbNDHcTi-VmNGa-crrgNd9MZSfgXTh3JUc6o8L6nkPxv5wNnuP9dVC8OOQVV_uQ-Ccqp7F4v6zpgmGmmH589dT8Y-QIlc0l4oCsoDW4rxuN8xZRA3V3-Q)
+
+### Log Error Alerts
+
+The following alert tracks the total number of logs that contain a message indicating a load failure. This alert uses the `IN` operator to monitor `error.message` with the Filter configuration. A critical message is fired when there are more than five `error.message` that contain the string `Load Failed` in a 30 minute window.
+
+![](https://lh7-us.googleusercontent.com/WB5yNsg8pRgUhI5eEbFY4h88w573mBZKA7my73yYxH8ciasR5oPCikwybo4KkQw4mW2uzrgH02BoMSOlohFDLBOD8tv_yze-6Buf7fS-VoGkX7Bjpi-vSD9uqOJ_pGouPvkwnK3XPvQOWXmN-FNWC_8)
+
+<Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>

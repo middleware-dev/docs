@@ -1,68 +1,69 @@
 ---
-title: Setup Alerts
+title: Creating Alerts
 ---
 
-# Overview
-Alerts let you set up customizable alert policies for anything that you can monitor. Receive notifications for fluctuations in key performance metrics as data streams in from all of our products, including APM, infrastructure, and Kubernetes.
+The Alerts page is a tool for monitoring and responding to critical events across your entire infrastructure. Create high-level alerts to detect system-level anomalies or supervise a single Kubernetes node. Set up alerts using Telemetry data your team collects to effectively manage system-wide issues.
 
-Setup alerts
-------------
-Alerts can be configured to notify you when certain conditions are met, such as when a metric value exceeds a certain threshold or when a log event occurs that matches a specific pattern. In addition, alerts can be configured to send notifications to Slack or Gmail, making it easier to stay informed about critical events.
+# How Alerts Work
 
--   Navigate to "Alerts" from the left menu
--   Go to the "Rules" tab and click on "Create new"
+Alerts can be created with __metric__, __log__, or __trace__ data. Log and trace alerts are triggered when the MW Backend Alerts Server (which has already fetched the pre-defined rules specified by the user) identifies that the total number (count) of logs or traces have fired within the pre-defined time window. 
 
-### Select Monitor type
+Metric Alerts are triggered when the pre-defined rules that the user specifies are satisfied at the exact time that the MW Backend Alerts Server checks the metrics endpoint (e.g. If your window is set to five minutes, the MW Backend Alerts Server checks the Metrics endpoint if the conditions are met once every five minutes).
 
-Select the Monitor type corresponding to the kind of alert you want to receive,
+# Create New Alert
 
-<img src="/images/alert/aa1.png" />
+### Step 1: Create Rule
 
--   Metrics: to get alerts on service check and query alert
--   APM: query alert or trace-analytics.
--   Logs: To get alerts for specific log
--   Kubernetes: Get alert on kubernetes
+Navigate to the Alerts section and select __Create Rule__:
 
-### Configure Monitor
-Configure your monitor by defining the threshold and frequency etc. based on your selected monitor type in previous step, you can configure your alert rule. <img src="/images/alert/aa2.png" />
+![](https://lh7-us.googleusercontent.com/R-BlwAPkDb6LovlofANv8_v_vtRw-5lnwLimI2MJzXvYSD70G54bo1eHKmONmUT3l_9Tuj66duyaAE5JSsFAtisyVy7_4hX266HCeCFZQN5SDPseknjI9tr422a7DRYYSZil9Jf0J7mZytG1My45sLA)
 
--   Threshold:  it will help you to decide on what value you want to get alert and host will help you to get alert only on specific host
--   Frequency: There will be 2 types of frequency.  Single and multiple
--   If you select single then it will send you only one alert on decided time and if you select multiple then it will give multiple alerts you can also decide the number of alerts when you select multiple alerts
--   Time window: This will define how much time you want to alert, you can define your custom time as well
+### Step 2: Configure Rule
 
-Select a threshold from the predefined list, you can choose only one threshold at a time. Threshold can help you to define the rule for your alerts.Here's the details of some of the Thresholds.
+![](https://lh7-us.googleusercontent.com/RlyZPDQYpsVubHR_g3INFrISc9_qe-ulsc41uEWsVPl29tk6D_ISSpT77LeWTiOpeQQH7NZDDiucKWxGhHvm2hBy9mF1fOPYGWlU3PHDwui4sq6J1Rh8jhFwzDjozxkUI2XgIVJQxFtl-xHxBeNaBQo)
 
--   CPU % :- CPU % is a metric that measures the percentage of time that a CPU (Central Processing Unit) is busy processing data
--   CPU I/O Wait % :- CPU I/O wait % is a metric that measures the percentage of time that a CPU is idle while waiting for input/output (I/O) operations to complete
--   Disk write utilization MB :- Disk write utilization MB is a metric that measures the amount of data written to a disk over a period of time, typically in megabytes (MB).
--   Disk read utilization MB :- Disk read utilization MB is a metric that measures the amount of data read from a disk over a period of time, typically in megabytes (MB).
--   Load average in one minute :- Load average in one minute is a metric that measures the average number of processes that are running or waiting to run on a system over the last one minute. It is a measure of the workload on the system's CPU.
--   Memory used % :- Memory used % is a metric that measures the percentage of the total available physical memory that is currently being used by the system.
+#### Step 2a: Select Your Data Source
 
-### Set alert condition
-You can specify the threshold value at which you wish to notify, as well as other levels such as Warning, and you can also construct custom thresholds.<img src="/images/alert/aa3.png" />
+The Data Source is the foundation upon which your Alert is configured. Create an alert with any OpenTelemetry metric that your team is currently ingesting.
 
-Notify your team
-----------------
-Here you can define the name of the alert, tags with the alert's state, and where you wish to be notified, such as slack or Gmail.\
-To receive alerts on slack, you must have [integrated slack with Middleware](https://docs.middleware.io/docs/integrations/Slack-integration). 
+#### Step 2b: Add Metrics
 
-<img src="/images/alert/aa4.png" />
+Metrics are parts of the Data Source that you are interested in monitoring. Perform mathematical operations on selected metrics and group them by their corresponding attributes.
 
-Default alerts
---------------
-We have created the default alerts for metrics, logs, and K8s so you don't need to create manual alerts and get notified automatically for these alerts. This feature comes with some default rules that you can turn on or off and customize based on your needs. These default alerts will only fire up to 5 times when the condition matching the rule is met.
+<Note> For more information on metrics collected in your environment, see the [Metrics Control Panel](https://middleware.io/settings/metrics-control-panel).</Note>
 
-<img src="/images/alert/aa5.png" />
+#### Step 2c: Set Filters
 
-Maintenance Window
-------------------
-Maintenance Window allows users to specify a time frame during which alerts will not be fired. If the user sets a maintenance window, the alert will be suppressed during that time period. This feature enables users to perform routine maintenance and updates without being constantly interrupted by alert notifications.
+The Filters section allows you to consolidate the data collected in the Metrics section from your specified attribute. Use inequalities and SQL operators to consolidate your search.
 
-### Setup maintenance window
--   Go to "Maintenance" tab from alerts.
--   Click on the "Schedule" button to begin creating a new maintenance window.
--   Enter a name for the maintenance window. ex: "System Updates" or "Database Maintenance." <img src="/images/alert/aa6.png" />
+<Note> Corresponding letters in the __Metrics__ and __Filters__ section indicate a relationship (e.g. __Metric A__ is filtered by __Filter A__).</Note>
+
+#### Step 2d: Create Triggers
+
+A trigger is a __Warning__ or __Critical__ message that is sent to users when the data source a user has selected exceeds a pre-defined threshold. The window indicates the interval by which these trigger conditions are checked. 
+
+<Note> Alerts will auto-resolve themselves to `Okay` or `No Data` status from a `Warning` or `Critical` status based on the triggers you set. </Note>
+
+#### Step 2e: Average By
+
+The Average By filter computes the mean of your ingested data across the designated time frame within the window section.
+
+### Step 3: Set Rule Name
+
+Create a unique name for your Alert and select additional tags that your team can use to sort and filter alerts with:
+
+![](https://lh7-us.googleusercontent.com/z_ZddujDSUJCymOzmZ3v70zLAl2_p6L__-LozWtOdDNgmI7DaplHA9grVJT3m8z7eiHBVjeqZIwflKPRcv2XFxXlkEKHA3VUDM7E_k5IyqbLd8m2GUeCVnomOe5Dq3wWx505AcY80umK3MPzXUggsZQ)
+
+### Step 4: Select Notification Medium
+
+Send your Alerts to any Slack channel or email them directly to members of your organization. You can send alerts to multiple Slack channels or emails at a time.
+
+### Step 5: Save Your Rule
+
+Once you have finished configuring your rule, select __Create__. You have successfully created an Alert when it is visible on the home page in the Alerts table.
+
+# Edit Existing Alerts
+
+Edit your existing and Default Alerts from the Alert table. Hover over your desired Alert to edit, pause, or delete the Alert.
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
