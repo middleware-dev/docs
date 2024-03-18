@@ -70,15 +70,19 @@ set MW_TARGET=<YOUR_MW_TARGET>
 mw-kube-agent-install-windows.bat
 ```
 
+### Step 4: Add Host Tags [Optional]
+
+Add tags by including the `MW_HOST_TAGS` environment variable to the installation command as comma-separated key-value pairs. Use the tag `name` to create an alias for the host (e.g. production). 
+
+<Note> Check your host tags have been embedded by navigating to __Infrastructure__ -> __Your Desired Host__ -> __System Information__ </Note>
+
+```bash Shell
+MW_HOST_TAGS=key1:value1,key2:value2,... MW_API_KEY=...
+```
 
 
 
-
-
-
-
-
-### Step 4: Verify Installation
+### Step 5: Verify Installation
   
 Verify the status of the Infra Agent with the following command:
 
@@ -86,7 +90,7 @@ Verify the status of the Infra Agent with the following command:
 kubectl get daemonset/mw-kube-agent -n mw-agent-ns
 ```
 
-### Step 5: Check Your Dashboard
+### Step 6: Check Your Dashboard
 
 Navigate to Middleware and ensure metrics are appearing in the <a href="https://docs.middleware.io/docs/unified-dashboard/unified-view"> Unified Dashboard </a>. Depending on the size of your cluster, it can take up to a few minutes for metrics to appear. If metrics do not appear after this time head to our troubleshooting page for some common issues.
 
