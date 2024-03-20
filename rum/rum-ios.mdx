@@ -106,6 +106,8 @@ MiddlewareRum.integrateWebViewWithBrowserRum(view: webView)
 
 ### Session Recording
 
+The maximum session recording duration is four hours. If users are inactive for more than 15 minutes at a time, session recordings will be stopped. If users exceed more than four hours in a single session or become active again after the 15-minute inactivity timeout, a new session will be automatically created.
+
 Session recording is enabled by default. Disable this feature by passing `.disableRecording()` in the following function:
 
 ```swift Swift
@@ -123,6 +125,8 @@ MiddlewareRumBuilder()
 ### Privacy
 
 Blur sensitive information in session recordings by embedding the following method:
+
+<Note> User passwords are automatically masked by default. Other sensitive information like credit card data and API keys must be masked manually. </Note>
 
 ```swift Swift
 // SwiftUI
