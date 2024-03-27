@@ -1,0 +1,31 @@
+---
+title: March 21, 2024
+---
+
+# Features
+
+- Python APM is now compatible with applications created with Django
+- New Kubernetes Metrics Dashboards 
+- Users can now mask their sensitive data by adding regex at the ingestion level. Access this by navigating to __Settings__ -> __Ingestion Controls__ -> __Sensitive Data Masking__
+- Allow users to update and edit their default file log paths. Access this by navigating to __Settings__ -> __Ingestion Control__ -> __Milddeware Agent Log Paths__
+- Users can now filter their Synthetic Monitoring list
+- Collapsible filter bar in all RUM modules
+- Users can now highlight events within a given RUM session
+
+
+# Changes
+
+- Updated Filter Count and Filter Correlation in Logs module
+- Changed Logs module to use global date picker component
+- Updated query for calculating log size in Log module
+- Information in graph hover-overs are now sorted in descending order
+- Host tags (which are added at the time of Agent installation) are now displayed inside Infra Details and are capable of being filtered
+
+# Fixes
+
+- Fixed Alert correlation issue that incorrectly redirected users when drilling down into alerts
+- Fixed Kubernetes PowerShell installation page
+- Fixed Refresh button in the Welcome Dashboard
+- Users can now recieve alerts for the total percentage of CPU used in their Kubernetes infrastructure
+- Fixed RUM application list, which now displays all previously created RUM applications, regardless of the date and time they were created
+- Fixed database billing compatibility for PostgreSQL, MySQL, and MongoDB
