@@ -40,23 +40,21 @@ To disable the collection of file-based logs, navigate to Settings, select Inges
 
 ## Custom Attribute Controls
 
-<Note>This feature is only available when logs are scraped from a filesystem. </Note>
-With this setting, You can scrape attributes from their log body based on Regex.
+<Note>This feature is only available when logs are scraped from a filesystem by the Middleware Host Agent. </Note>
+Middleware supports standard regex rules to allow extraction of attributes and their values from log messages. The attributes scraped will both be available in the filter and search bars as well as in the expanded log attributes.
 
-You can follow the regex grouping rules mentioned here in [this document](https://github.com/google/re2/wiki/Syntax). 
-Especially, Refer the “Grouping” section. Here is an example, How this will work.
+This document will go through a simple example, however you can read more on from the [github source documentation](https://github.com/google/re2/wiki/Syntax), referring to the “Grouping” section. 
 
-If the log content looks like this :
+### Example log extraction
+Using the below log message as an example we are going to extract four key attributes, `date`, `process_id`, `level`, and `content`:
 
 `[2024-02-26 09:15:41 -0500] [671097] [ERROR] Shutting down: Master`
 
-And if you apply the grouping regex as follows :
+We can extract the desired attributes with the below regex:
 
 `\[(?P<date>.+)\] \[(?P<process_id>.+)\] \[(?P<level>.*)\] (?P<content>.+)`
 
-<img src="/images/settings/custom-attribute-control.png" />
-
-It will add these 4 new attributes in the existing log
+Given the original log message and the above regex we will get the below key and value pairs.
 ```
 date = 2024-02-26 09:15:41 -0500
 process_id = 671097
@@ -66,21 +64,32 @@ content =Shutting down: Master
 
 
 
+And an example of how this looks from within the Middleware Application:
+
+<img src="/images/settings/custom-attribute-control.png" />
+
+
 <Note>We have a special attribute named `level`, which accepts ERROR, WARN, INFO, DEBUG as the valid values. Based on this level attribute you will see your logs under specific severity level </Note>
 
 # Sensitive Data Masking for Logs
 
-With this setting, You can hide sensitive information from your log content based on Regex. 
-These filters are applied during the ingestion of logs, therefore you can avoid sending sensitive information to the platform itself.
+Middleware provides users the ability to mask data at time of ingestion. This means that all data will be masked **_before_** it leaves your systems, allowing full control over security regulations and company policies.
 
-The setting will expect 2 inputs from users as shown in the image Below
-1. Regex for the keywords that users want to hide
-2. Replacement text. i.e. *****, HIDDEN, etc.
+Similar to the above attribute extraction, Data Masking is also based on standard regex rules.
+
+The setting will expect 2 inputs from users as shown in the image below
+1. A **Regex Pattern* for the keywords that users want to hide
+2. A **Replacement Value**, e.g. `*****`, `HIDDEN`, etc.
 
 <img src="/images/settings/masking.png" />
 
-Here is an example, If your log content looks like this : `Transaction ID : 675-98-3434`
-Using the regex `\\d{3}-?\\d{2}-?\\d{4}` will modify the log to this : `Transaction ID : *****` before ingesting it into Middleware.
+For example, if your log content looks like: 
+
+`Transaction ID: 675-98-3434`
+
+Using the regex `\\d{3}-?\\d{2}-?\\d{4}` will modify the log before it sends to Middleware, e.g.: 
+
+`Transaction ID: *****` 
 
 # Metrics Ingestion
 
