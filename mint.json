@@ -220,13 +220,9 @@
           "group": "Dashboard Builder",
           "pages": [
             "workflow/custom-dashboard/dashboard-builder-overview",
-            "workflow/unified-dashboard/dashboard-common-practices",
-            {
-              "group": "Unified View",
-              "pages": [     
-                "workflow/unified-dashboard/unified-view"         
-              ]
-            }
+            "workflow/unified-dashboard/dashboard-common-practices",  
+            "workflow/unified-dashboard/unified-view"         
+
           ]
         },                       
         {

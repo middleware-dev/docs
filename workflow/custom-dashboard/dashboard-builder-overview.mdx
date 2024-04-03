@@ -2,13 +2,83 @@
 title: Dashboard Basics
 ---
 
+The Dashboard Builder is GUI based approach that enables users to create complex query logic without the added stress of learning a new query language. Seamlessly generate new dashboards in undere a minute, integrate custom widgets into existing dashboards, or effortlessly cloning default dashboards for further refinement. Seamlessly drill into any data that you port to Middleware with advanced filtering options by date range and metric value.
+
 # How Dashboards Work
+
+The metrics made available to users when constructing dashboards is dynamically generated based on the data that users port to Middleware. 
 
 # Create New Dashboard
 
-# Clone Existing Dashboard
+Create a new dashboard by selecting a single data source to start with:
+
+![](https://lh7-us.googleusercontent.com/yqsBVLcxZBdBtwTdCpthY6jNOmgSty1ZZujNkNKa82ZfegK5fB8KW7uvrtWEKoXHSB4b-V-wvOSsSeQ3piYpro568oInCxG97MraC1CO8yA8N8acJEDpNoR2wiSTJxn6kR1oiZaKbP2aZN3aYFIZGNk)
+
+Select the widgets you would like to include in your dashboard based on your data source:
+
+![](https://lh7-us.googleusercontent.com/MYBkwh9gWohgGbuF9CScQlUi5RU-0w0J8AVXTY3_MqEnidFnqTzGgXSLMy4iVcpV3_aRgrA3fCnxRZU53vGuL5Lp1RUL7ljVXmRdJfhbqptdDmcATY9LDiTDG715qWoX5ABfvTFuFVgmqArf6UC1i1I)
+
+Once you have added widgets to your dashboard, you will be taken directly to your dashboard:
+
+<Note> Data will appear momentarily after you have created your new dashboard </Note>
+
+![](https://lh7-us.googleusercontent.com/rg4LfJetovyC5UMrgE7H3aN3UUuK0K2kbbHp5LYgGHLs12M-48jW3OtN7RlPA0sJnTznOpcdtNFqghehlroWY7lhsw1eQsE1ZSKXSqf8e-EUNX99RzcCr24ScSxFiXhp27NvLokBGwV9PMuKWk8jwTY)
 
 # Create New Widget
+
+Create a new widget by navigating to the dashboard you would like to add to and selecting __Add Widget__ and selecting __Create Widget__:
+
+![](https://lh7-us.googleusercontent.com/Qn2pnY24-2CuG7moVbGCi4UqO0aoIMdqNjsYaSipLHo3gfUOhD_z0vchbVyMNrN3zb6gPZeCAkkoJWmndzgqtcZVVFz9jzJYD_gkhP3qWNytupLefOGdMGLhd5Z9SjTvxqXbMmM1x6XYF0QzXK9LNn8)
+
+![](https://lh7-us.googleusercontent.com/Oe2a3IYXnQ4JTYXRbzMe9c7RZSHXFySFLJGFZCxWhJIFIvlNM2hOmGgQdCapl2h8Hk5-FhEWRwALQxZ1lJ2BGJtnvQnXA_r0TCqX5o3OeXwJnAqQrR1wkm77-uZLmL5V7QTiGpPr4Uhc6SRvjaO3Yjg)
+
+### Step 1: Select Chart Type
+
+Choose one of the following types of charts for your widget:
+
+![](https://lh7-us.googleusercontent.com/LyMx_1CWIjqGEdzQYF_0XveQ3v-NvYJHLFA3N64iQfmfIx7KisKS0v2zx2VdMlB2caX9bAhYJUA9VULXsE8zGZHNH6XiBYbi0tjhlYTx8Uv5uBVKi80uDlceM9TUIGlZATlxwD6Pa1mJywRFU3XOYUQ)
+
+### Step 2: Select Metrics
+
+The Metrics section is where you build your query logic. Select the specific metric you would like to query, aggregate and filter. Create an alias for your metrics so that dashboard users can more easily interpret what is displayed within the widget.
+
+The following table displays all available methods for aggregating your metrics:
+
+| __Aggregation Type__ | __Description__                                                |
+| :------------------- | :------------------------------------------------------------ |
+| __Average By__       | Average of all values in selected time range for given metric |
+| __Sum By__           | Sum of all values in selected time range for given metric |
+| __Minimum By__       | Minimum of all values in selected time range for given metric |
+| __Maximum By__       | Maximum of all values in selected time range for given metric |
+| __Any By__           | Gathers all possible values in selected time range for given metric __and/or__ attribute |
+| __Unique By__        | Count of unique values in selected time range for given metric __and/or__ attribute |
+| __Count By__         | Count of all values in selected time range for given metric __and/or__ attribute |
+| __Group By__         | Groups all values in selected timerange for given metric __and/or__ attribute |
+
+#### Aggregated By
+
+
+#### Inner Value Aggregation
+
+
+#### Advanced [Optional]
+
+The Advanced section allows you to specify the interval at which your data is ingested and displayed at.
+
+<Note> The default Data Aggregation Interval is assumed to be every 15 seconds unless specified. </Note>
+
+
+### Step 3: Set Display Preferences
+
+The Display Preferences section is the default time range that is displayed when you open the dashboard.
+
+<Note> Although this is the default time range, drill into other time ranges with the Date Range filter. </Note>
+
+### Step 4: Enter Widget Title
+
+The Widget Title is the title that will be displayed at the top of your widget on the dashboard.
+
+# Clone Existing Dashboard
 
 # Clone Existing Widget
 

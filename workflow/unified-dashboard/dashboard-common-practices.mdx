@@ -3,10 +3,59 @@ title: Common Practices - Dashboard Builder
 sidebarTitle: Common Practices
 ---
 
-The following describes best practices for configuring custom dashboards. Let this be the starting point to ensure you are effectively monitoring your system-wide infrastructure data.
+The following examples showcase common practices for configuring custom dashboards and widgets. Let this be the starting point to ensure you are effectively monitoring your system-wide infrastructure data.
 
-# Dashboard #1
+# Custom Metrics Example Widgets
 
-# Dashboard #2
+<Tabs>
+  <Tab title="Gauge Active Connections">
+    Select `connections.active` as your primary Metric, choose the __Maximum By__ filter and aggregate by the average of all `connections.active.hostname`
 
-# Dashboard #3
+    ![](https://lh7-us.googleusercontent.com/AAW9N2jS-7oOPIKIjL9fQOAt2sjhrojhXtSzDhPJdBF8-Dryb7LmGwepEWP8R20vLgx1WDQwJJpJxd_-C-zvVZ1rgt9WQtOg8gfN80MTtYXJ9dC2EMD6Pn6PWzxjhwbyo0VG2PIYpf6T6xJ14_K5DcI)
+  </Tab>
+  <Tab title="Histogram - Download Speeds">
+    Select `downloads.speeds_bucket` as your primary Metric, choose the __Average By__ filter and aggregate by the minimum of all `region`
+    ![](https://lh7-us.googleusercontent.com/Y8VSPa1Tqo0BjnBaSukxcmKOoN9qM0f6Bix4QVUAU5dltBKdcl3WS1BhA2j9ImJNHUABoFYN3wEPx5wuFxaW0bsOM6zbdmMSR8aYHpoK46Aq5V3IlYslSu43pSxs8laS0iHfIlEvWElb3Oc8WwUP_Ek)
+  </Tab>
+  <Tab title="Counter - User Downloads">
+    Select `uploads.count` as your primary Metric and choose the __Count By__ filter
+    ![](https://lh7-us.googleusercontent.com/wmLdvI1nGMsdVxjKZtmy76CrsdcVmXpt_UplpFwM7xAHKBHSSmtAdJL1leqPLwwHJiRSPP5rHxfcAtba0tuicVkGGprjBRCZtMpaE8xiDdJWdjMMQ2uiu7m2oLvFyx5nPWr05JQpQWocYpLScKPRi6g)
+  </Tab>
+
+</Tabs>
+
+# Kubernetes Example Widgets
+
+<Tabs>
+
+  <Tab title="Node CPU %">
+    Select `system.cpu.utilization` as your primary Metric, choose the __Average By__ filter and aggregate by the sum of all `host.name`. Filter the above query such that `is.k8s.node` `=` `yes`
+    ![](https://lh7-us.googleusercontent.com/HzXXAfiVbL5iIHIPb9BARUgKYT5uRUI_h-CxvG7xuAGQ4-be8GPeqUXtCYjqDxxRzdwZ7JOaLuzmn1d7KSv0LFMZxfe_RH7wZV4eTDWnyJf13gkaKoClketaV_OEcojVYWDwXJIVYVfWnsXWiGuzPIY)
+  </Tab>
+  <Tab title="Pod CPU - Same Deployment">
+    Select `k8s.pod.cpu.utilization` as your primary Metric, choose the __Average By__ filter and aggregate by the average of all `k8s.pod.name`. Filter the above query such that `k8s.deployment.name` `=` `dndemo-deployment`
+    ![](https://lh7-us.googleusercontent.com/GqWWn8jF7mGjc9OIQt0ltGLl85Euv__O_4tqVFYI-HPb_mEEJuFwX0DzA2WwkJF3NZQwjtpLT_Nth5sbi-EVWXtvwCG--lsky9b3LzlDfi2Z1QLxiaOMy7RkoMFOVQ_1JmY2tL1hYqQPLpHDWiM3YDQ)
+  </Tab>
+
+</Tabs>
+
+
+# Example Dashboards
+
+<Tabs>
+  <Tab title="Container Dashboard">
+    Select __Containers__ as your primary data source and choose __Select All__:
+
+    ![](https://lh7-us.googleusercontent.com/n9LNxMZQwgV6f58c3VAGBIGNR7Kg4CPKpQUt_eIGhb48zADM0imwsU5HLq84pxbhnbdk0RGVD3vCEh-9zWm7-SvM98tJlWjc44PGUSkNYtzp4ctrkPTF-M76u7y-ldW67CymKrOH_yT9kWLxXV2xMZ0)
+  </Tab>
+  <Tab title="Host Dashboard">
+    Select __Host__ as your primary data source and choose the widgets
+  </Tab>
+  <Tab title="Dashboard #3">
+    💪 Here's content that's only inside the third Tab.
+  </Tab>
+</Tabs>
+
+
+
+
