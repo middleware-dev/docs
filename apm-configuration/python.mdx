@@ -174,7 +174,7 @@ tracker.django_instrument()
 Initialize your Django project with the following command:
 
 ```python Python
-DJANGO_SETTINGS_MODULE='mysite.settings' MIDDLEWARE_CONFIG_FILE=./middleware.ini middleware-apm run python manage.py runserver
+DJANGO_SETTINGS_MODULE='mysite.settings' middleware-apm run python manage.py runserver
 ```
 
 #### Step 5c: Start Your Django Project 
@@ -192,7 +192,7 @@ middleware-apm run python app.py
 After deploying your application, run the following command to start your project:
 
 ```shell Shell
-MIDDLEWARE_CONFIG_FILE=./middleware.ini middleware-apm run python app.py
+middleware-apm run python app.py
 ```
 
 # Continuous Profiling
