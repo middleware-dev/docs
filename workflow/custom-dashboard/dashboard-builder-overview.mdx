@@ -2,19 +2,19 @@
 title: Dashboard Basics
 ---
 
-The Dashboard Builder is a Graphical User Interface (GUI) based approach that enables users to create complex query logic without the added stress of learning a new query language. Seamlessly generate new dashboards in undere a minute, integrate custom widgets into existing dashboards, or effortlessly cloning default dashboards for further refinement. Seamlessly drill into any data that you port to Middleware with advanced filtering options by date range and metric value.
+The Dashboard Builder allows you to generate new dashboards in undere a minute, integrate custom widgets into existing dashboards, or effortlessly clone default dashboards for further refinement. Drill into any data that you port to Middleware with advanced filtering options by date range and metric value.
 
 # How Dashboards Work
 
-The metrics made available to users when constructing dashboards is dynamically generated based on the data that users port to Middleware. 
+The Dashboard Builder is a Graphical User Interface (GUI) based approach that enables users to create complex query logic without the added stress of learning a new query language. The metrics made available to users when constructing dashboards are dynamically generated based on the data that users port to Middleware. 
 
 # Create New Dashboard
 
-Create a new dashboard by selecting a single data source to start with:
+Create a new dashboard by selecting a data source to start your dashboard with:
 
-![](https://lh7-us.googleusercontent.com/yqsBVLcxZBdBtwTdCpthY6jNOmgSty1ZZujNkNKa82ZfegK5fB8KW7uvrtWEKoXHSB4b-V-wvOSsSeQ3piYpro568oInCxG97MraC1CO8yA8N8acJEDpNoR2wiSTJxn6kR1oiZaKbP2aZN3aYFIZGNk)
+![](https://lh7-us.googleusercontent.com/awzI7eStfpqKWy78cOJdW-8pMyrVL6lrocPdQnmVlqrEtGh6QFjABrm-GoaCyG3URvGjdRnm_Ukzw4ZrbY6U-Li9QlY-eWKJ3dFzTzO_fb6IT48onLDEUZxaJ5EPDKJwWm6WLs_hzjmGJJTsCvq6AgQ)
 
-Select the widgets you would like to include in your dashboard based on your data source:
+Select the metrics you would like to include as widgets in your dashboard:
 
 ![](https://lh7-us.googleusercontent.com/MYBkwh9gWohgGbuF9CScQlUi5RU-0w0J8AVXTY3_MqEnidFnqTzGgXSLMy4iVcpV3_aRgrA3fCnxRZU53vGuL5Lp1RUL7ljVXmRdJfhbqptdDmcATY9LDiTDG715qWoX5ABfvTFuFVgmqArf6UC1i1I)
 
@@ -26,7 +26,7 @@ Once you have added widgets to your dashboard, you will be taken directly to you
 
 # Create New Widget
 
-Create a new widget by navigating to the dashboard you would like to add to and selecting __Add Widget__ and selecting __Create Widget__:
+Navigate to the dashboard you would like to add a new widget to and select __Add Widget__ and __Create Widget__:
 
 ![](https://lh7-us.googleusercontent.com/Qn2pnY24-2CuG7moVbGCi4UqO0aoIMdqNjsYaSipLHo3gfUOhD_z0vchbVyMNrN3zb6gPZeCAkkoJWmndzgqtcZVVFz9jzJYD_gkhP3qWNytupLefOGdMGLhd5Z9SjTvxqXbMmM1x6XYF0QzXK9LNn8)
 
@@ -34,15 +34,21 @@ Create a new widget by navigating to the dashboard you would like to add to and 
 
 ### Step 1: Select Chart Type
 
-Choose one of the following types of charts for your widget:
+Choose from one of the following types of charts for your widget:
 
 ![](https://lh7-us.googleusercontent.com/LyMx_1CWIjqGEdzQYF_0XveQ3v-NvYJHLFA3N64iQfmfIx7KisKS0v2zx2VdMlB2caX9bAhYJUA9VULXsE8zGZHNH6XiBYbi0tjhlYTx8Uv5uBVKi80uDlceM9TUIGlZATlxwD6Pa1mJywRFU3XOYUQ)
 
-### Step 2: Select Metrics
+### Step 2: Create Query
 
-The Metrics section is where you build your query logic. Select the specific metric you would like to query, aggregate and filter. Create an alias for your metrics so that dashboard users can more easily interpret what is displayed within the widget.
+Create your query logic in the Metrics Section. Select the specific metric you would like to query, aggregate, and filter. Specify the interval at which data is ingested, create metric aliases to easily interpret what is displayed within the widget, and filter out unwanted data within the query.
 
-The following table displays all available methods for aggregating your metrics:
+#### Group By
+
+The Group By field is the outer most aggregation made in your query. The way in which you aggregate a metric is contingent on the initial metric you have selected for your widget. Group your initial metric with resource attributes, metric attributes, or another metric based on the selected metric. The below example is grouping the `container.name` metric by all unique instances of the `container.name` metric:
+
+![](https://lh7-us.googleusercontent.com/lJ_3zm4C37Zgv8oWBRza4Z9-BbdJdlXD-lxbFq2qfGD579JQ9tNR_1MbC0zLLLW9ufQ-MQQa1_nwD4tg5PG-9QTpCDdsX5rE4UDIN-y9sILxyPlCHF8C8FcYv1od9VqK2ZACHS1NBAQFDk6yuOLgRzM)
+
+The following table displays all available methods for aggregating your chosen metrics:
 
 | __Aggregation Type__ | __Description__                                                |
 | :------------------- | :------------------------------------------------------------ |
@@ -55,19 +61,29 @@ The following table displays all available methods for aggregating your metrics:
 | __Count By__         | Count of all values in selected time range for given metric __and/or__ attribute |
 | __Group By__         | Groups all values in selected timerange for given metric __and/or__ attribute |
 
-#### Aggregated By
-
-The Aggregated By section is the outer most aggregation made in your query. The way in which you aggregate a metric (and query) is contingent on the 
-
 #### Inner Value Aggregation
 
+The Inner Value Aggregation is a nested aggregation technique that allows you to aggregate your initial query. The below example is grouping the `k8s.node.memory.usage` metric by summing the `k8s.cluster.name` attributes together and aggregating __Any__ `k8s.node.memory.usage`:
 
-#### Advanced [Optional]
+![](https://lh7-us.googleusercontent.com/fo5Img7dsK14nN-w6atI390lqE-Lrg9oHS6BlqlgLwJKjNjpke85oDeEVYfhbl3CGj3hPiZ6mfnK5XXGPZGlxbfzY5wjd31myEhAR4gAJnQgB5Eii1Ex7CvkQgufEmUNFVcKZiLkUBFt35WBIGRtBHc)
+
+#### Filter
+
+The filter feature is used to remove unwanted metrics within your query. The below example is filtering out any `host.id` containing `ip-172-31-13-218.us-east-2.compute.internal`:
+
+![](https://lh7-us.googleusercontent.com/_50CgdVxjgsqeqS6U3S8Rud9llopVXSi97d2WXCo4shRYJp79HjUs8gGTq_ZLihDDlP4wpi3IqCvaT6z4NpnhXAQWzhNWbe2uUS89Gw4Nd8ww_RX95Ce5p4LsR_SBO3-0LSp3sAht3heL01QDKgCAQQ)
+
+#### Advanced
 
 The Advanced section allows you to specify the interval at which your data is ingested and displayed at.
 
 <Note> The default Data Aggregation Interval is assumed to be every 15 seconds unless specified. </Note>
 
+#### Alias
+
+The Alias feature allows you to overwrite the metric name displayed in your widget for increased readability:
+
+![](https://lh7-us.googleusercontent.com/8gAYYTNk5B9dH_6a6S6DLq-zItBxQU_pv0GBuM0PnOonqY9kbxMiESmKRNa_vG6R7vDrhl5ELX_nRGloIlsHm5VDBM1xRuUuO7Az8wZk3orJnG6yrvTGeA8Nul_XDGugYy4_NnEavJISDxFtMdcMVyw)
 
 ### Step 3: Set Display Preferences
 
@@ -93,15 +109,19 @@ To clone a dashboard, click on the elipses located in the dashboards table under
 
 # Filter Dashboard Data
 
-
-
 ### Live & History View
+
+View your static dashboard data in __History__ mode and view your data in real time in __Live__ mode.
 
 ### Date Range
 
+The Date Range picker allows you to select specific period of time to view your dashboard data.
+
 ### Metrics
 
+Filter your data based on the dynamic datathat is already available in your dashboard. Visualize the performance of a single metric within your broader dashboard.
 
+<Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io.</Note>
 
 
 
