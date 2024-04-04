@@ -3,9 +3,42 @@ title: Oracle
 description: Oracle Integration - Setup & Installation Docs | Middleware
 ---
 
+The Oracle Database Integration provides real-time visibility into the performance of your Oracle database system. Monitor database instances, CPU utilization, transactions, and other Oracle-specific metrics.
+
+<Note> For more information on Oracle, navigate to the [Oracle Demo Project Repository](https://github.com/middleware-labs/integration-demo-projects/tree/master/oracledb). </Note>
+
 # Prerequisites
 
+<Steps>
+  <Step title="Infra Agent">
+    Infrastructure Agent (Infra Agent) `v1.6.1+`. To install the Infra Agent, see our [Installation Guide](https://docs.middleware.io/agent-installation/overview)
+  </Step>
+  <Step title="Oracle Server">
+    `Oracle Server v10.2+`
+  </Step>
+</Steps>
+
 # Setup
+
+### Step 1: Grant Permissions 
+
+Assign permissions according to the database user:
+
+```sql SQL
+GRANT SELECT ON V_$SESSION TO <username>;
+GRANT SELECT ON V_$SYSSTAT TO <username>;
+GRANT SELECT ON V_$RESOURCE_LIMIT TO <username>;
+GRANT SELECT ON DBA_TABLESPACES TO <username>;
+GRANT SELECT ON DBA_DATA_FILES TO <username>; 
+```
+
+### Step 2: Access Integrations
+
+Log in to Middleware, navigate to the Installations Page in the bottom left corner, select integrations and click Oracle:
+
+![](https://lh7-us.googleusercontent.com/aGjG4tVP-ibGcH-k_f84kc2lqGOFDkC25h2Z6j_Re-7sdd6FS1vlLiNUJdyv2E-synmxh_Ty509Vw8RIQfIlVmoRZ_ldVxj6msp3JlqnnSV0EsVo6R4kUMAsZ-UxIss-mRR82xI0fpGzX2zJmzEQod0)
+
+### Step 3: Enable Oracle Integration
 
 # Visualize Your Data
 
