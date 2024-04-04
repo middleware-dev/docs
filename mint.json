@@ -135,6 +135,7 @@
                 "integrations/elasticsearch-integration",            
                 "integrations/mongodb-integration",
                 "integrations/mysql-integration",
+                "integrations/oracledb-integration",
                 "integrations/postgresql-integration",
                 "integrations/redis-integration"
               ]
