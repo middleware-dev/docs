@@ -6,9 +6,19 @@ The Dashboard Builder allows you to generate new dashboards in undere a minute, 
 
 # How Dashboards Work
 
-The Dashboard Builder is a Graphical User Interface (GUI) based approach that enables users to create complex query logic without the added stress of learning a new query language. The metrics made available to users when constructing dashboards are dynamically generated based on the data that users port to Middleware. 
+The Dashboard Builder is a Graphical User Interface (GUI) based approach that enables users to create complex query logic without the added stress of learning a new query language. The metrics made available to users when constructing dashboards are dynamically generated based on the data that users port to Middleware. For example, if you have insturmented Middleware's Infrastructure Agent and APM packages, you will have access to all of your host and application level data. 
+
+<Note> For more information on instrumenting the Infra Agent and APM packages, navigate to the [Quickstart](https://docs.middleware.io/getting-started) page.</Note>
 
 # Create New Dashboard
+
+To get started, navigate to the Dashboard Builder page, select __Create Dashboard__, label your new dashboard and press __Save Changes__:
+
+![](https://lh7-us.googleusercontent.com/nAcWz6onmEDjro8MHLJW0QuAMxlrLqaoBsR--nCRpyRXrXOMnC6TItKPMU0JFcc8sUlhyYTqqtxFGCzwSuNuxDzlUrqfAephKP5kf_GXSKt9IwQ1ljclEQUhbnbw_Hov-Cvhu0B38ZbwBj1tU4U0Hes)
+
+![](https://lh7-us.googleusercontent.com/vnHYyys7-lF4JJ0iWNe1U_9tzKBaugYaHecw6-jK-QcyReb5eurxA7mRonIGf9mYI6KO0cVcbRB5i4WPy2DkILnpSglgxYzPllWNoUa-bX5YpWtvdY2M1rRDoaEaTQE7qwyqqkDRET3fX1bJsjoS-fY)
+
+<Note> You have the option to create a dashboard from an existing data source or create a widget. We recommend starting with the Dashboard. </Note>
 
 Create a new dashboard by selecting a data source to start your dashboard with:
 
@@ -32,21 +42,42 @@ Navigate to the dashboard you would like to add a new widget to and select __Add
 
 ![](https://lh7-us.googleusercontent.com/Oe2a3IYXnQ4JTYXRbzMe9c7RZSHXFySFLJGFZCxWhJIFIvlNM2hOmGgQdCapl2h8Hk5-FhEWRwALQxZ1lJ2BGJtnvQnXA_r0TCqX5o3OeXwJnAqQrR1wkm77-uZLmL5V7QTiGpPr4Uhc6SRvjaO3Yjg)
 
-### Step 1: Select Chart Type
+### Chart Types
 
 Choose from one of the following types of charts for your widget:
 
 ![](https://lh7-us.googleusercontent.com/LyMx_1CWIjqGEdzQYF_0XveQ3v-NvYJHLFA3N64iQfmfIx7KisKS0v2zx2VdMlB2caX9bAhYJUA9VULXsE8zGZHNH6XiBYbi0tjhlYTx8Uv5uBVKi80uDlceM9TUIGlZATlxwD6Pa1mJywRFU3XOYUQ)
 
-### Step 2: Create Query
+| __Chart Type__     | __Description__ |
+| :-------------     | :------------|
+| __Timeseries__     | Displays data collected over time |
+| __Bar__            | Displays data proportional to available data |
+| __List__           | Displays data in a table, updating metrics in real time |
+| __Query Value__    | Displays data as a single value, updating metrics in real time |
+| __Pie Chart__      | Displays data in the form of a pie chart|
+| __Scatter Plot__   | Displays relationship/correlation between two metrics |
+| __Tree Plot__      | Displays hierarchal relationship of your data as a function of size and color |
+| __Top List Chart__ | Displays the highest-ranking elements or categories based on predefined metric criteria|
+| __Heatmap Chart__  | ---------- |
+| __Hexagon Chart__  | ---------- |
 
-Create your query logic in the Metrics Section. Select the specific metric you would like to query, aggregate, and filter. Specify the interval at which data is ingested, create metric aliases to easily interpret what is displayed within the widget, and filter out unwanted data within the query.
+### Create Your Query
+
+Create your query logic in the Metrics Section. Select the specific metric you would like to query, aggregate, and filter. Specify the interval at which data is ingested, create metric aliases to easily interpret what is displayed within the widget, and filter out unwanted data within your query.
+
+Think of your queries like 2-dimensional arrays, where __Aggregate By__ is a function that performs a transformation on each subarray and __Group By__ performs an aggregate function on the aggregate outputs across all arrays. 
+
+![](https://lh7-us.googleusercontent.com/8sltD2VI-oNKeR0PPF2cp1rx5ktjK-KfXnF-vOUzvfXbcDElFeTKEXmsx6wm3PDN95xl1IjbcOwyX9Oq5CXoKVcjroG1V0eq3JeaL0XP8cvUU4yqIKKyFQa2t7dDrpSJJKaM6emthaYHDvGNSr3ztOs)
+
 
 #### Group By
 
-The Group By field is the outer most aggregation made in your query. The way in which you aggregate a metric is contingent on the initial metric you have selected for your widget. Group your initial metric with resource attributes, metric attributes, or another metric based on the selected metric. The below example is grouping the `container.name` metric by all unique instances of the `container.name` metric:
+The Group By field is the outer most aggregation made in your query. The way in which you aggregate a metric is contingent on the initial metric you have selected for your widget. Group your initial metric with resource attributes, metric attributes, or another metric based on the selected metric. 
 
-![](https://lh7-us.googleusercontent.com/lJ_3zm4C37Zgv8oWBRza4Z9-BbdJdlXD-lxbFq2qfGD579JQ9tNR_1MbC0zLLLW9ufQ-MQQa1_nwD4tg5PG-9QTpCDdsX5rE4UDIN-y9sILxyPlCHF8C8FcYv1od9VqK2ZACHS1NBAQFDk6yuOLgRzM)
+The below example tracks CPU utilization by host; it is grouping the `system.cpu.utilization` metric by all unique instances of the `host.name` metric:
+
+
+![](https://lh7-us.googleusercontent.com/ecBBt0x3KYh_2QyUksFy16HIKqlpl3k4PUyxIDjgrHD6M1iNkOiS8iR0P7vkHqktOCj8IdhZf-N8o6falplfl8KtNlHE4mFZFr65O_4ibg0OjXrxR3lL5zSPzLhKWppc_2YzQ6T_6ukb8VXkdA4EaYU)
 
 The following table displays all available methods for aggregating your chosen metrics:
 
@@ -59,39 +90,69 @@ The following table displays all available methods for aggregating your chosen m
 | __Any By__           | Gathers all possible values in selected time range for given metric __and/or__ attribute |
 | __Unique By__        | Count of unique values in selected time range for given metric __and/or__ attribute |
 | __Count By__         | Count of all values in selected time range for given metric __and/or__ attribute |
-| __Group By__         | Groups all values in selected timerange for given metric __and/or__ attribute |
+| __Aggregated By__         | Groups all values in selected timerange for given metric __and/or__ attribute |
 
-#### Inner Value Aggregation
+#### Aggregated By
 
-The Inner Value Aggregation is a nested aggregation technique that allows you to aggregate your initial query. The below example is grouping the `k8s.node.memory.usage` metric by summing the `k8s.cluster.name` attributes together and aggregating __Any__ `k8s.node.memory.usage`:
+The Aggregated By field is a nested aggregation technique that allows you to aggregate your initial query, the inner layer of data. The below example is grouping the `container.memory.percent` metric by averaging the values of the `container.name` attributes and summing `container.memory.percent`:
 
-![](https://lh7-us.googleusercontent.com/fo5Img7dsK14nN-w6atI390lqE-Lrg9oHS6BlqlgLwJKjNjpke85oDeEVYfhbl3CGj3hPiZ6mfnK5XXGPZGlxbfzY5wjd31myEhAR4gAJnQgB5Eii1Ex7CvkQgufEmUNFVcKZiLkUBFt35WBIGRtBHc)
+![](https://lh7-us.googleusercontent.com/ohE5zbuYTvxfE_A3tAdR-ccxs11a_Z8XBPEmcDOLn4-jEe7pFGIwtOQDPkm4OwTH6h1-hmEUGZpFltgzQ1i2CwOn8gugkjRmIC4GM_YcFqGmnrCh1PBtHlFteYKpwiDSXCz_EZMfckZp-wbqhV-pWx4)
 
-#### Filter
+#### Filters
 
-The filter feature is used to remove unwanted metrics within your query. The below example is filtering out any `host.id` containing `ip-172-31-13-218.us-east-2.compute.internal`:
+The filter feature is used to remove unwanted metrics within your query. The list of available filters is automatically available by the metadata pulled from all metrics being queried in the dashboard.The below example is filtering out any `host.id` containing `ip-172-31-13-218.us-east-2.compute.internal`:
 
 ![](https://lh7-us.googleusercontent.com/_50CgdVxjgsqeqS6U3S8Rud9llopVXSi97d2WXCo4shRYJp79HjUs8gGTq_ZLihDDlP4wpi3IqCvaT6z4NpnhXAQWzhNWbe2uUS89Gw4Nd8ww_RX95Ce5p4LsR_SBO3-0LSp3sAht3heL01QDKgCAQQ)
 
-#### Advanced
+The following table displays all available filter functions for removing unwanted metrics:
+
+| __Filter__                    | __Description__                                                |
+| :-------------------          | :------------------------------------------------------------ |
+| `!=`                          | Not Equal to |
+| `=`                           | Equal to |
+| `IN`                          | Checks if value is `IN` collection of filter values |
+| `NOT IN`                      | Checks if value is __not__ `IN` collection of filter values |
+| `LIKE`                        | Checks if value __and__ similar values in collection of filter values |
+| `NOT LIKE`                    | Checks if value __and__ similar values __not__ in collection of filter values |
+| `ILIKE (case insensitive)`    | Same as `LIKE` but case insensitive|
+| `NOT ILIKE (case insensitive)`| Same as `NOT LIKE` but case insensitive |
+| `IS NULL`                     | Checks if value in collection of filter values `IS NULL` |
+| `IS NOT NULL`                 | Checks if value in collection of filter values `IS NOT NULL` |
+
+
+# Advanced
 
 The Advanced section allows you to specify the interval at which your data is ingested and displayed at.
 
 <Note> The default Data Aggregation Interval is assumed to be every 15 seconds unless specified. </Note>
 
-#### Alias
+The following table displays all available Advanced section data representation options:
+
+| __Data Representation__   | __Description__                                                |
+| :-------------------      | :------------------------------------------------------------  |
+| __Default__               | The default unit format that metric is collected in |
+| __Percentage__            | Displays metric as a percentage of the whole (meant for proportion, rates, and relative quantities) |
+| __Date Format__           | Displays metric based on the time at which the query was fired |
+| __Time Ago__              | Displays the amount of time passed since the last query was fired |
+| __Bytes to Size__         | Displays metric in bytes (autoscaling to MB, GB, TB) |
+| __Byte Rate__             | Displays metrics in bytes per second (autoscaling to MB, GB, TB) |
+| __Time Utilization__      | Displays total amount of time metric is in use |
+| __Count__                 | Displays number of times a metric has been queried over time |
+| __Age__                   | Displays the age of the query |
+
+### Alias
 
 The Alias feature allows you to overwrite the metric name displayed in your widget for increased readability:
 
 ![](https://lh7-us.googleusercontent.com/8gAYYTNk5B9dH_6a6S6DLq-zItBxQU_pv0GBuM0PnOonqY9kbxMiESmKRNa_vG6R7vDrhl5ELX_nRGloIlsHm5VDBM1xRuUuO7Az8wZk3orJnG6yrvTGeA8Nul_XDGugYy4_NnEavJISDxFtMdcMVyw)
 
-### Step 3: Set Display Preferences
+# Display Preferences
 
 The Display Preferences section is the default time range that is displayed when you open the dashboard.
 
 <Note> Although this is the default time range, drill into other time ranges with the Date Range filter. </Note>
 
-### Step 4: Enter Widget Title
+### Name Your Widget
 
 The Widget Title is the title that will be displayed at the top of your widget on the dashboard.
 
@@ -115,11 +176,11 @@ View your static dashboard data in __History__ mode and view your data in real t
 
 ### Date Range
 
-The Date Range picker allows you to select specific period of time to view your dashboard data.
+The Date Range picker allows you to select the exact period of time to view your dashboard data.
 
 ### Metrics
 
-Filter your data based on the dynamic datathat is already available in your dashboard. Visualize the performance of a single metric within your broader dashboard.
+Filter all of your metrics based on the dynamically available data within your dashboard. Visualize the performance of a single metric within your broader dashboard.
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io.</Note>
 
