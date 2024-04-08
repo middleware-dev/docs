@@ -2,11 +2,11 @@
 title: Dashboard Basics
 ---
 
-The Dashboard Builder allows you to generate new dashboards in undere a minute, integrate custom widgets into existing dashboards, or effortlessly clone default dashboards for further refinement. Drill into any data that you port to Middleware with advanced filtering options by date range and metric value.
+The Dashboard Builder allows you to generate new dashboards in under a minute, integrate custom widgets into existing dashboards, or effortlessly clone default dashboards for further refinement. Drill into any data ported to Middleware with advanced filtering options by date range and metric value.
 
 # How Dashboards Work
 
-The Dashboard Builder is a Graphical User Interface (GUI) based approach that enables users to create complex query logic without the added stress of learning a new query language. The metrics made available to users when constructing dashboards are dynamically generated based on the data that users port to Middleware. For example, if you have insturmented Middleware's Infrastructure Agent and APM packages, you will have access to all of your host and application level data. 
+The Dashboard Builder is a Graphical User Interface (GUI) based approach that enables users to create complex query logic without the added stress of learning a new query language. The metrics made available to users when constructing dashboards are dynamically generated based on the data that users port to Middleware. For example, if you have instrumented Middleware's Infrastructure Agent and APM packages, you will have access to all of your host and application-level data. 
 
 <Note> For more information on instrumenting the Infra Agent and APM packages, navigate to the [Quickstart](https://docs.middleware.io/getting-started) page.</Note>
 
@@ -18,7 +18,7 @@ To get started, navigate to the Dashboard Builder page, select __Create Dashboar
 
 ![](https://lh7-us.googleusercontent.com/vnHYyys7-lF4JJ0iWNe1U_9tzKBaugYaHecw6-jK-QcyReb5eurxA7mRonIGf9mYI6KO0cVcbRB5i4WPy2DkILnpSglgxYzPllWNoUa-bX5YpWtvdY2M1rRDoaEaTQE7qwyqqkDRET3fX1bJsjoS-fY)
 
-<Note> You have the option to create a dashboard from an existing data source or create a widget. We recommend starting with the Dashboard. </Note>
+<Tip> You can create a dashboard from an existing data source or create a widget in an existing dashboard. We recommend starting with a new Dashboard. </Tip>
 
 Create a new dashboard by selecting a data source to start your dashboard with:
 
@@ -30,7 +30,7 @@ Select the metrics you would like to include as widgets in your dashboard:
 
 Once you have added widgets to your dashboard, you will be taken directly to your dashboard:
 
-<Note> Data will appear momentarily after you have created your new dashboard </Note>
+<Note> Data will appear momentarily after you have created your new dashboard. </Note>
 
 ![](https://lh7-us.googleusercontent.com/rg4LfJetovyC5UMrgE7H3aN3UUuK0K2kbbHp5LYgGHLs12M-48jW3OtN7RlPA0sJnTznOpcdtNFqghehlroWY7lhsw1eQsE1ZSKXSqf8e-EUNX99RzcCr24ScSxFiXhp27NvLokBGwV9PMuKWk8jwTY)
 
@@ -72,7 +72,7 @@ Think of your queries like 2-dimensional arrays, where __Aggregate By__ is a fun
 
 #### Group By
 
-The Group By field is the outer most aggregation made in your query. The way in which you aggregate a metric is contingent on the initial metric you have selected for your widget. Group your initial metric with resource attributes, metric attributes, or another metric based on the selected metric. 
+The Group By field is the outer most aggregation made in your query. Metric aggregations are contingent on the initial metric selected for your widget. Group your initial metric with resource attributes, metric attributes, or another metric based on the selected metric. 
 
 The below example tracks CPU utilization by host; it is grouping the `system.cpu.utilization` metric by all unique instances of the `host.name` metric:
 
@@ -100,7 +100,7 @@ The Aggregated By field is a nested aggregation technique that allows you to agg
 
 #### Filters
 
-The filter feature is used to remove unwanted metrics within your query. The list of available filters is automatically available by the metadata pulled from all metrics being queried in the dashboard.The below example is filtering out any `host.id` containing `ip-172-31-13-218.us-east-2.compute.internal`:
+The filter feature is used to remove unwanted metrics within your query. The list of available filters is automatically available by the metadata pulled from all metrics being queried in the dashboard. The below example is filtering out any `host.id` containing `ip-172-31-13-218.us-east-2.compute.internal`:
 
 ![](https://lh7-us.googleusercontent.com/_50CgdVxjgsqeqS6U3S8Rud9llopVXSi97d2WXCo4shRYJp79HjUs8gGTq_ZLihDDlP4wpi3IqCvaT6z4NpnhXAQWzhNWbe2uUS89Gw4Nd8ww_RX95Ce5p4LsR_SBO3-0LSp3sAht3heL01QDKgCAQQ)
 
@@ -120,9 +120,9 @@ The following table displays all available filter functions for removing unwante
 | `IS NOT NULL`                 | Checks if value in collection of filter values `IS NOT NULL` |
 
 
-# Advanced
+### Advanced
 
-The Advanced section allows you to specify the interval at which your data is ingested and displayed at.
+The Advanced section allows you to specify the interval at which your data is ingested and displayed.
 
 <Note> The default Data Aggregation Interval is assumed to be every 15 seconds unless specified. </Note>
 
@@ -140,19 +140,19 @@ The following table displays all available Advanced section data representation 
 | __Count__                 | Displays number of times a metric has been queried over time |
 | __Age__                   | Displays the age of the query |
 
-### Alias
+#### Alias
 
 The Alias feature allows you to overwrite the metric name displayed in your widget for increased readability:
 
 ![](https://lh7-us.googleusercontent.com/8gAYYTNk5B9dH_6a6S6DLq-zItBxQU_pv0GBuM0PnOonqY9kbxMiESmKRNa_vG6R7vDrhl5ELX_nRGloIlsHm5VDBM1xRuUuO7Az8wZk3orJnG6yrvTGeA8Nul_XDGugYy4_NnEavJISDxFtMdcMVyw)
 
-# Display Preferences
+### Display Preferences
 
-The Display Preferences section is the default time range that is displayed when you open the dashboard.
+The Display Preferences section is where you can specify the default time range that is displayed when you open the dashboard.
 
-<Note> Although this is the default time range, drill into other time ranges with the Date Range filter. </Note>
+<Note> If you specify a default time range, you are still able to drill into other time ranges with the Date Range filter. </Note>
 
-### Name Your Widget
+#### Name Your Widget
 
 The Widget Title is the title that will be displayed at the top of your widget on the dashboard.
 
@@ -160,11 +160,11 @@ The Widget Title is the title that will be displayed at the top of your widget o
 
 The clone feature allows you to experiment with new or slightly modified dashboard designs without disrupting your existing setup. Save time by cloning widgets instead of recreating them from scratch. 
 
-To clone a widget, click on the elipses in the top right corner of the widget and select `clone`:
+To clone a widget, click on the ellipses in the top right corner of the widget and select `clone`:
 
 ![](https://lh7-us.googleusercontent.com/Y5euVq5Qju0bzuDRpwUpM1_8TFsWda4wL4WlRvnyYYYPP0DoLbrIfIE7_uNeRiqz6le4qI1EjkO000QEeBLNduUNDHrZY0oIs2C1Oi4bSYzhG2SvEvJDSobjr6U8IC3-kzwzbRj4Yfm7xsxJ0Q4wQjo)
 
-To clone a dashboard, click on the elipses located in the dashboards table under `Actions` and select `clone`:
+To clone a dashboard, click on the ellipses located in the dashboards table under __Actions__ and select __Clone__:
 
 ![](https://lh7-us.googleusercontent.com/fMghA-ye5DNOrPlybyWCJhWBOGlPHJInIhX9uwiUnHJR42_ZMSeOeoG6w75rh6AQCW3rbG-sIKStnHSoW4zjISQwwy6GqzPxAd5z6Dv-8Fa86iUpsOvBrjCM3TU-Xuh_Bs1InLwtQqvcL_j06m_u80s)
 
@@ -172,15 +172,21 @@ To clone a dashboard, click on the elipses located in the dashboards table under
 
 ### Live & History View
 
-View your static dashboard data in __History__ mode and view your data in real time in __Live__ mode.
+View your static dashboard data in __History__ mode and view your real-time data in __Live__ mode. Toggle __History__ and __Live__ mode on and off by clicking the button in the top right corner of your dashboard:
+
+![](https://lh7-us.googleusercontent.com/hKkWW0kLLmlylBPMKA41MapsPsBS7qreD1td8lp9bUqHbyJM9GDk4azYn2eAM450PhFjET7UiCnu5Oq3dw3VBC-8ngkj_PeiRuf-lbFNp-YH1c2Qu-jVVRuOaytSOKDUasp6YNey7fYHG7N3rQMp0ZA)
 
 ### Date Range
 
-The Date Range picker allows you to select the exact period of time to view your dashboard data.
+The Date Range picker allows you to select the exact period of time to view your dashboard data. Choose predefined date ranges or select a custom range of days:
 
-### Metrics
+![](https://lh7-us.googleusercontent.com/254d3LE1oktWBopnd4KekdbTlukBMOJAVLnZiErOQRh0E7cK33upT8JbR0iGaBvFTNozYXu-OEzEyViCmSKl6A-Y8FOutE5Okom7mvDXDPmEQOorSSR3sJJNS0uyXTjOMmDoKQ0Cn6ijngCFAeZVKN4)
 
-Filter all of your metrics based on the dynamically available data within your dashboard. Visualize the performance of a single metric within your broader dashboard.
+### Filters
+
+Filter metrics across your entire dashboard. The list of available filters is automatically built by the metadata pulled from all metrics being queried on the dashboard. Visualize the performance of one or multiple metrics within your broader dashboard by toggling on and off individual metrics:
+
+![](https://lh7-us.googleusercontent.com/yBIDNOVUL3hGrCAX0mncoZbC5RnSxCi02p9_OHWoYKrCKQMlA_Yy6fcAUv_t_putbzhJo_zkod0kt7zHkR4NyX92g8UIWlke4wFTcqfsTd95PShUaClLTCx7ygzmJVRMKc8Z-cBK850w60Ch6TCA5bM)
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io.</Note>
 

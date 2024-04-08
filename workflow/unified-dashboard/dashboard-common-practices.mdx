@@ -15,7 +15,7 @@ After insturmenting one of the Middleware Infrastructure Agent and APM packages,
     Select `system.cpu.utilization` as your primary Metric, choose the __Average By__ filter and aggregate by the sum of all `host.name`. Filter the above query such that `is.k8s.node` `=` `yes`
     ![](https://lh7-us.googleusercontent.com/HzXXAfiVbL5iIHIPb9BARUgKYT5uRUI_h-CxvG7xuAGQ4-be8GPeqUXtCYjqDxxRzdwZ7JOaLuzmn1d7KSv0LFMZxfe_RH7wZV4eTDWnyJf13gkaKoClketaV_OEcojVYWDwXJIVYVfWnsXWiGuzPIY)
   </Tab>
-  <Tab title="Pod CPU - Same Deployment">
+  <Tab title="Pod CPU">
     Select `k8s.pod.cpu.utilization` as your primary Metric, choose the __Average By__ filter and aggregate by the average of all `k8s.pod.name`. Filter the above query such that `k8s.deployment.name` `=` `dndemo-deployment`
     ![](https://lh7-us.googleusercontent.com/GqWWn8jF7mGjc9OIQt0ltGLl85Euv__O_4tqVFYI-HPb_mEEJuFwX0DzA2WwkJF3NZQwjtpLT_Nth5sbi-EVWXtvwCG--lsky9b3LzlDfi2Z1QLxiaOMy7RkoMFOVQ_1JmY2tL1hYqQPLpHDWiM3YDQ)
   </Tab>
@@ -36,21 +36,120 @@ To use the Kubernetes Widgets, import the following `.json` file into the Dashbo
 
     ![](https://lh7-us.googleusercontent.com/AAW9N2jS-7oOPIKIjL9fQOAt2sjhrojhXtSzDhPJdBF8-Dryb7LmGwepEWP8R20vLgx1WDQwJJpJxd_-C-zvVZ1rgt9WQtOg8gfN80MTtYXJ9dC2EMD6Pn6PWzxjhwbyo0VG2PIYpf6T6xJ14_K5DcI)
   </Tab>
-  <Tab title="Histogram - Download Speeds">
+  <Tab title="Download Speeds">
     Select `downloads.speeds_bucket` as your primary Metric, choose the __Average By__ filter and aggregate by the minimum of all `region`
     ![](https://lh7-us.googleusercontent.com/Y8VSPa1Tqo0BjnBaSukxcmKOoN9qM0f6Bix4QVUAU5dltBKdcl3WS1BhA2j9ImJNHUABoFYN3wEPx5wuFxaW0bsOM6zbdmMSR8aYHpoK46Aq5V3IlYslSu43pSxs8laS0iHfIlEvWElb3Oc8WwUP_Ek)
   </Tab>
-  <Tab title="Counter - User Downloads">
+  <Tab title="User Downloads">
     Select `uploads.count` as your primary Metric and choose the __Count By__ filter
     ![](https://lh7-us.googleusercontent.com/wmLdvI1nGMsdVxjKZtmy76CrsdcVmXpt_UplpFwM7xAHKBHSSmtAdJL1leqPLwwHJiRSPP5rHxfcAtba0tuicVkGGprjBRCZtMpaE8xiDdJWdjMMQ2uiu7m2oLvFyx5nPWr05JQpQWocYpLScKPRi6g)
   </Tab>
 
 </Tabs>
 
-To use the Custom Metrics Widgets, import the following `.json` file into the Dashboard Builder: 
+To use the Metrics Widgets, import the following `.json` file with Postman: 
 
 ```json .json
-{"builderViewOptions":{"report":{"reportName":"Custom Metrics Examples","reportId":44811,"reportKey":"custom_metrics_examples__dont_delete_"},"extraActions":[]},"widgets":[{"config":[{"type":0,"schema":"","account_id":"","is_pre_flight":false,"distinct":false,"with":[{"key":"SELECT_DATA_BY","value":["region"],"value_len":false,"swap_as":false,"is_arg":true,"is_p_arg":false}],"preflights":null,"response_type":0,"top":0,"columns":["avg(downloads.speeds_bucket,value(min))"],"source":{"name":"custom","dataset":null,"final":false,"alias":""},"granularity":null,"join_with":null,"union":null,"filter":null,"group_by":null,"order_by":null,"limit":null,"options":null,"meta_data":null,"settings":null}],"label":"Histogram | Download Speeds","layout":{"_scope_id":1203811,"h":5,"w":4,"x":0,"y":0,"resizeHandles":["se"]},"widgetAppId":2,"key":"histogram___download_speeds_75ywvto3gr7"},{"config":[{"type":0,"schema":"","account_id":"","is_pre_flight":false,"distinct":false,"with":null,"preflights":null,"response_type":0,"top":0,"columns":["count(uploads.count)"],"source":{"name":"custom","dataset":null,"final":false,"alias":""},"granularity":null,"join_with":null,"union":null,"filter":null,"group_by":null,"order_by":null,"limit":null,"options":null,"meta_data":null,"settings":null}],"label":"Counter | User Downloads","layout":{"_scope_id":1203812,"h":5,"w":4,"x":4,"y":0,"resizeHandles":["se"]},"widgetAppId":12,"key":"counter___user_downloads_0cewroglqdz"},{"config":[{"type":0,"schema":"","account_id":"","is_pre_flight":false,"distinct":false,"with":[{"key":"SELECT_DATA_BY","value":["connections.active.hostname"],"value_len":false,"swap_as":false,"is_arg":true,"is_p_arg":false}],"preflights":null,"response_type":0,"top":0,"columns":["max(connections.active,value(avg))"],"source":{"name":"custom","dataset":null,"final":false,"alias":""},"granularity":null,"join_with":null,"union":null,"filter":null,"group_by":null,"order_by":null,"limit":null,"options":null,"meta_data":null,"settings":null}],"label":"Gauge | Active Connections","layout":{"_scope_id":1203813,"h":5,"w":4,"x":8,"y":0,"resizeHandles":["se"]},"widgetAppId":1,"key":"gauge___active_connections_efwqkofbvsa"}]}
+{
+	"info": {
+		"_postman_id": "fa8bf8f1-5f53-4989-8fe8-af01e24b531e",
+		"name": "MW Data Ingestion API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "30495621",
+		"_collection_link": "https://cloudy-astronaut-491050.postman.co/workspace/New-Team-Workspace~44e7a2d0-d301-4800-97eb-28b756f9175c/collection/30495621-fa8bf8f1-5f53-4989-8fe8-af01e24b531e?action=share&source=collection_link&creator=30495621"
+	},
+	"item": [
+		{
+			"name": "Custom Metrics",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"resource_metrics\": [\n        {\n            \"resource\": {\n                \"attributes\": [\n                    {\n                        \"key\": \"mw.account_key\",\n                        \"value\": {\n                            \"string_value\": \"5xrocjh0p5ir233mvi34dvl5bepnyqri3rqb\"\n                        }\n                    },\n                    {\n                        \"key\": \"mw.resource_type\",\n                        \"value\": {\n                            \"string_value\": \"custom\"\n                        }\n                    }\n                ]\n            },\n            \"scope_metrics\": [\n                {\n                    \"metrics\": [\n                        {\n                            \"name\": \"uploads.count\",\n                            \"unit\": \"1\",\n                            \"description\": \"Count of user uploads\",\n                            \"sum\": {\n                                \"aggregationTemporality\": 2,\n                                \"isMonotonic\": true,\n                                \"dataPoints\": [\n                                    {\n                                        \"asInt\": 5,\n                                        \"startTimeUnixNano\": 1711559739191393000,\n                                        \"timeUnixNano\": 1711559739191393000,\n                                        \"attributes\": [\n                                            {\n                                                \"key\": \"uploads.count.user_email\",\n                                                \"value\": {\n                                                    \"stringValue\": \"jane@domain.com\"\n                                                }\n                                            }\n                                        ]\n                                    }\n                                ]\n                            }\n                        },\n                        {\n                            \"name\": \"connections.active\",\n                            \"unit\": \"1\",\n                            \"description\": \"Number of active connections\",\n                            \"gauge\": {\n                                \"dataPoints\": [\n                                    {\n                                        \"asInt\": 215,\n                                        \"timeUnixNano\": 1711559739191393000,\n                                        \"attributes\": [\n                                            {\n                                                \"key\": \"connections.active.hostname\",\n                                                \"value\": {\n                                                    \"stringValue\": \"vm-prod-2\"\n                                                }\n                                            }\n                                        ]\n                                    }\n                                ]\n                            }\n                        },\n                        {\n                            \"name\": \"downloads.speeds\",\n                            \"unit\": \"By\",\n                            \"description\": \"Download speeds of users in a particular region\",\n                            \"histogram\": {\n                                \"aggregationTemporality\": 2,\n                                \"dataPoints\": [\n                                    {\n                                        \"startTimeUnixNano\": 1711559739191393000,\n                                        \"timeUnixNano\": 1711559739191393000,\n                                        \"count\": 6,\n                                        \"sum\": 258,\n                                        \"bucketCounts\": [\n                                            1,\n                                            1,\n                                            1,\n                                            1,\n                                            0,\n                                            0,\n                                            0,\n                                            0,\n                                            1,\n                                            1\n                                        ],\n                                        \"explicitBounds\": [\n                                            0,\n                                            10,\n                                            20,\n                                            30,\n                                            40,\n                                            50,\n                                            60,\n                                            70,\n                                            80,\n                                            90,\n                                            100\n                                        ],\n                                        \"min\": 0,\n                                        \"max\": 98,\n                                        \"attributes\": [\n                                            {\n                                                \"key\": \"region\",\n                                                \"value\": {\n                                                    \"stringValue\": \"us-west\"\n                                                }\n                                            }\n                                        ]\n                                    }\n                                ]\n                            }\n                        }\n                    ]\n                }\n            ]\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://sandbox.middleware.io/v1/metrics"
+			},
+			"response": []
+		},
+		{
+			"name": "Custom Logs",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"resource_logs\": [\n        {\n            \"resource\": {\n                \"attributes\": [\n                    {\n                        \"key\": \"mw.account_key\",\n                        \"value\": {\n                            \"string_value\": \"5xrocjh0p5ir233mvi34dvl5bepnyqri3rqb\"\n                        }\n                    },\n                    {\n                        \"key\": \"mw.resource_type\",\n                        \"value\": {\n                            \"string_value\": \"custom\"\n                        }\n                    },\n                    {\n                        \"key\": \"service_name\",\n                        \"value\": {\n                            \"string_value\": \"nginx-123\"\n                        }\n                    }\n                ]\n            },\n            \"scope_logs\": [\n                {\n                    \"log_records\": [\n                        {\n                            \"severity_text\": \"WARN\",\n                            \"body\": {\n                                \"string_value\": \"{\\\"hello\\\":\\\"world\\\"}\"\n                            },\n                            \"attributes\": [\n                                {\n                                    \"key\": \"server\",\n                                    \"value\": {\n                                        \"string_value\": \"nginx\"\n                                    }\n                                }\n                            ],\n                            \"time_unix_nano\": \"1711071266178191000\"\n                        }\n                    ]\n                }\n            ]\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://sandbox.middleware.io:443/v1/logs"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "UID",
+			"value": "<uid>"
+		},
+		{
+			"key": "mw_key",
+			"value": "<mw_key>",
+			"type": "string"
+		}
+	]
+}
 ```
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io.</Note>
