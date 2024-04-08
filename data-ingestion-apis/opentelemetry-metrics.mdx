@@ -60,100 +60,111 @@ curl -X POST "https://demo.middleware.io/v1/metrics" \
                 }
             ]
       },
-      "scopeMetrics": [
-        {
-          "scope": {
-            "name": "my.library",
-            "version": "1.0.0",
-            "attributes": [
-              {
-                "key": "my.scope.attribute",
-                "value": {
-                  "stringValue": "some scope attribute"
-                }
-              }
-            ]
-          },
-          "metrics": [
-            {
-              "name": "my.counter",
-              "unit": "1",
-              "description": "I'm a Counter",
-              "sum": {
-                "aggregationTemporality": 2,
-                "isMonotonic": true,
-                "dataPoints": [
+      "scope_metrics": [
+          {
+              "metrics": [
                   {
-                    "asDouble": 5,
-                    "startTimeUnixNano": 1544712660300000000,
-                    "timeUnixNano": 1544712660300000000,
-                    "attributes": [
-                      {
-                        "key": "my.counter.attr",
-                        "value": {
-                          "stringValue": "some value"
-                        }
+                      "name": "uploads.count",
+                      "unit": "1",
+                      "description": "Count of user uploads",
+                      "sum": {
+                          "aggregationTemporality": 2,
+                          "isMonotonic": true,
+                          "dataPoints": [
+                              {
+                                  "asInt": 5,
+                                  "startTimeUnixNano": 1711559739191393000,
+                                  "timeUnixNano": 1711559739191393000,
+                                  "attributes": [
+                                      {
+                                          "key": "uploads.count.user_email",
+                                          "value": {
+                                              "stringValue": "jane@domain.com"
+                                          }
+                                      }
+                                  ]
+                              }
+                          ]
                       }
-                    ]
-                  }
-                ]
-              }
-            },
-            {
-              "name": "my.gauge",
-              "unit": "1",
-              "description": "I'm a Gauge",
-              "gauge": {
-                "dataPoints": [
+                  },
                   {
-                    "asDouble": 10,
-                    "timeUnixNano": 1544712660300000000,
-                    "attributes": [
-                      {
-                        "key": "my.gauge.attr",
-                        "value": {
-                          "stringValue": "some value"
-                        }
+                      "name": "connections.active",
+                      "unit": "1",
+                      "description": "Number of active connections",
+                      "gauge": {
+                          "dataPoints": [
+                              {
+                                  "asInt": 215,
+                                  "timeUnixNano": 1711559739191393000,
+                                  "attributes": [
+                                      {
+                                          "key": "connections.active.hostname",
+                                          "value": {
+                                              "stringValue": "vm-prod-2"
+                                          }
+                                      }
+                                  ]
+                              }
+                          ]
                       }
-                    ]
-                  }
-                ]
-              }
-            },
-            {
-              "name": "my.histogram",
-              "unit": "1",
-              "description": "I'm a Histogram",
-              "histogram": {
-                "aggregationTemporality": 2,
-                "dataPoints": [
+                  },
                   {
-                    "startTimeUnixNano": 1544712660300000000,
-                    "timeUnixNano": 1544712660300000000,
-                    "count": 3,
-                    "sum": 3,
-                    "bucketCounts": [1,1,1],
-                    "explicitBounds": [1],
-                    "min": 1,
-                    "max": 1,
-                    "attributes": [
-                      {
-                        "key": "my.histogram.attr",
-                        "value": {
-                          "stringValue": "some value"
-                        }
+                      "name": "downloads.speeds",
+                      "unit": "By",
+                      "description": "Download speeds of users in a particular region",
+                      "histogram": {
+                          "aggregationTemporality": 2,
+                          "dataPoints": [
+                              {
+                                  "startTimeUnixNano": 1711559739191393000,
+                                  "timeUnixNano": 1711559739191393000,
+                                  "count": 6,
+                                  "sum": 258,
+                                  "bucketCounts": [
+                                      1,
+                                      1,
+                                      1,
+                                      1,
+                                      0,
+                                      0,
+                                      0,
+                                      0,
+                                      1,
+                                      1
+                                  ],
+                                  "explicitBounds": [
+                                      0,
+                                      10,
+                                      20,
+                                      30,
+                                      40,
+                                      50,
+                                      60,
+                                      70,
+                                      80,
+                                      90,
+                                      100
+                                  ],
+                                  "min": 0,
+                                  "max": 98,
+                                  "attributes": [
+                                      {
+                                          "key": "region",
+                                          "value": {
+                                              "stringValue": "us-west"
+                                          }
+                                      }
+                                  ]
+                              }
+                          ]
                       }
-                    ]
                   }
-                ]
-              }
-            }
-          ]
-        }
+              ]
+          }
       ]
     }
   ]
-}
+}      
 EOF
 ```
 
