@@ -2,11 +2,13 @@
 title: Dashboard Basics
 ---
 
-The Dashboard Builder allows you to generate new dashboards in under a minute, integrate custom widgets into existing dashboards, or effortlessly clone default dashboards for further refinement. Drill into any data ported to Middleware with advanced filtering options by date range and metric value.
+The Dashboard Builder allows you to generate new dashboards in under a minute, integrate custom widgets into existing dashboards, or effortlessly clone default dashboards for further refinement. Drill into any data ingested into Middleware with advanced filtering options by date range, metric value, or any metric attribute.
 
 # How Dashboards Work
 
-The Dashboard Builder is a Graphical User Interface (GUI) based approach that enables users to create complex query logic without the added stress of learning a new query language. The metrics made available to users when constructing dashboards are dynamically generated based on the data that users port to Middleware. For example, if you have instrumented Middleware's Infrastructure Agent and APM packages, you will have access to all of your host and application-level data. 
+The Dashboard Builder is a Graphical User Interface (GUI) based approach that enables users to create complex query logic without the added stress of learning a new query language. The metrics made available to users when constructing dashboards are dynamically generated based on the data that users ingest into Middleware. 
+
+For example, if you have instrumented Middleware's Infrastructure Agent and APM packages, you will have access to all of your host and application-level data. 
 
 <Note> For more information on instrumenting the Infra Agent and APM packages, navigate to the [Quickstart](https://docs.middleware.io/getting-started) page.</Note>
 
@@ -18,7 +20,7 @@ To get started, navigate to the Dashboard Builder page, select __Create Dashboar
 
 ![](https://lh7-us.googleusercontent.com/vnHYyys7-lF4JJ0iWNe1U_9tzKBaugYaHecw6-jK-QcyReb5eurxA7mRonIGf9mYI6KO0cVcbRB5i4WPy2DkILnpSglgxYzPllWNoUa-bX5YpWtvdY2M1rRDoaEaTQE7qwyqqkDRET3fX1bJsjoS-fY)
 
-<Tip> You can create a dashboard from an existing data source or create a widget in an existing dashboard. We recommend starting with a __New Dashboard__. </Tip>
+You have the option to create a dashboard from an existing data source or create a widget for an existing dashboard. The following describes how to create a dashboard from an existing data source. For more information on creating a widget, navigate to the [Create New Widget](/workflow/custom-dashboard/dashboard-builder-overview#create-new-widget) section.
 
 Create a new dashboard by selecting a data source to start your dashboard with:
 
@@ -36,7 +38,7 @@ Once you have added widgets to your dashboard, you will be taken directly to you
 
 # Create New Widget
 
-Navigate to the dashboard you would like to add a new widget to and select __Add Widget__ and __Create Widget__:
+Creating a new widget is useful for custom reporting and exploration. To create a new widget, navigate to the dashboard you would like to add a new widget to and select __Add Widget__ and __Create Widget__:
 
 ![](https://lh7-us.googleusercontent.com/Qn2pnY24-2CuG7moVbGCi4UqO0aoIMdqNjsYaSipLHo3gfUOhD_z0vchbVyMNrN3zb6gPZeCAkkoJWmndzgqtcZVVFz9jzJYD_gkhP3qWNytupLefOGdMGLhd5Z9SjTvxqXbMmM1x6XYF0QzXK9LNn8)
 
@@ -48,24 +50,24 @@ Choose from one of the following types of charts for your widget:
 
 ![](https://lh7-us.googleusercontent.com/LyMx_1CWIjqGEdzQYF_0XveQ3v-NvYJHLFA3N64iQfmfIx7KisKS0v2zx2VdMlB2caX9bAhYJUA9VULXsE8zGZHNH6XiBYbi0tjhlYTx8Uv5uBVKi80uDlceM9TUIGlZATlxwD6Pa1mJywRFU3XOYUQ)
 
-| __Chart Type__     | __Description__ |
+| __Chart Type__     | __Use Case__ |
 | :-------------     | :------------|
-| __Timeseries__     | Displays data collected over time |
-| __Bar__            | Displays data proportional to available data |
-| __List__           | Displays data in a table, updating metrics in real time |
-| __Query Value__    | Displays data as a single value, updating metrics in real time |
-| __Pie Chart__      | Displays data in the form of a pie chart|
-| __Scatter Plot__   | Displays relationship/correlation between two metrics |
+| __Timeseries__     | Describes trends that are collected and ordered with respect to time  |
+| __Bar__            | Helpful for visually comparing differences categorical data and groups |
+| __List__           | Ideal for comparing numerical data associated with numerical data |
+| __Query Value__    | Helpful when you need to always know the status/value of a single metric|
+| __Pie Chart__      | Organizes and shows data as a percentage of a whole |
+| __Scatter Plot__   | Ideal for comparing the relationship/correlation between two metrics |
 | __Tree Plot__      | Displays hierarchal relationship of your data as a function of size and color |
-| __Top List Chart__ | Displays the highest-ranking elements or categories based on predefined metric criteria|
-| __Heatmap Chart__  | ---------- |
-| __Hexagon Chart__  | Displays host and container metrics as a function of color  |
+| __Top List Chart__ | Displays highest-ranking elements or categories based on predefined metric criteria for your most important metrics |
+| __Heatmap Chart__  | Helps you identify the range of values that your data resides with respect to time |
+| __Hexagon Chart__  | Ideal for identifying which host and containers are running in your environment |
 
 ### Create Your Query
 
 Create your query logic in the Metrics Section. Select the specific metric you would like to query, aggregate, and filter. Specify the interval at which data is ingested, create metric aliases to easily interpret what is displayed within the widget, and filter out unwanted data within your query.
 
-Think of your queries like 2-dimensional arrays, where __Aggregate By__ is a function that performs a transformation on each subarray and __Group By__ performs an aggregate function on the aggregate outputs across all arrays. 
+For certain aggregation types, Average, Sum, Min and Max, there is a concept of an __Aggregate By__. To understand how __Group By__ and __Aggregate By__ work together, think of your queries like 2-dimensional arrays, where __Aggregate By__ is a function that performs a transformation on each subarray and __Group By__ performs an aggregate function on the aggregate outputs across all arrays. 
 
 ![](https://lh7-us.googleusercontent.com/8sltD2VI-oNKeR0PPF2cp1rx5ktjK-KfXnF-vOUzvfXbcDElFeTKEXmsx6wm3PDN95xl1IjbcOwyX9Oq5CXoKVcjroG1V0eq3JeaL0XP8cvUU4yqIKKyFQa2t7dDrpSJJKaM6emthaYHDvGNSr3ztOs)
 
@@ -100,11 +102,11 @@ The Aggregate By field is a nested aggregation technique that allows you to aggr
 
 #### Filters
 
-The filter feature is used to remove unwanted metrics within your query. The list of available filters is automatically available by the metadata pulled from all metrics being queried in the dashboard. The below example is filtering out any `host.id` containing `ip-172-31-13-218.us-east-2.compute.internal`:
+The filter feature is used to remove unwanted metrics within your query. The list of available filters is pulled from each metric's attributes, and the values are based on the data pulled for that attribute in that timerange. The below example is filtering out any `host.id` containing `ip-172-31-13-218.us-east-2.compute.internal`:
 
 ![](https://lh7-us.googleusercontent.com/_50CgdVxjgsqeqS6U3S8Rud9llopVXSi97d2WXCo4shRYJp79HjUs8gGTq_ZLihDDlP4wpi3IqCvaT6z4NpnhXAQWzhNWbe2uUS89Gw4Nd8ww_RX95Ce5p4LsR_SBO3-0LSp3sAht3heL01QDKgCAQQ)
 
-The following table displays all available filter functions for removing unwanted metrics:
+The following table displays all available filter functions:
 
 | __Filter__                    | __Description__                                                |
 | :-------------------          | :------------------------------------------------------------ |
@@ -119,14 +121,24 @@ The following table displays all available filter functions for removing unwante
 | `IS NULL`                     | Checks if value in collection of filter values `IS NULL` |
 | `IS NOT NULL`                 | Checks if value in collection of filter values `IS NOT NULL` |
 
+#### Alias
+
+The Alias feature allows you to overwrite the metric name displayed in your widget for increased readability:
+
+![](https://lh7-us.googleusercontent.com/8gAYYTNk5B9dH_6a6S6DLq-zItBxQU_pv0GBuM0PnOonqY9kbxMiESmKRNa_vG6R7vDrhl5ELX_nRGloIlsHm5VDBM1xRuUuO7Az8wZk3orJnG6yrvTGeA8Nul_XDGugYy4_NnEavJISDxFtMdcMVyw)
+
 
 ### Advanced
+
+#### Time Aggregation
 
 The Advanced section allows you to specify the interval at which your data is ingested and displayed.
 
 <Note> The default Data Aggregation Interval is assumed to be every 15 seconds unless specified. </Note>
 
-The following table displays all available Advanced section data representation options:
+#### Unit Format
+
+The following table displays all available Unit Formats:
 
 | __Data Representation__   | __Description__                                                |
 | :-------------------      | :------------------------------------------------------------  |
@@ -140,21 +152,15 @@ The following table displays all available Advanced section data representation 
 | __Count__                 | Displays number of times a metric has been queried over time |
 | __Age__                   | Displays the age of the `timestamp` value |
 
-#### Alias
-
-The Alias feature allows you to overwrite the metric name displayed in your widget for increased readability:
-
-![](https://lh7-us.googleusercontent.com/8gAYYTNk5B9dH_6a6S6DLq-zItBxQU_pv0GBuM0PnOonqY9kbxMiESmKRNa_vG6R7vDrhl5ELX_nRGloIlsHm5VDBM1xRuUuO7Az8wZk3orJnG6yrvTGeA8Nul_XDGugYy4_NnEavJISDxFtMdcMVyw)
-
 ### Display Preferences
 
-The Display Preferences section is where you can specify the default time range that is displayed when you open the dashboard.
+The Display Preferences section is where more granular display options will be available. For now, the only option is to select the timerange for the widget. 
 
-<Note> If you specify a default time range, you are still able to drill into other time ranges with the Date Range filter. </Note>
+__Global Time__ is the default value and tells the widget to listen to the global time range selector. Any other time range selected, e.g. 1 minute, will force the widget to ignore the global filter.
 
-#### Name Your Widget
+### Name Your Widget
 
-The Widget Title is the title that will be displayed at the top of your widget on the dashboard.
+The Widget Title is the title that will be displayed at the top of your widget on the dashboard. 
 
 # Clone Dashboards & Widgets
 
@@ -184,7 +190,7 @@ The Date Range picker allows you to select the exact period of time to view your
 
 ### Filters
 
-Filter metrics across your entire dashboard. The list of available filters is automatically built by the metadata pulled from all metrics being queried on the dashboard. Visualize the performance of one or multiple metrics within your broader dashboard by toggling on and off individual metrics:
+Filter metrics across your entire dashboard. The list of available filters is automatically built by the metadata pulled from all metrics being queried on the dashboard. Simply toggle on and off filters whenever you want to use them:
 
 ![](https://lh7-us.googleusercontent.com/yBIDNOVUL3hGrCAX0mncoZbC5RnSxCi02p9_OHWoYKrCKQMlA_Yy6fcAUv_t_putbzhJo_zkod0kt7zHkR4NyX92g8UIWlke4wFTcqfsTd95PShUaClLTCx7ygzmJVRMKc8Z-cBK850w60Ch6TCA5bM)
 
