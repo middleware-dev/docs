@@ -18,7 +18,7 @@ To get started, navigate to the Dashboard Builder page, select __Create Dashboar
 
 ![](https://lh7-us.googleusercontent.com/vnHYyys7-lF4JJ0iWNe1U_9tzKBaugYaHecw6-jK-QcyReb5eurxA7mRonIGf9mYI6KO0cVcbRB5i4WPy2DkILnpSglgxYzPllWNoUa-bX5YpWtvdY2M1rRDoaEaTQE7qwyqqkDRET3fX1bJsjoS-fY)
 
-<Tip> You can create a dashboard from an existing data source or create a widget in an existing dashboard. We recommend starting with a new Dashboard. </Tip>
+<Tip> You can create a dashboard from an existing data source or create a widget in an existing dashboard. We recommend starting with a __New Dashboard__. </Tip>
 
 Create a new dashboard by selecting a data source to start your dashboard with:
 
@@ -59,7 +59,7 @@ Choose from one of the following types of charts for your widget:
 | __Tree Plot__      | Displays hierarchal relationship of your data as a function of size and color |
 | __Top List Chart__ | Displays the highest-ranking elements or categories based on predefined metric criteria|
 | __Heatmap Chart__  | ---------- |
-| __Hexagon Chart__  | ---------- |
+| __Hexagon Chart__  | Displays host and container metrics as a function of color  |
 
 ### Create Your Query
 
@@ -90,11 +90,11 @@ The following table displays all available methods for aggregating your chosen m
 | __Any By__           | Gathers all possible values in selected time range for given metric __and/or__ attribute |
 | __Unique By__        | Count of unique values in selected time range for given metric __and/or__ attribute |
 | __Count By__         | Count of all values in selected time range for given metric __and/or__ attribute |
-| __Aggregated By__         | Groups all values in selected timerange for given metric __and/or__ attribute |
+| __Aggregated By__    | Groups all values in selected timerange for given metric __and/or__ attribute |
 
-#### Aggregated By
+#### Aggregate By
 
-The Aggregated By field is a nested aggregation technique that allows you to aggregate your initial query, the inner layer of data. The below example is grouping the `container.memory.percent` metric by averaging the values of the `container.name` attributes and summing `container.memory.percent`:
+The Aggregate By field is a nested aggregation technique that allows you to aggregate your initial query, the inner layer of data. The below example is grouping the `container.memory.percent` metric by averaging the values of the `container.name` attributes and summing `container.memory.percent`:
 
 ![](https://lh7-us.googleusercontent.com/ohE5zbuYTvxfE_A3tAdR-ccxs11a_Z8XBPEmcDOLn4-jEe7pFGIwtOQDPkm4OwTH6h1-hmEUGZpFltgzQ1i2CwOn8gugkjRmIC4GM_YcFqGmnrCh1PBtHlFteYKpwiDSXCz_EZMfckZp-wbqhV-pWx4)
 
@@ -131,14 +131,14 @@ The following table displays all available Advanced section data representation 
 | __Data Representation__   | __Description__                                                |
 | :-------------------      | :------------------------------------------------------------  |
 | __Default__               | The default unit format that metric is collected in |
-| __Percentage__            | Displays metric as a percentage of the whole (meant for proportion, rates, and relative quantities) |
-| __Date Format__           | Displays metric based on the time at which the query was fired |
-| __Time Ago__              | Displays the amount of time passed since the last query was fired |
-| __Bytes to Size__         | Displays metric in bytes (autoscaling to MB, GB, TB) |
-| __Byte Rate__             | Displays metrics in bytes per second (autoscaling to MB, GB, TB) |
+| __Percentage__            | Displays metric as a percentage of the whole (meant for proportion, rates, and relative quantities) rounded to two decimal places |
+| __Date Format__           | Displays the `timestamp` at which the query was fired (in `YYYY-MM-DD` format)|
+| __Time Ago__              | Displays the amount of time passed since the last `timestamp` value was ingested (in `hour-min-sec` format) |
+| __Bytes to Size__         | Displays metric in bytes (autoscaling to `KB`, `MB`, `GB`, `TB`...`YB`) |
+| __Byte Rate__             | Displays metrics in bytes per second (autoscaling to `KB`, `MB`, `GB`, `TB`...`YB`) |
 | __Time Utilization__      | Displays total amount of time metric is in use |
 | __Count__                 | Displays number of times a metric has been queried over time |
-| __Age__                   | Displays the age of the query |
+| __Age__                   | Displays the age of the `timestamp` value |
 
 #### Alias
 
