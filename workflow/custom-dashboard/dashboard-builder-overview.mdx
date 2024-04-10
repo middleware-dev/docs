@@ -54,13 +54,13 @@ Choose from one of the following types of charts for your widget:
 | :-------------     | :------------|
 | __Timeseries__     | Describes trends that are collected and ordered with respect to time  |
 | __Bar__            | Helpful for visually comparing differences categorical data and groups |
-| __List__           | Ideal for comparing numerical data associated with numerical data |
+| __List__           | Ideal for comparing numerical data in combination with multiple attributes |
 | __Query Value__    | Helpful when you need to always know the status/value of a single metric|
 | __Pie Chart__      | Organizes and shows data as a percentage of a whole |
 | __Scatter Plot__   | Ideal for comparing the relationship/correlation between two metrics |
 | __Tree Plot__      | Displays hierarchal relationship of your data as a function of size and color |
-| __Top List Chart__ | Displays highest-ranking elements or categories based on predefined metric criteria for your most important metrics |
-| __Heatmap Chart__  | Helps you identify the range of values that your data resides with respect to time |
+| __Top List Chart__ | Used for identifying top elements given a metric and set grouping |
+| __Heatmap Chart__  | Helps you identify the range of values that your data resides in with respect to time |
 | __Hexagon Chart__  | Ideal for identifying which host and containers are running in your environment |
 
 ### Create Your Query
@@ -74,7 +74,7 @@ For certain aggregation types, Average, Sum, Min and Max, there is a concept of 
 
 #### Group By
 
-The Group By field is the outer most aggregation made in your query. Metric aggregations are contingent on the initial metric selected for your widget. Group your initial metric with resource attributes, metric attributes, or another metric based on the selected metric. 
+The Group By field is the outer most aggregation made in your query. Metric aggregations are contingent on the initial metric selected for your widget. Each metric is allowed to have one __Group By__, and each metric in a single query can have different __Group Bys__. You can group your metrics by resource attributes or metrics attributes that Middleware has collected.
 
 The below example tracks CPU utilization by host; it is grouping the `system.cpu.utilization` metric by all unique instances of the `host.name` metric:
 
@@ -132,11 +132,13 @@ The Alias feature allows you to overwrite the metric name displayed in your widg
 
 #### Time Aggregation
 
-The Advanced section allows you to specify the interval at which your data is ingested and displayed.
+Users are able to define the interval at which data is aggregated. By default Middleware aggregates over 15 second windows. This is most useful when sending custom metrics at a non-default rate (e.g. every 1 minute).
 
-<Note> The default Data Aggregation Interval is assumed to be every 15 seconds unless specified. </Note>
+![](https://lh7-us.googleusercontent.com/uVnCPQxM-l5Mo8Ys4yxFkEBznmgekLXHFqG3eBId8mNyxkVD0ukzhkZ2sjcJPqhEw_qbvVqly2zRhBHvmsbtf5JwqbRE_HMv8-NC-OqmlHpm5sWyxy89P6vBz0ZTepz1ooQp2a1dglR919jE6Ml8KJQ)
 
 #### Unit Format
+
+The Unit Format dictates how the metric is displayed on the frontend. This will impact the values you see on the y-axis as well as in the hover over tooltip.
 
 The following table displays all available Unit Formats:
 
@@ -157,6 +159,8 @@ The following table displays all available Unit Formats:
 The Display Preferences section is where more granular display options will be available. For now, the only option is to select the timerange for the widget. 
 
 __Global Time__ is the default value and tells the widget to listen to the global time range selector. Any other time range selected, e.g. 1 minute, will force the widget to ignore the global filter.
+
+![](https://lh7-us.googleusercontent.com/D_HmG0kvp3jy_mpUTEp-tEBRsK9wVuQAG8Ajxzcer38khZh9C24M1UhUMLeRroc-0XcLvO8uYf2UgsTqI2jteRdaLzy6R9Ux9TUkESkGw-9zfLTHY766mc_zZ5i9o7MGIFh7ZJv2PSm5TJxd_VL3PXc)
 
 ### Name Your Widget
 
