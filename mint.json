@@ -220,16 +220,9 @@
         {
           "group": "Dashboard Builder",
           "pages": [
-            "workflow/custom-dashboard/build-custom-dashboard",
-            {
-              "group": "Unified View",
-              "pages": [
-                "workflow/unified-dashboard/unified-view",
-                "workflow/unified-dashboard/logs-in-unified-dashboard",
-                "workflow/unified-dashboard/metrics-in-unified-dashboard",                
-                "workflow/unified-dashboard/traces-in-unified-dashboard"
-              ]
-            }
+            "workflow/custom-dashboard/dashboard-builder-overview",
+            "workflow/unified-dashboard/dashboard-common-practices"     
+
           ]
         },                       
         {
