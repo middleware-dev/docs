@@ -74,14 +74,16 @@ For certain aggregation types, Average, Sum, Min and Max, there is a concept of 
 
 #### Group By
 
-The Group By field is the outer most aggregation made in your query. Metric aggregations are contingent on the initial metric selected for your widget. Each metric is allowed to have one __Group By__, and each metric in a single query can have different __Group Bys__. You can group your metrics by resource attributes or metrics attributes that Middleware has collected.
+The Group By field is the outer most aggregation made in your query. Each metric is allowed to have one __Group By__, and each individual metric in a single widget can have different __Group Bys__. 
+
+You can group your metrics by any resource attributes or metric attribute that Middleware has collected.
 
 The below example tracks CPU utilization by host; it is grouping the `system.cpu.utilization` metric by all unique instances of the `host.name` metric:
 
 
 ![](https://lh7-us.googleusercontent.com/ecBBt0x3KYh_2QyUksFy16HIKqlpl3k4PUyxIDjgrHD6M1iNkOiS8iR0P7vkHqktOCj8IdhZf-N8o6falplfl8KtNlHE4mFZFr65O_4ibg0OjXrxR3lL5zSPzLhKWppc_2YzQ6T_6ukb8VXkdA4EaYU)
 
-The following table displays all available methods for aggregating your chosen metrics:
+When you first create a Widget the field will be set to `Group By`. The following table displays all available options for the `Group By` field:
 
 | __Aggregation Type__ | __Description__                                                |
 | :------------------- | :------------------------------------------------------------ |
@@ -96,13 +98,17 @@ The following table displays all available methods for aggregating your chosen m
 
 #### Aggregate By
 
-The Aggregate By field is a nested aggregation technique that allows you to aggregate your initial query, the inner layer of data. The below example is grouping the `container.memory.percent` metric by averaging the values of the `container.name` attributes and summing `container.memory.percent`:
+The Aggregate By field is a nested aggregation technique that allows you to aggregate your initial query, the inner layer of data. 
+
+The below example is grouping the `container.memory.percent` metric by averaging the values of the `container.name` attributes and summing `container.memory.percent`:
 
 ![](https://lh7-us.googleusercontent.com/ohE5zbuYTvxfE_A3tAdR-ccxs11a_Z8XBPEmcDOLn4-jEe7pFGIwtOQDPkm4OwTH6h1-hmEUGZpFltgzQ1i2CwOn8gugkjRmIC4GM_YcFqGmnrCh1PBtHlFteYKpwiDSXCz_EZMfckZp-wbqhV-pWx4)
 
 #### Filters
 
-The filter feature is used to remove unwanted metrics within your query. The list of available filters is pulled from each metric's attributes, and the values are based on the data pulled for that attribute in that timerange. The below example is filtering out any `host.id` containing `ip-172-31-13-218.us-east-2.compute.internal`:
+The filter feature is used to remove unwanted metrics within your query. The list of available filters is pulled from each metric's attributes, and the values are based on the data pulled for that attribute in that timerange. 
+
+The below example is filtering out any `host.id` containing `ip-172-31-13-218.us-east-2.compute.internal`:
 
 ![](https://lh7-us.googleusercontent.com/_50CgdVxjgsqeqS6U3S8Rud9llopVXSi97d2WXCo4shRYJp79HjUs8gGTq_ZLihDDlP4wpi3IqCvaT6z4NpnhXAQWzhNWbe2uUS89Gw4Nd8ww_RX95Ce5p4LsR_SBO3-0LSp3sAht3heL01QDKgCAQQ)
 
