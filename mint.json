@@ -141,6 +141,12 @@
               ]
             },
             {
+              "group": "Networking",
+              "pages":[
+                "integrations/apache-server-integration"
+              ]
+            },
+            {
               "group": "Streaming",
               "pages":[                
               "integrations/kafka-integration",  
