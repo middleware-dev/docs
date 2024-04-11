@@ -3,7 +3,7 @@ title: "Apache"
 description: Apache Integration - Setup & Installation Docs | Middleware
 ---
 
-The Apache Network Integration provides real-time visibility into your teams server performance and statistics. This integration is useful for teams that want to understand the number of requests made to your servers, workers in each state, cumulative server traffic and much more.
+The Apache Network Integration provides real-time visibility into your team's server performance and statistics. This integration is useful for teams that want to understand the number of requests made to your servers, workers in each state, cumulative server traffic, and much more.
 
 The Apache Network Integration works by ingesting and displaying data associated with the requests from clients and their corresponding responses back from the Apache Web Server. For example, server data is collected when a user makes a request to a web page and the corresponding response sends the requested components of the page back to the user.
 
@@ -26,7 +26,7 @@ The Apache Network Integration works by ingesting and displaying data associated
 
 ### Step 1: Enable Status Support
 
-Gather server statistics by enabling the [Apache Status Module](https://httpd.apache.org/docs/2.4/mod/mod_status.html). Add one of the following code snippets to your `httpd.conf` configuration file to whitelist your IP address or the host-agent:
+Gather server statistics by enabling the [Apache Status Module](https://httpd.apache.org/docs/2.4/mod/mod_status.html). Add one of the following code snippets to your `httpd.conf` configuration file to whitelist your IP address or the host-agent and scrape data from the Apache Server:
 
 <Tabs>
   <Tab title="IP Address">
@@ -73,30 +73,30 @@ Quickly access your Apache data with Middleware’s default Apache dashboard. Na
 
 ### Create Apache Widget
 
-All Apache related data is accessible in our widget builder through `apache.*` metrics. See below for comprehensive list
+All Apache-related data is accessible in our widget builder through `apache.*` metrics. See below for a comprehensive list.
 
 # Metrics collected
 
 | __Metric__                         | __Description__ |
 | :--------------                    | :-------------- |
-| __apache.uptime__                  | Amount of time server has been running in seconds |
-| __apache.current_connections__     | Number of active connections currently attached to the HTTP server |
-| __apache.workers__                 | Number of workers currently attached to the HTTP server |
-| __apache.requests__                | Number of requests serviced by the HTTP server per second |
-| __apache.traffic__                 | Total HTTP server traffic |
-| __apache.cpu.time__                | Number of jiffs used by a process in a given category |
-| __apache.cpu.load__                | Current load of the CPU |
-| __apache.load.1__                  | Average server load within the last minute |
-| __apache.load.5__                  | Average server load within the last 5 minutes |
-| __apache.load.15__                 | Average server load within the last 15 minutes |          
-| __apache.request.time__            | Total time spent handling requests |
-| __apache.scoreboard__              | Number of workers in each state |
+| `apache.uptime`                  | Amount of time server has been running in seconds |
+| `apache.current_connections`     | Number of active connections currently attached to the HTTP server |
+| `apache.workers`                 | Number of workers currently attached to the HTTP server |
+| `apache.requests`                | Number of requests serviced by the HTTP server per second |
+| `apache.traffic`                 | Total HTTP server traffic |
+| `apache.cpu.time`                | Number of jiffs used by a process in a given category |
+| `apache.cpu.load`                | Current load of the CPU |
+| `apache.load.1`                  | Average server load within the last minute |
+| `apache.load.5`                  | Average server load within the last 5 minutes |
+| `apache.load.15`                  | Average server load within the last 15 minutes |          
+| `apache.request.time`            | Total time spent handling requests |
+| `apache.scoreboard`              | Number of workers in each state |
 
 # Host Configuration
 
 | __Input Field__       | __Description__ |
 | :--------------       | :-------------- |
-| Endpoint              | The URL of the httpd status endpoint |
-| collection_interval   | Interval that telemetry data is collected (default set to 10 sec interval)|
+| `endpoint`              | URL of the httpd status endpoint |
+| `collection_interval`   | Interval that telemetry data is collected (default set to 10 sec interval)|
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
