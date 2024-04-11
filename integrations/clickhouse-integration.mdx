@@ -3,7 +3,9 @@ title: ClickHouse
 description: ClickHouse Integration - Setup & Installation Docs | Middleware
 ---
 
-The ClickHouse Integration allows users to effortlessly ingest and monitor their column-oriented ClickHouse data. Use our default dashboard to comprehend system-wide usage patterns and identify performance bottlenecks in your ClickHouse cluster. Understand how your high-volume SQL queries perform in real-time to maximize your infrastructure’s efficiency further.
+The ClickHouse Integration allows users to effortlessly ingest and monitor their column-oriented ClickHouse data. This integration is useful for identifying system-wide usage patterns, performance bottlenecks in your ClickHouse clusters, analyzing high-volume SQL query performance in real-time, and much more.
+
+This integration works by directing your ClickHouse data to a Prometheus endpoint that asynchronously ingests and redirects ClickHouse metrics and events to Middleware.
 
 # Prerequisites
 
@@ -13,7 +15,7 @@ Middleware Host Agent (MW Agent) must be installed on your local machine. To ins
 
 ### Step 1: Update ClickHouse Configuration
 
-Add the following lines to your ClickHouse configuration (`/etc/clickhouse-server/config.xml`) to expose metrics on port `9126`
+Add the following lines to your ClickHouse configuration (`/etc/clickhouse-server/config.xml`) to expose metrics on port `9126`:
 
 ```xml XML
 <prometheus>
