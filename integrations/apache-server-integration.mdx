@@ -1,0 +1,102 @@
+---
+title: "Apache"
+description: Apache Integration - Setup & Installation Docs | Middleware
+---
+
+The Apache Network Integration provides real-time visibility into your team's server performance and statistics. This integration is useful for teams that want to understand the number of requests made to your servers, workers in each state, cumulative server traffic, and much more.
+
+The Apache Network Integration works by ingesting and displaying data associated with the requests from clients and their corresponding responses back from the Apache Web Server. For example, server data is collected when a user makes a request to a web page and the corresponding response sends the requested components of the page back to the user.
+
+<Note> For more information on the Apache Integration, navigate to the [Apache Demo Project Repository](https://github.com/middleware-labs/integration-demo-projects/blob/master/apache/README.md). </Note>
+
+# Prerequisites
+
+<Steps>
+  <Step title="MW Host Agent">
+    Middleware Host Agent (MW Agent) `v1.6.1+` must be installed on your local machine. To install the MW Agent, see our [Installation Guide](https://docs.middleware.io/agent-installation/overview).
+    
+  </Step>
+
+  <Step title="Apache Web Server">
+    Apache Web Server `v2.4+`. To install the latest Apache Web Server Version, navigate to the [Apache HTTP Server Project](https://httpd.apache.org/download.cgi#apache24).
+  </Step>
+</Steps>
+
+# Setup
+
+### Step 1: Enable Status Support
+
+Gather server statistics by enabling the [Apache Status Module](https://httpd.apache.org/docs/2.4/mod/mod_status.html). Add one of the following code snippets to your `httpd.conf` configuration file to whitelist your IP address or the host-agent and scrape data from the Apache Server:
+
+<Tabs>
+  <Tab title="IP Address">
+    
+    ```apache httpd.conf
+    <Location "/server-status">
+        SetHandler server-status
+        Require ip <x.x.x.x>
+    </Location>
+    ```
+  </Tab>
+
+  <Tab title="host-agent">
+
+    ```apache httpd.conf
+    <Location "/server-status">
+        SetHandler server-status
+        Require host <example.com>
+    </Location>
+
+    ```   
+  </Tab>
+</Tabs>
+
+### Step 2: Access Integrations
+
+Log in to Middleware, navigate to the Installations Page in the bottom left corner, select Integrations and click Apache:
+
+![](https://lh7-us.googleusercontent.com/r7ANfL7Crn4KY-nMzNVu-KWC64Pd8MMVZB-6GG_x8IDhx63CBP7CLUVHYBJ2Nb9j01g1IYYAhCL5otYQphd_9IoN3hhdtgLw2Qfeswi0sE7QsSi2NdinKIIMUqKO9RjqycfzIV8dlgXQ_u-CDLzsoQ8)
+
+### Step 3: Web Server Host
+
+Add your Apache Web Server Host name, endpoint, and respective data collection interval:
+
+![](https://lh7-us.googleusercontent.com/jj57XTsvIE60_u6WE7p5XQSw6P0E1ymBV90l3Wn6Uf1Tj8PgPgBmSxpJL0HXUVhoJX4Q4nsaWbK5Ytx4ekJxcpLiJSIQtYjncfA6PlayqfamvwtTbe24zT0pEvYAfFmtX-cyfgGMJRrlNnAo7lEHDHc)
+
+# Visualize Your Data
+
+### Default Apache Dashboard
+
+Quickly access your Apache data with Middleware’s default Apache dashboard. Navigate to the Dashboard Builder and select the __Apache Web Server Dashboard__:
+
+![](https://lh7-us.googleusercontent.com/aBS6BqBtJFbglQDoCZUcmkzSni0XPLSEQrJQU4RSo-VJt2o_6K4ct8qnz9FNSeRGrGq18rbXgKxETUx8u8J6K2BcyXUh6x2kL5MtZujiySjmQhQ67qIyo0_K7d4mgOeciPlX3Y5LLjZhrzxdrMs0S0U)
+
+### Create Apache Widget
+
+All Apache-related data is accessible in our widget builder through `apache.*` metrics. See below for a comprehensive list.
+
+# Metrics collected
+
+| __Metric__                         | __Description__ |
+| :--------------                    | :-------------- |
+| `apache.uptime`                  | Amount of time server has been running in seconds |
+| `apache.current_connections`     | Number of active connections currently attached to the HTTP server |
+| `apache.workers`                 | Number of workers currently attached to the HTTP server |
+| `apache.requests`                | Number of requests serviced by the HTTP server per second |
+| `apache.traffic`                 | Total HTTP server traffic |
+| `apache.cpu.time`                | Number of jiffs used by a process in a given category |
+| `apache.cpu.load`                | Current load of the CPU |
+| `apache.load.1`                  | Average server load within the last minute |
+| `apache.load.5`                  | Average server load within the last 5 minutes |
+| `apache.load.15`                  | Average server load within the last 15 minutes |          
+| `apache.request.time`            | Total time spent handling requests |
+| `apache.scoreboard`              | Number of workers in each state |
+
+# Host Configuration
+
+| __Input Field__       | __Description__ |
+| :--------------       | :-------------- |
+| `endpoint`              | URL of the httpd status endpoint |
+| `collection_interval`   | Interval that telemetry data is collected (default set to 10 sec interval)|
+
+<Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
