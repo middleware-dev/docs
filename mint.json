@@ -211,9 +211,7 @@
         {
           "group": "Log Monitoring",
           "pages": [
-            "workflow/log-monitoring/logs",
-            "workflow/log-monitoring/log-custom-metrics",
-            "workflow/log-monitoring/log-transaction"
+            "workflow/log-monitoring/log-monitoring-basics"
           ]
         },
         {
