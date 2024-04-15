@@ -211,7 +211,8 @@
         {
           "group": "Log Monitoring",
           "pages": [
-            "workflow/log-monitoring/log-monitoring-basics"
+            "workflow/log-monitoring/log-monitoring-basics",
+            "workflow/log-monitoring/log-monitoring-common-practices"
           ]
         },
         {
