@@ -60,24 +60,48 @@ The Traces section displays all of your trace data related to the log you are dr
 
 #### Flame Graph 
 
+![](https://lh7-us.googleusercontent.com/yxATbGxDamM_Z584LrTwBOhmxqi4o8lictO1id2WQCxTivvUHxqG_OaIfNubkE64t6xIqZoNyD3qedEVdndoJQvMHxeC8vp9zpttnDhajLwv0UWziQkMUOZzTGO9LFZA-xtoxLg1RbQq7JjUtkeF8M4)
+
 #### Spans
+
+![](https://lh7-us.googleusercontent.com/GZ3czfy7l4P0NxpLnkpxovtXF8WFAAJtatFoYn0xeuiNMeQMSo3NoORYFj9UAc5oRkERwW9GTKj0yy04DqNC88BazAnxZdECgv5WeXPkvQyKk7aZUYiHIU2XDnUcSUgkTSe-1kWw2ws6yCKKuxlU8Ps)
 
 #### Trace attributes
 
+![](https://lh7-us.googleusercontent.com/GZ3czfy7l4P0NxpLnkpxovtXF8WFAAJtatFoYn0xeuiNMeQMSo3NoORYFj9UAc5oRkERwW9GTKj0yy04DqNC88BazAnxZdECgv5WeXPkvQyKk7aZUYiHIU2XDnUcSUgkTSe-1kWw2ws6yCKKuxlU8Ps)
+
 #### Events
+
+![](https://lh7-us.googleusercontent.com/kFEWrXcj7wGgvDBSGR9xZXv2FTF6U94wLgN2i2GMTz5YVhm-pav7v6RHPwKC6FhMylx8AXYciKyj3GOMNWEqvqqOS0TUaGXOWhGbE90Yw34_S5B_WZymlp8fn2T52lyIe-SjI78gjCXlbxmSvvsxi9A)
 
 #### Logs
 
+![](https://lh7-us.googleusercontent.com/eKb7l6YkxldUo236E7PH7c8vHzJOQnnjFNGI_eRb3oM6K2NLf0rURPwStIzX3UndE4T8PKkiKy5Np6x-XYT-vFTODdK335ZlwxTnOIy3aUefU-3-kyTqRSkw7Q6wcb-RtPJUjGHuPj__kGFlvqHbOro)
+
 #### Error Traces
+
+![](https://lh7-us.googleusercontent.com/r4agxAxu4xoRUlHRI9hCowuncJR_XpZZ7-QMCbx1v2rxrWYP1-uCVH5UBmV6QBNodjXi1S7i7jnpxmks8R-wfbiTGD-AbQNBLzlvXnc7jhinDtZqBV24peV3-fXDFRHLOfZUcyol-JC8AhbQSvbYeBA)
 
 #### Session Replay
 
 
 # Transactions
 
-Transactions allow you to aggregate your log data with other data that exists outside of the log you are drilling into. This feature is useful when you need to identify broader patterns within your infrastructure that are related to the log you are actively drilling into.
+Transactions allow you to aggregate your log data with other data that exists outside of the log you are already drilling into. This feature is useful when you need to identify broader patterns within your infrastructure that are related to the log you are actively drilling into.
 
 <Note> For more information on creating Transactions, navigate to [Log Monitoring - Common Practices](https://docs.middleware.io/workflow/log-monitoring/log-monitoring-common-practices#create-a-transaction). </Note>
+
+### Transaction Measures
+
+Measures are additional ways for you to filter your data:
+
+| __Measure__       | __Description__ |
+| :----------       | :-------------- |
+| __Count__         | |
+| __Max__           | |
+| __Most Frequent__ | |
+| __Where__         | |         
+
 
 # Custom Metrics
 
@@ -91,14 +115,16 @@ Custom Metrics allow you to create custom filters that index specific aspects of
 
 # Filtering Your Logs
 
-### Filter by Levels
+To quickly filter your log data, use the left most column on the logs page to toggle on and off filters sorted by __Levels__, __Additional__, __NameSpace__, __APM Projects__, and __Sources__.
 
-### Additional
+<Note> For more information on creating Custom Filters, navigate to [Log Monitoring - Common Practices](https://docs.middleware.io/workflow/log-monitoring/log-monitoring-common-practices#build-your-custom-filter).</Note>
 
-### APM Projects
+![](https://lh7-us.googleusercontent.com/K6KDnttUMNeKck9XAhFXHbMrB9Qoz0JUys8gWQzGzyaAMzUZtv6fqUsNj11-k8Y0FvLY_yNnIq_PD-jCTe526v1-Ji7ELlBJ3gRTXe-UkWZmERWeAm8X4zxWqmQT3IMa8jw_5Eb6hj5GMsyWHGHJmu8)
 
-### Sources
+# Next Steps
 
-# Create New Filters
+- [Log Monitoring - Common Practices](https://docs.middleware.io/workflow/log-monitoring/log-monitoring-common-practices)
+- [Creating Alerts]()
+- [Real User Monitoring]()
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
