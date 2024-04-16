@@ -235,7 +235,20 @@
           "group": "Synthetic Monitoring",
           "pages": [
             "workflow/synthetic-monitoring/synthetic-monitoring",
-            "workflow/synthetic-monitoring/multistep-synthetic-monitoring"
+            "workflow/synthetic-monitoring/multistep-synthetic-monitoring",
+            {
+              "group": "Request Types",
+              "pages": [
+                "workflow/synthetic-monitoring/http",
+                "workflow/synthetic-monitoring/ssl",
+                "workflow/synthetic-monitoring/dns",
+                "workflow/synthetic-monitoring/websocket",
+                "workflow/synthetic-monitoring/udp",
+                "workflow/synthetic-monitoring/icmp",
+                "workflow/synthetic-monitoring/tcp",
+                "workflow/synthetic-monitoring/grpc"
+              ]
+            }
           ]
         }, "workflow/profiling",
         {
