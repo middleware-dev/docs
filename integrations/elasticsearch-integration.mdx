@@ -3,7 +3,7 @@ title: "Elasticsearch"
 description: Elasticsearch Integration - Setup & Installation Docs | Middleware
 ---
 
-The Elasticsearch Integration allows users to track their Elasticsearch performance and health metrics from Elasticsearch clusters and nodes. Use our default dashboard to understand system-wide usage patterns and identify performance bottlenecks. Drill into all of your data within the Elastic ecosystem.
+The Elasticsearch Integration allows you to track your performance and health metrics across all clusters and nodes. This integration is useful for visualizing disk read/write operations on a per node basis, system CPU usage, and total available physical and virtual memory.
 
 # Prerequisites
 
@@ -68,7 +68,7 @@ Alerts can be configured for any Elasticsearch metrics. When creating a new rule
 
 # Metrics Collected
 
-| Metric                                                          | Description                                                                                                       |
+| __Metric__                                                          | __Description__                                                                                                       |
 |-----------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------|
 | `elasticsearch.breaker.memory.estimated`                          | Estimated memory used for the operation                                                                          |
 | `elasticsearch.breaker.memory.limit`                              | Memory limit for circuit breaker                                                                             |
@@ -153,5 +153,14 @@ Alerts can be configured for any Elasticsearch metrics. When creating a new rule
 <Accordion title="Missing Integrations Menu">
   If you do not see the Integrations Menu in Middlware, that means your account has not been granted `Installation` permissions. Contact your system administrator to add the `Installation` permission to your user role in Settings.
 </Accordion>
+
+# Next Steps
+
+- [How to Create Alerts](https://docs.middleware.io/workflow/alerting/setup-alert)
+- [Dashboard Basics & Customization](https://docs.middleware.io/workflow/custom-dashboard/dashboard-builder-overview)
+- [Custom Telemetry Ingestion](https://docs.middleware.io/open-telemetry/otel-getting-started)
+- [Getting Started With Real User Monitoring (RUM)](https://docs.middleware.io/rum/rum-overview)
+- [Data Ingestion APIs](https://docs.middleware.io/data-ingestion-apis/opentelemetry-metrics)
+
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>

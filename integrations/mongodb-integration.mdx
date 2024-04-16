@@ -3,7 +3,7 @@ title: "MongoDB"
 description: MongoDB Integration - Setup & Installation Docs | Middleware
 ---
 
-Collects MongoDB performance and health metrics
+The MongoDB Integration allows you to ingest and monitor the performance and health metrics of your NoSQL database instances. This integration is useful for tracking the total number of active connections and operations executed within your instances, the total space allocated to database indexes, and the count of all document operations executed.
 
 # Prerequisites
 
@@ -61,8 +61,8 @@ Alerts can be configured for any MongoDB metrics. When creating a new rule selec
 
 # Metrics Collected
 
-| Metric | Description |                                                                                     
-| ------------------------------ | --------------------------------------------------------------------------------------------------- |
+| __Metric__ | __Description__ |                                                                                     
+| :------------------------------ | :--------------------------------------------------------------------------------------------------- |
 | `mongodb.cache.operations`      | Number of cache operations                                                      |
 | `mongodb.collection.count`       | Number of collections                                                                           |
 | `mongodb.data.size`              | Size of the collection, data compression does not affect this value                            |
@@ -99,5 +99,14 @@ Alerts can be configured for any MongoDB metrics. When creating a new rule selec
 <Accordion title="Missing Integrations Menu">
   If you do not see the Integrations Menu in Middlware, that means your account has not been granted `Installation` permissions. Contact your system administrator to add the `Installation` permission to your user role in Settings.
 </Accordion>
+
+# Next Steps
+
+- [How to Create Alerts](https://docs.middleware.io/workflow/alerting/setup-alert)
+- [Dashboard Basics & Customization](https://docs.middleware.io/workflow/custom-dashboard/dashboard-builder-overview)
+- [Custom Telemetry Ingestion](https://docs.middleware.io/open-telemetry/otel-getting-started)
+- [Getting Started With Real User Monitoring (RUM)](https://docs.middleware.io/rum/rum-overview)
+- [Data Ingestion APIs](https://docs.middleware.io/data-ingestion-apis/opentelemetry-metrics)
+
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>

@@ -2,7 +2,8 @@
 title: "MySQL"
 description: MySQL Integration - Setup & Installation Docs | Middleware
 ---
-Collects MySQL performance and health metrics from a MySQL database.
+
+The MySQL Integration allows you to ingest and monitor the performance and health metrics of your relational database management system (RDBMS) data. This integration is useful for identifying top SQL operations by row, tallying total requests to MySQL handlers, and tracking worker thread count.
 
 # Prerequisites
 
@@ -55,7 +56,7 @@ Alerts can be configured for any MySQL metrics. When creating a new rule select 
 
 # Metrics Collected
 
-| Metric                               | Description                                                                                        |
+| __Metric__                               | __Description__                                                                                        |
 | ------------------------------------ | -------------------------------------------------------------------------------------------------- |
 | `mysql.buffer_pool.pages`            | Number of pages in the InnoDB buffer pool                                                     |
 | `mysql.buffer_pool.data_pages`       | Number of data pages in the InnoDB buffer pool                                               |
@@ -107,5 +108,14 @@ Alerts can be configured for any MySQL metrics. When creating a new rule select 
 <Accordion title="Missing Integrations Menu">
   If you do not see the Integrations Menu in Middlware, that means your account has not been granted `Installation` permissions. Contact your system administrator to add the `Installation` permission to your user role in Settings.
 </Accordion>
+
+# Next Steps
+
+- [How to Create Alerts](https://docs.middleware.io/workflow/alerting/setup-alert)
+- [Dashboard Basics & Customization](https://docs.middleware.io/workflow/custom-dashboard/dashboard-builder-overview)
+- [Custom Telemetry Ingestion](https://docs.middleware.io/open-telemetry/otel-getting-started)
+- [Getting Started With Real User Monitoring (RUM)](https://docs.middleware.io/rum/rum-overview)
+- [Data Ingestion APIs](https://docs.middleware.io/data-ingestion-apis/opentelemetry-metrics)
+
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>

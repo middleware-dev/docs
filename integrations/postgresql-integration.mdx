@@ -3,7 +3,7 @@ title: "PostgreSQL"
 description: PostgreSQL Integration - Setup & Installation Docs | Middleware
 ---
 
-Collects PostgreSQL performance and health metrics
+The PostgreSQL Integration allows you to ingest and monitor the performance and health metrics of your object-relational database management system (ORDBMS) data. This integration is useful for tracking the total number of blocks read into memory, identifying disk space utilization per table, tallying insert operations, and rollbacks triggered.
 
 # Prerequisites
 
@@ -55,7 +55,7 @@ Alerts can be configured for any PostgreSQL metrics. When creating a new rule se
 
 # Metrics Collected
 
-| Metric | Description |
+| __Metric__ | __Description__ |
 |--------|-------------|
 | `postgresql.backends` | Number of backends
 | `postgresql.bgwriter.buffers.allocated` | Number of buffers allocated
@@ -82,5 +82,14 @@ Alerts can be configured for any PostgreSQL metrics. When creating a new rule se
 <Accordion title="Missing Integrations Menu">
   If you do not see the Integrations Menu in Middlware, that means your account has not been granted `Installation` permissions. Contact your system administrator to add the `Installation` permission to your user role in Settings.
 </Accordion>
+
+# Next Steps
+
+- [How to Create Alerts](https://docs.middleware.io/workflow/alerting/setup-alert)
+- [Dashboard Basics & Customization](https://docs.middleware.io/workflow/custom-dashboard/dashboard-builder-overview)
+- [Custom Telemetry Ingestion](https://docs.middleware.io/open-telemetry/otel-getting-started)
+- [Getting Started With Real User Monitoring (RUM)](https://docs.middleware.io/rum/rum-overview)
+- [Data Ingestion APIs](https://docs.middleware.io/data-ingestion-apis/opentelemetry-metrics)
+
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>

@@ -3,7 +3,7 @@ title: "Redis"
 description: Redis Integration - Setup & Installation Docs | Middleware
 ---
 
-Retrieve data and metrics from a Redis instance to effectively monitor the performance of your Redis server.
+The Redis Integration allows users to ingest and monitor the performance and health metrics of their in-memory data structure store. This integration is useful for tracking commands processed per second, tallying CPU time consumed by Redis states, and monitoring disk I/O buffers for optimal batching.
 
 # Prerequisites
 
@@ -60,7 +60,7 @@ Alerts can be configured for any Redis metrics. When creating a new rule select 
 
 # Metrics Collected
 
-| Metric                                    | Description                                                                                       |
+| __Metric__                                   | __Description__                                                                                       |
 | ----------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | `redis.maxmemory`                           | Configured maxmemory value |
 | `redis.role`                                | Lists node’s role|
@@ -101,5 +101,14 @@ Alerts can be configured for any Redis metrics. When creating a new rule select 
 <Accordion title="Missing Integrations Menu">
   If you do not see the Integrations Menu in Middlware, that means your account has not been granted `Installation` permissions. Contact your system administrator to add the `Installation` permission to your user role in Settings.
 </Accordion>
+
+# Next Steps
+
+- [How to Create Alerts](https://docs.middleware.io/workflow/alerting/setup-alert)
+- [Dashboard Basics & Customization](https://docs.middleware.io/workflow/custom-dashboard/dashboard-builder-overview)
+- [Custom Telemetry Ingestion](https://docs.middleware.io/open-telemetry/otel-getting-started)
+- [Getting Started With Real User Monitoring (RUM)](https://docs.middleware.io/rum/rum-overview)
+- [Data Ingestion APIs](https://docs.middleware.io/data-ingestion-apis/opentelemetry-metrics)
+
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
