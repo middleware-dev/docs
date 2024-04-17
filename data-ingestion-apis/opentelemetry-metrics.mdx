@@ -42,56 +42,130 @@ curl -X POST "https://demo.middleware.io/v1/metrics" \
 -H "Content-type: application.json" \
 -d @ << EOF
 {
-    "resource_metrics": [
-        {
-            "resource": {
-                "attributes": [
-                    {
-                        "key": "mw.account_key",
-                        "value": {
-                            "string_value": "xxxxxxxxxx"
-                        }
-                    },
-                    {
-                        "key": "mw.resource_type",
-                        "value": {
-                            "string_value": "custom"
-                        }
-                    }
-                ]
-            },
-            "scope_metrics": [
+  "resource_metrics": [
+      {
+        "resource": {
+            "attributes": [
                 {
-                    "metrics": [
-                        {
-                            "name": "swap-usage",
-                            "description": "SWAP Usage",
-                            "unit": "bytes",
-                            "gauge": {
-                                "data_points": [
-                                    {
-                                        "attributes": [
-                                            {
-                                                "key": "device",
-                                                "value": {
-                                                    "string_value": "nvme0n1p4"
-                                                }
-                                            }
-                                        ],
-                                        "start_time_unix_nano": 1673435153000000000,
-                                        "time_unix_nano": 1673435153000000000,
-                                        "asInt": 400500678
-                                    }
-                                ]
-                            }
-                        }
-                    ]
+                    "key": "mw.account_key",
+                    "value": {
+                        "string_value": "xxxxxxxxxx"
+                    }
+                },
+                {
+                    "key": "mw.resource_type",
+                    "value": {
+                        "string_value": "custom"
+                    }
                 }
             ]
-        }
-    ]
-}
-EOF  
+      },
+      "scope_metrics": [
+          {
+              "metrics": [
+                  {
+                      "name": "uploads.count",
+                      "unit": "1",
+                      "description": "Count of user uploads",
+                      "sum": {
+                          "aggregationTemporality": 2,
+                          "isMonotonic": true,
+                          "dataPoints": [
+                              {
+                                  "asInt": 5,
+                                  "startTimeUnixNano": 1711559739191393000,
+                                  "timeUnixNano": 1711559739191393000,
+                                  "attributes": [
+                                      {
+                                          "key": "uploads.count.user_email",
+                                          "value": {
+                                              "stringValue": "jane@domain.com"
+                                          }
+                                      }
+                                  ]
+                              }
+                          ]
+                      }
+                  },
+                  {
+                      "name": "connections.active",
+                      "unit": "1",
+                      "description": "Number of active connections",
+                      "gauge": {
+                          "dataPoints": [
+                              {
+                                  "asInt": 215,
+                                  "timeUnixNano": 1711559739191393000,
+                                  "attributes": [
+                                      {
+                                          "key": "connections.active.hostname",
+                                          "value": {
+                                              "stringValue": "vm-prod-2"
+                                          }
+                                      }
+                                  ]
+                              }
+                          ]
+                      }
+                  },
+                  {
+                      "name": "downloads.speeds",
+                      "unit": "By",
+                      "description": "Download speeds of users in a particular region",
+                      "histogram": {
+                          "aggregationTemporality": 2,
+                          "dataPoints": [
+                              {
+                                  "startTimeUnixNano": 1711559739191393000,
+                                  "timeUnixNano": 1711559739191393000,
+                                  "count": 6,
+                                  "sum": 258,
+                                  "bucketCounts": [
+                                      1,
+                                      1,
+                                      1,
+                                      1,
+                                      0,
+                                      0,
+                                      0,
+                                      0,
+                                      1,
+                                      1
+                                  ],
+                                  "explicitBounds": [
+                                      0,
+                                      10,
+                                      20,
+                                      30,
+                                      40,
+                                      50,
+                                      60,
+                                      70,
+                                      80,
+                                      90,
+                                      100
+                                  ],
+                                  "min": 0,
+                                  "max": 98,
+                                  "attributes": [
+                                      {
+                                          "key": "region",
+                                          "value": {
+                                              "stringValue": "us-west"
+                                          }
+                                      }
+                                  ]
+                              }
+                          ]
+                      }
+                  }
+              ]
+          }
+      ]
+    }
+  ]
+}      
+EOF
 ```
 
 <Note> Data must be in OTLP/HTTP format. Learn more about [OTLP/HTTP](https://opentelemetry.io/docs/specs/otlp/#otlphttp). </Note>
@@ -131,6 +205,8 @@ The datapoint fields are defined within the data attribute. The datapoint fields
 | `attributes` | ✅ | Key-value pairs associated with the data point |
 | `time_unix_nano` | ✅ | Set to the end time of the aggregation |
 | `start_time_unix_nano` | ✖️ | Indicates the start time, should be included whenever possible |
+
+
 
 # Log Endpoint
 
