@@ -13,7 +13,7 @@ description: Vercel APM - Setup & Installation Docs | Middleware
 
 | Traces | Metrics | App Logs | Custom Logs | Profiling |
 | :----: | :-----: | :------: | :---------: | :-------: |
-| ✅ | ✖️ | ✖️ | ✅ | ✅ |
+| ✅     |       ✖️ |        ✅ |          ✅ |        ✅ |
 
 This guide walks you through setting up the Vercel APM integration. These instructions can also be found on the Installation page in your Middleware Account. View example code [here](https://github.com/middleware-labs/demo-apm/tree/master/nextjs).
 
@@ -70,7 +70,7 @@ Select the Project you want to track
 
 #### Step 1d: Allow Permissions and Add Integration
 
-![](https://lh5.googleusercontent.com/9dILl_Q_7leNlhi-wyx21c6D03ZusQyRI8MzZVurc0cObbZTMVur9CaKQFbu-W2u9I7tjk13KSsvZeoQbpuf5baf_rLi8PoEap7Xunsm9xAZ4hO-FlFW7eswz3CVlwdbmMZo-0EstXUMwxBro2uCbdc)
+![](https://lh7-us.googleusercontent.com/PysbktynXDk1qIFvodVbUN1mN9bM7R8RQrVX2FbD7Yt51NZo1yov01GyyJnbvYxlOINg-zE216nzgmEKavp0pDqdkg9yHNrpReVoMCnSJE9wTRilHDs5KWgDZEBJR8zBvxnlQLiLRwz3RtRzzgThnr0)
 
 #### Step 1e: Login to Your Middleware Account
    
@@ -80,13 +80,30 @@ Select the Project you want to track
 
 The below screen indicates you have successfully integrated Vercel and Middleware
 
-![](https://mintlify.s3-us-west-1.amazonaws.com/middlewareio/images/agent-installation/vercel-6.png)
+![](https://lh7-us.googleusercontent.com/JCG-ySj9xzhVZ-tfWgL7OJ1zXrvhkaveR30QYEeXMHCWIrnR9-h_1i5YLIo2STsSh5GtYef3Lu9xiHFyAsx69-mDJPNOdwb7S2qxNOqplcyhpw5V0hBv8CWvNWeMP_2XYIiuL2s4yheM7MywvrjbHbg)
 
 <Note> After three seconds you should be redirected back to the Vercel marketplace </Note>
 
-#### Step 1g: Enable Traces
+#### Step 1g: Automatic Logs
 
-In Vercel, enable traces prior to deploying your project
+After integrating Middleware with Vercel, you will be able to centralize your data in Middleware's Log page. Change your Vercel log collection configuration by navigating to __Integrations__, selecting __Log Drains__, and clicking __Manage__:
+
+![](https://lh7-us.googleusercontent.com/vzEIlBHDcOHg70NKGPV5JT6bMeMM9ymp9GrWtAJzvdQKk3DP5rRzAvw6k6wLL8CU7cyZyWjPt9g5u9GVoShmEbGb0EKW-23wb21yoqjuL7cEvbQGK-MwdKtgbUdXmJBLgTg_AM7Vf3vilYW4AuUE4Ng)
+
+<Note> For more information on automatic log ingestion, navigate to Vercel's [Log Drain Reference Doc](https://vercel.com/docs/observability/log-drains/log-drains-reference#log-sources).</Note>
+
+| __Value__   | __Details__                                             |
+| :--------   | :----------                                             |
+| __Static__  | Collects logs for static assets like HTML and CSS files  |
+| __Edge__    | Outputs log data from Edge Functions like Middleware    |
+| __Lambda__  | Outputs log data from Vercel Functions like API Routes  |
+| __External__| Collects log results for external [rewrites](https://vercel.com/docs/projects/project-configuration#rewrites) to a different domain |
+| __Build__   | Outputs log data from the Build Step |
+
+
+#### Step 1h: Enable Traces & Continuous Profiling
+
+If you would like to enable traces and profiling within your application, navigate to Vercel and enable traces prior to deploying your project and completing steps two through six.
 
 ### Step 2: Install `Next.js` APM Package
 
@@ -151,7 +168,7 @@ Integrate your APIs or Serverless functions prior to deployment. Vercel will tre
 
 <Warning> Vercel does not support instrumentation for edge functions. </Warning>
 
-### Step 5: Enable Logging
+### Step 5: Enable Custom Logs [Optional]
 
 Ingest custom logs by using  the following functions based on desired log severity levels:
 
