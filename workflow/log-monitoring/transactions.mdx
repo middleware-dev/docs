@@ -3,26 +3,60 @@ title: Log Monitoring - Transactions
 sidebarTitle: Transactions
 ---
 
-# Transactions
-
 Transactions allow you to aggregate your log data with other data that exists outside of the log you are already filtered into. This feature is useful when you need to identify broader patterns within your infrastructure that are related to the log you are actively filtered.
 
-<Note> For more information on creating Transactions, navigate to [Log Monitoring - Common Practices](https://docs.middleware.io/workflow/log-monitoring/log-monitoring-common-practices#create-a-transaction). </Note>
-
-### Transaction Measures
+# Transaction Measures
 
 Measures are additional ways for you to filter your data:
 
-| __Measure__       | __Description__ |
-| :----------       | :-------------- |
-| __Count__         | |
-| __Max__           | |
-| __Most Frequent__ | |
-| __Where__         | |         
+| __Measure__          | __Description__ |
+| :----------          | :-------------- |
+| __Count__            | Tracks the total number of times the aggregated metric has been fired |
+| __Max__              | Displays the maximum value of the aggregated metric |
+| __Most Frequent__    | Identifies the most frequent value of the aggregated metric |
+| __Where__            | Adds additional aggregation layer to query |         
+| __Contains__         | Filters log entry based on whether the specified field contains a particular string or subpattern |
+| __Does Not Contain__ | Filters log entry based on whether the specified field __does not__ contains a particular string or subpattern |
+| __Greater Than__     | Aggregates metrics that are greater than a specified threshold or reference point |
+| __Smaller Than__     | Aggregates metrics that are less than a specified threshold or reference point |
 
 # Create a Transaction
 
 Navigate to the logs page and select the Transactions tab. 
 
+### Select Your Aggregation Metrics
+
+![](https://lh7-us.googleusercontent.com/2YN6xIT_dpSgfu69RGXUC9gmlycPj1OD_9U4rRXJYVjIDoCkSWJP2jeXEbwL99L_-TJJbbQIviwIOtXhzU2_orAvt3e4fh124hZJCm6ML8aNEWbFcPFAgaloQMFH8ZhbhUwY3ecqsWtgF66CjxaOhvg)
+
+### Add a Measure
+
+Choose from one of the four Transaction Measures,
+
+![](https://lh7-us.googleusercontent.com/3dymJ4eC0QKoaOmQ2HwRsbbO6iWGS8XFJabg4aZHJrkhqa8aEOpTh2JeJ9fj4y9nn8OjftGEtIlt0Coiod75z6xFe7PUrpHfeUxPzVpqijMlsYi9Uzo09o9SmexkkhN1_r9ZgMqe5idn1H6ngUnpqOo)
+
+# Transaction Examples
+
+<Tabs>
+  <Tab title="Container Name">
+    `container_name` is aggregated across all logs and then a secondary aggregation is performed specifically on containers whose names contain the subpattern or string `kafka`
+
+    ![](https://lh7-us.googleusercontent.com/essEz-NZFkrfZ5gtVAADmIS54FPOAjluzdK-lg8El2MbntJ3pdQj90W6MqHg2YXmUE8xjPbjC-dBs4XqUDehmYyATnoCFGjKzaEtEEF8j3H1V98XbrpHbdT3GsIjMKd3oFQTWHKKTh6Lt2ut5JVwcBs)
+  </Tab>
+  <Tab title="Example #2 ">
+    
+  </Tab>
+  <Tab title="Example #3">
+    
+  </Tab>
+</Tabs>
+
+# Next Steps 
+
+- [Log Monitoring - Overview]()
+- [Log Monitoring - Search & Filter]()
+- [Log Monitoring - Log Explorer]()
+- [Log Monitoring - Custom Metrics]()
+- [Creating Alerts]()
+- [Real User Monitoring - Overview]()
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
