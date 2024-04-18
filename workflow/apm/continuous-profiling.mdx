@@ -1,46 +1,12 @@
 ---
-title: "Services"
+title: APM Dashboard - Continuous Profiling
+sidebarTitle: Continuous Profiling
 ---
-## Overview
-Middleware's Custom Profiling module will show you CPU and Memory based Profiles for your applications.
 
-## How to collect Profiling data for your application ?
-The Profiling feature is enabled by default in our language-specific APMs. Currently, we support this feature in our Golang, Python, Java, NodeJS, and NextJS/Vercel APMs.
+# Drilling Into a node
 
-## Profiling support
+# Flame Graph 
 
-Golang APM => 
-v1.0.994 and above
+# Table
 
-Python APM =>
-v0.1.41 and above
-
-NextJS/Vercel APM =>
-v1.1.0 and above
-
-## Profiling Categories
-<ul>
-    <li>Memory Allocation Profiling</li>
-    <li>Object Allocation Profiling</li>
-    <li>Memory Usage Profiling</li>
-    <li>Object Usage Profiling</li>
-    <li>CPU Usage Profiling</li>
-</ul>
-
-## Middleware Profiling Data Views
-
-<img src="/images/apm/profiling.png" />
-
-### Table View:
-The Table View is a profiling view that presents performance data in a tabular format. It provides a structured representation of the profiling data, typically organized in columns. Each row in the table represents a specific event or resource, and the columns display relevant information such as execution time, memory usage, and function calls.
-The Table View allows for easy sorting and filtering of the data, making it convenient for identifying bottlenecks, analyzing performance metrics, and comparing different aspects of the profiling results.
-
-### FlameGraph View:
-The FlameGraph View is a visualization technique used to represent profiling data in a hierarchical and interactive manner. It takes the form of a flame-like graph, where each level represents a function or method in the software stack. The width of the graph segments corresponds to the amount of time or resources consumed by each function, allowing for a quick visual assessment of performance hotspots.
-The FlameGraph View enables to identify the most time-consuming parts of the codebase, pinpoint areas of optimization, and understand the overall flow of program execution.
-
-### Sandwich View:
-The Sandwich View is a unique profiling view that provides a comprehensive perspective on both time and space utilization in a software system. It combines the visual representation of a flame graph with a stacked bar chart. The flame graph aspect represents the temporal dimension, showing the execution flow and performance distribution across functions or methods. The stacked bar chart aspect represents the spatial dimension, illustrating the memory usage or resource consumption associated with each function. 
-The Sandwich View allows to simultaneously analyze time and space efficiency, identify code sections with high memory usage, and gain insights into how resource consumption correlates with program execution. This view is particularly useful when analyzing and optimizing memory-intensive applications or systems.
-
-<Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
+# Sandwich Graph

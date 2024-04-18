@@ -201,11 +201,11 @@
         {
           "group": "APM",
           "pages": [    
-            "workflow/apm/apm-dashboard",
+            "workflow/apm/apm-overview",
             "workflow/apm/continuous-profiling",
-            "workflow/apm/error-traces",            
-            "workflow/apm/service-monitoring",
-            "workflow/apm/traces"                        
+            "workflow/apm/database",            
+            "workflow/apm/services",
+            "workflow/apm/span-list"                        
           ]
         }, "workflow/using-rum",
         {
