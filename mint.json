@@ -213,7 +213,7 @@
           "pages": [
             "workflow/log-monitoring/overview",
             "workflow/log-monitoring/search-filter",
-            "workflow/log-monitoring/list",
+            "workflow/log-monitoring/log-explorer",
             "workflow/log-monitoring/custom-metrics",
             "workflow/log-monitoring/transactions"
         
