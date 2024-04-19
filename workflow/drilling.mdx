@@ -2,27 +2,27 @@
 title: Drilling Into Your Data
 ---
 
-The Drill Down feature is an available tool across all of Middleware that enhances your ability to investigate, analyze, and resolve issues without needing to switch contexts. Instead of sifting through large volumes of data indiscriminately, you can focusn your efforts on relevant subsets of data, saving time and effort.
+The Drill Down feature enhances your ability to investigate, analyze, and resolve issues without needing to switch contexts. Instead of sifting through large volumes of data indiscriminately, focus your efforts on drilling into relevant and focused subsets of data in order to save your team time and effort.
 
-This feature works by ----- explain how you click on stuff to open side pages ... etc. ------
+This feature is available across all of Middleware and works by passing the context of your data from everything to everything. Clicking on any of Middleware's interactive tables will produce popouts that divulge the interconnectedness of your system infrastructure in a single window.
 
 # Error Traces
 
-Error traces are records of the sequence of function calls and their associated parameters and variables that occur when an error or exception occurs in your software application. They are useful for correlating other types of data collected by your observability product, such as performance metrics, log messages, or system events. 
+Error traces are records of the sequence of function calls and their associated parameters and variables that occur when an error or exception occurs in your software application. They are useful for correlating other types of data collected by your observability product, such as performance metrics, log messages or system events. 
 
 # Events
 
-Events are specific occurances that transpire at a particular moment in time like an uncaught exception, user logout, or button click. 
+Events are specific occurrences that transpire at a particular moment in time like an uncaught exception, user logout, or button click. 
 
 # Spans
 
-Spans are structured log messages that represent a single operation in a trace.
+Spans are structured log messages that represent a single operation in a trace. Multiple connected spans form a trace, with a single root span that describes the entire operation. Spans are useful for identifying system performance bottlenecks and dependencies across your infrastructure in a concise, structured, and human-readable format.
 
 # Traces
 
 Traces are the entire path of a transaction or request as they flow through various components of your distributed system. Traces are particularly useful for identifying the root cause of a seemingly isolated issue in a broader context, such as latency cascading and dependency failures. 
 
-Distributed Traces are comprised of entire operations and how they combine to form transactions, requests that utilize the resources on a system. Distrubuted Traces are composed of spans, with a start and ewnd time and location where they occur.
+Distributed Traces look at entire operations and how they form transactions. Distributed Traces are composed of spans, with a start and end time and location where they occur.
 
 ### Trace Attributes
 
