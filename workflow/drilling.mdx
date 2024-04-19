@@ -8,10 +8,37 @@ This feature works by ----- explain how you click on stuff to open side pages ..
 
 # Error Traces
 
+Error traces are records of the sequence of function calls and their associated parameters and variables that occur when an error or exception occurs in your software application. They are useful for correlating other types of data collected by your observability product, such as performance metrics, log messages, or system events. 
+
 # Events
 
-# Session Replay
+Events are specific occurances that transpire at a particular moment in time like an uncaught exception, user logout, or button click. 
 
-# Trace Attributes
+# Spans
+
+Spans are structured log messages that represent a single operation in a trace.
 
 # Traces
+
+Traces are the entire path of a transaction or request as they flow through various components of your distributed system. Traces are particularly useful for identifying the root cause of a seemingly isolated issue in a broader context, such as latency cascading and dependency failures. 
+
+Distributed Traces are comprised of entire operations and how they combine to form transactions, requests that utilize the resources on a system. Distrubuted Traces are composed of spans, with a start and ewnd time and location where they occur.
+
+### Trace Attributes
+
+Trace attributes refer to metadata or contextual information associated with a trace. 
+
+### Error Traces
+
+Error Traces are records of the execution path of a transaction or request that resulted in an error or exception within the system.
+
+# Next Steps
+
+- [Log Monitoring - Overview]()
+- [Infrastructure Monitoring]()
+- [APM]()
+- [RUM]()
+- [Log Monitoring]()
+- [Continuous Profiling]()
+
+<Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
