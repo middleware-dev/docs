@@ -7,6 +7,23 @@ sidebarTitle: Continuous Profiling
 
 # Flame Graph 
 
-# Table
+Flame Graphs displays the total amount of memory (in RAM) that each operation accrues in your distributed system. Each operation is an individual node and presented in a hierarchical format. The longer the node, the more memory that operation has consumed. This view is useful for identifying common resource requests, quickly assessing performance hotspots, and filtering through specific services.
+
+
+
+# Continuous Profiling Table
+
+The Continuous Profiling Table organizes the same data presented in the Flame Graph in a column-oriented representation. Each row in the table corresponds to an individual operation, with the __Self__ column representing the amount of memory (in RAM) used when that operation fires once, and the __Total__ column representing all of the memory used by that parent operation. This is useful for comparing the difference between the volume of memory being used for a single service compared to the total memory usage of the parent span.
 
 # Sandwich Graph
+
+The Sandwich Graph allows you to break down your Flame Graph by parent and child functions. Parent functions are named __Callers__, which are the original functions in question. Child functions are named __Callees__, the functions that the original function in question has called. This is useful for mitigating redundancies across different function calls and reducing the total amount of memory used across your entire system.
+
+# Next Steps
+
+- [APM Dashboard - Overview]()
+- [APM Dashboard - Databases]()
+- [APM Dashboard - Services]() 
+- [APM Dashboard - Span List]()
+
+<Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
