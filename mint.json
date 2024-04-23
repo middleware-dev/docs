@@ -71,6 +71,7 @@
         "getting-started",
         "workflow/workflow-welcome", 
         "admin/admin-welcome",
+        "workflow/search-filter",
         "workflow/infrastructure-monitoring/container-monitoring",
         {
           "group": "Infrastructure",
