@@ -5,17 +5,13 @@ sidebarTitle: Overview
 
 The Application Performance Monitoring (APM) Dahshboard is a unified dashboard that provides real-time insights into the performance of your applications. Whether instrumenting your APMs with the Infrastructure (Infra) Agent or Serverless, all of your APM data is displayed within this section of the Middleware.
 
-The APM 
-
-The 
-
 # Infra Agent vs Serverless
 
 There are two different ways to instrument your APMs, through the [Infrastructure Agent]() or a Serverless. The Infra Agent uses OpenTelemetry to collect metrics and traces from your application and send them to Middleware. Instrumenting the APM Agent with the Serverless Agent provides the same features as the Infra Agent apart from the Continuous Profiling feature and slight effeciency degradation. The Infra Agent collects continuous profiling data through Pyroscope, which is not made available when Serverless.
 
 # How APM Data is Collected
 
-
+The APM uses the OpenTelemetry Collector to gather telemtry data from your application and then send it to Middleware with OpenTelemetry exporters. Telemetry data is collected from the Infrastructure Agents that are instrumenting your APMs in order to easily offload data to a dedicated exporter.
 
 # APM Data Format
 
