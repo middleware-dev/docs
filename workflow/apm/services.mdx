@@ -3,27 +3,39 @@ title: APM Dashboard - Services
 sidebarTitle: Services
 ---
 
-The APM Services Dashboard displays all of your APM services in a unified dashboard. -------three reasons for drilling into services------
+The APM Services Dashboard displays all of your APM services in a unified dashboard. A service groups together interconnected endpoints, queries, or jobs within your application. This is useful for contextualizing broader issues within your software infrastructure. 
 
-The dashboard landing page displays common metrics related to your APM services like requests, latency and errors. The Resources, Traces, and Logs tabs are useful for drilling into service-specific data. 
+The dashboard landing page displays common metrics related to your APM services like requests, latency and errors. Use the Resources, Traces, and Logs tabs to drill into your service-specific data. This dashboard is available across other APM dashboards and the log page for the purpose of understanding how data is related to other aspects of your application. 
 
 # Resources
 
-The Resources Table displays all of your APM services in a unified table format. This table is useful for drilling down into the traces related to the resource you are investigating in order to find the root cause issues related to ----------.
+Resources are all of the elements utilized by your services such as CPU, memory, and network bandwidth. 
+
+The Resources Table displays all of your APM services in a unified table format. This table is useful for drilling down into the traces related to the resource you are investigating in order to find the root cause issues related to the service you are drilling into.
+
+The Resources Table can be accessed with the following filters
+
+| __Filter__                          | __Description__ |
+| :---------                          | :-------------- |
+| __All Operations__                  | All collected services related to your APM |
+| __Most Time Consuming__             | Sorts all services by most |
+| __Slowest Average Response Time__   | |
+| --Highest Error related__           | |
+| __Throughput (calls per minute)__   | |
+| __Apdex by Most Dissatisfying__     | |
 
 # Traces
 
-The Traces Table displays all of your APM services
+Traces traverse through multiple services within a distribbuted system to display interconnected spans that represent an operation or function performed by a service.
 
 # Logs
 
-The Logs Table displays all logs associated with your APM
-
+Logs are discrete, chronological records, events, and actions that occur within your services. 
 
 
 # Service Map
 
-The Service Map shows you the interconnected relationships between all of your instrumented APMs service and broader infrastructure dependencies. This view can be useful for getting a conceptual grasp of your system-wide architecture and the flow of data across microservices.
+The Service Map displays the relationships between all of your instrumented APM services and broader infrastructure dependencies. This view can be useful for getting a conceptual grasp of your system-wide architecture and the flow of data across microservices.
 
 # Next Steps
 
