@@ -3,13 +3,13 @@ title: Transforming Logs into Transactions
 sidebarTitle: Transactions
 ---
 
-Transactions traverse across your system and aggregate your log data with other data that exists outside of the log you are already filtering. This feature is useful when you need to identify broader patterns within your infrastructure that are related to the log you are actively filtering. Examples of transactions range from actions within a mobile app, to function calls and CPU instructions.
+Transactions traverse across your system and aggregate your log data with other data that exists outside of the log you are already filtering. This feature is useful when you need to identify broader patterns within your infrastructure that are related to the log you are actively filtering. 
 
-Transactions are most commonly represented as traces that propagate from one part of your system to another in the form of a request. Transactions are merely conjoined traces.
+Transactions work by compiling indexing logs based on occurrences of a series of actions, like a user's session or a request handled across your microservice architecture. Examples of transactions range from actions within a mobile app, to function calls and CPU instructions.
 
 # Transaction Measures
 
-Measures are additional ways for you to filter your data:
+Measures are additional ways for you to filter your transactions:
 
 | __Measure__          | __Description__ |
 | :----------          | :-------------- |
@@ -24,28 +24,23 @@ Measures are additional ways for you to filter your data:
 
 # Create a Transaction
 
-Navigate to the logs page and select the Transactions tab. 
+Navigate to the logs page, select the Transactions tab, choose your desired aggregation metric, and add one or multiple measures to filter your data even further. 
 
-### Select Your Aggregation Metrics
+---gif here ------
 
-![](https://lh7-us.googleusercontent.com/2YN6xIT_dpSgfu69RGXUC9gmlycPj1OD_9U4rRXJYVjIDoCkSWJP2jeXEbwL99L_-TJJbbQIviwIOtXhzU2_orAvt3e4fh124hZJCm6ML8aNEWbFcPFAgaloQMFH8ZhbhUwY3ecqsWtgF66CjxaOhvg)
-
-### Add a Measure
-
-Choose from one of the four Transaction Measures,
-
-![](https://lh7-us.googleusercontent.com/3dymJ4eC0QKoaOmQ2HwRsbbO6iWGS8XFJabg4aZHJrkhqa8aEOpTh2JeJ9fj4y9nn8OjftGEtIlt0Coiod75z6xFe7PUrpHfeUxPzVpqijMlsYi9Uzo09o9SmexkkhN1_r9ZgMqe5idn1H6ngUnpqOo)
 
 # Transaction Examples
 
 <Tabs>
   <Tab title="Container Name">
-    `container_name` is aggregated across all logs and then a secondary aggregation is performed specifically on containers with names that contain the subpattern or string `kafka`
+    Aggregates the `container_name` across all logs and then a secondary aggregation is performed specifically on containers with names that contain the subpattern or string `kafka`
 
     ![](https://lh7-us.googleusercontent.com/essEz-NZFkrfZ5gtVAADmIS54FPOAjluzdK-lg8El2MbntJ3pdQj90W6MqHg2YXmUE8xjPbjC-dBs4XqUDehmYyATnoCFGjKzaEtEEF8j3H1V98XbrpHbdT3GsIjMKd3oFQTWHKKTh6Lt2ut5JVwcBs)
   </Tab>
   <Tab title="Error Messages">
-    `error.message` is aggregated across all 
+    Isolates the most frequent `error.message` across all projects using the `project.name` metric.
+
+    ![](https://lh7-us.googleusercontent.com/w6IPLQkpCr7eNVOw0WWtrCW2KBdoBVpsF_1s1Fx2yE4Aw_A6iz4LfK5wH_DtD4-_DyJjHr6lXPvS8nhwO4h5QcipUiAhJl-xiXxCaQq_paay-8iVwj9cAMDGnMjTPPe1qgbv0WrjPyk6SvOJd4P0RVk)
   </Tab>
   <Tab title="Example #3">
     
