@@ -3,21 +3,34 @@ title: APM Dashboard - Databases
 sidebarTitle: Databases
 ---
 
-The APM Database Dashboard displays all of your database data that flows through your instrumented APMs. This page is useful for monitoring high level database interactions and how they can directly impact the performance of other key applications within your software architecture. 
+The APM Database Dashboard displays all of your database data that flows through your instrumented APMs. This page is useful for monitoring high-level database interactions and how they can directly impact the performance of other key applications within your software architecture. 
 
-Each database operation is comprised of tags and queries. Tags and queries are useful for drilling into specific database operations across your microservice architecture as described [here](). Easily track the total number of database requests over a specific period of time, average query time for individual queries, and the total number of queries (throughput) your system can handle per second.
+Each database operation is comprised of tags and queries. Tags and queries are useful for drilling into specific database operations across your microservice architecture as described [here](). Easily track the total number of database requests over a specific period, the average query time for individual queries, and the total number of queries (throughput) your system can handle per second.
 
 # APM vs Integration
 
-The APM Database dashboard displays database data that is autocollected by the APM. This dashboard will not display comprehensive information about your dashboard like a [Database Integration]() would. 
+The APM Database dashboard displays database data that is auto collected by the APM. This dashboard will not display comprehensive information about your dashboard like a [Database Integration]() would. 
 
 # Tags
 
-Tags are the specific properties contained within your database spans. Use the tag feature to search for specific queries, database types, and regex patterns. 
+Tags are the specific properties contained within your database spans. Use the tag feature to search for specific queries, database types, and regex patterns. Adding tags to your data allows you to selectively monitor the performance of your database queries and create another dimension for refining your data.
+
+<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcHp4NzZwcmZ4eGhwd3FhdW5veG8ycXVzb2l0em5pYmxqenVxOWJ5eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/r6A613wQM9O94DV8UU/giphy.gif" width="900" height="900" />
 
 # Query Operation
 
-Query Operations display all of your database queries grouped by request. This is useful for drilling down into specific trace attributeds, events, and related services that the query under investigation has affected. 
+Query Operations display all of your database queries grouped by request. This is useful for drilling down into specific trace attributes, events, and related services that the query under investigation has affected. 
+
+<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcmdnMDUybjQwcmJzMHg4eWxoZ2pkdXR2anY2a3Fpb3ZrdnowaHBnZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/pPoIcQKkTTxIwEAsui/giphy.gif" width="900" height="900" />
+
+The Query Operations table has the following filters:
+
+| __Filter__                | __Description__ |
+| :---------                | :--------------- |
+| __All Operations__        | All collected database queries related to your APM |
+| __Most Time Consuming__   | |
+| __Slow Query__            | |
+| __Throughput__            | |
 
 # Next Steps
 

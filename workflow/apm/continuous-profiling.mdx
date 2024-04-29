@@ -11,7 +11,7 @@ Continuous profiling takes things a step further by enabling real-time monitorin
 
 # Flame Graph 
 
-Flame Graphs displays the total amount of memory (in RAM) that each operation accrues in your distributed system. Each operation is an individual node and presented in a hierarchical format. The longer the node, the more memory that operation has consumed. This view is useful for identifying common resource requests, quickly assessing performance hotspots, and filtering through specific services.
+Flame Graphs displays the total amount of memory (in RAM) that each operation accrues in your distributed system. Each operation is an individual node and is presented in a hierarchical format. The longer the node, the more memory that operation has consumed. This view is useful for identifying common resource requests, quickly assessing performance hotspots, and filtering through specific services.
 
 # Continuous Profiling Table
 
@@ -197,11 +197,6 @@ Within the table, sort the functions/methods by the amount of time they consume 
 In this example, it’s clear that the `calc3` function is causing a notable bottleneck in our application. 
 
 By clicking on the function name `calc3` in the table, the function will also be highlighted in the flame graph. This will show the call stack with caller functions at the top and callee functions going toward the bottom.
-
-
-
-
-
 
 # Next Steps
 
