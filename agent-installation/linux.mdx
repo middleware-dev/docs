@@ -69,7 +69,13 @@ MW_HOST_TAGS=key1:value1,key2:value2,... MW_API_KEY=...
 
 ### Step 4: Verify Installation
 
-Run the following command to verify the Infra Agent status:
+Run the following command to verify the status of the Infra Agent:
+
+```bash Shell
+sudo systemctl status mw-agent
+```
+
+<Warning> If your Infra Agent is older than `v1.6.4`, use the below command to check the installation status. </Warning>
 
 ```bash Shell
 sudo systemctl status mwservice
