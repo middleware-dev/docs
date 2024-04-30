@@ -96,6 +96,18 @@ MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
             
 Distributed tracing is automatically enabled upon completion of Step 2.
 
+#### Span Attributes
+
+For any automatically instrumented endpoints, add the following code snippet:
+
+```javascript Node.js
+router.post("/email/send", async (req, res) => {
+  const email  = req.body.email;
+  tracker.setAttribute("email", email);
+  res.json({ status: "email sent" });
+});
+```
+
 #### Custom Logs
 
 To ingest custom logs into Middleware, utilize the following functions inside your logging method based on desired log severity levels.
