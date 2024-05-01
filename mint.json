@@ -255,11 +255,12 @@
         {
           "group": "FAQ",
           "pages": [
+            "admin/faq/cloud-hosting",
+            "admin/faq/data",
             "admin/faq/free-forever",
-            "admin/faq/usage-based-charges",
             "admin/faq/logs",
             "admin/faq/pricing",
-            "admin/faq/data",
+            "admin/faq/usage-based-charges",            
             "admin/faq/other"
           ]
         },
