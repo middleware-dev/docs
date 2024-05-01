@@ -7,37 +7,35 @@ title: April 17, 2024
 - [Oracle Database Integration]() with default dashboard
 - [Apache Networking Integration]() with default dashboard
 - Automated log collection with the Vercel APM for __Build__, __Lambda__, __Static__, __Edge__, and __External__ immediately upon installation
-- Ability to parse attributes from JSON log messages
-- Can use email addresses as query parameters within RUM to easily share user-specific sessions with your teammates
+- Ability to parse attributes from non-standard JSON log messages
+- Improved sharing of RUM links with filters as query parameters within RUM to easily share user-specific sessions with your teammates
 - Users can set alerts based on their usage and budget on daily or monthly intervals
 - Advanced settings added to alerts. Users can configure alerts that will trigger when a certain specified threshold X is surpassed by Y number of occurrences over a given time interval Z
-- Global sidebar filter in the APM Page allows users to search across all of their instrumented application data
+- Updated filter sidebar in the APM Page allows users to search across all of their instrumented application data
 - Dashboards can be dynamically generated based on a single metric that is being collected by Middleware
-- Filter the Span List within the APM Dashboard by parent `SpanID` to quickly identify what your'e looking for
+- Filter the Span List to see a deeper view of all spans related within the APM Dashboard by parent `SpanID` to quickly identify what you are looking for
 - Added __Critical__ severity level message that can be auto-detected across all logs
+- Database Monitoring query filter can now sort queries by __Most Time Consuming__, __Slowest Query Time__, and __Throughput__
 
 # Changes
 
-- The Free Tier will be reset every month for all customers across all products (including paying users); this feature is live for new and existing users
-- Removed unnecessary graphs from the RUM Dashboard
-- Updated deletion confirmation message in the projects section to ensure users understand exactly what data they are removing from the Middleware platform
+- Redesigned RUM dashboard for simplicity
+- Added a prompt when deleting projects to prevent accidental data loss
 - Dashboard Builder has a fully revamped dashboard and widget creation workflow that increases the speed by which you create new dashboards and widgets
-- More efficient flame graph processing in the APM dashboard to decrease loading time
-- Updated Kubernetes agent to reduce unnecessary logs, now less than the average DataDog agent
-- When users change their page from History mode to Live mode, the default time range displays data from five minutes in the past
-- Global Sidebar displays the filter value count for each selected item to better remember what it is your'e filtering
+- More efficient flame graph processing in the APM dashboard
+- When users change their page from History mode to Live mode, Live mode now only displays the last 5 minutes instead of the last hour
+- Global filter sidebar will display value counts for each selected item to better remember what it is you are filtering
 - Added screen pagination on the Synthetic Monitoring page
-- Changed the Database Dashboard within the APM Page to have database requests, query times, and query operations as the new graphs on the landing page
+- Added new graphs to the APM -> Database pages: database requests, query times, and query operations
 
 # Fixes
 
-- Fixed Slack Alert notification for failed synthetic monitors
+- Fixed an instance where Slack alerts were sending incorrectly for synthetic monitors
 - Fixed the __Filter__ and __Average By__ validation issues in Alerts
-- Fixed Database Monitoring query filter. Can now sort queries by __Most Time Consuming__, __Slowest Query Time__, and __Throughput__
 - Reduced average loading time in the RUM Dashboard Application Listing
 - Fixed synthetic monitoring usage calculation when custom time ranges are set
 - Fixed automated filter reset when scrolling through certain parts of the Dashboard builder 
 - Fixed Host Details section within the APM Dashboard to display accurate host __Description__
-- Fixed the `hasError` attribute tag across the entire application when users go through `total errors` from the dashboard to any other modules
+- Fixed issue where the `hasError` attribute tag could crash the page
 - Fixed issue related to the flame graph not displaying certain metrics
 - Removed auto-capitalization across all Filters
