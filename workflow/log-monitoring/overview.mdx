@@ -3,25 +3,23 @@ title: Log Monitoring Overview
 sidebarTitle: Overview
 ---
 
-The Log Monitoring page helps you visualize logs across multiple sources such as your server, container, cloud environment, and application. This page functions as a centralized interface for drilling into your logs. Collect, process, explore, and monitor your logs with Middleware in real time.
-
-This page provides an easy way to correlate events across different components and track the flow of requests through your systems architecture. 
+The Log Monitoring page helps you visualize logs across multiple sources such as your server, container, cloud environment, and application. This page functions as a centralized interface for drilling into your logs and provides an easy way to correlate events across different components in your architecture.
 
 ![](https://lh7-us.googleusercontent.com/MTfp-__IJ_ZHa7TjkDSLpqRumI9z7VEr2TT34N3sK8pn7P9nYtI5BoSeSFzbjgJ_i1Yp3qZaGaNt_TEjgUVMOXRdR1U7qAh6w8UH6m0zD-EO7IY9NI9pXzYJ-26j0c4m5nDLb18soBN00MXivDXzrH4)
 
 # How Log Collection Works
 
-Logs are collected through the Infrastructure Agent and sent to Middleware's backend log capture service. The Infra Agent takes your infrastructure log data, stores it in a file within your server, and transmits that data to the log capture service in OpenTelemetry log format for batching and storing within a ClickHouse database. 
+Logs are collected through the [Infrastructure Agent]() and sent to Middleware's backend log capture service. The Infra Agent reads logs from the local file system and transfers them to our internal services which process and index them to be analyzed later.
 
-# Infra Agent vs Serverless
+# Log Data Format
+
+Logs are received by Middleware in OpenTelemetry format. OpenTelemetry logs can be represented in multiple configurations, allowing you to unambiguously map to other log formats (like Fluentd).
+
+# Alternate Log Collection Methods
 
 You are still capable of sending your log data without the Infra Agent, however, you run the risk of losing logs due to outages or transient network errors and slower buffering times during the batching process.
 
 <Note> Middleware supports the Fluentd open-source data collector and Fluentbit agent for transmitting data to Middleware.</Note>
-
-# Log Data Format
-
-Logs are received by Middleware log capture in OpenTelemetry format. OpenTelemetry logs can be represented in multiple configurations, allowing you to unambiguously map to other log formats (like Fluentd).
 
 # Next Steps
 
