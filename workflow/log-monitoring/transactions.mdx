@@ -3,7 +3,7 @@ title: Transforming Logs into Transactions
 sidebarTitle: Transactions
 ---
 
-Transactions traverse across your system and aggregate your log data with other data that exists outside of the log you are already filtering. This feature is useful when you need to identify broader patterns within your infrastructure that are related to the log you are actively filtering. 
+Transactions provide you the ability to run aggregations on top of your logs across all other collected attributes within Middleware. This is useful for building a transactional view of your logs, selecting specific attributes to group by, and identifying broader patterns related to the log you are actively filtering. 
 
 Transactions work by compiling logs based on occurrences in a series of actions, like a user's session or a request handled across your microservice architecture. Examples of transactions range from actions within a mobile app, to function calls and CPU instructions.
 
@@ -25,9 +25,6 @@ Measures allow you to add aggregations across your chosen grouping attribute:
 # Create a Transaction
 
 Navigate to the logs page, select the Transactions tab, choose your desired aggregation metric, and add one or multiple measures to better understand your logs.
-
----gif here ------
-
 
 # Transaction Examples
 
