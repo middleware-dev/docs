@@ -7,11 +7,15 @@ The Application Performance Monitoring (APM) dahshboard is a unified dashboard t
 
 # Infra Agent vs Serverless
 
-There are two different ways to instrument your APMs, through the [Infrastructure Agent]() or a Serverless. The Infra Agent uses OpenTelemetry to collect metrics and traces from your application and send them to Middleware. Instrumenting the APM Agent with the Serverless Agent provides the same features as the Infra Agent apart from the Continuous Profiling feature and slight efficiency degradation. The Infra Agent collects continuous profiling data through Pyroscope, which is not made available when Serverless.
+There are two different ways to instrument your APMs, through the [Infrastructure Agent]() or sending data directly to Middleware as a Serverless application.
+
+The Middleware Agent is an expansion of the OpenTelemetry collector, which comes with optimized compression and batching logic as well as continuous profiling support. Instrumenting the APM in a Serverless fashion results in the same user experience inside of Middleware, apart from Continuous Profiling. 
 
 # How APM Data is Collected
 
-The APM uses the OpenTelemetry Collector to gather telemetry data from your application and then send it to Middleware with OpenTelemetry exporters. Telemetry data is collected from the Infrastructure Agents that are instrumenting your APMs to easily offload data to a dedicated exporter.
+We've built a suite of supported APM packages that automatically track and export data from your services to the Infra Agent (or directly to Middleware if running as Serverless), which in turn, compresses and batches that data to Middleware.
+
+Because our packages leverage OpenTelemetry, you are also able to customize the data sent through our APMs via any OpenTelemetry-supported methods.
 
 # Next Steps
 

@@ -1,17 +1,17 @@
 ---
-title: APM Dashboard - Services
+title: Services
 sidebarTitle: Services
 ---
 
-The APM Services Dashboard displays all of your APM services in a unified dashboard. A service groups together interconnected endpoints, queries, or jobs within your application. This is useful for contextualizing broader issues within your software infrastructure. 
+The Services page displays all of your APM data in a unified view. A service groups together interconnected endpoints, queries, or jobs within your application. This is useful for contextualizing broader issues within your software infrastructure. 
 
-The dashboard landing page displays common metrics related to your APM services like requests, latency, and errors. Use the Resources, Traces, and Logs tabs to drill into your service-specific data. This dashboard is available across other APM dashboards and the log page to easily understand how data is related to other aspects of your application. 
+This landing page displays common metrics like requests, latency, and errors. Use the __Resources__, __Traces__, and __Logs__ tabs to drill into your data. This page is available across other APM and log pages to easily understand how data is related to other aspects of your application. Clicking on any of the charts or tables within this page will navigate you to a deeper view of that selected service, including resources, traces, and metrics.
 
 # Resources
 
-Resources are all of the elements utilized by your services such as CPU, memory, and network bandwidth. 
+Resources are all of the endpoints being requested for a given service, such as CPU, memory, and network bandwidth. 
 
-The Resources Table displays all of your APM services in a unified table format. This table is useful for drilling down into the traces related to the resource you are investigating to find the root cause of issues related to the service you are drilling into.
+The Resources Table displays all of your APM services in a unified table format. Thisd table is useful for drilling down into the endpoints you are investigating to find the root cause of issues related to the services you are investigating.
 
 The Resources Table has the following filters:
 
@@ -26,12 +26,11 @@ The Resources Table has the following filters:
 
 # Traces
 
-Traces traverse through multiple services within a distributed system to display interconnected spans that represent an operation or function performed by a service.
+Traces are the parent spans of entire requests. They are useful for providing a high level view of where most users entry points to your service begin. Drill into the traces to discover what other spans are requested in it's lifecycle.
 
 # Logs
 
-Logs are discrete, chronological records, events, and actions that occur within your services. 
-
+All logs collected by the specific service within the selected timeframe will be displayed here. It is a simplified view of the [Log Explorer]().
 
 # Service Map
 

@@ -1,5 +1,5 @@
 ---
-title: APM Dashboard - Databases
+title: Databases
 sidebarTitle: Databases
 ---
 
@@ -7,9 +7,11 @@ The APM Database Dashboard displays all of your database data that flows through
 
 Each database operation is comprised of tags and queries. Tags and queries are useful for drilling into specific database operations across your microservice architecture as described [here](). Easily track the total number of database requests over a specific period, the average query time for individual queries, and the total number of queries (throughput) your system can handle per second.
 
-# APM vs Integration
+# What Data Appears Here?
 
-The APM Database dashboard displays database data that is auto collected by the APM. This dashboard will not display comprehensive information about your dashboard like a [Database Integration]() would. 
+The Database dashboard displays all queries that are part of transactions collected by your instrumented services. This includes information such as the query text, what database the query was running on, start and end time and duration.
+
+If you'd like to get metadata about your database and other related information, see our [Database Integrations]() section.
 
 # Tags
 
