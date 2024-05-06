@@ -61,13 +61,10 @@ Add the following code to your `next.config.js` file:
 
 ```javascript Next.js
 const nextConfig = {
-    // ...
-    // Your existing config
-     experimental: {
-         instrumentationHook: true
-     }
-    // ...
-    // Your existing config
+    experimental: {
+        instrumentationHook: true,
+        serverComponentsExternalPackages: ['@middleware.io/agent-apm-nextjs']
+    }
 }
 module.exports = nextConfig
 ```
