@@ -3,15 +3,15 @@ title: Services
 sidebarTitle: Services
 ---
 
-The Services page displays all of your APM data in a unified view. A service groups together interconnected endpoints, queries, or jobs within your application. This is useful for contextualizing broader issues within your software infrastructure. 
+The Services page displays all of your instrumented services within Middleware. It is a collection of grouped endpoints, queries, or jobs within your application. This is useful for contextualizing broader issues within your instrumented applications. 
 
-This landing page displays common metrics like requests, latency, and errors. Use the __Resources__, __Traces__, and __Logs__ tabs to drill into your data. This page is available across other APM and log pages to easily understand how data is related to other aspects of your application. Clicking on any of the charts or tables within this page will navigate you to a deeper view of that selected service, including resources, traces, and metrics.
+This landing page displays common metrics like requests, latency, and errors. The __Resources__, __Traces__, and __Logs__ tabs provide specific contextual views of your service. Clicking on any of the charts or tables within this page will navigate you to a deeper view of that selected service, including resources, traces, and metrics.
 
 # Resources
 
-Resources are all of the endpoints being requested for a given service, such as CPU, memory, and network bandwidth. 
+Resources are all of the collective endpoints (or parent spans) being requested for a given service. The Resources section provides you with an aggregate view of how each of those given endpoints is performing, such as p50-p99 latency and other performance-related statistics.
 
-The Resources Table displays all of your APM services in a unified table format. Thisd table is useful for drilling down into the endpoints you are investigating to find the root cause of issues related to the services you are investigating.
+The Resources Table drills into a single APM service in a unified table format. Drilling into a Resource provides you associated trace data, allowing you to find the root cause of issues related to the services you are investigating. 
 
 The Resources Table has the following filters:
 
