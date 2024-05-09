@@ -2,41 +2,31 @@
 title: May 8, 2024
 ---
 
-
 # Features
 
-- [Oracle Database Integration]() with default dashboard
-- [Apache Networking Integration]() with default dashboard
-- Automated log collection with the Vercel APM for __Build__, __Lambda__, __Static__, __Edge__, and __External__ immediately upon installation
-- Ability to parse attributes from non-standard JSON log messages
-- Improved sharing of RUM links with filters as query parameters within RUM
-- Users can set alerts based on their usage and budget on daily or monthly intervals
-- Users can configure alerts that will trigger when a certain specified threshold X is surpassed by Y number of occurrences over a given time interval Z
-- Updated filter sidebar in the APM Page allows users to search across all of their instrumented application data
-- Dashboards can be dynamically generated based on a single metric that is being collected by Middleware
-- Filter the Span List to see a deeper view of all spans related within the APM Dashboard by parent `SpanID`
-- Added __Critical__ severity level message that can be auto-detected across all logs
-- Database Monitoring query filter can now sort queries by __Most Time Consuming__, __Slowest Query Time__, and __Throughput__
+- __Settings__ -> [Log Ingestion Controls for Kubernetes](https://docs.middleware.io/admin/settings/advanced) to limit Kubernetes log collection
+![](https://lh7-us.googleusercontent.com/xhYdbF6wdb-YM_DmNn2A-MnRPXS5bIlSuSLdO2uvFkTVy-6UDHOD3-bwvZDzLH_QmqrbUcnM5M5Xpo_rfk0RbHuLGJsIvISdBR2qD8aca-qg43SW9ooI_xTGjSXSmjgdP1NtnM6uJ_B2_Y1iFmH386Y)
+- Added option for users to get notified when alert status changes from `any status` to `ok`
+- Added "max log size" ingestion control for logs
+- Made more log metrics in the Apache Integration available for collection
+- Added the following RPM Package Managers to the Linux Installation:
+    - __Rocky Limnux__
+    - __AlmaLinux__
+    - __SUSE linux__
+    - __Oracle Linux__
 
 # Changes
 
-- Redesigned RUM dashboard for simplicity
-- Added a prompt when deleting projects to prevent accidental data loss
-- Dashboard Builder has a fully revamped dashboard and widget creation workflow that increases the speed by which you create new dashboards and widgets
-- More efficient flame graph processing in the APM dashboard
-- Live mode now only displays the last 5 minutes instead of the last hour
-- Global filter sidebar will display value counts for each selected item to better remember what it is you are filtering
-- Added screen pagination on the Synthetic Monitoring page
-- Added new graphs to the APM -> Database pages: database requests, query times, and query operations
+- Added `diff()` function at the alert configuration level to only display applicable data types
+- Added search feature that allows users to search logs by clicking on individual attribute value
+- Users can now expand attribute values in JSON format
 
 # Fixes
 
-- Fixed an instance where Slack alerts were sending incorrectly for synthetic monitors
-- Fixed the __Filter__ and __Average By__ validation issues in Alerts
-- Reduced average loading time in the RUM Dashboard Application Listing
-- Fixed synthetic monitoring usage calculation when custom time ranges are set
-- Fixed automated filter reset when scrolling through certain parts of the Dashboard builder 
-- Fixed Host Details section within the APM Dashboard to display accurate host __Description__
-- Fixed issue where the `hasError` attribute tag could crash the page
-- Fixed issue related to the flame graph not displaying certain metrics
-- Removed auto-capitalization across all Filters
+- Fixed filter attributes load buffering issue
+- Fixed alert pagination issue
+- Fixed alert issue to ensure users are notified in real-time when the alert status changes to `resolved`
+- Fixed Custom Metrics logging issue
+- 
+
+
