@@ -33,7 +33,7 @@ Import necessary packages into your Deno project from the Deno standard library 
 
 ```typescript TypeScript
 import { serve } from "https://deno.land/std@0.120.0/http/server.ts";
-import { track, httpTracer, info, warn, error, debug } from "https://deno.land/x/middlewareio@v1.0.7/mod.ts";
+import { track, httpTracer, info, warn, error, debug } from "https://deno.land/x/middlewareio@1.1.0/mod.ts";
 ```
 
 ### Step 2: Configure Tracing
@@ -80,7 +80,68 @@ error("error");
 debug("debug");
 ```
 
+# Hono Framework 
 
+To use Middleware with the Hono framework, follow the example below:
+
+```typescript TypeScript
+import { Hono } from "https://deno.land/x/hono@v4.2.9/mod.ts";
+import {
+  debug,
+  error,
+  httpTracer,
+  info,
+  track,
+  warn,
+} from "https://deno.land/x/middlewareio@1.1.0/mod.ts";
+
+track({
+  serviceName: "hono-service",
+  target: "https://<ACCOUNT_URL>:443",
+  accessToken: "<MIDDLEWARE_API_KEY>",
+});
+
+const app = new Hono();
+
+const rootHandler = (c) => {
+  const infoMessage = "Hello Hono!";
+  info(infoMessage);
+  return c.text(`${infoMessage}\n`);
+};
+
+const greetHandler = (c) => {
+  const name = c.req.param("name");
+  if (name.length < 2) {
+    const warnMessage = "A name cannot be a single letter";
+    warn(warnMessage);
+    return c.text(`${warnMessage}\n`);
+  }
+
+  const debugMessage = `Hello ${name}`;
+  debug(debugMessage);
+  return c.text(`${debugMessage}\n`);
+};
+
+const errorHandler = (c) => {
+  const errorMessage = "An error occurred";
+  error(errorMessage);
+  throw new Error();
+};
+
+app.get("/", rootHandler);
+app.get("/greet/:name", greetHandler);
+app.get("/error", errorHandler);
+
+const server = Deno.serve(
+  {
+    port: 8000,
+    onListen({ port, hostname }) {
+      console.log(`Server started at ${`http://${hostname}:${port}`}`);
+    },
+  },
+  httpTracer(app.fetch),
+);
+```
 
 
 
