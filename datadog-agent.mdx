@@ -1,0 +1,71 @@
+---
+title: Installing the DataDog Agent in Middleware
+---
+
+Middleware supports the ingestion of APM traces and logs from the DataDog Agent. We use their [Dual Shipping](https://docs.datadoghq.com/agent/configuration/dual-shipping/) feature to redirect your APM traces and logs into Middleware. 
+
+<Note> This feature is supported in DataDog's Linux and Kubernetes Agent </Note>
+
+# Prerequisites
+
+<Steps>
+
+  <Step title="DataDog Agent - Traces">
+  DataDog Agent `version 6.7.0` or above 
+  </Step>
+
+  <Step title="DataDog Agent - TCP Logs">
+    DataDog Agent `version 6.6` or above
+  </Step>
+
+  <Step title="DataDog Agent - HTTP Logs">
+    DataDog Agent `version 6.13` or above
+  </Step>
+
+</Steps>
+
+
+
+# Linux Agent
+
+### Step 1: Add Trace Config
+
+Add the following `additional_endpoints` within the `apm_config` section in your `datadog.yaml` file:
+
+<Warning>If you already have the apm_config section in your datadog.yaml file, please add an additional endpoint in the same section. Datadog agent does not support multiple apm_config sections. </Warning> 
+
+<Note> The Linux DataDog Agent is configured by default in the following `YAML` file: `/etc/datadog-agent/datadog.yaml` </Note>
+
+```yaml datadog.yaml
+apm_config:
+  additional_endpoints:
+  "https://datadog.middleware.io":
+  - <Your MW API Key>
+```
+
+### Step 2: Add Log Config
+
+Add the following `additional_endpoints` within the `logs_config` section in your `datadog.yaml` file:
+
+```yaml datadog.yaml
+logs_config:
+use_http: true
+ additional_endpoints:
+ - api_key: "<Your MW API Key>"
+   Host: "datadog.stage.env.middleware.io"
+   Port: 443
+   is_reliable: true
+```
+
+### Step 3: Edit YAML Config
+
+### Step 4: Restart DataDog Agent
+
+Run the following code in your terminal to restart the DataDog Agent:
+
+```shell Shell
+sudo systemctl restart datadog-agent
+```
+
+# Kubernetes Agent
+
