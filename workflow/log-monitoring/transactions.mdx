@@ -1,0 +1,57 @@
+---
+title: Transforming Logs into Transactions
+sidebarTitle: Transactions
+---
+
+Transactions provide you the ability to run aggregations on top of your logs across all other collected attributes within Middleware. This is useful for building a transactional view of your logs, selecting specific attributes to group by, and identifying broader patterns related to the log you are actively filtering. 
+
+Transactions work by compiling logs based on occurrences in a series of actions, like a user's session or a request handled across your microservice architecture. Examples of transactions range from actions within a mobile app, to function calls and CPU instructions.
+
+# Transaction Measures
+
+Measures allow you to add aggregations across your chosen grouping attribute:
+
+| __Measure__          | __Description__ |
+| :----------          | :-------------- |
+| __Count__            | Tracks the total number of times the aggregated metric has been fired |
+| __Max__              | Displays the maximum value of the aggregated metric |
+| __Most Frequent__    | Identifies the most frequent value of the aggregated metric |
+| __Where__            | Adds additional aggregation layer to query |         
+| __Contains__         | Filters log entry based on whether the specified field contains a particular string or subpattern |
+| __Does Not Contain__ | Filters log entry based on whether the specified field __does not__ contains a particular string or subpattern |
+| __Greater Than__     | Aggregates metrics that are greater than a specified threshold or reference point |
+| __Smaller Than__     | Aggregates metrics that are less than a specified threshold or reference point |
+
+# Create a Transaction
+
+Navigate to the logs page, select the Transactions tab, choose your desired aggregation metric, and add one or multiple measures to better understand your logs.
+
+# Transaction Examples
+
+<Tabs>
+  <Tab title="Container Name">
+    Aggregates the `container_name` across all logs and then a secondary aggregation is performed specifically on containers with names that contain the subpattern or string `kafka`
+
+    ![](https://lh7-us.googleusercontent.com/essEz-NZFkrfZ5gtVAADmIS54FPOAjluzdK-lg8El2MbntJ3pdQj90W6MqHg2YXmUE8xjPbjC-dBs4XqUDehmYyATnoCFGjKzaEtEEF8j3H1V98XbrpHbdT3GsIjMKd3oFQTWHKKTh6Lt2ut5JVwcBs)
+  </Tab>
+  <Tab title="Error Messages">
+    Isolates the most frequent `error.message` across all projects using the `project.name` metric.
+
+    ![](https://lh7-us.googleusercontent.com/w6IPLQkpCr7eNVOw0WWtrCW2KBdoBVpsF_1s1Fx2yE4Aw_A6iz4LfK5wH_DtD4-_DyJjHr6lXPvS8nhwO4h5QcipUiAhJl-xiXxCaQq_paay-8iVwj9cAMDGnMjTPPe1qgbv0WrjPyk6SvOJd4P0RVk)
+  </Tab>
+  <Tab title="RUM Browser Trace">
+    Aggregates all logs by their `id` when a RUM session occurrs by selecting the `browser.trace` metrics contains the value `true`.
+    ![](https://lh7-us.googleusercontent.com/gXukR0qC-2miOBS8jxXozC4n8XB4pYyPq05GvYbVFl-gFGJX3HfA-sBAGhpPSvw5LwilW7IOhNMK5-mx_vYFP9_CbJp5MMT5_zOqlC4Gi5kd2Urv6mDhQo9vX21lc5MKpbzXQVTyUdMnq-MNdUdGy0c)
+  </Tab>
+</Tabs>
+
+# Next Steps 
+
+- [Log Monitoring Overview](https://docs.middleware.io/workflow/log-monitoring/overview)
+- [Creating Log Filters](https://docs.middleware.io/workflow/log-monitoring/search-filter)
+- [Log Explorer](https://docs.middleware.io/workflow/log-monitoring/log-explorer)
+- [Custom Metrics](https://docs.middleware.io/workflow/log-monitoring/custom-metrics)
+- [Creating Alerts](https://docs.middleware.io/workflow/alerting/setup-alert)
+- [Real User Monitoring (RUM)](https://docs.middleware.io/rum/rum-overview)
+
+<Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>

@@ -213,9 +213,12 @@
         {
           "group": "Log Monitoring",
           "pages": [
-            "workflow/log-monitoring/logs",
-            "workflow/log-monitoring/log-custom-metrics",
-            "workflow/log-monitoring/log-transaction"
+            "workflow/log-monitoring/overview",
+            "workflow/log-monitoring/search-filter",
+            "workflow/log-monitoring/log-explorer",
+            "workflow/log-monitoring/custom-metrics",
+            "workflow/log-monitoring/transactions"
+        
           ]
         },
         {
