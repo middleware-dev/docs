@@ -96,6 +96,18 @@ MW_AGENT_SERVICE=mw-service.mw-agent-ns.svc.cluster.local
             
 Distributed tracing is automatically enabled upon completion of Step 2.
 
+#### Span Attributes
+
+For any automatically instrumented endpoints, add the following code snippet:
+
+```javascript Node.js
+router.post("/email/send", async (req, res) => {
+  const email  = req.body.email;
+  tracker.setAttribute("email", email);
+  res.json({ status: "email sent" });
+});
+```
+
 #### Custom Logs
 
 To ingest custom logs into Middleware, utilize the following functions inside your logging method based on desired log severity levels.
@@ -192,6 +204,60 @@ app.get('/error', function (req, res) {
     }
     res.status(500).send("wrong");
 }); 
+```
+
+# NestJS Framework [Optional]
+
+### Step 1: Install Node Typescript APM
+
+```javascript Node.js 
+npm install mw-node-apm-ts
+```
+
+### Step 2: Import Package in `main.ts`
+
+Import the following package in your `main.ts` file:
+
+```javascript Node.js
+import { track } from 'mw-node-apm-ts';
+
+async function bootstrap() {
+    track({
+      serviceName: 'NestJS Test',
+      accessToken: 'your-api-token',
+    });
+
+    const app = await NestFactory.create(AppModule, { bufferLogs: true });
+
+    await app.listen(PORT || 3000);
+}
+
+bootstrap();
+```
+
+### Step 3: Capture Application Data
+
+The following is a sample function that fetches a user's email address and throws an error if the user is not found, while also logging the error using a third-party logging function. 
+
+Use the below pattern for any other available methods that are mentioned in [Step 4](/apm-configuration/node-js#step-4-capture-application-data).
+
+```javascript Node.js
+import { error } from 'mw-node-apm-ts';
+
+async sampleCode(data: userDto): Promise<IResponse> {
+    const user = await this.userService.getUserByEmail(loginDto.email);
+
+    if (!user) {
+      error('User not found');
+
+      throw new UnprocessableEntityException({
+        status: HttpStatus.UNPROCESSABLE_ENTITY,
+        errors: {
+          email: 'User not found!',
+        },
+      });
+    }
+}
 ```
 
 # Continuous Profiling
