@@ -1,0 +1,46 @@
+---
+title: Services
+sidebarTitle: Services
+---
+
+The Services page displays all of your instrumented services within Middleware. It is a collection of grouped endpoints, queries, or jobs within your application. This is useful for contextualizing broader issues within your instrumented applications. 
+
+Drilling into any service from this list will display common metrics like requests, latency, and errors. The __Resources__, __Traces__, and __Logs__ tabs provide specific contextual views of your service. Clicking on any of the charts or tables within this page will navigate you to a deeper view of that selected service, including resources, traces, and metrics.
+
+# Resources
+
+Resources are all of the collective endpoints (or parent spans) being requested for a given service. The Resources section provides you with an aggregate view of how each of those given endpoints is performing, such as p50-p99 latency and other performance-related statistics.
+
+The Resources Table drills into a single APM service in a unified table format. Drilling into a Resource provides you associated trace data, allowing you to find the root cause of issues related to the services you are investigating. 
+
+The Resources Table has the following filters:
+
+| __Filter__                          | __Description__ |
+| :---------                          | :-------------- |
+| __All Operations__                  | All collected services related to your APM |
+| __Most Time Consuming__             | Sorts max latency descending order |
+| __Slowest Average Response Time__   | Average response time presented in ascending order |
+| __Highest Error Rate__              | Sorts error rate in descending order |
+| __Throughput__                      | Number of requests or operations processed in calls per minute |
+| __Apdex by Most Dissatisfying__     | Application Performance Index measures the responsiveness of a service in ascending order |
+
+# Traces
+
+Traces are the parent spans of entire requests. They are useful for providing a high level view of where most users entry points to your service begin. Drill into the traces to discover what other spans are requested in it's lifecycle.
+
+# Logs
+
+All logs collected by the specific service within the selected timeframe will be displayed here. It is a simplified view of the [Log Explorer]().
+
+# Service Map
+
+The Service Map displays the relationships between all of your instrumented APM services and broader infrastructure dependencies. This view can be useful for getting a conceptual grasp of your system-wide architecture and the flow of data across microservices.
+
+# Next Steps
+
+- [Intro to APM](https://docs.middleware.io/workflow/apm/apm-overview)
+- [Continuous Profiling](https://docs.middleware.io/workflow/apm/continuous-profiling)
+- [Databases](https://docs.middleware.io/workflow/apm/database)
+- [APM Span List](https://docs.middleware.io/workflow/apm/span-list)
+
+<Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>

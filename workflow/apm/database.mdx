@@ -1,0 +1,45 @@
+---
+title: Databases
+sidebarTitle: Databases
+---
+
+The Databases page displays all of your queries and runtime metrics related to requests your application makes. Each database operation is comprised of tags and queries. Tags and queries allow you to drill into specific database operations across your microservice architecture as described [here](). 
+
+Easily track your query information and total number of database database operations across your instrumented applications.
+
+# What Data Appears Here?
+
+The Database dashboard displays all queries that are part of transactions collected by your instrumented services. This includes information such as the query text, what database the query was running on, start and end time and duration.
+
+If you'd like to get metadata about your database and other related information, see our [Database Integrations]() section.
+
+# Tags
+
+Tags are key-value pairs that are added to your spans to make searching for content within your databases simpler. Use the tag feature to search for specific queries, database types, and regex patterns. Applying tags to your database searches adds another method for refining your data.
+
+<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcHp4NzZwcmZ4eGhwd3FhdW5veG8ycXVzb2l0em5pYmxqenVxOWJ5eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/r6A613wQM9O94DV8UU/giphy.gif" width="900" height="900" />
+
+# Query Operation
+
+Query Operations display all of your database queries grouped by request. This is useful for drilling down into specific trace attributes, events, and related services that the query under investigation has affected. 
+
+<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcmdnMDUybjQwcmJzMHg4eWxoZ2pkdXR2anY2a3Fpb3ZrdnowaHBnZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/pPoIcQKkTTxIwEAsui/giphy.gif" width="900" height="900" />
+
+The Query Operations table has the following filters:
+
+| __Filter__                | __Description__ |
+| :---------                | :--------------- |
+| __All Operations__        | All collected database queries related to your APM |
+| __Most Time Consuming__   | Sorts query duration by maximum latency in descending order |
+| __Slow Query__            | Sorts query by slowest response time |
+| __Throughput__            | Number of requests or operations processed in calls per minute |
+
+# Next Steps
+
+- [Intro to APM](https://docs.middleware.io/workflow/apm/apm-overview)
+- [Continuous Profiling](https://docs.middleware.io/workflow/apm/continuous-profiling)
+- [Services](https://docs.middleware.io/workflow/apm/services) 
+- [APM Span List](https://docs.middleware.io/workflow/apm/span-list)
+
+
+<Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>

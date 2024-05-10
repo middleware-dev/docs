@@ -1,46 +1,208 @@
 ---
-title: "Services"
+title: Continuous Profiling
+sidebarTitle: Continuous Profiling
 ---
-## Overview
-Middleware's Custom Profiling module will show you CPU and Memory based Profiles for your applications.
 
-## How to collect Profiling data for your application ?
-The Profiling feature is enabled by default in our language-specific APMs. Currently, we support this feature in our Golang, Python, Java, NodeJS, and NextJS/Vercel APMs.
+Profiling, in the context of software development, refers to the process of analyzing and measuring the performance characteristics of a program or system. It involves using application profiling tools to gather metrics like CPU usage, memory allocation, and execution time.
 
-## Profiling support
+Continuous profiling takes things a step further by enabling real-time monitoring and detection of performance regressions. It allows developers to proactively address any emerging issues before they impact users. 
 
-Golang APM => 
-v1.0.994 and above
+<Note> To set up Continuous Profiling, navigate to the [Getting Started - APM](https://docs.middleware.io/apm-configuration/apm_overview) section. </Note>
 
-Python APM =>
-v0.1.41 and above
+# Flame Graph 
 
-NextJS/Vercel APM =>
-v1.1.0 and above
+Flame Graphs displays the total amount of memory (in RAM) that each operation accrues in your distributed system. Each operation is an individual node and is presented in a hierarchical format. The longer the node, the more memory that operation has consumed. This view is useful for identifying common resource requests, quickly assessing performance hotspots, and filtering through specific services.
 
-## Profiling Categories
-<ul>
-    <li>Memory Allocation Profiling</li>
-    <li>Object Allocation Profiling</li>
-    <li>Memory Usage Profiling</li>
-    <li>Object Usage Profiling</li>
-    <li>CPU Usage Profiling</li>
-</ul>
+# Continuous Profiling Table
 
-## Middleware Profiling Data Views
+The Continuous Profiling Table organizes the same data presented in the Flame Graph in a column-oriented representation. Each row in the table corresponds to an individual operation, with the __Self__ column representing the amount of memory (in RAM) used when that operation fires once, and the __Total__ column representing all of the memory used by that parent operation. This is useful for comparing the difference between the volume of memory being used for a single service compared to the total memory usage of the parent span.
 
-<img src="/images/apm/profiling.png" />
+# Sandwich Graph
 
-### Table View:
-The Table View is a profiling view that presents performance data in a tabular format. It provides a structured representation of the profiling data, typically organized in columns. Each row in the table represents a specific event or resource, and the columns display relevant information such as execution time, memory usage, and function calls.
-The Table View allows for easy sorting and filtering of the data, making it convenient for identifying bottlenecks, analyzing performance metrics, and comparing different aspects of the profiling results.
+The Sandwich Graph allows you to break down your Flame Graph by parent and child functions. Parent functions are named __Callers__, which are the original functions in question. Child functions are named __Callees__, the functions that the original function in question has called. This is useful for mitigating redundancies across different function calls and reducing the total amount of memory used across your entire system.
 
-### FlameGraph View:
-The FlameGraph View is a visualization technique used to represent profiling data in a hierarchical and interactive manner. It takes the form of a flame-like graph, where each level represents a function or method in the software stack. The width of the graph segments corresponds to the amount of time or resources consumed by each function, allowing for a quick visual assessment of performance hotspots.
-The FlameGraph View enables to identify the most time-consuming parts of the codebase, pinpoint areas of optimization, and understand the overall flow of program execution.
+# Continuous Profiling Support Matrix
 
-### Sandwich View:
-The Sandwich View is a unique profiling view that provides a comprehensive perspective on both time and space utilization in a software system. It combines the visual representation of a flame graph with a stacked bar chart. The flame graph aspect represents the temporal dimension, showing the execution flow and performance distribution across functions or methods. The stacked bar chart aspect represents the spatial dimension, illustrating the memory usage or resource consumption associated with each function. 
-The Sandwich View allows to simultaneously analyze time and space efficiency, identify code sections with high memory usage, and gain insights into how resource consumption correlates with program execution. This view is particularly useful when analyzing and optimizing memory-intensive applications or systems.
+The following table shows what Continuous Profiling features are available per each APM:
+
+|     |     |     |     |    |           | |
+| :- | :- | :-: | :-: |:-: | :-: | :-: |
+|                             | __Profiling Query Type__                        |__Node.js__ | __Go__ | __Java__ | __Ruby__ | __.NET__ | __PHP__ | __Python__ | __Next.js__ | __Vercel__ | __Cloudflare__ | __Scala__ |
+| __Object Allocation__       | `memory:alloc_objects:count::`                  |       ✖️    |    ✅  |     ✖️    |    ✖️     |     ✖️    |    ✖️    |     ✖️      |    ✖️        |      ✖️     |         ✖️      |     ✖️    |
+| __Memory Allocation__       | `memory:alloc_space:bytes::`                    |       ✖️    |    ✅  |    ✖️     |    ✖️     |     ✖️    |    ✖️    |     ✖️      |    ✖️        |      ✖️     |         ✖️      |     ✖️    |
+| __Objects in Use__          | `memory:inuse_objects:count`                    |   ✅       |    ✅  |    ✖️     |    ✖️     |     ✖️    |    ✖️    |     ✖️      |    ✅       |      ✅    |         ✖️      |     ✖️    |
+| __Memory in Use__           | `memory:inuse_space:bytes`                      |   ✅       |    ✅  |    ✖️     |    ✖️     |     ✖️    |    ✖️    |     ✖️      |    ✅       |      ✅    |         ✖️      |     ✖️    |
+| __CPU Usage__               | `process_cpu:cpu:nanoseconds:cpu:nanoseconds`   |    ✖️       |✅      |✅        |✅        |     ✖️    |    ✖️    |          ✅|           ✅|          ✅|         ✖️      |✅        |
+| __Wall-clock time__         | `wall:wall:nanoseconds:cpu:nanoseconds`         |       ✖️    |   ✖️    |     ✖️    |    ✖️     |    ✅    |    ✖️    |     ✖️      |    ✖️        |      ✖️     |         ✖️      |      ✖️   | 
+| __Blocking Contentions__    | `block:contentions:count::`                     |  ✖️         |   ✖️    |    ✅    |    ✖️     |     ✖️    |    ✖️    |     ✖️      |    ✖️        |      ✖️     |         ✖️      |✅        |
+| __Blocking Delays__         | `block:delay:nanoseconds::`                     |  ✖️         |   ✖️    |✅        |    ✖️     |     ✖️    |    ✖️    |     ✖️      |    ✖️        |      ✖️     |         ✖️      |✅        |
+| __Bytes Allocated(TLAB)__   | `memory:alloc_in_new_tlab_bytes:bytes::`        |  ✖️         |   ✖️    |✅        |    ✖️     |     ✖️    |    ✖️    |     ✖️      |    ✖️        |      ✖️     |         ✖️      |✅        |
+| __Objects Allocated(TLAB)__ | `memory:alloc_in_new_tlab_objects:count::`      |  ✖️         |   ✖️    |✅        |    ✖️     |     ✖️    |    ✖️    |     ✖️      |    ✖️        |      ✖️     |         ✖️      |✅        |
+
+
+# Profiling A Flask Web Application
+
+<Note> Although this guide focuses on a Python-specific implementation, Middleware supports all major programming languages. You can find instructions for your language of choice in our [APM Documentation](https://docs.middleware.io/apm-configuration/apm_overview). </Note>
+
+### Prerequisites
+
+<Steps>
+  <Step title="MW Agent Installed">
+    The MW Host Agent must already be installed
+  </Step>
+  <Step title="VPS or Cloud Computer">
+    Access to a VPS or a cloud computer service instance like EC2, Azure VM, or Digital Ocean Droplet
+  </Step>
+</Steps>
+
+### Create Your Flask App
+
+<Accordion title="calculations.py">
+
+    `calculations.py` contains a set of functions that allows us to simulate a bottleneck, along with other functions that perform some mathematical calculations:
+
+    `calc1` - a function with a quadratic time complexity.
+
+    `calc2` - a function with a quadratic time complexity. It's a bit different from calc 1 because it does not have the extra square root added to the value. Both calc1 and calc2 simply serve to demonstrate calc3 as a bottleneck.
+
+    `calc3` - a function with a factorial time complexity.
+
+    `efficient` - a function that calls calc1 and calc2 and returns a sum of those functions.
+
+    `with_bottlneck` - a function that calls calc1 calc2 and calc3 and returns a sum of those functions. calc3 will be our bottleneck function in this example.
+
+
+    ```python Python
+        import math
+
+        def calc1(n: int) -> int:
+            value = 0
+            for i in range(0, n):
+                for j in range(0, n):
+                    value += math.sqrt(j)
+                    value += math.sqrt(i)
+            return value
+
+        def calc2(n: int) -> float:
+            value = 0
+            for i in range(0, n):
+                for j in range(0, n):
+                    value += math.sqrt(j)
+            return value
+
+        def calc3(n: int) -> float:
+            elements = list(range(1, n + 1))
+            num_permutations = math.factorial(n)
+            value = 0
+            for i in range(num_permutations):
+                value += sum(elements)
+                j = n - 2
+                while j >= 0 and elements[j] > elements[j + 1]:
+                    j -= 1
+
+                if j == -1:
+                    break
+
+                k = n - 1
+                while elements[j] > elements[k]:
+                    k -= 1
+
+                elements[j], elements[k] = elements[k], elements[j]
+
+                left = j + 1
+                right = n - 1
+                while left < right:
+                    elements[left], elements[right] = elements[right], elements[left]
+                    left += 1
+                    right -= 1
+
+            return value
+
+        def efficient(n: int) -> float:
+            value = 0
+            value += calc1(n)
+            value += calc2(n)
+            return value
+
+        def with_bottleneck(n: int) -> float:
+            value = 0
+            value += calc1(n)
+            value += calc2(n)
+            value += calc3(n)
+            return value
+
+    ```
+</Accordion>
+
+<Accordion title="app.py">
+
+    `app.py` contains our Flask application with two endpoints.
+
+    `/calculate1` - an endpoint designed to be faster than `calculate2` and calls `calculations.efficient()` 
+
+    `/calculate2` - calls the `calculations.with_bottleneck()` function and is comparatively slower than the `/calculate1` endpoint.
+
+    ```python Python
+        import calculations
+        from flask import Flask
+        import os
+
+        # Required middleware import 
+        from middleware import MwTracker
+        tracker = MwTracker()
+
+        app = Flask(__name__)
+        app.secret_key = os.environ.get("FLASK_SECRET_KEY", default="Da!8j97ZZq^6Fe3y!D@U")
+
+        @app.errorhandler(404)
+        def not_found(e):
+            return "<h1> 404 Not found </h1>"
+
+        @app.route("/calculate1/<int:number>")
+        def calculate1(number):
+            value = calculations.efficient(number)
+            return {"value": value}
+
+        @app.route("/calculate2/<int:number>")
+        def calculate2(number):
+            value = calculations.with_bottleneck(number)
+            return {"value": value}
+    ```
+</Accordion>
+
+<Accordion title="wsgi.py">
+
+    `wsgi.py` is a file Gunicorn will use to run our Flask app.
+
+    ```python Python
+        from app import app
+
+        # To bind to gunicorn
+        # gunicorn wsgi:app
+        if __name__ == "__main__":
+            app.run()
+    ```
+</Accordion>
+
+### Finding a Bottleneck
+
+After creating the application and deploying it to the platform of your choice, follow the steps from [Python APM](https://docs.middleware.io/apm-configuration/python), login to middleware.io, and head to [APM > Continuous Profiling](https://app.middleware.io/apm/continuous-profiling). 
+
+To identify individual functions/methods that consume a significant amount of CPU time, click on the Table and Flamegraph section. 
+
+Within the table, sort the functions/methods by the amount of time they consume in descending order by clicking on the “Self” header.
+
+![](https://lh7-us.googleusercontent.com/WQAtXx61AXLgXvGUOCobEZaAhckbQ0XT4bbL3W8BsgCECsUJnl7iS7Rprj6tnn3qsGlf9J2xHh9Uwy-ewwmmYbFf6mB4SetBjk7yX5LzAZocwg4GHy21UlH7EC3GGUk9hYwHYqp4kW0ztv-8kcyb2Jc)
+
+In this example, it’s clear that the `calc3` function is causing a notable bottleneck in our application. 
+
+By clicking on the function name `calc3` in the table, the function will also be highlighted in the flame graph. This will show the call stack with caller functions at the top and callee functions going toward the bottom.
+
+# Next Steps
+
+- [Intro to APM](https://docs.middleware.io/workflow/apm/apm-overview)
+- [Databases](https://docs.middleware.io/workflow/apm/database)
+- [Services](https://docs.middleware.io/workflow/apm/services) 
+- [APM Span List](https://docs.middleware.io/workflow/apm/span-list)
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
