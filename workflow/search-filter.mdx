@@ -6,36 +6,34 @@ The Search & Filter features serve as the jumping-off point in your data explora
 
 The Filter Bar and Search Fields are two of the simplest methods for sifting through your data. They are both dynamically generated based on the applications, integrations, and infrastructure you have instrumented within Middleware. These features are inclusive (i.e. union set operations) and will display data that satisfies any of the selected filters.
 
-<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaTFkdDIwa295MWlhM2liNTk1ZmM0ZHI2NnZ3aTA0c2wzdnVoOHgxbyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/awGRnLE9t3NZG1sTde/giphy.gif" width="750" height="750"/>
-
-# Using the Searchbar
+# Using the Search bar
 
 ### Attribute to Value Matching
 
-The searchbar allows you to dynamically select data that has been generated within the page you are searching through. Your instrumented applications contain a default set of attributes that are collected and stored within Middleware that correspond to dynamically generated values. Begin your search by clicking into the searchbar, selecting your desired attribute and then choosing a corresponding value that appears shortly after selecting said attribute:
+The search bar allows you to dynamically select data that has been generated within the page you are searching through. Your instrumented applications contain a default set of attributes that are collected and stored within Middleware that correspond to dynamically generated values.
 
-----gif here-----
+Begin your search by clicking into the search bar, selecting your desired attribute, and then choosing a corresponding value that appears shortly after selecting said attribute:
 
 ### Logical Operators
 
-Below is a table containing the available logical operators you can use within the searchbar:
+Below is a table containing the available logical operators you can use within the search bar:
 
 | __Operator__ | __Description__ |
 | :----------- | :-------------- |
-| `AND`        | Intersection: Both terms must be present within the selected search |
-| `OR`         | Union: Either term is contained within the selected search |
+| `AND`        | __Intersection__: Both terms must be present within the selected search |
+| `OR`         | __Union__: Either term is contained within the selected search |
 
 ### Regex Operators
 
-Regex operators allow you to identify specific patterns of strings within your instrumented application data.
+Regular Expression (Regex) operators allow you to identify specific patterns of strings within your instrumented application data. 
+
+<Note> Refer to the following [Syntax Page]() to learn about the regex syntax that Middleware supports.</Note>
 
 # Filtering Data with Attributes
 
-The left navigation bar allows you to filter down the data being monitored within a given page. There are preset filters made available across different sections in Middleware as well as dynamically generated filters based on your components different resource attributes.
+The left navigation bar allows you to filter down the data being monitored within a given page. There are preset filters made available across different sections in Middleware as well as dynamically generated filters based on your component's different resource attributes.
 
-To filter your data, select check the boxes next to your desired filters to inclusively select the data you would like to view.
-
-----gif here---
+To filter your data, check the boxes next to your desired filters to inclusively select the data you would like to view.
 
 # Filtering by Date Range
 
@@ -45,7 +43,7 @@ All screens in Middleware include a date range picker in the top right. All othe
 
 # History & Live Mode
 
-Toggle between a static time range with the __History Mode__ or track your data in real-time with __Live Mode__. When you are in Live Mode your page will display the last 5 minutes of data while streaming in 5 second batches.
+Toggle between a static time range with the __History Mode__ or track your data in real-time with __Live Mode__. When you are in Live Mode your page will display the last 5 minutes of data while streaming in five second batches.
 
 <Note>__Live Mode__ can be toggled on or off in the top right by clicking the __History/Live__ button. </Note>
 
@@ -53,7 +51,7 @@ Toggle between a static time range with the __History Mode__ or track your data 
 
 # Timeframe Selection
 
-All histrograms in Middleware are capable of timerange selection. Simply click and drag your cursor over the desired range to drill in:
+All histograms in Middleware are capable of time range selection. Simply click and drag your cursor over the desired range to drill in:
 
 <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExd2w2NzlvZTI0cHp6Y2k1bXZ0cnNnZ2lqaWRuczh5cHA1N3NiYzZpcCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/USUGnjRaj9HtKs6hDu/giphy.gif" width="750" height="750"/>
 
