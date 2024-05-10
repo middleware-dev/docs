@@ -95,6 +95,7 @@ import {
   warn,
 } from "https://deno.land/x/middlewareio@1.1.0/mod.ts";
 
+// Initialize the Middleware tracker with the name of your service, your account URL, and API key
 track({
   serviceName: "hono-service",
   target: "https://<ACCOUNT_URL>:443",
@@ -105,6 +106,7 @@ const app = new Hono();
 
 const rootHandler = (c) => {
   const infoMessage = "Hello Hono!";
+  // Log an info message
   info(infoMessage);
   return c.text(`${infoMessage}\n`);
 };
@@ -113,17 +115,20 @@ const greetHandler = (c) => {
   const name = c.req.param("name");
   if (name.length < 2) {
     const warnMessage = "A name cannot be a single letter";
+    // Log a warning message
     warn(warnMessage);
     return c.text(`${warnMessage}\n`);
   }
 
   const debugMessage = `Hello ${name}`;
+  // Log a debug message
   debug(debugMessage);
   return c.text(`${debugMessage}\n`);
 };
 
 const errorHandler = (c) => {
   const errorMessage = "An error occurred";
+  // Log an error message
   error(errorMessage);
   throw new Error();
 };
@@ -139,6 +144,7 @@ const server = Deno.serve(
       console.log(`Server started at ${`http://${hostname}:${port}`}`);
     },
   },
+  // Wrap the app.fetch method with the httpTracer to begin instrumenting
   httpTracer(app.fetch),
 );
 ```
