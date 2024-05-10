@@ -202,10 +202,10 @@
           "group": "APM",
           "pages": [    
             "workflow/apm/apm-overview",
-            "workflow/apm/continuous-profiling",
             "workflow/apm/database",            
             "workflow/apm/services",
-            "workflow/apm/span-list"                        
+            "workflow/apm/span-list",
+            "workflow/apm/continuous-profiling"                        
           ]
         }, "workflow/using-rum",
         {
