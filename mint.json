@@ -197,7 +197,7 @@
             "open-telemetry/otel-collector"
           ]
 
-        },
+        },"/datadog-agent",
         {
           "group": "APM",
           "pages": [    

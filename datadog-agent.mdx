@@ -1,5 +1,6 @@
 ---
 title: Installing the DataDog Agent in Middleware
+sidebarTitle: DataDog Agent
 ---
 
 Middleware supports the ingestion of APM traces and logs from the DataDog Agent. We use their [Dual Shipping](https://docs.datadoghq.com/agent/configuration/dual-shipping/) feature to redirect your APM traces and logs into Middleware. 
@@ -30,7 +31,7 @@ Middleware supports the ingestion of APM traces and logs from the DataDog Agent.
 
 Add the following `additional_endpoints` within the `apm_config` section in your `datadog.yaml` file:
 
-<Warning>If you already have the apm_config section in your datadog.yaml file, please add an additional endpoint in the same section. Datadog agent does not support multiple apm_config sections. </Warning> 
+<Warning>If you already have the `apm_config` section in your `datadog.yaml` file, add an additional endpoint in the same section. Datadog agent does not support multiple `apm_config` sections. </Warning> 
 
 <Note> The Linux DataDog Agent is configured by default in the following `YAML` file: `/etc/datadog-agent/datadog.yaml` </Note>
 
@@ -45,7 +46,7 @@ apm_config:
 
 Add the following `additional_endpoints` within the `logs_config` section in your `datadog.yaml` file:
 
-<Note> Unlike the APM Traces, you only need to provide your hostname (datadog.middleware.io) without the protocol scheme (https://) </Note>
+<Note> Unlike the APM Traces, you only need to provide your hostname (`datadog.middleware.io`) without the protocol scheme (`https://`) </Note>
 
 ```yaml datadog.yaml
 logs_config:
@@ -137,10 +138,21 @@ api_key: using middleware
 site: example.com
 ```
 
-### I cannot see my APM traces and logs on Middleware
+### I can't see my APM traces and logs on Middleware.
 
+- Execute the following command to ensure the DataDog Linux Agent is in an active state:
 
-# Next Steps
+```shell Shell
+sudo systemctl status datadog-agent
+```
 
+- Verify that your Middleware API key and target are correct. The `apm_config` target is `http://datadog.middleware.io`
+whereas the `logs_config` `Host` field value is `datadog.middleware.io` (without `https://`).
+
+- Make sure you only have one `apm_config` and `logs_config` section in the following configuration file: `/etc/datadog/datadog.yaml`
+
+- Check your DataDog Kubernetes Agent. Ensure the `datadog-agent` and `cluster-agent` pods are operational with a liveness and readiness check for both pods.
+
+- Check your Kubernetes Helm chart installation method by checking the `datadog-values.yaml` and ensure that the `agent` section is at the same level as the `datadog` section. The `agent` section should NOT be inside the `datadog` section.
 
 <Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
