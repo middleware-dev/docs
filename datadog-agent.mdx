@@ -1,0 +1,158 @@
+---
+title: Installing the DataDog Agent in Middleware
+sidebarTitle: DataDog Agent
+---
+
+Middleware supports the ingestion of APM traces and logs from the DataDog Agent. We use their [Dual Shipping](https://docs.datadoghq.com/agent/configuration/dual-shipping/) feature to redirect your APM traces and logs into Middleware. 
+
+<Note> This feature is supported in DataDog's Linux and Kubernetes Agent </Note>
+
+# Prerequisites
+
+<Steps>
+
+  <Step title="DataDog Agent - Traces">
+  DataDog Agent `version 6.7.0` or above 
+  </Step>
+
+  <Step title="DataDog Agent - TCP Logs">
+    DataDog Agent `version 6.6` or above
+  </Step>
+
+  <Step title="DataDog Agent - HTTP Logs">
+    DataDog Agent `version 6.13` or above
+  </Step>
+
+</Steps>
+
+# Linux Agent
+
+### Step 1: Add Trace Config
+
+Add the following `additional_endpoints` within the `apm_config` section in your `datadog.yaml` file:
+
+<Warning>If you already have the `apm_config` section in your `datadog.yaml` file, add an additional endpoint in the same section. Datadog agent does not support multiple `apm_config` sections. </Warning> 
+
+<Note> The Linux DataDog Agent is configured by default in the following `YAML` file: `/etc/datadog-agent/datadog.yaml` </Note>
+
+```yaml datadog.yaml
+apm_config:
+  additional_endpoints:
+  "https://datadog.middleware.io":
+  - "<Your MW API Key>"
+```
+
+### Step 2: Add Log Config
+
+Add the following `additional_endpoints` within the `logs_config` section in your `datadog.yaml` file:
+
+<Note> Unlike the APM Traces, you only need to provide your hostname (`datadog.middleware.io`) without the protocol scheme (`https://`) </Note>
+
+```yaml datadog.yaml
+logs_config:
+    use_http: true
+    additional_endpoints:
+    - api_key: "<Your MW API Key>"
+        Host: "datadog.stage.env.middleware.io"
+        Port: 443
+        is_reliable: true
+```
+
+### Step 4: Restart DataDog Agent
+
+Run the following code in your terminal to restart the DataDog Agent:
+
+```shell Shell
+sudo systemctl restart datadog-agent
+```
+
+# Kubernetes Agent
+
+The Datadog Kubernetes agent supports Helm and Operator methods of installation. Middleware can ingest traces and logs from the Datadog agent installed using any of these methods.
+
+### Helm chart 
+
+If you have installed the Datadog Agent using their [Helm Chart](https://docs.datadoghq.com/containers/kubernetes/installation/?tab=helm), you must add the following section in your `datadog-values.yaml` file that you created from step 3 [here](https://github.com/DataDog/helm-charts/blob/main/charts/datadog/values.yaml):
+
+<Note> You can remove either the `logs_config` or the `apm_config` from the below file depending on what data you would like to send to Middleware. </Note>
+
+```yaml datadog-values.yaml
+agents:
+  useConfigMap: true
+  customAgentConfig:
+    logs_config:
+      container_collect_all: true
+      use_http: true
+      additional_endpoints:
+        - api_key: lzfywamjxpfaepytxwcavxgnxmkwebkuccyi
+          Host: datadog.middleware.io
+          Port: 443
+          is_reliable: true
+    apm_config:
+      additional_endpoints:
+        "https://datadog.middleware.io":
+          - "<Your MW API Key>”
+
+```
+
+Below is an example of the full `datadog-values.yaml` file that will send logs and APM traces to the Middleware platform:
+
+```yaml datadog-values.yaml
+datadog:
+  site: us5.datadoghq.com
+  kubelet:
+    tlsVerify: false
+  apiKeyExistingSecret: datadog-secret
+  logs:
+    enabled: true
+    containerCollectAll: true
+agents:
+  useConfigMap: true
+  customAgentConfig:
+    logs_config:
+      container_collect_all: true
+      use_http: true
+      additional_endpoints:
+        - api_key: "<Your MW API Key>"
+          Host: "datadog.middleware.io"
+          Port: 443
+          is_reliable: true
+    apm_config:
+      additional_endpoints:
+        "https://datadog.middleware.io":
+          - "<Your MW API Key>"
+```
+# FAQ
+
+### How do you stop sending APM traces and logs to DataDog and only send them to Middleware?
+
+If you want to stop sending APM traces and logs to Datadog, you can change the `api_key` (or environment variable `DD_API_KEY`) in the `/etc/datadog/datadog.yaml` file to something invalid.  
+
+<Warning> The Datadog Agent does not work if you comment out your `api_key` or set it to an empty value. </Warning>
+
+
+Below is an example of setting your `api_key` and `site` to invalid values: 
+
+```yaml datadog-values.yaml
+api_key: using middleware
+site: example.com
+```
+
+### I can't see my APM traces and logs on Middleware.
+
+- Execute the following command to ensure the DataDog Linux Agent is in an active state:
+
+```shell Shell
+sudo systemctl status datadog-agent
+```
+
+- Verify that your Middleware API key and target are correct. The `apm_config` target is `http://datadog.middleware.io`
+whereas the `logs_config` `Host` field value is `datadog.middleware.io` (without `https://`).
+
+- Make sure you only have one `apm_config` and `logs_config` section in the following configuration file: `/etc/datadog/datadog.yaml`
+
+- Check your DataDog Kubernetes Agent. Ensure the `datadog-agent` and `cluster-agent` pods are operational with a liveness and readiness check for both pods.
+
+- Check your Kubernetes Helm chart installation method by checking the `datadog-values.yaml` and ensure that the `agent` section is at the same level as the `datadog` section. The `agent` section should NOT be inside the `datadog` section.
+
+<Note> Need assistance or want to learn more about Middleware? Contact us at support[at]middleware.io. </Note>
