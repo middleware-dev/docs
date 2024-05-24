@@ -36,23 +36,9 @@ Log in to Middleware, navigate to the Installations Page in the bottom left corn
 
 Add a host machine from the dropdown list, input the credential path from Step 1, and Save
 
-# Visualize Analytics
-
-### Default MySQL Dashboard
-
-Once the MySQL integration setup is complete, a new MySQL-specific dashboard will appear in the Dashboard Builder. This default dashboard serves as a jumping off point for visualizing and analyzing MySQL data. 
-
-<img src="/images/integration/mysql-dashboard.png" />
-
-### Create MySQL Widget
-
-MySQL data can be added to dashboards as a custom widget. When adding a new widget, select the `mysql` data source to view a full list of available MySQL data. 
-
-<img src="/images/integration/mysql-custom-graphs.png" />
-
 # MySQL Non-Root User Metric Collection
 
-MySQL metrics are collected by querying `performance_schema` and `sys_schema` along with status variables that are managed by `mysql-server`. To allow for this collection you must create a non-root user with specific permissions described below.
+MySQL metrics are collected by querying `performance_schema` and `sys_schema` along with status variables that are managed by `mysql-server`. These performance metrics are only available upon completing this installation; this installation process is unique from the installation process above, as they collect completely separate metrics. the To allow for this collection you must create a non-root user with specific permissions described below.
 
 ### Step 1: Create a User
 
@@ -107,6 +93,20 @@ mysql -u mw --password=<PASSWORD> -e "show slave status" && \
 echo -e "\033[0;32mMySQL grant - OK\033[0m" || \
 echo -e "\033[0;31mMissing REPLICATION CLIENT grant\033[0m"
 ```
+
+# Visualize Analytics
+
+### Default MySQL Dashboard
+
+Once the MySQL integration setup is complete, a new MySQL-specific dashboard will appear in the Dashboard Builder. This default dashboard serves as a jumping off point for visualizing and analyzing MySQL data. 
+
+<img src="/images/integration/mysql-dashboard.png" />
+
+### Create MySQL Widget
+
+MySQL data can be added to dashboards as a custom widget. When adding a new widget, select the `mysql` data source to view a full list of available MySQL data. 
+
+<img src="/images/integration/mysql-custom-graphs.png" />
 
 # Alerts
 
