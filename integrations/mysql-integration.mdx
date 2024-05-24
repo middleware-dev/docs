@@ -50,6 +50,64 @@ MySQL data can be added to dashboards as a custom widget. When adding a new widg
 
 <img src="/images/integration/mysql-custom-graphs.png" />
 
+# MySQL Non-Root User Metric Collection
+
+MySQL metrics are collected by querying `performance_schema` and `sys_schema` along with status variables that are managed by `mysql-server`. To allow for this collection you must create a non-root user with specific permissions described below.
+
+### Step 1: Create a User
+
+Create a user named `mw` and specify your own unique password with the following command. `mw` will have the ability to login from any host unless otherwise specified.
+
+```
+mysql> CREATE USER 'mw'@'%' IDENTIFIED BY '<PASSWORD>';
+```
+
+<Note> To specify the specific host that `mw` can log into, change your above user name to the following: `mw@'<hostaddr>'` </Note>
+
+Check if the user was created successfully by running the following command:
+
+```
+mysql -u mw --password=<PASSWORD> -e "show status" | \
+grep Uptime && echo -e "\033[0;32mMySQL user - OK\033[0m" || \
+echo -e "\033[0;31mCannot connect to MySQL\033[0m"
+```
+
+If successful, you will see the following output:
+
+```
+MySQL user - OK
+```
+
+### Step 2: Grant `mw` Permissions:
+
+Grant `mw` permissions by running the following commands:
+
+```
+GRANT REPLICATION CLIENT ON *.* TO 'mw'@'%'
+```
+
+```
+ALTER USER 'mw'@'%' WITH MAX_USER_CONNECTIONS 5;
+```
+
+```
+GRANT PROCESS ON *.* TO 'mw'@'%';
+```
+
+```
+GRANT SELECT ON performance_schema.* TO 'mw'@'%';
+```
+
+### Step 3: Check New Privelages
+
+Ensure you have properly granted permissions to the `mw` user by running the following commands:
+
+```
+mysql -u mw --password=<PASSWORD> -e "show slave status" && \
+echo -e "\033[0;32mMySQL grant - OK\033[0m" || \
+echo -e "\033[0;31mMissing REPLICATION CLIENT grant\033[0m"
+```
+
 # Alerts
 
 Alerts can be configured for any MySQL metrics. When creating a new rule select the Database detection method and MySQL database type for available metrics to appear in the Metrics dropdown list. Select the desired metric and continue configuring the alert conditions.
