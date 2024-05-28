@@ -59,23 +59,69 @@ Copy the appropriate installation command based on your machine’s operating sy
 
 ### Step 3: Optional Configurations
 
-#### Add MW Agent Internal Metrics
+The following flags are optional modifications you can make to the MW Linux Agent. Add any of these flags to the beginning of one of the above install commands. 
 
-To change the MW Agent internal metrics port, use the `MW_AGENT_INTERNAL_METRICS_PORT` environment variable. Use the following example by replacing the port number (which is by default set to `8888`):
+<Note> For more information on configuring your MW Linux Agent, navigate to the [mw_agent](https://github.com/middleware-labs/mw-agent/blob/master/cmd/host-agent/main.go#L63) repository. </Note>
 
-```bash Shell
-MW_AGENT_INTERNAL_METRICS_PORT=8888 MW_API_KEY=upnycrphsnoeliwoiyzpnmkqxfihohbbkuth MW_TARGET=https://xejkc_mdt.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/rpm-install.sh)"
-```
+#### `MW_CONFIG_CHECK_INTERVAL`
 
+This is a duration string to periodically check for OpenTelemetry collector configuration updates. This configuration is only useful if `MW_FETCH_ACCOUNT_OTEL_CONFIG` is set to `true`.
 
-#### Add Host Tags
-Create filterable custom tags by adding the `MW_HOST_TAGS` environment variable to the installation command as comma-separated key-value pairs. Use the tag `name` to create an alias for the host (e.g. production). 
+#### `MW_FETCH_ACCOUNT_OTEL_CONFIG`
+
+The MW Linux Agent fetches the OpenTelemetry collector configuration from Middleware's backend. Setting `MW_FETCH_ACCOUNT_OTEL_CONFIG` to false will disable this fetching process. Users will have to provide their own OpenTelemetry collector configuration in an appropriate location (either at the default location or at the location set by `MW_OTEL_CONFIG_FILE` environment variable).
+
+#### `MW_FLUENT_PORT`
+
+The MW Agent has a built in Fluentd receiver. This value allows you to change the listener port for Fluentd.
+
+#### `MW_LOGFILE`
+
+This allows you to specify the location of your logfile that stores MW Agent logs instead of logging them to the Systemd log journal.
+
+#### `MW_LOGFILE_SIZE`
+
+Log file size in Megabytes to store MW Agent logs. This flag only applies if logfile flag is specified.
+
+#### `MW_AGENT_FEATURES_INFRA_MONITORING`
+
+Infrastructure monitoring is enabled by default in MW Agent. Setting `MW_AGENT_FEATURES_INFRA_MONITORING` to false will disable infrastructure monitoring on the host.
+
+#### `MW_CONFIG_FILE`
+
+This allows you to specify the location of the configuration file for MW Agent.
+
+#### `MW_OTEL_CONFIG_FILE`
+
+This allows you to specify the location of the OpenTelemetry collector configuration file.
+
+#### `MW_AGENT_INTERNAL_METRICS_PORT`
+
+This changes the location of the MW Agent internal metrics port. The default port is set to `8888`.
+
+#### `MW_HOST_TAGS`
+This allows you to create filterable custom tags as comma-separated key-value pairs. Use the tag `name` to create an alias for the host (e.g. production). 
     
 <Note> Check your host tags have been embedded by navigating to __Infrastructure__ -> __Your Desired Host__ -> __System Information__ </Note>
 
 ```bash Shell
 MW_HOST_TAGS=key1:value1,key2:value2,... MW_API_KEY=...
 ```
+
+#### `MW_DOCKER_ENDPOINT`
+
+This flag allows you to set the endpoint for your Docker socket if it is different from the default socket.
+
+#### `MW_AGENT_SELF_PROFILING`
+
+This flag is for profiling the MW Agent itself.
+
+#### `MW_PROFILING_SERVER_URL`
+
+This flag allows you to specifiy the Server Address for redirecting your profiling data.
+
+
+
 
 ### Step 4: Verify Installation
 
