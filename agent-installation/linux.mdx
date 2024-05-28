@@ -37,15 +37,13 @@ Log in to Middleware, navigate to the Installation Page in the bottom left corne
 
 Copy the appropriate installation command based on your machine’s operating system. Copying the command directly from the Installation page ensures your API key and UID are inserted accurately.
 
-<Note> To change the MW Agent internal metrics port, use the `MW_AGENT_INTERNAL_METRICS_PORT` environment variable. The port defaults to `8888`. </Note>
-
 <Tabs>
   <Tab title="DEB">
 
     `DEB`: Compatible with Debian or Debian-based operating systems. For AWS instances this includes Ubuntu and Debian.
 
     ```bash Shell
-    MW_AGENT_INTERNAL_METRICS_PORT=8888 MW_API_KEY=<xxxxxxxxxx> MW_TARGET=https://<uid>.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/deb-install.sh)"
+    MW_API_KEY=<xxxxxxxxxx> MW_TARGET=https://<uid>.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/deb-install.sh)"
     ```
   </Tab>
 
@@ -54,13 +52,23 @@ Copy the appropriate installation command based on your machine’s operating sy
     `RPM`: Compatible with Red Hat Package Manager and operating systems like Red Hat or CentOS. Use this for AWS instances using Amazon Linux. 
     
     ```bash Shell
-    MW_AGENT_INTERNAL_METRICS_PORT=8888 MW_API_KEY=xxxxxxxxxx MW_TARGET=https://<uid>.middleware.io:443 bash -c "$(curl https://install.middleware.io/scripts/rpm-install.sh)"
+    MW_API_KEY=xxxxxxxxxx MW_TARGET=https://<uid>.middleware.io:443 bash -c "$(curl https://install.middleware.io/scripts/rpm-install.sh)"
     ```          
   </Tab>
 </Tabs>
 
-### Step 3: Add Host Tags [Optional]
+### Step 3: Optional Configurations
 
+#### Add MW Agent Internal Metrics
+
+To change the MW Agent internal metrics port, use the `MW_AGENT_INTERNAL_METRICS_PORT` environment variable. Use the following example by replacing the port number (which is by default set to `8888`):
+
+```bash Shell
+MW_AGENT_INTERNAL_METRICS_PORT=8888 MW_API_KEY=upnycrphsnoeliwoiyzpnmkqxfihohbbkuth MW_TARGET=https://xejkc_mdt.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/rpm-install.sh)"
+```
+
+
+#### Add Host Tags
 Create filterable custom tags by adding the `MW_HOST_TAGS` environment variable to the installation command as comma-separated key-value pairs. Use the tag `name` to create an alias for the host (e.g. production). 
     
 <Note> Check your host tags have been embedded by navigating to __Infrastructure__ -> __Your Desired Host__ -> __System Information__ </Note>
