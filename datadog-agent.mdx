@@ -27,7 +27,7 @@ Middleware supports the ingestion of APM traces and logs from the DataDog Agent.
 
 # Linux Agent
 
-### Step 1: Add Trace Config
+### Add Trace Config
 
 Add the following `additional_endpoints` within the `apm_config` section in your `datadog.yaml` file:
 
@@ -42,7 +42,7 @@ apm_config:
   - "<Your MW API Key>"
 ```
 
-### Step 2: Add Log Config
+### Add Log Config
 
 Add the following `additional_endpoints` within the `logs_config` section in your `datadog.yaml` file:
 
@@ -58,7 +58,7 @@ logs_config:
         is_reliable: true
 ```
 
-### Step 4: Restart DataDog Agent
+### Restart DataDog Agent
 
 Run the following code in your terminal to restart the DataDog Agent:
 
@@ -122,6 +122,69 @@ agents:
         "https://datadog.middleware.io":
           - "<Your MW API Key>"
 ```
+
+# Amazon ECS on EC2 Cluster
+
+Middleware can ingest Logs and APM Traces from the DataDog Agent running on ECS clusters that use EC2 instances.
+
+<Note> For more information on ingesting Log and APM Traces using Amazon ECS with DataDog, navigate [here](https://docs.datadoghq.com/containers/amazon_ecs/?tab=awscli).</Note>
+
+### Add Trace Config
+
+Add the following JSON script to your ECS task definition. The below environment variables are required for [dual shipping APM traces](https://docs.datadoghq.com/agent/configuration/dual-shipping/#apm) in the DataDog Agent. 
+
+<Warning> The `DD_APM_ENABLED` and `DD_APM_ADDITION_ENDPOINTS` environment variables are in addition to existing environment variables (e.g. `DD_API_KEY`, `DD_SITE`, etc.) that may already be defined in your Datadog Agent’s task definition. </Warning>
+
+```
+"environment": [
+   ...
+   {
+     "name": "DD_APM_ENABLED",
+     "value": "true"
+   },
+   {
+     "name": "DD_APM_ADDITIONAL_ENDPOINTS",
+     "value": "{\"https://datadog.middleware.io\": [\"<Your MW API Key>\"]}"
+   },
+ ]
+
+```
+
+<Note> Ensure that you have replaced `<Your MW API Key>` with your desired Middleware API key from your Middleware account. </Note>
+
+### Add Log Config 
+
+Add the following JSON script to your ECS task definition. The below environment variables are required for [dual shipping Logs](https://docs.datadoghq.com/agent/configuration/dual-shipping/#apm) in the DataDog Agent. 
+
+<Warning> The four environment variables mentioned above are in addition to existing environment variables (e.g. `DD_API_KEY`, `DD_SITE`, etc.)  that may already be defined in your Datadog Agent’s task definition. </Warning> 
+
+```
+"environment": [
+  {
+    "name": "DD_LOGS_CONFIG_USE_HTTP",
+    "value": "true"
+  },
+  {
+     "name": "DD_LOGS_ENABLED",
+     "value": "true"
+   },
+   {
+     "name": "DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL",
+     "value": "true"
+   },
+   {
+     "name": "DD_LOGS_CONFIG_ADDITIONAL_ENDPOINTS",
+     "value": "[{\"api_key\": \"<Your MW API Key>\", \"Host\": \"datadog.middleware.io\", \"Port\": 443, \"is_reliable\": true}]"
+   }
+ ]
+```
+
+<Note> Ensure that you have replaced `<Your MW API Key>` with your desired Middleware API key from your Middleware account. </Note>
+
+### Update Agent Service
+
+Once you have updated the ECS task definition for the Datadog Agent, update the relevant Datadog Agent Service to redeploy the agent with your new configuration. APM traces and logs will start flowing into your Middleware account.
+
 # FAQ
 
 ### How do you stop sending APM traces and logs to DataDog and only send them to Middleware?
