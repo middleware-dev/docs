@@ -5,13 +5,13 @@ description: MySQL Integration - Setup & Installation Docs | Middleware
 
 The MySQL Integration allows you to ingest and monitor the performance and health metrics of your relational database management system (RDBMS) data. This integration is useful for identifying top SQL operations by row, tallying total requests to MySQL handlers, and tracking worker thread count.
 
-There are two different methods for setting up the MySQL Integration. [Setup #1](/integrations/mysql-integration#setup-1) assumes you are a root MySQL user whereas [Setup #2](/integrations/mysql-integration#setup-2) allows you to connect the MySQL integration as a non-root user. Both installation methods will allow you to collect the same [Metrics](/integrations/mysql-integration#metrics-collected).
+There are two different methods for setting up the MySQL Integration. [File-Baseed Authentication](/integrations/mysql-integration#setup-1) assumes you are a root MySQL user whereas [User-Baseed Authentication](/integrations/mysql-integration#setup-2) allows you to connect the MySQL integration as a non-root user. Both installation methods will allow you to collect the same [Metrics](/integrations/mysql-integration#metrics-collected).
 
 # Prerequisites
 
 Middleware Host Agent (MW Agent) must be installed on your local machine. To install the MW Agent, see our [Installation Guide](https://docs.middleware.io/agent-installation/overview).
 
-# Setup #1
+# File-Baseed Authentication
 
 ### Step 1: Create Database Credentials
 
@@ -38,7 +38,7 @@ Log in to Middleware, navigate to the Installations Page in the bottom left corn
 
 Add a host machine from the dropdown list, input the credential path from Step 1, and Save
 
-# Setup #2
+# User-Based Authentication
 
 MySQL metrics are collected by querying `performance_schema` and `sys_schema` along with status variables that are managed by `mysql-server`. To allow for this collection you must create a non-root user with specific permissions described below.
 
