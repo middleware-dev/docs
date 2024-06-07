@@ -128,65 +128,149 @@ Forward your ECS Task logs to Middleware. The `mw-agent` sidecar, mentioned [abo
 
     Begin by creating a Task Definition for the Infra Agent container.
 
-    ```json JSON
+    ```json JSON 
     {
-    "containerDefinitions": [
-        {
-        "name": "mw-agent",
-        "image": "ghcr.io/middleware-labs/mw-host-agent:master",
-        "cpu": 100,
-        "memory": 512,
-        "essential": true,
-        "portMappings": [
+        "family": "mw-agent-task",
+        "containerDefinitions": [
             {
-            "name": "mw-agent-9319-tcp",
-            "containerPort": 9319,
-            "hostPort": 9319,
-            "protocol": "tcp",
-            "appProtocol": "grpc"
-            },
-            {
-            "name": "mw-agent-8006-tcp",
-            "containerPort": 8006,
-            "hostPort": 8006,
-            "protocol": "tcp"
-            },
-            {
-            "name": "mw-agent-9320-tcp",
-            "containerPort": 9320,
-            "hostPort": 9320,
-            "protocol": "tcp"
+                "name": "mw-agent",
+                "image": "ghcr.io/middleware-labs/mw-host-agent:master",
+                "cpu": 100,
+                "memory": 512,
+                "portMappings": [
+                    {
+                        "name": "mw-agent-9319-tcp",
+                        "containerPort": 9319,
+                        "hostPort": 9319,
+                        "protocol": "tcp",
+                        "appProtocol": "grpc"
+                    },
+                    {
+                        "name": "mw-agent-8006-tcp",
+                        "containerPort": 8006,
+                        "hostPort": 8006,
+                        "protocol": "tcp"
+                    },
+                    {
+                        "name": "mw-agent-9320-tcp",
+                        "containerPort": 9320,
+                        "hostPort": 9320,
+                        "protocol": "tcp"
+                    }
+                ],
+                "essential": true,
+                "environment": [
+                    {
+                        "name": "MW_API_KEY",
+                        "value": "<Your MW API Key here>"
+                    },
+                    {
+                        "name": "MW_TARGET",
+                        "value": "<Your MW Target here>"
+                    }
+                ],
+                "mountPoints": [
+                    {
+                        "sourceVolume": "docker-sock",
+                        "containerPath": "/var/run/docker.sock",
+                        "readOnly": false
+                    },
+                    {
+                        "sourceVolume": "proc",
+                        "containerPath": "/rootfs/proc",
+                        "readOnly": true
+                    },
+                    {
+                        "sourceVolume": "dev",
+                        "containerPath": "/rootfs/dev",
+                        "readOnly": true
+                    },
+                    {
+                        "sourceVolume": "al2_cgroup",
+                        "containerPath": "/sys/fs/cgroup",
+                        "readOnly": true
+                    },
+                    {
+                        "sourceVolume": "al1_cgroup",
+                        "containerPath": "/cgroup",
+                        "readOnly": true
+                    },
+                    {
+                        "sourceVolume": "al2_cgroup",
+                        "containerPath": "/rootfs/sys/fs/cgroup",
+                        "readOnly": true
+                    },
+                    {
+                        "sourceVolume": "al1_cgroup",
+                        "containerPath": "/rootfs/cgroup",
+                        "readOnly": true
+                    },
+                    {
+                        "sourceVolume": "docker-containers-root",
+                        "containerPath": "/var/lib/docker/containers",
+                        "readOnly": true
+                    },
+                    {
+                        "sourceVolume": "var-log-host",
+                        "containerPath": "/var/log",
+                        "readOnly": true
+                    }
+                ],
+                "volumesFrom": [],
+                "privileged": true,
+                "systemControls": []
             }
         ],
-        "environment": [
+        "networkMode": "host",
+        "volumes": [
             {
-            "name": "MW_API_KEY",
-            "value": "<Your MW API Key here>"
+                "name": "docker-sock",
+                "host": {
+                    "sourcePath": "/var/run/docker.sock"
+                }
             },
             {
-            "name": "MW_TARGET",
-            "value": "<Your MW Target here>"
+                "name": "proc",
+                "host": {
+                    "sourcePath": "/proc"
+                }
+            },
+            {
+                "name": "dev",
+                "host": {
+                    "sourcePath": "/dev"
+                }
+            },
+            {
+                "name": "al1_cgroup",
+                "host": {
+                    "sourcePath": "/cgroup"
+                }
+            },
+            {
+                "name": "al2_cgroup",
+                "host": {
+                    "sourcePath": "/sys/fs/cgroup"
+                }
+            },
+            {
+                "name": "docker-containers-root",
+                "host": {
+                    "sourcePath": "/var/lib/docker/containers"
+                }
+            },
+            {
+                "name": "var-log-host",
+                "host": {
+                    "sourcePath": "/var/log"
+                }
             }
         ],
-        "mountPoints": [
-            {
-            "sourceVolume": "docker-sock",
-            "containerPath": "/var/run/docker.sock",
-            "readOnly": false
-            }
-        ]
-        }
-    ],
-    "volumes": [
-        {
-        "name": "docker-sock",
-        "host": {
-            "sourcePath": "/var/run/docker.sock"
-        }
-        }
-    ],
-    "family": "mw-agent-task"
-    }
+        "requiresCompatibilities": [
+            "EC2"
+        ],
+        "pidMode": "host"
+}
     ```
     </Accordion>
 
