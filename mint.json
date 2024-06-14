@@ -11,6 +11,9 @@
     "light": "#fef4f4",
     "dark": "#e95e5f"
   },
+  "metadata": {
+    "robots": "noindex, nofollow"
+  },
   "topbarLinks": [
     {
       "name": "Home",
